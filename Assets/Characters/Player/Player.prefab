@@ -456,9 +456,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c365358ef1687844a4ed49054964e0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundBoxSize: {x: 0.3, y: 0.1}
-  wallBoxSize: {x: 0.1, y: 1.8}
-  ceilingBoxSize: {x: 0.3, y: 0.1}
+  groundBoxSize: {x: 0.4, y: 0.1}
+  wallBoxSize: {x: 0.1, y: 2}
+  ceilingBoxSize: {x: 0.4, y: 0.1}
   groundLayer:
     serializedVersion: 2
     m_Bits: 128

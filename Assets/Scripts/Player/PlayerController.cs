@@ -14,13 +14,15 @@ using UnityEngine.UIElements;
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement")]
-    private float currentSpeed;
     [SerializeField] private float walkSpeed = 8f;
     [SerializeField] private float walkAceleration = 4f;
     [SerializeField] private float stopRate = 0.2f;
     [SerializeField] private float jumpImpluse= 27f;
     [SerializeField] private float coyoteTime = 0.1f;
+    private float currentSpeed;
     private float coyoteTimeCounter;
+    [SerializeField] private float jumpBufferTime = 0.1f;
+    private float jumpBufferTimeCounter;
     [Space(5)]
 
     [Header("Climbing")]
@@ -187,6 +189,7 @@ public class PlayerController : MonoBehaviour
         {
             isInAir = false;
             coyoteTimeCounter = coyoteTime;
+            animator.SetFloat(AnimationString.yVelocity, 0);
         }
         else
         {
@@ -198,11 +201,23 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.started && coyoteTimeCounter > 0f && CanMove)
+        if (context.started)
+        {
+            jumpBufferTimeCounter = jumpBufferTime;
+        }
+        else
+        {
+            jumpBufferTimeCounter -= Time.deltaTime;
+        }
+
+        if (jumpBufferTimeCounter > 0f && coyoteTimeCounter > 0f && CanMove)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpImpluse);
+
+            jumpBufferTimeCounter = 0f;
         }
-        if (context.canceled)
+
+        if (context.canceled && rb.velocity.y > 0)
         {
             coyoteTimeCounter = 0f;
         }
