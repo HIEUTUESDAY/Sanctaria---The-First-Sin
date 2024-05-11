@@ -30620,8 +30620,8 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4373586563205427431, guid: e74853af4a424d24b8d6851ac15df36f, type: 3}
-      propertyPath: _isFacingRight
-      value: 1
+      propertyPath: dashPower
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4373586563205427431, guid: e74853af4a424d24b8d6851ac15df36f, type: 3}
       propertyPath: cameraFollowGO
@@ -30654,6 +30654,22 @@ PrefabInstance:
     - target: {fileID: 7076371970001519899, guid: e74853af4a424d24b8d6851ac15df36f, type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144145772889742267, guid: e74853af4a424d24b8d6851ac15df36f, type: 3}
+      propertyPath: m_Time
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144145772889742267, guid: e74853af4a424d24b8d6851ac15df36f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 7144145772889742267, guid: e74853af4a424d24b8d6851ac15df36f, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144145772889742267, guid: e74853af4a424d24b8d6851ac15df36f, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].value
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8644018605232120593, guid: e74853af4a424d24b8d6851ac15df36f, type: 3}
       propertyPath: m_LocalPosition.x

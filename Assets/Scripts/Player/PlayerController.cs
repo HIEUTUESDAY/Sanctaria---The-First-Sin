@@ -13,16 +13,29 @@ using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("Movement")]
+    [Header("Moving")]
     [SerializeField] private float walkSpeed = 8f;
     [SerializeField] private float walkAceleration = 4f;
-    [SerializeField] private float stopRate = 0.2f;
-    [SerializeField] private float jumpImpluse= 27f;
-    [SerializeField] private float coyoteTime = 0.1f;
+    [SerializeField] private float walkStopRate = 0.2f;
     private float currentSpeed;
+    [Space(5)]
+
+    [Header("Jumping")]
+    [SerializeField] private float jumpPower = 25f;
+    [SerializeField] private float coyoteTime = 0.1f;
     private float coyoteTimeCounter;
     [SerializeField] private float jumpBufferTime = 0.1f;
     private float jumpBufferTimeCounter;
+    [Space(5)]
+
+    [Header("Dashing")]
+    [SerializeField] private bool canDash = true;
+    private bool isDashing;
+    [SerializeField] private float dashPower = 20f;
+    private float dashTime = 0.2f;
+    [SerializeField] private float dashCooldown = 2f;
+    [SerializeField] private float dashStopRate = 10f;
+    [SerializeField] private TrailRenderer tr;
     [Space(5)]
 
     [Header("Climbing")]
@@ -155,6 +168,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        this.DashCheck();
         this.FallCheck();
         this.ClimbCheck();
         this.OneWayCheck();
@@ -162,25 +176,10 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        this.DashCheck();
         this.Move();
         this.Climb();
         this.YDampingCheck();
-    }
-
-    public void OnMove(InputAction.CallbackContext context)
-    {
-        moveInput = context.ReadValue<Vector2>();
-
-        if (IsAlive)
-        {
-            IsMoving = moveInput != Vector2.zero;
-            this.SetFacingDirection(moveInput);
-        }
-        else
-        {
-            IsMoving = false;
-        }
-
     }
 
     private void FallCheck()
@@ -212,7 +211,7 @@ public class PlayerController : MonoBehaviour
 
         if (jumpBufferTimeCounter > 0f && coyoteTimeCounter > 0f && CanMove)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpImpluse);
+            rb.velocity = new Vector2(rb.velocity.x, jumpPower);
 
             jumpBufferTimeCounter = 0f;
         }
@@ -260,15 +259,39 @@ public class PlayerController : MonoBehaviour
     {
         if (!damageable.LockVelocity)
         {
-            if (moveInput.x == 0)
+            if (moveInput.x == 0 && !isDashing)
             {
-                rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, stopRate), rb.velocity.y);
+                rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);
                 currentSpeed = 0;
             }
-            else
+            else if(moveInput.x != 0 && !isDashing)
             {
                 rb.velocity = new Vector2(moveInput.x * CurrentSpeed, rb.velocity.y);
             }
+        }
+    }
+
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        moveInput = context.ReadValue<Vector2>();
+
+        if (IsAlive)
+        {
+            IsMoving = moveInput != Vector2.zero;
+            this.SetFacingDirection(moveInput);
+        }
+        else
+        {
+            IsMoving = false;
+        }
+    }
+
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        if (context.started && canDash)
+        {
+            animator.SetTrigger(AnimationString.dashTrigger);
+            StartCoroutine(Dashing());
         }
     }
 
@@ -308,6 +331,14 @@ public class PlayerController : MonoBehaviour
         else
         {
             rb.gravityScale = 6f;
+        }
+    }
+
+    private void DashCheck()
+    {
+        if (isDashing)
+        {
+            return;
         }
     }
 
@@ -381,4 +412,41 @@ public class PlayerController : MonoBehaviour
             CameraManger.instance.lerpYDamping(false);
         }
     }
+
+    private IEnumerator Dashing()
+    {
+        canDash = false;
+        isDashing = true;
+        float originalGravity = rb.gravityScale;
+        rb.gravityScale = 0;
+
+        // Calculate the direction of the dash based on the player's facing direction
+        float dashDirection = IsFacingRight ? 1f : -1f;
+
+        // Apply dash velocity with direction
+        if (rb.velocity.y < 0 && !touchingDirections.IsGrounded || touchingDirections.IsGrounded)
+        {
+            rb.velocity = new Vector2(dashDirection * dashPower, 0f);
+        }
+        else
+        {
+            rb.velocity = new Vector2(dashDirection * dashPower, rb.velocity.y);
+        }
+        tr.emitting = true;
+
+        yield return new WaitForSeconds(dashTime);
+
+        if (moveInput.x == 0 && isDashing)
+        {
+            rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, dashStopRate), rb.velocity.y);
+        }
+        
+        tr.emitting = false;
+        rb.gravityScale = originalGravity;
+        isDashing = false;
+
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
+    }
+
 }
