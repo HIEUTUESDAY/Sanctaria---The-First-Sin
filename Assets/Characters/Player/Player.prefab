@@ -453,12 +453,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 8
   walkAceleration: 50
-  stopRate: 0.15
+  walkStopRate: 0.2
   jumpPower: 25
   coyoteTime: 0.1
   jumpBufferTime: 0.1
   canDash: 1
-  dashPower: 20
+  dashPower: 25
+  dashCooldown: 2
+  dashStopRate: 10
   tr: {fileID: 7144145772889742267}
   climbSpeed: 5
   playerCollider: {fileID: 7616546966907673009}

@@ -87,14 +87,30 @@ public class Damageable : MonoBehaviour
         {
             return animator.GetBool(AnimationString.lockVelocity);
         }
-        set
+        private set
         {
             animator.SetBool(AnimationString.lockVelocity, value);
         }
     }
 
     [SerializeField]
-    private bool isInvincible = false;
+    private bool _isInvincible = false;
+
+    public bool IsInvincible
+    {
+        get
+        {
+            return _isInvincible;
+        }
+        set
+        {
+            _isInvincible = value;
+            animator.SetBool(AnimationString.isInvincible, value);
+        }
+
+    }
+
+    [SerializeField]
     private float timeSinceHit  = 0;
     public float invincibleTime = 0.25f;
 
@@ -110,11 +126,11 @@ public class Damageable : MonoBehaviour
 
     public bool Hit(int damage, Vector2 knockback)
     {
-        if (IsAlive && !isInvincible && OnAttack == true)
+        if (IsAlive && !IsInvincible && OnAttack == true)
         {
             // Beable to hit
             Health -= damage;
-            isInvincible = true;
+            IsInvincible = true;
 
             // Deal damage but no hit animation while attacking
             damageableHit?.Invoke(damage, knockback);
@@ -122,11 +138,11 @@ public class Damageable : MonoBehaviour
 
             return true;
         }
-        else if (IsAlive && !isInvincible && OnAttack == false)
+        else if (IsAlive && !IsInvincible && OnAttack == false)
         {
             // Beable to hit
             Health -= damage;
-            isInvincible = true;
+            IsInvincible = true;
 
             // Notify other subcribed components that damageable was hit to handle the knockback
             animator.SetTrigger(AnimationString.hitTrigger);
@@ -142,12 +158,12 @@ public class Damageable : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        if (isInvincible)
+        if (IsInvincible)
         {
             if (timeSinceHit > invincibleTime)
             {
                 // Remove invincible after a short time
-                isInvincible = false;
+                IsInvincible = false;
                 timeSinceHit = 0;
             }
 

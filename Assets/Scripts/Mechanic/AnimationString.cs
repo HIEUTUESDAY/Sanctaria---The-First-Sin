@@ -12,7 +12,7 @@ internal class AnimationString
     internal static string isGrounded = "isGrounded";
     internal static string yVelocity = "yVelocity";
     internal static string isInAir = "isInAir";
-    internal static string dashTrigger = "dash";
+    internal static string isDashing = "isDashing";
     internal static string attackTrigger = "attack";
     internal static string canMove = "canMove";
     internal static string hasTarget = "hasTarget";

@@ -30,7 +30,6 @@ public class PlayerController : MonoBehaviour
 
     [Header("Dashing")]
     [SerializeField] private bool canDash = true;
-    private bool isDashing;
     [SerializeField] private float dashPower = 20f;
     private float dashTime = 0.2f;
     [SerializeField] private float dashCooldown = 2f;
@@ -80,7 +79,7 @@ public class PlayerController : MonoBehaviour
 
     private bool _isInAir = false;
 
-    public bool isInAir
+    public bool IsInAir
     {
         get
         {
@@ -90,6 +89,21 @@ public class PlayerController : MonoBehaviour
         {
             _isInAir = value;
             animator.SetBool(AnimationString.isInAir, value);
+        }
+    }
+
+    private bool _isDashing = false;
+
+    public bool IsDashing
+    {
+        get
+        {
+            return _isDashing;
+        }
+        private set
+        {
+            _isDashing = value;
+            animator.SetBool(AnimationString.isDashing, value);
         }
     }
 
@@ -186,13 +200,13 @@ public class PlayerController : MonoBehaviour
     {
         if (touchingDirections.IsGrounded)
         {
-            isInAir = false;
+            IsInAir = false;
             coyoteTimeCounter = coyoteTime;
             animator.SetFloat(AnimationString.yVelocity, 0);
         }
         else
         {
-            isInAir = true;
+            IsInAir = true;
             animator.SetFloat(AnimationString.yVelocity, rb.velocity.y);
             coyoteTimeCounter -= Time.deltaTime;
         }
@@ -259,12 +273,12 @@ public class PlayerController : MonoBehaviour
     {
         if (!damageable.LockVelocity)
         {
-            if (moveInput.x == 0 && !isDashing)
+            if (moveInput.x == 0 && !IsDashing)
             {
                 rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);
                 currentSpeed = 0;
             }
-            else if(moveInput.x != 0 && !isDashing)
+            else if(moveInput.x != 0 && !IsDashing)
             {
                 rb.velocity = new Vector2(moveInput.x * CurrentSpeed, rb.velocity.y);
             }
@@ -290,7 +304,7 @@ public class PlayerController : MonoBehaviour
     {
         if (context.started && canDash)
         {
-            animator.SetTrigger(AnimationString.dashTrigger);
+            IsDashing = true;
             StartCoroutine(Dashing());
         }
     }
@@ -336,7 +350,7 @@ public class PlayerController : MonoBehaviour
 
     private void DashCheck()
     {
-        if (isDashing)
+        if (IsDashing)
         {
             return;
         }
@@ -415,8 +429,9 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator Dashing()
     {
+        damageable.IsInvincible = true;
         canDash = false;
-        isDashing = true;
+        IsDashing = true;
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0;
 
@@ -436,14 +451,15 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(dashTime);
 
-        if (moveInput.x == 0 && isDashing)
+        if (moveInput.x == 0 && IsDashing)
         {
             rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, dashStopRate), rb.velocity.y);
         }
         
         tr.emitting = false;
         rb.gravityScale = originalGravity;
-        isDashing = false;
+        IsDashing = false;
+        damageable.IsInvincible = false;
 
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
