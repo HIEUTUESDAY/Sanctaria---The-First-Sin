@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Moving")]
     [SerializeField] private float walkSpeed = 8f;
-    [SerializeField] private float walkAceleration = 4f;
+    [SerializeField] private float walkAceleration = 50f;
     [SerializeField] private float walkStopRate = 0.2f;
     private float currentSpeed;
     [Space(5)]
@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     private float coyoteTimeCounter;
     [SerializeField] private float jumpBufferTime = 0.1f;
     private float jumpBufferTimeCounter;
+    [SerializeField] private float maximumFallSpeed = -35f;
     [Space(5)]
 
     [Header("Dashing")]
@@ -198,6 +199,11 @@ public class PlayerController : MonoBehaviour
 
     private void FallCheck()
     {
+        if (rb.velocity.y < maximumFallSpeed)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, maximumFallSpeed);
+        }
+
         if (touchingDirections.IsGrounded)
         {
             IsInAir = false;
@@ -304,7 +310,6 @@ public class PlayerController : MonoBehaviour
     {
         if (context.started && canDash)
         {
-            IsDashing = true;
             StartCoroutine(Dashing());
         }
     }
@@ -430,8 +435,8 @@ public class PlayerController : MonoBehaviour
     private IEnumerator Dashing()
     {
         damageable.IsInvincible = true;
-        canDash = false;
         IsDashing = true;
+        canDash = false;
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0;
 
@@ -455,7 +460,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, dashStopRate), rb.velocity.y);
         }
-        
+
         tr.emitting = false;
         rb.gravityScale = originalGravity;
         IsDashing = false;

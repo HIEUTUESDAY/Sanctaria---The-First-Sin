@@ -455,8 +455,9 @@ MonoBehaviour:
   walkAceleration: 50
   walkStopRate: 0.2
   jumpPower: 25
-  coyoteTime: 0.1
-  jumpBufferTime: 0.1
+  coyoteTime: 0.15
+  jumpBufferTime: 0.15
+  maximumFallSpeed: -35
   canDash: 1
   dashPower: 25
   dashCooldown: 2
@@ -464,7 +465,7 @@ MonoBehaviour:
   tr: {fileID: 7144145772889742267}
   climbSpeed: 5
   playerCollider: {fileID: 7616546966907673009}
-  cameraFollowGO: {fileID: 0}
+  cameraFollowGO: {fileID: 6451358340738529181, guid: 9a704873f0194e5408cfdc22ad792312, type: 3}
   rb: {fileID: 8140907983845801907}
   _isFacingRight: 1
 --- !u!114 &1497399364266092045
@@ -524,7 +525,8 @@ MonoBehaviour:
   _maxHealth: 5000
   _health: 5000
   _isAlive: 1
-  isInvincible: 0
+  _isInvincible: 0
+  timeSinceHit: 0
   invincibleTime: 2
 --- !u!96 &7144145772889742267
 TrailRenderer:

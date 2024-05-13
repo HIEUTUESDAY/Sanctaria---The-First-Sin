@@ -30480,7 +30480,7 @@ MonoBehaviour:
   _defaultYDamping: 1
   _fallPanAmount: 0
   _fallYPanTime: 0.25
-  _fallSpeedYDampingChangeThreshold: -50
+  _fallSpeedYDampingChangeThreshold: -30
 --- !u!1 &1971798111
 GameObject:
   m_ObjectHideFlags: 0
@@ -30616,20 +30616,12 @@ PrefabInstance:
       value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4373586563205427431, guid: e74853af4a424d24b8d6851ac15df36f, type: 3}
-      propertyPath: airSpeed
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4373586563205427431, guid: e74853af4a424d24b8d6851ac15df36f, type: 3}
-      propertyPath: dashPower
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 4373586563205427431, guid: e74853af4a424d24b8d6851ac15df36f, type: 3}
       propertyPath: cameraFollowGO
       value: 
       objectReference: {fileID: 1971798111}
-    - target: {fileID: 4373586563205427431, guid: e74853af4a424d24b8d6851ac15df36f, type: 3}
-      propertyPath: speedAcelerate
-      value: 1
+    - target: {fileID: 6690097813810595353, guid: e74853af4a424d24b8d6851ac15df36f, type: 3}
+      propertyPath: m_FlipX
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6941194379666103835, guid: e74853af4a424d24b8d6851ac15df36f, type: 3}
       propertyPath: m_Enabled
