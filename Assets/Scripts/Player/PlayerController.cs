@@ -8,31 +8,35 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
+using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
 
 public class PlayerController : MonoBehaviour
 {
     [Header("Moving")]
-    [SerializeField] private float walkSpeed = 8f;
-    [SerializeField] private float walkAceleration = 50f;
+    [SerializeField] private float moveSpeed = 8f;
+    [SerializeField] private float groundSpeedAceleration = 50f;
+    [SerializeField] private float airSpeedAceleration = 70f;
     [SerializeField] private float walkStopRate = 0.2f;
     private float currentSpeed;
     [Space(5)]
 
     [Header("Jumping")]
-    [SerializeField] private float jumpPower = 25f;
+    [SerializeField] private float jumpPower = 27f;
     [SerializeField] private float coyoteTime = 0.1f;
     private float coyoteTimeCounter;
     [SerializeField] private float jumpBufferTime = 0.1f;
     private float jumpBufferTimeCounter;
-    [SerializeField] private float maximumFallSpeed = -35f;
+    [SerializeField] private float maximumFallSpeed = -40f;
+    private bool doubleJump;
     [Space(5)]
 
     [Header("Dashing")]
     [SerializeField] private bool canDash = true;
     [SerializeField] private float dashPower = 20f;
     private float dashTime = 0.2f;
+    private float afterDashTime = 0.1f;
     [SerializeField] private float dashCooldown = 2f;
     [SerializeField] private float dashStopRate = 10f;
     [SerializeField] private TrailRenderer tr;
@@ -42,6 +46,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float climbSpeed = 5f;
     private bool isOnLadder;
     private bool isClimbing;
+    [Space(5)]
+
+    [Header("Walling")]
+    [SerializeField] private bool isWallSliding;
+    [SerializeField] private float wallSlideSpeed = 2f;
+    [SerializeField] private bool isWallJumping;
+    private float wallJumpingDirection;
+    [SerializeField] private float wallJumpingTime = 0.5f;
+    private float wallJumpingCounter;
+    private float wallJumpingDuration = 0.3f;
+    private Vector2 wallJumpingPower = new Vector2(10f, 24f);
     [Space(5)]
 
     [Header("OnWayPlatformMovement")]
@@ -54,8 +69,8 @@ public class PlayerController : MonoBehaviour
 
     public Rigidbody2D rb;
     private Animator animator;
-    private Vector2 moveInput;
-    private Vector2 climbInput;
+    private Vector2 horizontalInput;
+    private Vector2 verticalInput;
     private TouchingDirections touchingDirections;
     private Damageable damageable;
     private GameObject currentOneWayPlatform;
@@ -130,10 +145,20 @@ public class PlayerController : MonoBehaviour
             {
                 if (IsMoving)
                 {
-                    // On ground move speed
-                    currentSpeed += walkAceleration * Time.deltaTime;
-                    currentSpeed = Mathf.Min(currentSpeed, walkSpeed);
-                    return currentSpeed;
+                    if (touchingDirections.IsGrounded)
+                    {
+                        // On ground move speed
+                        currentSpeed += groundSpeedAceleration * Time.deltaTime;
+                        currentSpeed = Mathf.Min(currentSpeed, moveSpeed);
+                        return currentSpeed;
+                    }
+                    else
+                    {
+                        // In air move speed
+                        currentSpeed += airSpeedAceleration * Time.deltaTime;
+                        currentSpeed = Mathf.Min(currentSpeed, moveSpeed);
+                        return currentSpeed;
+                    }
                 }
                 else
                 {
@@ -183,38 +208,35 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.DashCheck();
+        this.GroundCheck();
         this.FallCheck();
         this.ClimbCheck();
+        this.WallSlideCheck();
         this.OneWayCheck();
+
+        Debug.Log(horizontalInput);
     }
 
     private void FixedUpdate()
     {
-        this.DashCheck();
         this.Move();
         this.Climb();
+        this.WallJump();
         this.YDampingCheck();
     }
 
-    private void FallCheck()
+    public void OnMove(InputAction.CallbackContext context)
     {
-        if (rb.velocity.y < maximumFallSpeed)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, maximumFallSpeed);
-        }
+        horizontalInput = context.ReadValue<Vector2>();
 
-        if (touchingDirections.IsGrounded)
+        if (IsAlive)
         {
-            IsInAir = false;
-            coyoteTimeCounter = coyoteTime;
-            animator.SetFloat(AnimationString.yVelocity, 0);
+            IsMoving = horizontalInput != Vector2.zero;
+            this.SetFacingDirection(horizontalInput);
         }
         else
         {
-            IsInAir = true;
-            animator.SetFloat(AnimationString.yVelocity, rb.velocity.y);
-            coyoteTimeCounter -= Time.deltaTime;
+            IsMoving = false;
         }
     }
 
@@ -229,80 +251,33 @@ public class PlayerController : MonoBehaviour
             jumpBufferTimeCounter -= Time.deltaTime;
         }
 
-        if (jumpBufferTimeCounter > 0f && coyoteTimeCounter > 0f && CanMove)
+        if (context.started && wallJumpingCounter > 0f)
+        {
+            isWallJumping = true;
+            horizontalInput = Vector2.zero;
+            rb.velocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y);
+            wallJumpingCounter = 0f;
+
+            float jumpDirection = IsFacingRight ? 1f : -1f;
+
+            if (jumpDirection != wallJumpingDirection)
+            {
+                this.Turn();
+            }
+
+            Invoke(nameof(StopWallJumping), wallJumpingDuration);
+        }
+
+        if (jumpBufferTimeCounter > 0f && coyoteTimeCounter > 0f && CanMove || doubleJump && CanMove)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
-
             jumpBufferTimeCounter = 0f;
+            doubleJump = false;
         }
 
         if (context.canceled && rb.velocity.y > 0)
         {
             coyoteTimeCounter = 0f;
-        }
-    }
-
-    private void SetFacingDirection(Vector2 moveInput)
-    {
-        if(moveInput.x > 0 && !IsFacingRight)
-        {
-            Turn();
-        }else if (moveInput.x < 0 && IsFacingRight)
-        {
-            Turn();
-        }
-    }
-
-    private void Turn()
-    {
-        if (IsFacingRight)
-        {
-            Vector3 rotator = new Vector3(transform.rotation.x, 180f, transform.rotation.z);
-            transform.rotation = Quaternion.Euler(rotator);
-            IsFacingRight = !IsFacingRight;
-
-            //turn the camera follow object
-            cameraFollowObject.CallTurn();
-        }
-        else
-        {
-            Vector3 rotator = new Vector3(transform.rotation.x, 0f, transform.rotation.z);
-            transform.rotation = Quaternion.Euler(rotator);
-            IsFacingRight = !IsFacingRight;
-
-            //turn the camera follow object
-            cameraFollowObject.CallTurn();
-        }
-    }
-
-    private void Move()
-    {
-        if (!damageable.LockVelocity)
-        {
-            if (moveInput.x == 0 && !IsDashing)
-            {
-                rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);
-                currentSpeed = 0;
-            }
-            else if(moveInput.x != 0 && !IsDashing)
-            {
-                rb.velocity = new Vector2(moveInput.x * CurrentSpeed, rb.velocity.y);
-            }
-        }
-    }
-
-    public void OnMove(InputAction.CallbackContext context)
-    {
-        moveInput = context.ReadValue<Vector2>();
-
-        if (IsAlive)
-        {
-            IsMoving = moveInput != Vector2.zero;
-            this.SetFacingDirection(moveInput);
-        }
-        else
-        {
-            IsMoving = false;
         }
     }
 
@@ -329,14 +304,57 @@ public class PlayerController : MonoBehaviour
 
     public void OnClimb(InputAction.CallbackContext context)
     {
-        climbInput = context.ReadValue<Vector2>();
+        verticalInput = context.ReadValue<Vector2>();
     }
 
-    private void ClimbCheck()
+    private void Move()
     {
-        if (isOnLadder && climbInput.y > 0)
+        if (!damageable.LockVelocity && !isWallJumping)
         {
-            isClimbing = true;
+            if (horizontalInput.x == 0 && !IsDashing)
+            {
+                rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);
+                currentSpeed = 0;
+            }
+            else if (horizontalInput.x != 0 && !IsDashing)
+            {
+                rb.velocity = new Vector2(horizontalInput.x * CurrentSpeed, rb.velocity.y);
+            }
+        }
+    }
+
+    private void SetFacingDirection(Vector2 moveInput)
+    {
+        if (moveInput.x > 0 && !IsFacingRight)
+        {
+            this.Turn();
+
+        }
+        else if (moveInput.x < 0 && IsFacingRight)
+        {
+            this.Turn();
+        }
+    }
+
+    private void Turn()
+    {
+        if (IsFacingRight)
+        {
+            Vector3 rotator = new Vector3(transform.rotation.x, 180f, transform.rotation.z);
+            transform.rotation = Quaternion.Euler(rotator);
+            IsFacingRight = !IsFacingRight;
+
+            //turn the camera follow object
+            cameraFollowObject.CallTurn();
+        }
+        else
+        {
+            Vector3 rotator = new Vector3(transform.rotation.x, 0f, transform.rotation.z);
+            transform.rotation = Quaternion.Euler(rotator);
+            IsFacingRight = !IsFacingRight;
+
+            //turn the camera follow object
+            cameraFollowObject.CallTurn();
         }
     }
 
@@ -345,7 +363,7 @@ public class PlayerController : MonoBehaviour
         if (isClimbing && !damageable.LockVelocity)
         {
             rb.gravityScale = 0f;
-            rb.velocity = new Vector2(rb.velocity.x, climbInput.y * climbSpeed);
+            rb.velocity = new Vector2(rb.velocity.x, verticalInput.y * climbSpeed);
         }
         else
         {
@@ -353,11 +371,81 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void DashCheck()
+    private void WallJump()
     {
-        if (IsDashing)
+        if (isWallSliding)
         {
-            return;
+            isWallJumping = false;
+            float jumpDirection = IsFacingRight ? 1f : -1f;
+            wallJumpingDirection = -jumpDirection;
+            wallJumpingCounter = wallJumpingTime;
+
+            CancelInvoke(nameof(StopWallJumping));
+        }
+        else
+        {
+            wallJumpingCounter -= Time.deltaTime;
+        }
+    }
+
+    private void StopWallJumping()
+    {
+        isWallJumping = false;
+    }
+
+    private void GroundCheck()
+    {
+        if (touchingDirections.IsGrounded)
+        {
+            coyoteTimeCounter = coyoteTime;
+            IsInAir = false;
+            animator.SetFloat(AnimationString.yVelocity, 0);
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+            IsInAir = true;
+            animator.SetFloat(AnimationString.yVelocity, rb.velocity.y);
+        }
+    }
+
+    private void FallCheck()
+    {
+        if (IsInAir && rb.velocity.y < maximumFallSpeed)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, maximumFallSpeed);
+        }
+    }
+
+    private void ClimbCheck()
+    {
+        if (isOnLadder && verticalInput.y > 0)
+        {
+            isClimbing = true;
+        }
+    }
+
+    private void OneWayCheck()
+    {
+        if (verticalInput.y < 0)
+        {
+            if (currentOneWayPlatform != null)
+            {
+                StartCoroutine(DisableCollision());
+            }
+        }
+    }
+
+    private void WallSlideCheck()
+    {
+        if (touchingDirections.IsOnWall && !touchingDirections.IsGrounded && horizontalInput.x != 0)
+        {
+            isWallSliding = true;
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlideSpeed, float.MaxValue));
+        }
+        else
+        {
+            isWallSliding = false;
         }
     }
 
@@ -375,17 +463,6 @@ public class PlayerController : MonoBehaviour
         {
             isOnLadder = false;
             isClimbing = false;
-        }
-    }
-
-    private void OneWayCheck()
-    {
-        if (climbInput.y < 0)
-        {
-            if (currentOneWayPlatform != null)
-            {
-                StartCoroutine(DisableCollision());
-            }
         }
     }
 
@@ -456,15 +533,19 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(dashTime);
 
-        if (moveInput.x == 0 && IsDashing)
+        if (horizontalInput.x == 0 && IsDashing)
         {
             rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, dashStopRate), rb.velocity.y);
         }
 
         tr.emitting = false;
-        rb.gravityScale = originalGravity;
         IsDashing = false;
         damageable.IsInvincible = false;
+        rb.gravityScale = originalGravity;
+        doubleJump = true;
+
+        yield return new WaitForSeconds(afterDashTime);
+        doubleJump = false;
 
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;

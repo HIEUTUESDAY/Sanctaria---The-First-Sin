@@ -108,6 +108,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDamage: 20
   knockback: {x: 2, y: 1}
+--- !u!1 &2331800209521109010
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8354176683486811840}
+  m_Layer: 0
+  m_Name: WallCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8354176683486811840
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2331800209521109010}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.634, y: 0.06, z: -2.9173188}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8644018605232120593}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7076371970001519899
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,6 +179,7 @@ Transform:
   m_Children:
   - {fileID: 9015458563989927484}
   - {fileID: 8350467929946595994}
+  - {fileID: 8354176683486811840}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6690097813810595353
@@ -451,13 +483,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1292a623c71804e41b69a2bd434ee51f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 8
-  walkAceleration: 50
+  moveSpeed: 8
+  groundSpeedAceleration: 50
+  airSpeedAceleration: 70
   walkStopRate: 0.2
-  jumpPower: 25
+  jumpPower: 27
   coyoteTime: 0.15
   jumpBufferTime: 0.15
-  maximumFallSpeed: -35
+  maximumFallSpeed: -40
   canDash: 1
   dashPower: 25
   dashCooldown: 2
@@ -465,7 +498,7 @@ MonoBehaviour:
   tr: {fileID: 7144145772889742267}
   climbSpeed: 5
   playerCollider: {fileID: 7616546966907673009}
-  cameraFollowGO: {fileID: 6451358340738529181, guid: 9a704873f0194e5408cfdc22ad792312, type: 3}
+  cameraFollowGO: {fileID: 0}
   rb: {fileID: 8140907983845801907}
   _isFacingRight: 1
 --- !u!114 &1497399364266092045
@@ -580,7 +613,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.5
         inSlope: 0
         outSlope: 0
         tangentMode: 0
