@@ -249,7 +249,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0
-  m_GravityScale: 0
+  m_GravityScale: 6
   m_Material: {fileID: 6200000, guid: 9db87a4fe9ace3445bd27a24abfde6d5, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -466,6 +466,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 5fcda94c-9b77-44ae-ae92-87838f105fa5
     m_ActionName: Player/Dash[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4373586563205427431}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnWallGrab
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8b55a1b7-8685-444c-96e2-31edf552ad41
+    m_ActionName: Player/WallGrab[/Keyboard/j]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -487,7 +503,7 @@ MonoBehaviour:
   groundSpeedAceleration: 50
   airSpeedAceleration: 70
   walkStopRate: 0.2
-  jumpPower: 27
+  jumpPower: 25
   coyoteTime: 0.15
   jumpBufferTime: 0.15
   maximumFallSpeed: -40
@@ -497,6 +513,15 @@ MonoBehaviour:
   dashStopRate: 10
   tr: {fileID: 7144145772889742267}
   climbSpeed: 5
+  interactableWallLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  isWallSliding: 0
+  wallSlideSpeed: 2
+  isWallJumping: 0
+  wallJumpingTime: 0.5
+  wallJumpingDuration: 0.25
+  wallJumpingPower: {x: 10, y: 20}
   playerCollider: {fileID: 7616546966907673009}
   cameraFollowGO: {fileID: 0}
   rb: {fileID: 8140907983845801907}
@@ -514,16 +539,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundBoxSize: {x: 0.4, y: 0.1}
-  wallBoxSize: {x: 0.1, y: 2}
+  wallBoxSize: {x: 0.15, y: 1.5}
   ceilingBoxSize: {x: 0.4, y: 0.1}
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
+  jumpWallLayer:
+    serializedVersion: 2
+    m_Bits: 4096
   groundCastDistance: 1.4
-  wallCastDistance: -0.62
+  wallCastDistance: -0.65
   ceilingCastDistance: -1.4
   _isGrounded: 0
   _isOnWall: 0
+  _isOnJumpWall: 0
   _isOnCeiling: 0
 --- !u!114 &7011922192512821088
 MonoBehaviour:

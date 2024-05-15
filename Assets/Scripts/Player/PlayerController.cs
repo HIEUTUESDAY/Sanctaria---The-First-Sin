@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
     private float dashTime = 0.2f;
     private float afterDashTime = 0.1f;
     [SerializeField] private float dashCooldown = 2f;
-    [SerializeField] private float dashStopRate = 10f;
+    [SerializeField] private float dashStopRate = 5f;
     [SerializeField] private TrailRenderer tr;
     [Space(5)]
 
@@ -53,10 +53,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float wallSlideSpeed = 2f;
     [SerializeField] private bool isWallJumping;
     private float wallJumpingDirection;
-    [SerializeField] private float wallJumpingTime = 0.5f;
+    [SerializeField] private float wallJumpingTime = 1f;
     private float wallJumpingCounter;
-    private float wallJumpingDuration = 0.3f;
-    private Vector2 wallJumpingPower = new Vector2(10f, 24f);
+    [SerializeField] private float wallJumpingDuration = 0.25f;
+    [SerializeField] private Vector2 wallJumpingPower = new Vector2(10f, 20f);
     [Space(5)]
 
     [Header("OnWayPlatformMovement")]
@@ -211,16 +211,14 @@ public class PlayerController : MonoBehaviour
         this.GroundCheck();
         this.FallCheck();
         this.ClimbCheck();
-        this.WallSlideCheck();
         this.OneWayCheck();
-
-        Debug.Log(horizontalInput);
     }
 
     private void FixedUpdate()
     {
         this.Move();
         this.Climb();
+        this.WallSlide();
         this.WallJump();
         this.YDampingCheck();
     }
@@ -360,6 +358,8 @@ public class PlayerController : MonoBehaviour
 
     private void Climb()
     {
+        float originalGravity = rb.gravityScale;
+
         if (isClimbing && !damageable.LockVelocity)
         {
             rb.gravityScale = 0f;
@@ -367,7 +367,20 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            rb.gravityScale = 6f;
+            rb.gravityScale = originalGravity;
+        }
+    }
+
+    private void WallSlide()
+    {
+        if (touchingDirections.IsOnJumpWall && !touchingDirections.IsGrounded && horizontalInput.x != 0)
+        {
+            isWallSliding = true;
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlideSpeed, float.MaxValue));
+        }
+        else
+        {
+            isWallSliding = false;
         }
     }
 
@@ -433,19 +446,6 @@ public class PlayerController : MonoBehaviour
             {
                 StartCoroutine(DisableCollision());
             }
-        }
-    }
-
-    private void WallSlideCheck()
-    {
-        if (touchingDirections.IsOnWall && !touchingDirections.IsGrounded && horizontalInput.x != 0)
-        {
-            isWallSliding = true;
-            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlideSpeed, float.MaxValue));
-        }
-        else
-        {
-            isWallSliding = false;
         }
     }
 
@@ -521,14 +521,7 @@ public class PlayerController : MonoBehaviour
         float dashDirection = IsFacingRight ? 1f : -1f;
 
         // Apply dash velocity with direction
-        if (rb.velocity.y < 0 && !touchingDirections.IsGrounded || touchingDirections.IsGrounded)
-        {
-            rb.velocity = new Vector2(dashDirection * dashPower, 0f);
-        }
-        else
-        {
-            rb.velocity = new Vector2(dashDirection * dashPower, rb.velocity.y);
-        }
+        rb.velocity = new Vector2(dashDirection * dashPower, 0f);
         tr.emitting = true;
 
         yield return new WaitForSeconds(dashTime);

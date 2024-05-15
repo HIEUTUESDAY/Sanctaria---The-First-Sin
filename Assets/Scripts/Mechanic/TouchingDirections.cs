@@ -8,6 +8,7 @@ public class TouchingDirections : MonoBehaviour
     public Vector2 wallBoxSize;
     public Vector2 ceilingBoxSize;
     public LayerMask groundLayer;
+    public LayerMask jumpWallLayer;
     public float groundCastDistance;
     public float wallCastDistance;
     public float ceilingCastDistance;
@@ -48,6 +49,22 @@ public class TouchingDirections : MonoBehaviour
     }
 
     [SerializeField]
+    private bool _isOnJumpWall;
+
+    public bool IsOnJumpWall
+    {
+        get
+        {
+            return _isOnJumpWall;
+        }
+        private set
+        {
+            _isOnJumpWall = value;
+            animator.SetBool(AnimationString.isOnJumpWall, value);
+        }
+    }
+
+    [SerializeField]
     private bool _isOnCeiling;
 
     public bool IsOnCeiling
@@ -72,6 +89,7 @@ public class TouchingDirections : MonoBehaviour
     {
         IsGrounded = Physics2D.BoxCast(transform.position, groundBoxSize, 0, -transform.up, groundCastDistance, groundLayer);
         IsOnWall = Physics2D.BoxCast(transform.position, wallBoxSize, 0, -transform.right, wallCastDistance, groundLayer);
+        IsOnJumpWall = Physics2D.BoxCast(transform.position, wallBoxSize, 0, -transform.right, wallCastDistance, jumpWallLayer);
         IsOnCeiling = Physics2D.BoxCast(transform.position, ceilingBoxSize, 0, -transform.up, ceilingCastDistance, groundLayer);
     }
 
