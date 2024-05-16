@@ -509,19 +509,17 @@ MonoBehaviour:
   maximumFallSpeed: -40
   canDash: 1
   dashPower: 25
+  afterDashTime: 0.1
   dashCooldown: 2
   dashStopRate: 10
   tr: {fileID: 7144145772889742267}
   climbSpeed: 5
-  interactableWallLayer:
-    serializedVersion: 2
-    m_Bits: 0
   isWallSliding: 0
   wallSlideSpeed: 2
   isWallJumping: 0
   wallJumpingTime: 0.5
   wallJumpingDuration: 0.25
-  wallJumpingPower: {x: 10, y: 20}
+  wallJumpingPower: {x: 8, y: 20}
   playerCollider: {fileID: 7616546966907673009}
   cameraFollowGO: {fileID: 0}
   rb: {fileID: 8140907983845801907}
@@ -543,7 +541,7 @@ MonoBehaviour:
   ceilingBoxSize: {x: 0.4, y: 0.1}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 4224
   jumpWallLayer:
     serializedVersion: 2
     m_Bits: 4096

@@ -3981,6 +3981,22 @@ PrefabInstance:
       propertyPath: interactableWallLayer.m_Bits
       value: 4096
       objectReference: {fileID: 0}
+    - target: {fileID: 6174547765919065408, guid: e74853af4a424d24b8d6851ac15df36f, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6174547765919065408, guid: e74853af4a424d24b8d6851ac15df36f, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6174547765919065408, guid: e74853af4a424d24b8d6851ac15df36f, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6174547765919065408, guid: e74853af4a424d24b8d6851ac15df36f, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: PlayerController, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 6690097813810595353, guid: e74853af4a424d24b8d6851ac15df36f, type: 3}
       propertyPath: m_FlipX
       value: 0
@@ -4011,11 +4027,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8644018605232120593, guid: e74853af4a424d24b8d6851ac15df36f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 37.79
+      value: 41.38
       objectReference: {fileID: 0}
     - target: {fileID: 8644018605232120593, guid: e74853af4a424d24b8d6851ac15df36f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.2
+      value: 7.15
       objectReference: {fileID: 0}
     - target: {fileID: 8644018605232120593, guid: e74853af4a424d24b8d6851ac15df36f, type: 3}
       propertyPath: m_LocalPosition.z

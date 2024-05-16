@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using Unity.VisualScripting;
 using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -36,7 +37,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool canDash = true;
     [SerializeField] private float dashPower = 20f;
     private float dashTime = 0.2f;
-    private float afterDashTime = 0.1f;
+    [SerializeField] private float afterDashTime = 0.1f;
     [SerializeField] private float dashCooldown = 2f;
     [SerializeField] private float dashStopRate = 5f;
     [SerializeField] private TrailRenderer tr;
@@ -56,7 +57,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float wallJumpingTime = 1f;
     private float wallJumpingCounter;
     [SerializeField] private float wallJumpingDuration = 0.25f;
-    [SerializeField] private Vector2 wallJumpingPower = new Vector2(10f, 20f);
+    [SerializeField] private Vector2 wallJumpingPower = new Vector2(15f, 25f);
     [Space(5)]
 
     [Header("OnWayPlatformMovement")]
@@ -249,24 +250,12 @@ public class PlayerController : MonoBehaviour
             jumpBufferTimeCounter -= Time.deltaTime;
         }
 
-        if (context.started && wallJumpingCounter > 0f)
+        if (context.started && wallJumpingCounter > 0f && isWallSliding)
         {
-            isWallJumping = true;
-            horizontalInput = Vector2.zero;
-            rb.velocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y);
-            wallJumpingCounter = 0f;
-
-            float jumpDirection = IsFacingRight ? 1f : -1f;
-
-            if (jumpDirection != wallJumpingDirection)
-            {
-                this.Turn();
-            }
-
-            Invoke(nameof(StopWallJumping), wallJumpingDuration);
+            StartCoroutine(WallJumping());
         }
 
-        if (jumpBufferTimeCounter > 0f && coyoteTimeCounter > 0f && CanMove || doubleJump && CanMove)
+        if (jumpBufferTimeCounter > 0f && coyoteTimeCounter > 0f && CanMove && !IsDashing || doubleJump && CanMove)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
             jumpBufferTimeCounter = 0f;
@@ -323,7 +312,7 @@ public class PlayerController : MonoBehaviour
 
     private void SetFacingDirection(Vector2 moveInput)
     {
-        if (moveInput.x > 0 && !IsFacingRight)
+        if (moveInput.x > 0 && !IsFacingRight && !isWallJumping)
         {
             this.Turn();
 
@@ -392,18 +381,11 @@ public class PlayerController : MonoBehaviour
             float jumpDirection = IsFacingRight ? 1f : -1f;
             wallJumpingDirection = -jumpDirection;
             wallJumpingCounter = wallJumpingTime;
-
-            CancelInvoke(nameof(StopWallJumping));
         }
         else
         {
             wallJumpingCounter -= Time.deltaTime;
         }
-    }
-
-    private void StopWallJumping()
-    {
-        isWallJumping = false;
     }
 
     private void GroundCheck()
@@ -544,4 +526,22 @@ public class PlayerController : MonoBehaviour
         canDash = true;
     }
 
+    private IEnumerator WallJumping()
+    {
+        isWallJumping = true;
+        
+        rb.velocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y);
+        wallJumpingCounter = 0f;
+
+        float jumpDirection = IsFacingRight ? 1f : -1f;
+
+        if (jumpDirection != wallJumpingDirection)
+        {
+            this.Turn();
+        }
+
+        yield return new WaitForSeconds(wallJumpingDuration);
+        isWallJumping = false;
+        this.SetFacingDirection(horizontalInput);
+    }
 }

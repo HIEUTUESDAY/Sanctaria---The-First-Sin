@@ -165,7 +165,7 @@ Animator:
   m_GameObject: {fileID: 4563644114053944972}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 69f0008a6a6a10f46991a12f5dfecd46, type: 2}
+  m_Controller: {fileID: 9100000, guid: bb079161aaaa9394dbedc86a048db710, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -189,10 +189,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 2
-  stopRate: 0.0005
+  minStopTime: 3
+  maxStopTime: 9
   attackZone: {fileID: 251981715478819363}
   groundZone: {fileID: 4891740548351858693}
   _hasTarget: 0
+  _canMove: 1
 --- !u!114 &4525386713463681977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,16 +208,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundBoxSize: {x: 0.3, y: 0.1}
-  wallBoxSize: {x: 0.1, y: 2}
+  wallBoxSize: {x: 0.5, y: 2}
   ceilingBoxSize: {x: 0.3, y: 0.1}
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
+  jumpWallLayer:
+    serializedVersion: 2
+    m_Bits: 0
   groundCastDistance: 1.75
-  wallCastDistance: -0.85
+  wallCastDistance: -1
   ceilingCastDistance: -1.75
   _isGrounded: 0
   _isOnWall: 0
+  _isOnJumpWall: 0
   _isOnCeiling: 0
 --- !u!114 &1588218222597522693
 MonoBehaviour:
@@ -250,7 +256,8 @@ MonoBehaviour:
   _maxHealth: 200
   _health: 200
   _isAlive: 1
-  isInvincible: 0
+  _isInvincible: 0
+  timeSinceHit: 0
   invincibleTime: 0.25
 --- !u!1 &7903525366152166137
 GameObject:
@@ -279,7 +286,7 @@ Transform:
   m_GameObject: {fileID: 7903525366152166137}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.46, y: -2.18, z: 0}
+  m_LocalPosition: {x: 1.27, y: -2.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -328,7 +335,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &4891740548351858693
 MonoBehaviour:
@@ -492,7 +499,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8521430079629577647}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -530,14 +537,15 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 1.374466, y: 2.218933}
-      - {x: 1.1434078, y: 0.9430146}
-      - {x: 1.15621, y: -0.1551902}
-      - {x: 1.5508375, y: -0.8121867}
-      - {x: 2.3849015, y: -1.3756508}
-      - {x: 2.2803655, y: -1.3394144}
-      - {x: 2.7709494, y: -1.5105934}
-      - {x: 3.0105581, y: -1.5650673}
-      - {x: 4.3634214, y: -1.575696}
+      - {x: 0.16792488, y: 1.2931886}
+      - {x: 0.15093613, y: 0.18765402}
+      - {x: 0.180727, y: -0.70546365}
+      - {x: 1.3507376, y: -1.5625579}
+      - {x: 2.0847497, y: -1.6757993}
+      - {x: 2.2958608, y: -1.6991029}
+      - {x: 2.7751074, y: -1.6919539}
+      - {x: 3.0001287, y: -1.7006361}
+      - {x: 4.644988, y: -1.721695}
       - {x: 6.177162, y: -0.6874933}
       - {x: 6.0378, y: 0.80870056}
       - {x: 4.875968, y: 1.9829764}

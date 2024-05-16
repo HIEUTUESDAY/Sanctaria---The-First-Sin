@@ -2,12 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
 public class DeathBringer : MonoBehaviour
 {
     [SerializeField] private float walkSpeed = 2f;
-    [SerializeField] private float stopRate = 0.5f;
+    [SerializeField] private float minStopTime = 3f;
+    [SerializeField] private float maxStopTime = 9f;
+
     public DetectionZone attackZone;
     public DetectionZone groundZone;
 
@@ -58,11 +61,17 @@ public class DeathBringer : MonoBehaviour
         }
     }
 
-    public bool canMove
+    public bool _canMove = true;
+    public bool CanMove
     {
         get
         {
-            return animator.GetBool(AnimationString.canMove);
+            return _canMove;
+        }
+        private set
+        {
+            _canMove = value;
+            animator.SetBool(AnimationString.canMove, value);
         }
     }
 
@@ -118,15 +127,15 @@ public class DeathBringer : MonoBehaviour
 
     private void Move()
     {
-        if(!damageable.LockVelocity)
+        if (!damageable.LockVelocity)
         {
-            if (canMove)
+            if (_canMove)
             {
                 rb.velocity = new Vector2(walkSpeed * WalkDirectionVector.x, rb.velocity.y);
             }
             else
             {
-                rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, stopRate), rb.velocity.y);
+                rb.velocity = Vector2.zero;
             }
         }
     }
@@ -151,7 +160,7 @@ public class DeathBringer : MonoBehaviour
     {
         if (touchingDirections.IsGrounded && touchingDirections.IsOnWall && damageable.LockVelocity == false)
         {
-            Flip();
+            StartCoroutine(HitWallFlip());
         }
     }
 
@@ -196,12 +205,29 @@ public class DeathBringer : MonoBehaviour
 
     public void OnNoGroundDetected()
     {
-        // Checking if the character is on the ground
-        if (touchingDirections.IsGrounded) 
+        if (touchingDirections.IsGrounded)
         {
-            // If it is then change to opposite the direction
-            Flip();
+            StartCoroutine(NoGroundFlip());
         }
     }
 
+    private IEnumerator HitWallFlip()
+    {
+        Flip();
+        CanMove = false;
+        float stopTime = UnityEngine.Random.Range(minStopTime, maxStopTime);
+
+        yield return new WaitForSeconds(stopTime);
+        CanMove = true;
+    }
+
+    private IEnumerator NoGroundFlip()
+    {
+        CanMove = false;
+        float stopTime = UnityEngine.Random.Range(minStopTime, maxStopTime);
+
+        yield return new WaitForSeconds(stopTime);
+        CanMove = true;
+        Flip();
+    }
 }
