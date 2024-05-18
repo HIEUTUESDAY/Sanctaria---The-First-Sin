@@ -47,6 +47,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float climbSpeed = 5f;
     private bool isOnLadder;
     private bool isClimbing;
+    [SerializeField] private Transform ladderCenterPosition;
+    private Collider2D ladderCollider;
     [Space(5)]
 
     [Header("Walling")]
@@ -68,6 +70,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject cameraFollowGO;
     [Space(5)]
 
+
     public Rigidbody2D rb;
     private Animator animator;
     private Vector2 horizontalInput;
@@ -77,6 +80,7 @@ public class PlayerController : MonoBehaviour
     private GameObject currentOneWayPlatform;
     private CameraFollowObject cameraFollowObject;
     private float fallSpeedYDampingChangeThreshold;
+    private float originalGravityScale;
 
 
     private bool _isMoving = false;
@@ -197,6 +201,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         touchingDirections = GetComponent<TouchingDirections>();
         damageable = GetComponent<Damageable>();
+        originalGravityScale = rb.gravityScale;
     }
 
     // Start is called before the first frame update
@@ -211,27 +216,30 @@ public class PlayerController : MonoBehaviour
     {
         this.GroundCheck();
         this.FallCheck();
-        this.ClimbCheck();
+        this.LadderClimbCheck();
         this.OneWayCheck();
+        this.YDampingCheck();
     }
 
     private void FixedUpdate()
     {
-        this.Move();
-        this.Climb();
-        this.WallSlide();
-        this.WallJump();
-        this.YDampingCheck();
+        if (!isClimbing)
+        {
+            Move();
+        }
+        LadderClimb();
+        WallSlide();
+        WallJump();
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
         horizontalInput = context.ReadValue<Vector2>();
 
-        if (IsAlive)
+        if (IsAlive && !isClimbing) // Disable horizontal movement while climbing
         {
             IsMoving = horizontalInput != Vector2.zero;
-            this.SetFacingDirection(horizontalInput);
+            SetFacingDirection(horizontalInput);
         }
         else
         {
@@ -241,38 +249,48 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && isClimbing)
         {
-            jumpBufferTimeCounter = jumpBufferTime;
+            isClimbing = false;
+            rb.gravityScale = originalGravityScale;
+            rb.velocity = new Vector2(rb.velocity.x, jumpPower); // Allow jumping while climbing
         }
         else
         {
-            jumpBufferTimeCounter -= Time.deltaTime;
-        }
+            if (context.started)
+            {
+                jumpBufferTimeCounter = jumpBufferTime;
+            }
+            else
+            {
+                jumpBufferTimeCounter -= Time.deltaTime;
+            }
 
-        if (context.started && wallJumpingCounter > 0f && isWallSliding)
-        {
-            StartCoroutine(WallJumping());
-        }
+            if (context.started && wallJumpingCounter > 0f && isWallSliding)
+            {
+                CoroutineManager.Instance.StartManagedCoroutine(WallJumping());
+            }
 
-        if (jumpBufferTimeCounter > 0f && coyoteTimeCounter > 0f && CanMove && !IsDashing || doubleJump && CanMove)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, jumpPower);
-            jumpBufferTimeCounter = 0f;
-            doubleJump = false;
-        }
+            if (jumpBufferTimeCounter > 0f && coyoteTimeCounter > 0f && CanMove && !IsDashing || doubleJump && CanMove)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+                jumpBufferTimeCounter = 0f;
+                doubleJump = false;
+            }
 
-        if (context.canceled && rb.velocity.y > 0)
-        {
-            coyoteTimeCounter = 0f;
+            if (context.canceled && rb.velocity.y > 0)
+            {
+                coyoteTimeCounter = 0f;
+            }
         }
+      
     }
 
     public void OnDash(InputAction.CallbackContext context)
     {
         if (context.started && canDash)
         {
-            StartCoroutine(Dashing());
+            CoroutineManager.Instance.StartManagedCoroutine(Dashing());
         }
     }
 
@@ -345,18 +363,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Climb()
+    private void LadderClimb()
     {
-        float originalGravity = rb.gravityScale;
-
         if (isClimbing && !damageable.LockVelocity)
         {
             rb.gravityScale = 0f;
-            rb.velocity = new Vector2(rb.velocity.x, verticalInput.y * climbSpeed);
-        }
-        else
-        {
-            rb.gravityScale = originalGravity;
+            rb.velocity = new Vector2(0, verticalInput.y * climbSpeed); // Restrict horizontal movement
+
+            if (ladderCollider != null)
+            {
+                transform.position = new Vector3(ladderCollider.bounds.center.x, transform.position.y, transform.position.z); // Move to the center of the ladder
+            }
         }
     }
 
@@ -412,13 +429,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void ClimbCheck()
+    private void LadderClimbCheck()
     {
-        if (isOnLadder && verticalInput.y > 0)
+        if (isOnLadder && verticalInput.y != 0)
         {
             isClimbing = true;
         }
+        if (!isOnLadder)
+        {
+            isClimbing = false;
+            rb.gravityScale = originalGravityScale;
+        }
     }
+
 
     private void OneWayCheck()
     {
@@ -426,8 +449,26 @@ public class PlayerController : MonoBehaviour
         {
             if (currentOneWayPlatform != null)
             {
-                StartCoroutine(DisableCollision());
+                CoroutineManager.Instance.StartManagedCoroutine(DisableCollision());
             }
+        }
+    }
+
+    private void YDampingCheck()
+    {
+        //if player falling past the certain speed threshold
+        if (rb.velocity.y < fallSpeedYDampingChangeThreshold && !CameraManger.instance.IsLerpingYDamping && !CameraManger.instance.LerpedFromPlayerFalling)
+        {
+            CameraManger.instance.lerpYDamping(true);
+        }
+
+        //if player are standing or moving
+        if (rb.velocity.y >= 0f && !CameraManger.instance.IsLerpingYDamping && CameraManger.instance.LerpedFromPlayerFalling)
+        {
+            //rest so it can be called again
+            CameraManger.instance.LerpedFromPlayerFalling = false;
+
+            CameraManger.instance.lerpYDamping(false);
         }
     }
 
@@ -436,6 +477,7 @@ public class PlayerController : MonoBehaviour
         if (collision.CompareTag("Ladder"))
         {
             isOnLadder = true;
+            ladderCollider = collision; // Store reference to the ladder collider
         }
     }
 
@@ -445,6 +487,8 @@ public class PlayerController : MonoBehaviour
         {
             isOnLadder = false;
             isClimbing = false;
+            rb.gravityScale = originalGravityScale;
+            ladderCollider = null; // Clear reference to the ladder collider
         }
     }
 
@@ -467,28 +511,9 @@ public class PlayerController : MonoBehaviour
     private IEnumerator DisableCollision()
     {
         CompositeCollider2D platformCollider = currentOneWayPlatform.GetComponent<CompositeCollider2D>();
-
         Physics2D.IgnoreCollision(playerCollider, platformCollider);
         yield return new WaitForSeconds(0.5f);
         Physics2D.IgnoreCollision(playerCollider, platformCollider, false);
-    }
-
-    private void YDampingCheck()
-    {
-        //if player falling past the certain speed threshold
-        if(rb.velocity.y < fallSpeedYDampingChangeThreshold && !CameraManger.instance.IsLerpingYDamping && !CameraManger.instance.LerpedFromPlayerFalling)
-        {
-            CameraManger.instance.lerpYDamping(true);
-        }
-
-        //if player are standing or moving
-        if(rb.velocity.y >= 0f && !CameraManger.instance.IsLerpingYDamping && CameraManger.instance.LerpedFromPlayerFalling)
-        {
-            //rest so it can be called again
-            CameraManger.instance.LerpedFromPlayerFalling = false;
-
-            CameraManger.instance.lerpYDamping(false);
-        }
     }
 
     private IEnumerator Dashing()

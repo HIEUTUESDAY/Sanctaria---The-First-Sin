@@ -13,6 +13,7 @@ public class DeathBringer : MonoBehaviour
 
     public DetectionZone attackZone;
     public DetectionZone groundZone;
+    public DetectionZone spotZone;
 
     Rigidbody2D rb;
     TouchingDirections touchingDirections;
@@ -160,7 +161,7 @@ public class DeathBringer : MonoBehaviour
     {
         if (touchingDirections.IsGrounded && touchingDirections.IsOnWall && damageable.LockVelocity == false)
         {
-            StartCoroutine(HitWallFlip());
+            CoroutineManager.Instance.StartManagedCoroutine(HitWallFlip());
         }
     }
 
@@ -207,7 +208,7 @@ public class DeathBringer : MonoBehaviour
     {
         if (touchingDirections.IsGrounded)
         {
-            StartCoroutine(NoGroundFlip());
+            CoroutineManager.Instance.StartManagedCoroutine(NoGroundFlip());
         }
     }
 

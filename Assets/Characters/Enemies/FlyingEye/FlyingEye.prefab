@@ -285,7 +285,8 @@ MonoBehaviour:
   _maxHealth: 100
   _health: 10
   _isAlive: 1
-  isInvincible: 0
+  _isInvincible: 0
+  timeSinceHit: 0
   invincibleTime: 0.25
 --- !u!114 &4945893945139614802
 MonoBehaviour:
@@ -299,7 +300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348a6aa12ddffd845bc9111966112621, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flightSpeed: 3
+  flightSpeed: 5
   waypointReachedDistance: 0.01
   biteDetectionZone: {fileID: 6520827248742061174}
   deathCollider: {fileID: 6918750946143625382}

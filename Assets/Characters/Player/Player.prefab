@@ -509,13 +509,13 @@ MonoBehaviour:
   maximumFallSpeed: -40
   canDash: 1
   dashPower: 25
-  afterDashTime: 0.1
+  afterDashTime: 0.2
   dashCooldown: 2
   dashStopRate: 10
   tr: {fileID: 7144145772889742267}
   climbSpeed: 5
   isWallSliding: 0
-  wallSlideSpeed: 2
+  wallSlideSpeed: 1
   isWallJumping: 0
   wallJumpingTime: 0.5
   wallJumpingDuration: 0.25

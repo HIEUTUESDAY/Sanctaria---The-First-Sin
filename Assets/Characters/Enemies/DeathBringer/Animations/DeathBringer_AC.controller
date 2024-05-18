@@ -518,7 +518,7 @@ AnimatorController:
     m_Controller: {fileID: 0}
   - m_Name: attackCooldown
     m_Type: 1
-    m_DefaultFloat: 2
+    m_DefaultFloat: 1
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
@@ -631,18 +631,18 @@ AnimatorStateMachine:
   - {fileID: -7472761200998214547}
   m_EntryTransitions: []
   m_StateMachineTransitions:
-  - first: {fileID: -456940100405473966}
-    second:
-    - {fileID: -66057419195409458}
-    - {fileID: -410053716670640313}
-  - first: {fileID: 5477426440659852519}
-    second:
-    - {fileID: -7762884255818631992}
-    - {fileID: 5388799946425470674}
   - first: {fileID: 1182653788347091214}
     second:
     - {fileID: -5562658876965778829}
     - {fileID: -881292124931175361}
+  - first: {fileID: 5477426440659852519}
+    second:
+    - {fileID: -7762884255818631992}
+    - {fileID: 5388799946425470674}
+  - first: {fileID: -456940100405473966}
+    second:
+    - {fileID: -66057419195409458}
+    - {fileID: -410053716670640313}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 580, y: 210, z: 0}
   m_EntryPosition: {x: 80, y: 80, z: 0}
