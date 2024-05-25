@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &580228533139345895
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1239783325078421938}
+  m_Layer: 14
+  m_Name: Behind Spot Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1239783325078421938
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 580228533139345895}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3695508036214278317}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &801416782184911313
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +42,7 @@ GameObject:
   - component: {fileID: 6591939917812372888}
   - component: {fileID: 1126898024701081204}
   - component: {fileID: 7866906448447784403}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Attack Detection Zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,6 +164,8 @@ Transform:
   - {fileID: 6591939917812372888}
   - {fileID: 3262543061544563334}
   - {fileID: 8262267974430876144}
+  - {fileID: 8583640667593168102}
+  - {fileID: 1239783325078421938}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1090247747807851037
@@ -283,10 +316,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 2
+  chaseSpeed: 4
   minStopTime: 3
   maxStopTime: 9
+  facingSpotRange: 20
+  behindSpotRange: 5
+  chaseDuration: 2
   attackZone: {fileID: 7866906448447784403}
   groundZone: {fileID: 3911056219678752177}
+  facingSpotPoint: {fileID: 8583640667593168102}
+  behindSpotPoint: {fileID: 1239783325078421938}
+  _isFacingRight: 1
+  _spotTarget: 0
   _hasTarget: 0
   _canMove: 1
 --- !u!114 &3080066549135063235
@@ -353,6 +394,37 @@ MonoBehaviour:
   _isInvincible: 0
   timeSinceHit: 0
   invincibleTime: 0.25
+--- !u!1 &6225559304036517166
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8583640667593168102}
+  m_Layer: 14
+  m_Name: Facing Spot Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8583640667593168102
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6225559304036517166}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3695508036214278317}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7292755515577127422
 GameObject:
   m_ObjectHideFlags: 0

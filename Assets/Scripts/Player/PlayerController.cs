@@ -4,12 +4,10 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Unity.VisualScripting;
-using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
-using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
 
@@ -45,6 +43,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Climbing")]
     [SerializeField] private float climbSpeed = 5f;
+    [SerializeField] private float centerLadderMoveSpeed = 2f;
     private bool isOnLadder;
     private bool isClimbing;
     [SerializeField] private Transform ladderCenterPosition;
@@ -236,10 +235,14 @@ public class PlayerController : MonoBehaviour
     {
         horizontalInput = context.ReadValue<Vector2>();
 
-        if (IsAlive && !isClimbing) // Disable horizontal movement while climbing
+        if (IsAlive)
         {
             IsMoving = horizontalInput != Vector2.zero;
-            SetFacingDirection(horizontalInput);
+
+            if (!isClimbing || horizontalInput != Vector2.zero)
+            {
+                SetFacingDirection(horizontalInput);
+            }
         }
         else
         {
@@ -247,48 +250,45 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
     public void OnJump(InputAction.CallbackContext context)
     {
         if (context.started && isClimbing)
         {
             isClimbing = false;
             rb.gravityScale = originalGravityScale;
-            rb.velocity = new Vector2(rb.velocity.x, jumpPower); // Allow jumping while climbing
+            rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+        }
+        else if (context.started)
+        {
+            jumpBufferTimeCounter = jumpBufferTime;
         }
         else
         {
-            if (context.started)
-            {
-                jumpBufferTimeCounter = jumpBufferTime;
-            }
-            else
-            {
-                jumpBufferTimeCounter -= Time.deltaTime;
-            }
-
-            if (context.started && wallJumpingCounter > 0f && isWallSliding)
-            {
-                CoroutineManager.Instance.StartManagedCoroutine(WallJumping());
-            }
-
-            if (jumpBufferTimeCounter > 0f && coyoteTimeCounter > 0f && CanMove && !IsDashing || doubleJump && CanMove)
-            {
-                rb.velocity = new Vector2(rb.velocity.x, jumpPower);
-                jumpBufferTimeCounter = 0f;
-                doubleJump = false;
-            }
-
-            if (context.canceled && rb.velocity.y > 0)
-            {
-                coyoteTimeCounter = 0f;
-            }
+            jumpBufferTimeCounter -= Time.deltaTime;
         }
-      
+
+        if (context.started && wallJumpingCounter > 0f && isWallSliding)
+        {
+            CoroutineManager.Instance.StartManagedCoroutine(WallJumping());
+        }
+
+        if (jumpBufferTimeCounter > 0f && coyoteTimeCounter > 0f && CanMove && !IsDashing || doubleJump && CanMove)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+            jumpBufferTimeCounter = 0f;
+            doubleJump = false;
+        }
+
+        if (context.canceled && rb.velocity.y > 0)
+        {
+            coyoteTimeCounter = 0f;
+        }
     }
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.started && canDash)
+        if (context.started && canDash && !isClimbing)
         {
             CoroutineManager.Instance.StartManagedCoroutine(Dashing());
         }
@@ -365,14 +365,15 @@ public class PlayerController : MonoBehaviour
 
     private void LadderClimb()
     {
-        if (isClimbing && !damageable.LockVelocity)
+        if (isClimbing)
         {
             rb.gravityScale = 0f;
-            rb.velocity = new Vector2(0, verticalInput.y * climbSpeed); // Restrict horizontal movement
+            rb.velocity = new Vector2(0f, verticalInput.y * climbSpeed);
 
             if (ladderCollider != null)
             {
-                transform.position = new Vector3(ladderCollider.bounds.center.x, transform.position.y, transform.position.z); // Move to the center of the ladder
+                Vector3 targetPosition = new Vector3(ladderCollider.bounds.center.x, transform.position.y, transform.position.z);
+                transform.position = Vector3.Lerp(transform.position, targetPosition, centerLadderMoveSpeed * Time.deltaTime);
             }
         }
     }
@@ -431,14 +432,14 @@ public class PlayerController : MonoBehaviour
 
     private void LadderClimbCheck()
     {
-        if (isOnLadder && verticalInput.y != 0)
+        if (isOnLadder && !damageable.LockVelocity && verticalInput.y != 0 && rb.velocity.y <= 1)
         {
             isClimbing = true;
+            rb.velocity = new Vector2(0f, rb.velocity.y);
         }
         if (!isOnLadder)
         {
             isClimbing = false;
-            rb.gravityScale = originalGravityScale;
         }
     }
 
@@ -477,7 +478,7 @@ public class PlayerController : MonoBehaviour
         if (collision.CompareTag("Ladder"))
         {
             isOnLadder = true;
-            ladderCollider = collision; // Store reference to the ladder collider
+            ladderCollider = collision;
         }
     }
 
@@ -488,7 +489,7 @@ public class PlayerController : MonoBehaviour
             isOnLadder = false;
             isClimbing = false;
             rb.gravityScale = originalGravityScale;
-            ladderCollider = null; // Clear reference to the ladder collider
+            ladderCollider = null;
         }
     }
 
