@@ -6,7 +6,6 @@ using UnityEngine.Events;
 
 public class DetectionZone : MonoBehaviour
 {
-    public UnityEvent noGroundRemain;
     public List<Collider2D> detectedCols = new List<Collider2D>();
     Collider2D col;
 
@@ -23,9 +22,5 @@ public class DetectionZone : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         detectedCols.Remove(collision);
-        if(detectedCols.Count <= 0) 
-        {
-            noGroundRemain.Invoke();
-        }
     }
 }

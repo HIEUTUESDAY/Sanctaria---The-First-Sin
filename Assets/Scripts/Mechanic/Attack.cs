@@ -13,7 +13,7 @@ public class Attack : MonoBehaviour
         // See if it can be hit
         Damageable damageable = collision.GetComponent<Damageable>();
 
-        if (damageable != null) 
+        if (damageable != null)
         {
             Vector2 deliveredKnockback = transform.parent.rotation.y == 0 ? knockback : new Vector2(-knockback.x, knockback.y);
 

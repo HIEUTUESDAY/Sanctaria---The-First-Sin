@@ -270,7 +270,7 @@ public class PlayerController : MonoBehaviour
 
         if (context.started && wallJumpingCounter > 0f && isWallSliding)
         {
-            CoroutineManager.Instance.StartManagedCoroutine(WallJumping());
+            CoroutineManager.Instance.StartCoroutine(WallJumping());
         }
 
         if (jumpBufferTimeCounter > 0f && coyoteTimeCounter > 0f && CanMove && !IsDashing || doubleJump && CanMove)
@@ -290,7 +290,7 @@ public class PlayerController : MonoBehaviour
     {
         if (context.started && canDash && !isClimbing)
         {
-            CoroutineManager.Instance.StartManagedCoroutine(Dashing());
+            CoroutineManager.Instance.StartCoroutine(Dashing());
         }
     }
 
@@ -450,7 +450,7 @@ public class PlayerController : MonoBehaviour
         {
             if (currentOneWayPlatform != null)
             {
-                CoroutineManager.Instance.StartManagedCoroutine(DisableCollision());
+                CoroutineManager.Instance.StartCoroutine(DisableCollision());
             }
         }
     }

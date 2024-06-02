@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlyingEye : MonoBehaviour
+public class FlyingEnemies : MonoBehaviour
 {
-    [SerializeField] private float flightSpeed = 5f;
+    [SerializeField] private float flightSpeed = 2f;
     [SerializeField] private float waypointReachedDistance = 0.01f;
     public DetectionZone biteDetectionZone;
     public Collider2D deathCollider;
@@ -18,7 +18,17 @@ public class FlyingEye : MonoBehaviour
     Transform nextWaypoint;
     int waypointNum = 0;
 
+    public bool _hasTarget = false;
 
+    public bool HasTarget
+    {
+        get { return _hasTarget; }
+        private set
+        {
+            _hasTarget = value;
+            animator.SetBool(AnimationString.hasTarget, value);
+        }
+    }
     public bool canMove
     {
         get
@@ -43,7 +53,7 @@ public class FlyingEye : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        this.TargetDetection();
     }
 
     private void FixedUpdate()
@@ -72,12 +82,12 @@ public class FlyingEye : MonoBehaviour
         this.UpdateDirection();
 
         // Check if need to swith waypoint
-        if(distance <= waypointReachedDistance)
+        if (distance <= waypointReachedDistance)
         {
             // Switch to the next waypoint
             waypointNum++;
 
-            if(waypointNum >= waypoints.Count)
+            if (waypointNum >= waypoints.Count)
             {
                 // Loop baak to the first waypoint
                 waypointNum = 0;
@@ -87,13 +97,18 @@ public class FlyingEye : MonoBehaviour
         }
     }
 
+    private void TargetDetection()
+    {
+        HasTarget = biteDetectionZone.detectedCols.Count > 0;
+    }
+
     private void UpdateDirection()
     {
         Vector3 localScale = transform.localScale;
         if (transform.localScale.x > 0)
         {
             // Facing right
-            if(rb.velocity.x < 0)
+            if (rb.velocity.x < 0)
             {
                 // Flip 
                 transform.localScale = new Vector3(localScale.x * -1, localScale.y, localScale.z);

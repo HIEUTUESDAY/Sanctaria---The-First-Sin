@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using static UnityEngine.Rendering.DebugUI;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
@@ -15,6 +17,9 @@ public class DeathBringer : MonoBehaviour
     [SerializeField] private float behindSpotRange = 2f;
     [SerializeField] private float chaseDuration = 2f;
     private float chaseTimer;
+    private float stopTimeRemaining; 
+    private bool isFlipping;
+    private bool waitForFlip;
     private Vector3 lastPlayerPosition;
 
     [SerializeField] private DetectionZone attackZone;
@@ -84,12 +89,28 @@ public class DeathBringer : MonoBehaviour
             animator.SetBool(AnimationString.spotTarget, value);
             if (value)
             {
-                chaseTimer = chaseDuration; // Reset the chase timer
+                chaseTimer = chaseDuration;
                 lastPlayerPosition = playerTransform.position;
+                if (isFlipping)
+                {
+                    isFlipping = false;
+                    CanMove = true;
+                }
             }
         }
     }
 
+    public bool _isMoving = false;
+
+    public bool IsMoving
+    {
+        get { return _isMoving; }
+        private set
+        {
+            _isMoving = value;
+            animator.SetBool(AnimationString.isMoving, value);
+        }
+    }
 
     public bool _hasTarget = false;
 
@@ -139,22 +160,9 @@ public class DeathBringer : MonoBehaviour
 
     private void Start()
     {
-        // Find the player object by tag
-        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
-
-        // Check if the player object is found
-        if (playerObject != null)
-        {
-            // Get the transform component of the player
-            playerTransform = playerObject.transform;
-        }
-        else
-        {
-            Debug.LogError("Player object not found in the scene!");
-        }
+        this.GetPlayerTranform();
     }
 
-    // Update is called once per frame
     void Update()
     {
         this.SpotTargetDetection(facingSpotRange, behindSpotRange);
@@ -173,23 +181,34 @@ public class DeathBringer : MonoBehaviour
         {
             this.Move();
         }
-        this.ChangeDirection();
+
+        this.WallHitFlip();
+        this.NoGroundFlip();
+        this.FlippingCheck();
     }
 
     private void Move()
     {
         if (!damageable.LockVelocity)
         {
-            if (CanMove && !HasTarget)
+            if (CanMove && !HasTarget && groundZone.detectedCols.Count > 0)
             {
                 rb.velocity = new Vector2(walkSpeed * WalkDirectionVector.x, rb.velocity.y);
+                IsMoving = true;
+            }
+            else
+            {
+                rb.velocity = Vector2.zero;
+                IsMoving = false;
             }
         }
         else
         {
             rb.velocity = Vector2.zero;
+            IsMoving = false;
         }
     }
+
 
     private void Flip()
     {
@@ -207,13 +226,66 @@ public class DeathBringer : MonoBehaviour
         }
     }
 
-    private void ChangeDirection()
+    private void HandleFlip(bool waitBeforeFlip)
     {
-        if (touchingDirections.IsGrounded && touchingDirections.IsOnWall && !SpotTarget && !HasTarget)
+        if (SpotTarget)
         {
-            CoroutineManager.Instance.StartManagedCoroutine(HitWallFlip());
+            return;
+        }
+
+        CanMove = false;
+        stopTimeRemaining = UnityEngine.Random.Range(minStopTime, maxStopTime);
+        isFlipping = true;
+
+        if (waitBeforeFlip)
+        {
+            waitForFlip = true;
+        }
+        else if(!waitBeforeFlip)
+        {
+            Flip();
         }
     }
+
+    private void WallHitFlip()
+    {
+        if (touchingDirections.IsGrounded && touchingDirections.IsOnWall && !HasTarget && !isFlipping)
+        {
+            HandleFlip(false); // Flip first, then wait
+        }
+    }
+
+    private void NoGroundFlip()
+    {
+        if (groundZone.detectedCols.Count <= 0 && touchingDirections.IsGrounded && !HasTarget && !isFlipping)
+        {
+            HandleFlip(true); // Wait first, then flip
+        }
+    }
+
+    private void FlippingCheck()
+    {
+        if (isFlipping && !SpotTarget)
+        {
+            stopTimeRemaining -= Time.fixedDeltaTime;
+            if (stopTimeRemaining <= 0)
+            {
+                if (waitForFlip)
+                {
+                    Flip();
+                }
+
+                CanMove = true;
+                isFlipping = false;
+                waitForFlip = false;
+            }
+            else
+            {
+                rb.velocity = Vector2.zero;
+            }
+        }
+    }
+
     private void SpotTargetDetection(float facingDistance, float behindDistance)
     {
         float facingCastDistance;
@@ -290,66 +362,39 @@ public class DeathBringer : MonoBehaviour
         }
     }
 
-    public void OnHit(int damage, Vector2 knockback)
-    {
-        if (playerTransform != null)
-        {
-            // Calculate the direction from the enemy to the player
-            Vector2 direction = transform.position - playerTransform.position;
-            direction.Normalize();
-
-            rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
-
-            // Ensure that the enemy turn back when get hit from behind and not in attacking
-            if (direction.x > 0 && !animator.GetBool(AnimationString.onAttack))
-            {
-                WalkDirection = WalkableDirection.Left;
-            }
-            else if (direction.x < 0 && !animator.GetBool(AnimationString.onAttack))
-            {
-                WalkDirection = WalkableDirection.Right;
-            }
-        }
-    }
-
-    public void OnNoGroundDetected()
-    {
-        if (touchingDirections.IsGrounded && !SpotTarget && !HasTarget)
-        {
-            CoroutineManager.Instance.StartManagedCoroutine(NoGroundFlip());
-        }
-    }
-
     private void ChasingTarget()
     {
         if (playerTransform != null && (SpotTarget || chaseTimer > 0))
         {
             Vector3 targetPosition = SpotTarget ? playerTransform.position : lastPlayerPosition;
-            // Calculate direction to the target position
             Vector2 directionToTarget = targetPosition - transform.position;
 
-            // Check if the target is behind the enemy
             bool isTargetBehind = (WalkDirection == WalkableDirection.Right && directionToTarget.x < 0) ||
                                   (WalkDirection == WalkableDirection.Left && directionToTarget.x > 0);
 
             if (!damageable.LockVelocity)
             {
-                if (CanMove && !HasTarget)
+                if (CanMove && !HasTarget && groundZone.detectedCols.Count > 0)
                 {
-                    // Move towards the target position
                     Vector2 direction = directionToTarget.normalized;
                     rb.velocity = new Vector2(chaseSpeed * direction.x, rb.velocity.y);
+                    IsMoving = true;
 
-                    // Flip if the target is behind
                     if (isTargetBehind)
                     {
                         Flip();
                     }
                 }
+                else
+                {
+                    rb.velocity = Vector2.zero;
+                    IsMoving = false;
+                }
             }
             else
             {
                 rb.velocity = Vector2.zero;
+                IsMoving = false;
             }
         }
     }
@@ -371,24 +416,40 @@ public class DeathBringer : MonoBehaviour
         }
     }
 
-    private IEnumerator HitWallFlip()
+    private void GetPlayerTranform()
     {
-        Flip();
-        CanMove = false;
-        float stopTime = UnityEngine.Random.Range(minStopTime, maxStopTime);
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
 
-        yield return new WaitForSeconds(stopTime);
-        CanMove = true;
+        if (playerObject != null)
+        {
+
+            playerTransform = playerObject.transform;
+        }
+        else
+        {
+            Debug.LogError("Player object not found in the scene!");
+        }
     }
 
-    private IEnumerator NoGroundFlip()
+    public void OnHit(int damage, Vector2 knockback)
     {
-        CanMove = false;
-        float stopTime = UnityEngine.Random.Range(minStopTime, maxStopTime);
+        if (playerTransform != null)
+        {
+            Vector2 direction = transform.position - playerTransform.position;
+            direction.Normalize();
 
-        yield return new WaitForSeconds(stopTime);
-        Flip();
-        CanMove = true;
+            rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
+
+            if (direction.x > 0 && !animator.GetBool(AnimationString.onAttack))
+            {
+                WalkDirection = WalkableDirection.Left;
+            }
+            else if (direction.x < 0 && !animator.GetBool(AnimationString.onAttack))
+            {
+                WalkDirection = WalkableDirection.Right;
+            }
+        }
     }
+
 
 }
