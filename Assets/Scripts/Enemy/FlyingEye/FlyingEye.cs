@@ -7,9 +7,10 @@ public class FlyingEye : MonoBehaviour
 {
     [SerializeField] private float flightSpeed = 5f;
     [SerializeField] private float waypointReachedDistance = 0.01f;
-    public DetectionZone biteDetectionZone;
-    public Collider2D deathCollider;
-    public List<Transform> waypoints;
+
+    [SerializeField] private GameObject bodyHitZone;
+    [SerializeField] private Collider2D deathCollider;
+    [SerializeField] private List<Transform> waypoints;
 
     Rigidbody2D rb;
     Animator animator;
@@ -112,6 +113,7 @@ public class FlyingEye : MonoBehaviour
 
     public void OnDeath()
     {
+        bodyHitZone.SetActive(false);
         // Fall down when is dead
         rb.gravityScale = 2f;
         rb.velocity = new Vector2(0, rb.velocity.y);

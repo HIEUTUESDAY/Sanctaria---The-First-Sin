@@ -16,6 +16,7 @@ public class DeathBringer : MonoBehaviour
     [SerializeField] private float facingSpotRange = 20f;
     [SerializeField] private float behindSpotRange = 2f;
     [SerializeField] private float chaseDuration = 2f;
+
     private float chaseTimer;
     private float stopTimeRemaining; 
     private bool isFlipping;
@@ -26,6 +27,7 @@ public class DeathBringer : MonoBehaviour
     [SerializeField] private DetectionZone groundZone;
     [SerializeField] Transform facingSpotPoint;
     [SerializeField] Transform behindSpotPoint;
+    [SerializeField] private GameObject bodyHitZone;
 
     Rigidbody2D rb;
     TouchingDirections touchingDirections;
@@ -451,5 +453,8 @@ public class DeathBringer : MonoBehaviour
         }
     }
 
-
+    public void OnDeath()
+    {
+        bodyHitZone.SetActive(false);
+    }
 }

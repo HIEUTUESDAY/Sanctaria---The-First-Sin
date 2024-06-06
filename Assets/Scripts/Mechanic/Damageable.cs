@@ -1,14 +1,20 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Mail;
 using UnityEngine;
 using UnityEngine.Events;
+using Cinemachine;
 
 public class Damageable : MonoBehaviour
 {
-    public UnityEvent<int, Vector2> damageableHit;
-    public UnityEvent damageableDeath;
+    [SerializeField] private UnityEvent<int, Vector2> damageableHit;
+    [SerializeField] private UnityEvent damageableDeath;
+    [SerializeField] private float slowMotionDuration = 0.5f;
+    [SerializeField] private float slowMotionFactor = 0.2f;
 
+    CinemachineImpulseSource impulseSource;
+    HitSplashManager hitSplashManager;
     Animator animator;
 
     [SerializeField]
@@ -119,18 +125,34 @@ public class Damageable : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    private void Start()
+    {
+        hitSplashManager = GetComponent<HitSplashManager>();
+        impulseSource = GetComponent<CinemachineImpulseSource>();
+    }
+
     private void Update()
     {
         this.OnBecameInvisible();
     }
 
-    public bool Hit(int damage, Vector2 knockback)
+    public bool Hit(int damage, Vector2 knockback, Vector2 hitDirection, int attackType)
     {
         if (IsAlive && !IsInvincible && OnAttack == true)
         {
             // Beable to hit
             Health -= damage;
             IsInvincible = true;
+
+            // Spawn Damage Particle with direction
+            hitSplashManager.ShowHitSplash(transform.position, hitDirection, attackType);
+
+            // Camera shake and slow motion when deal damage
+            if (gameObject.CompareTag("Enemy"))
+            {
+                CoroutineManager.Instance.StartCoroutine(ApplySlowMotion());
+            }
+            CameraShakeManager.instance.CameraShake(impulseSource);
 
             // Deal damage but no hit animation while attacking
             damageableHit?.Invoke(damage, knockback);
@@ -144,6 +166,16 @@ public class Damageable : MonoBehaviour
             Health -= damage;
             IsInvincible = true;
 
+            // Spawn Damage Particle with direction
+            hitSplashManager.ShowHitSplash(transform.position, hitDirection, attackType);
+
+            // Camera shake and slow motion when deal damage
+            if (gameObject.CompareTag("Enemy"))
+            {
+                StartCoroutine(ApplySlowMotion());
+            }
+            CameraShakeManager.instance.CameraShake(impulseSource);
+
             // Notify other subcribed components that damageable was hit to handle the knockback
             animator.SetTrigger(AnimationString.hitTrigger);
             LockVelocity = true;
@@ -155,6 +187,7 @@ public class Damageable : MonoBehaviour
         // Unable to hit
         return false;
     }
+
 
     private void OnBecameInvisible()
     {
@@ -184,5 +217,12 @@ public class Damageable : MonoBehaviour
         }
         else
             return false;
+    }
+
+    private IEnumerator ApplySlowMotion()
+    {
+        Time.timeScale = slowMotionFactor;
+        yield return new WaitForSecondsRealtime(slowMotionDuration);
+        Time.timeScale = 1f;
     }
 }

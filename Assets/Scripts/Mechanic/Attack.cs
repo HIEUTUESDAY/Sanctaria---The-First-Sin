@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    public int attackDamage = 10;
-    public Vector2 knockback = Vector2.zero;
+    [SerializeField] private int attackDamage = 10;
+    [SerializeField] private Vector2 knockback = Vector2.zero;
+
+    [SerializeField] private int attackType;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -17,8 +19,11 @@ public class Attack : MonoBehaviour
         {
             Vector2 deliveredKnockback = transform.parent.rotation.y == 0 ? knockback : new Vector2(-knockback.x, knockback.y);
 
+            // Calculate hit direction
+            Vector2 hitDirection = (collision.transform.position - transform.position).normalized;
+
             // Hit the target
-            bool hitTarget = damageable.Hit(attackDamage, deliveredKnockback);
+            bool hitTarget = damageable.Hit(attackDamage, deliveredKnockback, hitDirection, attackType);
         }
     }
 }

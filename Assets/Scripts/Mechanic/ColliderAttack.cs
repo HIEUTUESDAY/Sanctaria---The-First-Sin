@@ -8,6 +8,7 @@ public class ColliderAttack : MonoBehaviour
     [SerializeField] private int attackDamage = 10;
     [SerializeField] private Vector2 knockback = Vector2.zero;
     [SerializeField] private float damageCooldown = 3f;
+    [SerializeField] private int attackType;
     private bool canDealDamage = true;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -21,8 +22,11 @@ public class ColliderAttack : MonoBehaviour
             {
                 Vector2 deliveredKnockback = transform.parent.rotation.y == 0 ? knockback : new Vector2(-knockback.x, knockback.y);
 
+                // Calculate hit direction
+                Vector2 hitDirection = (collision.transform.position - transform.position).normalized;
+
                 // Hit the target
-                bool hitTarget = damageable.Hit(attackDamage, deliveredKnockback);
+                bool hitTarget = damageable.Hit(attackDamage, deliveredKnockback, hitDirection, attackType);
 
                 if (hitTarget)
                 {
