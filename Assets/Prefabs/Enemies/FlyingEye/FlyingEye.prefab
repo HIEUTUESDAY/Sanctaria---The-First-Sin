@@ -90,8 +90,8 @@ GameObject:
   - component: {fileID: 7784461622112827412}
   - component: {fileID: 1780114605518023584}
   - component: {fileID: 3639588183304865527}
-  - component: {fileID: 7166224528689480472}
   - component: {fileID: 4945893945139614802}
+  - component: {fileID: 7166224528689480472}
   - component: {fileID: 8107405483297076257}
   - component: {fileID: 6450554613266017197}
   m_Layer: 6
@@ -253,6 +253,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4945893945139614802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478563843609171175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 348a6aa12ddffd845bc9111966112621, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flightSpeed: 5
+  waypointReachedDistance: 0.5
+  bodyHitZone: {fileID: 6955133328303509184}
+  deathCollider: {fileID: 6918750946143625382}
+  waypoints:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &7166224528689480472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,25 +310,6 @@ MonoBehaviour:
   _isInvincible: 0
   timeSinceHit: 0
   invincibleTime: 0.1
---- !u!114 &4945893945139614802
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1478563843609171175}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 348a6aa12ddffd845bc9111966112621, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flightSpeed: 5
-  waypointReachedDistance: 0.5
-  bodyHitZone: {fileID: 6955133328303509184}
-  deathCollider: {fileID: 6918750946143625382}
-  waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &8107405483297076257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -346,7 +346,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    m_ImpulseDuration: 0.2
+    m_ImpulseDuration: 0.1
     m_ImpulseType: 0
     m_DissipationRate: 0.25
     m_RawSignal: {fileID: 0}

@@ -3832,7 +3832,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1226179712731378915, guid: e74853af4a424d24b8d6851ac15df36f, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.y
-      value: 0.365
+      value: 0.36
       objectReference: {fileID: 0}
     - target: {fileID: 1226179712731378915, guid: e74853af4a424d24b8d6851ac15df36f, type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.x
@@ -3893,7 +3893,7 @@ PrefabInstance:
     - target: {fileID: 6690097813810595353, guid: e74853af4a424d24b8d6851ac15df36f, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -1204139507, guid: 29edcf0858e9d774cb619a509c37136b, type: 3}
+      objectReference: {fileID: 353424496, guid: 29edcf0858e9d774cb619a509c37136b, type: 3}
     - target: {fileID: 6690097813810595353, guid: e74853af4a424d24b8d6851ac15df36f, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -3905,14 +3905,6 @@ PrefabInstance:
     - target: {fileID: 6941194379666103835, guid: e74853af4a424d24b8d6851ac15df36f, type: 3}
       propertyPath: climbSpeed
       value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7011922192512821088, guid: e74853af4a424d24b8d6851ac15df36f, type: 3}
-      propertyPath: _health
-      value: 5000
-      objectReference: {fileID: 0}
-    - target: {fileID: 7011922192512821088, guid: e74853af4a424d24b8d6851ac15df36f, type: 3}
-      propertyPath: invincibleTime
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7076371970001519899, guid: e74853af4a424d24b8d6851ac15df36f, type: 3}
       propertyPath: m_Name

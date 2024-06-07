@@ -1,25 +1,7 @@
 fileFormatVersion: 2
-guid: c50b517797d93614aac4ca58aaf97355
+guid: 29edcf0858e9d774cb619a509c37136b
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 6934013284892070054
-    second: Attack1_0
-  - first:
-      213: -7957278214813060823
-    second: Attack1_1
-  - first:
-      213: 1409549213185883415
-    second: Attack1_2
-  - first:
-      213: 4976274401295337057
-    second: Attack1_3
-  - first:
-      213: -5639509438907974925
-    second: Attack1_4
-  - first:
-      213: 452926297546027425
-    second: Attack1_5
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -141,148 +123,274 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Attack1_0
+      name: penitent_idle_0
       rect:
         serializedVersion: 2
-        x: 71
-        y: 78
-        width: 41
-        height: 53
+        x: 0
+        y: 128
+        width: 128
+        height: 128
       alignment: 9
-      pivot: {x: 0.5, y: 0.43}
+      pivot: {x: 0.5, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 221247a199c870640bec7bc5d6cf9cfa
-      internalID: -1907277722
+      spriteID: 12a11110bd933de4eb7a624d0bb2ff65
+      internalID: 353424496
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack1_1
+      name: penitent_idle_1
       rect:
         serializedVersion: 2
-        x: 269
-        y: 78
-        width: 43
-        height: 53
+        x: 128
+        y: 128
+        width: 128
+        height: 128
       alignment: 9
-      pivot: {x: 0.5, y: 0.43}
+      pivot: {x: 0.5, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a82ea4daeb50c56478c931c66b126417
-      internalID: -204375879
+      spriteID: c25ff06bb2e210f4685ebaf3259090be
+      internalID: 1865189787
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack1_2
+      name: penitent_idle_2
       rect:
         serializedVersion: 2
-        x: 471
-        y: 78
-        width: 41
-        height: 53
+        x: 256
+        y: 128
+        width: 128
+        height: 128
       alignment: 9
-      pivot: {x: 0.5, y: 0.43}
+      pivot: {x: 0.5, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5b60614d32fefdc44af65fbf39fb1ad2
-      internalID: 524855525
+      spriteID: 158d240cc9abf354eb975571da9bda71
+      internalID: 761893306
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack1_3
+      name: penitent_idle_3
       rect:
         serializedVersion: 2
-        x: 673
-        y: 78
-        width: 41
-        height: 53
+        x: 384
+        y: 128
+        width: 128
+        height: 128
       alignment: 9
-      pivot: {x: 0.5, y: 0.43}
+      pivot: {x: 0.5, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 80e5145d87f207c478b45476cb317ced
-      internalID: -1216451753
+      spriteID: c988175731630d744bf38e4e87418dd8
+      internalID: -476084765
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack1_4
+      name: penitent_idle_4
       rect:
         serializedVersion: 2
-        x: 882
-        y: 80
-        width: 107
-        height: 69
+        x: 512
+        y: 128
+        width: 128
+        height: 128
       alignment: 9
-      pivot: {x: 0.2, y: 0.31}
+      pivot: {x: 0.5, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db34344c4670ed34ab1b3050c75f93fb
-      internalID: -214764549
+      spriteID: fa313dfcb101d124bac560ace9d57d53
+      internalID: -505080823
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack1_5
+      name: penitent_idle_5
       rect:
         serializedVersion: 2
-        x: 1082
-        y: 79
-        width: 107
-        height: 69
+        x: 640
+        y: 128
+        width: 128
+        height: 128
       alignment: 9
-      pivot: {x: 0.2, y: 0.31}
+      pivot: {x: 0.5, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a9a9becb4f04674ea18ae5c31a6515c
-      internalID: 524710922
+      spriteID: 6c9b19f849f34974d803e9a2ea41d9f8
+      internalID: -700740355
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack1_6
+      name: penitent_idle_6
       rect:
         serializedVersion: 2
-        x: 1040
-        y: 133
-        width: 1
-        height: 2
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 768
+        y: 128
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 685bfa5cd1b9ec746ba8f14b0745250f
-      internalID: 545247357
+      spriteID: c12eee5b2d2f8d74a842953e7c936316
+      internalID: -1736618757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_idle_7
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 128
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.36}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 527142b69fc0b8341b48045f217b22f6
+      internalID: -895750169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_idle_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.36}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 443e2c9f685443a4798890bfed8e7087
+      internalID: -667607449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_idle_9
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.36}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee779c94fbcf7ac4cb2a39007fed8b16
+      internalID: 802718946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_idle_10
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.36}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 331dd346489635747ab196581bd8443d
+      internalID: -1705565535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_idle_11
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.36}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39176a390be415842a43c3f1f8635f94
+      internalID: 515946602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_idle_12
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0.36}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae9d7f310933236479cb4adb4479345f
+      internalID: 2036066173
       vertices: []
       indices: 
       edges: []
@@ -298,13 +406,19 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Attack1_0: -1907277722
-      Attack1_1: -204375879
-      Attack1_2: 524855525
-      Attack1_3: -1216451753
-      Attack1_4: -214764549
-      Attack1_5: 524710922
-      Attack1_6: 545247357
+      penitent_idle_0: 353424496
+      penitent_idle_1: 1865189787
+      penitent_idle_10: -1705565535
+      penitent_idle_11: 515946602
+      penitent_idle_12: 2036066173
+      penitent_idle_2: 761893306
+      penitent_idle_3: -476084765
+      penitent_idle_4: -505080823
+      penitent_idle_5: -700740355
+      penitent_idle_6: -1736618757
+      penitent_idle_7: -895750169
+      penitent_idle_8: -667607449
+      penitent_idle_9: 802718946
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

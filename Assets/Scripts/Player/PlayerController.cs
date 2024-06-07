@@ -28,17 +28,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpBufferTime = 0.1f;
     private float jumpBufferTimeCounter;
     [SerializeField] private float maximumFallSpeed = -40f;
-    private bool doubleJump;
     [Space(5)]
 
     [Header("Dashing")]
     [SerializeField] private bool canDash = true;
     [SerializeField] private float dashPower = 20f;
-    private float dashTime = 0.2f;
-    [SerializeField] private float afterDashTime = 0.1f;
+    [SerializeField] private float dashTime = 0.2f;
     [SerializeField] private float dashCooldown = 2f;
     [SerializeField] private float dashStopRate = 5f;
-    [SerializeField] private TrailRenderer tr;
     [Space(5)]
 
     [Header("Climbing")]
@@ -70,7 +67,7 @@ public class PlayerController : MonoBehaviour
     [Space(5)]
 
 
-    public Rigidbody2D rb;
+    private Rigidbody2D rb;
     private Animator animator;
     private Vector2 horizontalInput;
     private Vector2 verticalInput;
@@ -78,6 +75,8 @@ public class PlayerController : MonoBehaviour
     private Damageable damageable;
     private GameObject currentOneWayPlatform;
     private CameraFollowObject cameraFollowObject;
+    private GhostTrail ghostTrail;
+    private Coroutine dashCoroutine;
     private float fallSpeedYDampingChangeThreshold;
     private float originalGravityScale;
 
@@ -200,6 +199,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         touchingDirections = GetComponent<TouchingDirections>();
         damageable = GetComponent<Damageable>();
+        ghostTrail = GetComponent<GhostTrail>();
         originalGravityScale = rb.gravityScale;
     }
 
@@ -273,11 +273,10 @@ public class PlayerController : MonoBehaviour
             CoroutineManager.Instance.StartCoroutine(WallJumping());
         }
 
-        if (jumpBufferTimeCounter > 0f && coyoteTimeCounter > 0f && CanMove && !IsDashing || doubleJump && CanMove)
+        if (jumpBufferTimeCounter > 0f && coyoteTimeCounter > 0f && CanMove)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
             jumpBufferTimeCounter = 0f;
-            doubleJump = false;
         }
 
         if (context.canceled && rb.velocity.y > 0)
@@ -288,11 +287,16 @@ public class PlayerController : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.started && canDash && !isClimbing)
+        if (context.started && canDash && touchingDirections.IsGrounded && !isClimbing)
         {
-            CoroutineManager.Instance.StartCoroutine(Dashing());
+            if (dashCoroutine != null)
+            {
+                StopCoroutine(dashCoroutine);
+            }
+            dashCoroutine = StartCoroutine(Dashing());
         }
     }
+
 
     public void OnAttack(InputAction.CallbackContext context)
     {
@@ -525,31 +529,54 @@ public class PlayerController : MonoBehaviour
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0;
 
+        // Start the ghost trail effect
+        ghostTrail.StartGhostTrail();
+
         // Calculate the direction of the dash based on the player's facing direction
         float dashDirection = IsFacingRight ? 1f : -1f;
 
+        float dashEndTime = Time.time + dashTime;
+
+        float dashStartDelay = 0.15f;
+        yield return new WaitForSeconds(dashStartDelay);
+
         // Apply dash velocity with direction
         rb.velocity = new Vector2(dashDirection * dashPower, 0f);
-        tr.emitting = true;
 
-        yield return new WaitForSeconds(dashTime);
+        // Check for ground while dashing
+        while (Time.time < dashEndTime)
+        {
+            if (!touchingDirections.IsGrounded)
+            {
+                IsDashing = false;
+                damageable.IsInvincible = false;
+                rb.gravityScale = originalGravity;
+
+                yield return new WaitForSeconds(dashCooldown);
+                canDash = true;
+
+                dashCoroutine = null;
+                yield break;
+            }
+            yield return null;
+        }
 
         if (horizontalInput.x == 0 && IsDashing)
         {
             rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, dashStopRate), rb.velocity.y);
         }
 
-        tr.emitting = false;
-        IsDashing = false;
-        damageable.IsInvincible = false;
-        rb.gravityScale = originalGravity;
-        doubleJump = true;
+        // Stop the ghost trail effect
+        ghostTrail.StopGhostTrail();
 
-        yield return new WaitForSeconds(afterDashTime);
-        doubleJump = false;
+        IsDashing = false;
+        rb.gravityScale = originalGravity;
+        damageable.IsInvincible = false;
 
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
+
+        dashCoroutine = null;
     }
 
     private IEnumerator WallJumping()

@@ -126,12 +126,12 @@ TextureImporter:
       name: penitent_pushback_anim_0
       rect:
         serializedVersion: 2
-        x: 32
+        x: 0
         y: 16
         width: 50
         height: 96
       alignment: 9
-      pivot: {x: 0.53, y: 0.31}
+      pivot: {x: 0.5, y: 0.31}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -147,12 +147,12 @@ TextureImporter:
       name: penitent_pushback_anim_1
       rect:
         serializedVersion: 2
-        x: 95
+        x: 64
         y: 16
-        width: 62
+        width: 59
         height: 96
       alignment: 9
-      pivot: {x: 0.45, y: 0.31}
+      pivot: {x: 0.43, y: 0.31}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -168,12 +168,12 @@ TextureImporter:
       name: penitent_pushback_anim_2
       rect:
         serializedVersion: 2
-        x: 160
+        x: 128
         y: 16
-        width: 59
+        width: 57
         height: 96
       alignment: 9
-      pivot: {x: 0.46, y: 0.31}
+      pivot: {x: 0.45, y: 0.31}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -189,12 +189,12 @@ TextureImporter:
       name: penitent_pushback_anim_3
       rect:
         serializedVersion: 2
-        x: 224
+        x: 192
         y: 16
-        width: 57
+        width: 59
         height: 96
       alignment: 9
-      pivot: {x: 0.47, y: 0.31}
+      pivot: {x: 0.44, y: 0.31}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -210,9 +210,9 @@ TextureImporter:
       name: penitent_pushback_anim_4
       rect:
         serializedVersion: 2
-        x: 288
+        x: 256
         y: 16
-        width: 59
+        width: 62
         height: 96
       alignment: 9
       pivot: {x: 0.45, y: 0.31}
@@ -231,12 +231,12 @@ TextureImporter:
       name: penitent_pushback_anim_5
       rect:
         serializedVersion: 2
-        x: 352
+        x: 320
         y: 16
         width: 50
         height: 96
       alignment: 9
-      pivot: {x: 0.52, y: 0.31}
+      pivot: {x: 0.53, y: 0.31}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -252,12 +252,12 @@ TextureImporter:
       name: penitent_pushback_anim_6
       rect:
         serializedVersion: 2
-        x: 416
+        x: 384
         y: 16
         width: 75
         height: 96
       alignment: 9
-      pivot: {x: 0.64, y: 0.31}
+      pivot: {x: 0.66, y: 0.31}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -273,12 +273,12 @@ TextureImporter:
       name: penitent_pushback_anim_7
       rect:
         serializedVersion: 2
-        x: 496
+        x: 464
         y: 13
         width: 81
         height: 99
       alignment: 9
-      pivot: {x: 0.67, y: 0.34}
+      pivot: {x: 0.66, y: 0.34}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -294,9 +294,9 @@ TextureImporter:
       name: penitent_pushback_anim_8
       rect:
         serializedVersion: 2
-        x: 591
+        x: 560
         y: 13
-        width: 82
+        width: 80
         height: 99
       alignment: 9
       pivot: {x: 0.66, y: 0.34}
@@ -315,9 +315,9 @@ TextureImporter:
       name: penitent_pushback_anim_9
       rect:
         serializedVersion: 2
-        x: 688
+        x: 656
         y: 13
-        width: 82
+        width: 80
         height: 99
       alignment: 9
       pivot: {x: 0.66, y: 0.34}
@@ -336,7 +336,7 @@ TextureImporter:
       name: penitent_pushback_anim_10
       rect:
         serializedVersion: 2
-        x: 784
+        x: 752
         y: 13
         width: 81
         height: 99
@@ -357,9 +357,9 @@ TextureImporter:
       name: penitent_pushback_anim_11
       rect:
         serializedVersion: 2
-        x: 880
+        x: 848
         y: 13
-        width: 80
+        width: 82
         height: 99
       alignment: 9
       pivot: {x: 0.66, y: 0.34}
@@ -378,9 +378,9 @@ TextureImporter:
       name: penitent_pushback_anim_12
       rect:
         serializedVersion: 2
-        x: 976
+        x: 944
         y: 13
-        width: 80
+        width: 81
         height: 99
       alignment: 9
       pivot: {x: 0.66, y: 0.34}
@@ -399,12 +399,12 @@ TextureImporter:
       name: penitent_pushback_anim_13
       rect:
         serializedVersion: 2
-        x: 1072
+        x: 1040
         y: 13
-        width: 81
+        width: 80
         height: 99
       alignment: 9
-      pivot: {x: 0.65, y: 0.34}
+      pivot: {x: 0.66, y: 0.34}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -420,12 +420,12 @@ TextureImporter:
       name: penitent_pushback_anim_14
       rect:
         serializedVersion: 2
-        x: 1168
+        x: 1136
         y: 13
         width: 80
         height: 99
       alignment: 9
-      pivot: {x: 0.65, y: 0.34}
+      pivot: {x: 0.66, y: 0.34}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -441,12 +441,12 @@ TextureImporter:
       name: penitent_pushback_anim_15
       rect:
         serializedVersion: 2
-        x: 1264
+        x: 1232
         y: 13
         width: 78
         height: 99
       alignment: 9
-      pivot: {x: 0.67, y: 0.34}
+      pivot: {x: 0.66, y: 0.34}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -462,12 +462,12 @@ TextureImporter:
       name: penitent_pushback_anim_16
       rect:
         serializedVersion: 2
-        x: 1360
+        x: 1328
         y: 15
         width: 79
         height: 97
       alignment: 9
-      pivot: {x: 0.71, y: 0.32}
+      pivot: {x: 0.66, y: 0.32}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -483,12 +483,12 @@ TextureImporter:
       name: penitent_pushback_anim_17
       rect:
         serializedVersion: 2
-        x: 1452
+        x: 1424
         y: 16
-        width: 81
+        width: 82
         height: 96
       alignment: 9
-      pivot: {x: 0.71, y: 0.31}
+      pivot: {x: 0.68, y: 0.31}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -504,12 +504,12 @@ TextureImporter:
       name: penitent_pushback_anim_18
       rect:
         serializedVersion: 2
-        x: 1552
+        x: 1520
         y: 16
-        width: 67
+        width: 84
         height: 96
       alignment: 9
-      pivot: {x: 0.72, y: 0.31}
+      pivot: {x: 0.69, y: 0.31}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -517,6 +517,111 @@ TextureImporter:
       bones: []
       spriteID: 7cd4f48bd964bc642b02f3a350dd9fcc
       internalID: -1269189687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_pushback_anim_19
+      rect:
+        serializedVersion: 2
+        x: 1616
+        y: 16
+        width: 77
+        height: 96
+      alignment: 9
+      pivot: {x: 0.69, y: 0.31}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e95dbe97977c8647b162a9f767d848d
+      internalID: 1550886379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_pushback_anim_20
+      rect:
+        serializedVersion: 2
+        x: 1712
+        y: 16
+        width: 77
+        height: 96
+      alignment: 9
+      pivot: {x: 0.69, y: 0.31}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de9dca009638ffb4b8302e64cc90f4eb
+      internalID: 287212707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_pushback_anim_21
+      rect:
+        serializedVersion: 2
+        x: 1808
+        y: 16
+        width: 66
+        height: 96
+      alignment: 9
+      pivot: {x: 0.7, y: 0.31}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8dee23face78ce4428f6abf272ccda79
+      internalID: 1037682921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_pushback_anim_22
+      rect:
+        serializedVersion: 2
+        x: 1888
+        y: 16
+        width: 67
+        height: 96
+      alignment: 9
+      pivot: {x: 0.7, y: 0.31}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5bc7caa863eca94eb8aedac89898e71
+      internalID: 813307344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_pushback_anim_23
+      rect:
+        serializedVersion: 2
+        x: 1424
+        y: 1
+        width: 39
+        height: 1
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9ac2ae92c62a754d92329ca61b87573
+      internalID: 1858188012
       vertices: []
       indices: 
       edges: []
@@ -543,7 +648,12 @@ TextureImporter:
       penitent_pushback_anim_16: 1942988729
       penitent_pushback_anim_17: 775343807
       penitent_pushback_anim_18: -1269189687
+      penitent_pushback_anim_19: 1550886379
       penitent_pushback_anim_2: 401521429
+      penitent_pushback_anim_20: 287212707
+      penitent_pushback_anim_21: 1037682921
+      penitent_pushback_anim_22: 813307344
+      penitent_pushback_anim_23: 1858188012
       penitent_pushback_anim_3: -2130616976
       penitent_pushback_anim_4: -1373202970
       penitent_pushback_anim_5: 1966780967

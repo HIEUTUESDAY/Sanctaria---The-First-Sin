@@ -1,0 +1,679 @@
+fileFormatVersion: 2
+guid: ccd379d83f5c56a468bf7115f4d08f87
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: penitent_death_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 78
+        height: 96
+      alignment: 9
+      pivot: {x: 0.72, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 804cb48f6bd2c9144a507dba9921c024
+      internalID: 1517428963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_death_1
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 77
+        height: 96
+      alignment: 9
+      pivot: {x: 0.7, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad0d184d3f659c84eafad4c9946399dd
+      internalID: 763395246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_death_2
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 84
+        height: 96
+      alignment: 9
+      pivot: {x: 0.6, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4279b5ba74a2726478a66f95948e7591
+      internalID: 127562489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_death_3
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 86
+        height: 96
+      alignment: 9
+      pivot: {x: 0.6, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fef426cd2daaf274495fd493b85b0a6c
+      internalID: 1875879070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_death_4
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 0
+        width: 87
+        height: 96
+      alignment: 9
+      pivot: {x: 0.57, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62b9643cab5a1b842a91be90fc745d84
+      internalID: -458241951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_death_5
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 89
+        height: 96
+      alignment: 9
+      pivot: {x: 0.56, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d1b5cc3f2eca584082c9dcff55bd4ca
+      internalID: 1743839996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_death_6
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 0
+        width: 93
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80d7d6667f46cd94da71f306dbcfd46e
+      internalID: 291149979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_death_7
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 86
+        height: 96
+      alignment: 9
+      pivot: {x: 0.49, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1ce7301f0c99cf40ba32a2253b4f386
+      internalID: 865387646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_death_8
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 0
+        width: 74
+        height: 96
+      alignment: 9
+      pivot: {x: 0.43, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 523b134efed205f48acbc7d1c258356c
+      internalID: 1362882346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_death_11
+      rect:
+        serializedVersion: 2
+        x: 821
+        y: 0
+        width: 76
+        height: 96
+      alignment: 9
+      pivot: {x: 0.46, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3b139c137d517d47acb8abea669119e
+      internalID: -297953900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_death_14
+      rect:
+        serializedVersion: 2
+        x: 904
+        y: 0
+        width: 80
+        height: 96
+      alignment: 9
+      pivot: {x: 0.44, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c271fbb22e0f80148a5c2f1a588643ca
+      internalID: -1830539373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_death_15
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 0
+        width: 42
+        height: 96
+      alignment: 9
+      pivot: {x: 0.66, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a298e02e7bfa40741babba99a2a73741
+      internalID: -674075638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_death_16
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 0
+        width: 41
+        height: 96
+      alignment: 9
+      pivot: {x: 0.69, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2db7edcdd537814d8e9dc9574b82492
+      internalID: 1019014492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_death_17
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 0
+        width: 50
+        height: 96
+      alignment: 9
+      pivot: {x: 0.72, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a5a6945b338643459631397ca1b03ee
+      internalID: -388431470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_death_18
+      rect:
+        serializedVersion: 2
+        x: 1264
+        y: 0
+        width: 70
+        height: 96
+      alignment: 9
+      pivot: {x: 0.63, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b41c725eea4c2d44e8ecfff30429ad54
+      internalID: 1256932039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_death_19
+      rect:
+        serializedVersion: 2
+        x: 1344
+        y: 0
+        width: 67
+        height: 96
+      alignment: 9
+      pivot: {x: 0.6, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afbedec84611f0646a2211f24c27a28e
+      internalID: 619911388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_death_20
+      rect:
+        serializedVersion: 2
+        x: 1424
+        y: 0
+        width: 76
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9357b43fccc45d4dbd585cee308a4ca
+      internalID: 257576534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_death_25
+      rect:
+        serializedVersion: 2
+        x: 1184
+        y: 0
+        width: 67
+        height: 96
+      alignment: 9
+      pivot: {x: 0.63, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65477a5962e2372489db36f63e35c94f
+      internalID: 1515937123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_death_26
+      rect:
+        serializedVersion: 2
+        x: 1504
+        y: 0
+        width: 79
+        height: 96
+      alignment: 9
+      pivot: {x: 0.47, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8dc59c9cddce36340995742a2f13f69b
+      internalID: -79291825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_death_28
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 0
+        width: 82
+        height: 96
+      alignment: 9
+      pivot: {x: 0.28, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76401133d8f1fad48804f00b951dbb6a
+      internalID: -165271577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_death_31
+      rect:
+        serializedVersion: 2
+        x: 1696
+        y: 0
+        width: 83
+        height: 96
+      alignment: 9
+      pivot: {x: 0.28, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a6d77605f0e7a943985f12fce0dbe8e
+      internalID: -1878636086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_death_32
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 0
+        width: 83
+        height: 96
+      alignment: 9
+      pivot: {x: 0.28, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fe423ae3f9661e4a832ffbe7b8730bd
+      internalID: -1553559148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_death_33
+      rect:
+        serializedVersion: 2
+        x: 1888
+        y: 0
+        width: 82
+        height: 96
+      alignment: 9
+      pivot: {x: 0.28, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1f8603bdd31502439bc40b96e428089
+      internalID: -2137999888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_death_34
+      rect:
+        serializedVersion: 2
+        x: 1984
+        y: 0
+        width: 82
+        height: 96
+      alignment: 9
+      pivot: {x: 0.28, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f060daf9dd815340ac41ecc0336396e
+      internalID: 754955698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      penitent_death_0: 1517428963
+      penitent_death_1: 763395246
+      penitent_death_10: -92509587
+      penitent_death_11: -297953900
+      penitent_death_12: -1263889757
+      penitent_death_13: -1098129233
+      penitent_death_14: -1830539373
+      penitent_death_15: -674075638
+      penitent_death_16: 1019014492
+      penitent_death_17: -388431470
+      penitent_death_18: 1256932039
+      penitent_death_19: 619911388
+      penitent_death_2: 127562489
+      penitent_death_20: 257576534
+      penitent_death_21: 905320601
+      penitent_death_22: 108108629
+      penitent_death_23: -1811243454
+      penitent_death_24: 579162363
+      penitent_death_25: 1515937123
+      penitent_death_26: -79291825
+      penitent_death_27: 2133820592
+      penitent_death_28: -165271577
+      penitent_death_29: 1565965340
+      penitent_death_3: 1875879070
+      penitent_death_30: -1623136268
+      penitent_death_31: -1878636086
+      penitent_death_32: -1553559148
+      penitent_death_33: -2137999888
+      penitent_death_34: 754955698
+      penitent_death_4: -458241951
+      penitent_death_5: 1743839996
+      penitent_death_6: 291149979
+      penitent_death_7: 865387646
+      penitent_death_8: 1362882346
+      penitent_death_9: -316385277
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

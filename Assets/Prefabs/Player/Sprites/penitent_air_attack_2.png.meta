@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f0664c2c3d647fb4089ccdcfc19544ce
+guid: bd6fcf45a7f420f409e46bd481f892c6
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,106 +123,127 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: penitent_fall_anim_0
+      name: penitent_jumping_attack_2_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 96
-        height: 112
+        width: 45
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.46}
+      pivot: {x: 0.76, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3b821ca3afc61a840a6c517d2fde2547
-      internalID: 493439975
+      spriteID: 6ef240d7898eb6045b9c3db27e577bb3
+      internalID: 2108387816
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: penitent_fall_anim_1
+      name: penitent_jumping_attack_2_1
       rect:
         serializedVersion: 2
-        x: 96
+        x: 80
         y: 0
-        width: 96
-        height: 112
+        width: 43
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.46}
+      pivot: {x: 0.68, y: 0.33}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e717fe17adeccad408ef123afe84751a
-      internalID: -799111821
+      spriteID: e85370b9981572a4ca446ace91d36c96
+      internalID: -430146678
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: penitent_fall_anim_2
+      name: penitent_jumping_attack_2_2
       rect:
         serializedVersion: 2
-        x: 192
+        x: 160
         y: 0
-        width: 96
-        height: 112
+        width: 28
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.46}
+      pivot: {x: 0.47, y: 0.33}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0435f7739e47383418d000a79017ed3a
-      internalID: 1421980557
+      spriteID: eb5b7a01125212a42b5d4fb193552800
+      internalID: -335836564
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: penitent_fall_anim_3
+      name: penitent_jumping_attack_2_3
       rect:
         serializedVersion: 2
-        x: 288
+        x: 208
         y: 0
-        width: 96
-        height: 112
+        width: 141
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.46}
+      pivot: {x: 0.41, y: 0.35}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a8256ab231f677c4caaefb83b33354a6
-      internalID: -318647418
+      spriteID: 7d87556ed02e2cc409cef528c56eb307
+      internalID: 1424118266
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: penitent_fall_anim_4
+      name: penitent_jumping_attack_2_5
       rect:
         serializedVersion: 2
-        x: 384
+        x: 407
         y: 0
-        width: 96
-        height: 112
+        width: 132
+        height: 96
       alignment: 9
-      pivot: {x: 0.5, y: 0.46}
+      pivot: {x: 0.43, y: 0.38}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: acda02c27ff442d4e98f017b475ae3d0
-      internalID: 602458263
+      spriteID: b78d88c4976c1a14b84efd179eef98e5
+      internalID: 294344616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_jumping_attack_2_6
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 0
+        width: 50
+        height: 96
+      alignment: 9
+      pivot: {x: 0.63, y: 0.42}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49a594fabce51c145ad930dbcea07e52
+      internalID: 19836418
       vertices: []
       indices: 
       edges: []
@@ -238,11 +259,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      penitent_fall_anim_0: 493439975
-      penitent_fall_anim_1: -799111821
-      penitent_fall_anim_2: 1421980557
-      penitent_fall_anim_3: -318647418
-      penitent_fall_anim_4: 602458263
+      penitent_jumping_attack_2_0: 2108387816
+      penitent_jumping_attack_2_1: -430146678
+      penitent_jumping_attack_2_2: -335836564
+      penitent_jumping_attack_2_3: 1424118266
+      penitent_jumping_attack_2_4: -620842011
+      penitent_jumping_attack_2_5: 294344616
+      penitent_jumping_attack_2_6: 19836418
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

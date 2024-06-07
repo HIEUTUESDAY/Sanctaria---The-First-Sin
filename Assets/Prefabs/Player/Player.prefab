@@ -77,22 +77,24 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 3.9586906, y: 2.3456154}
-      - {x: 2.5151024, y: 2.7375603}
-      - {x: 1.6667747, y: 2.8333387}
-      - {x: 0.83496857, y: 2.8411007}
-      - {x: 0.04347706, y: 2.8463933}
-      - {x: 1.0975876, y: 1.442976}
-      - {x: 1.0588989, y: -0.7556009}
-      - {x: 0.05447632, y: -1.1900309}
+    - - {x: 4.068493, y: 0.8367672}
+      - {x: 3.646103, y: 1.0289593}
+      - {x: 2.6382408, y: 1.3545971}
+      - {x: 1.5909958, y: 1.5356264}
+      - {x: 0.83496857, y: 1.6191673}
+      - {x: -0.15923977, y: 1.7493389}
+      - {x: -0.122470856, y: 1.4508982}
+      - {x: -0.12947464, y: -0.67637634}
+      - {x: -0.4363646, y: -1.4615582}
+      - {x: 0.88464355, y: -1.3468876}
       - {x: 1.6036034, y: -1.2136421}
-      - {x: 2.8373413, y: -1.0336523}
-      - {x: 4.03108, y: -0.6443374}
-      - {x: 5.0667458, y: 0.028319359}
-      - {x: 5.3209877, y: 0.4749279}
-      - {x: 5.3753624, y: 0.9472952}
-      - {x: 5.214237, y: 1.3663235}
-      - {x: 4.8113623, y: 1.7829037}
+      - {x: 2.9455986, y: -0.87776184}
+      - {x: 4.0484023, y: -0.44514537}
+      - {x: 4.6813545, y: -0.010652542}
+      - {x: 4.7883644, y: 0.13716602}
+      - {x: 4.7907753, y: 0.30208492}
+      - {x: 4.7119255, y: 0.46129704}
+      - {x: 4.480811, y: 0.5972395}
   m_UseDelaunayMesh: 0
 --- !u!114 &2944050553557302989
 MonoBehaviour:
@@ -307,22 +309,25 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 3.9586906, y: 2.3456154}
-      - {x: 2.5151024, y: 2.7375603}
-      - {x: 1.6667747, y: 2.8333387}
-      - {x: 0.83496857, y: 2.8411007}
-      - {x: 0.04347706, y: 2.8463933}
-      - {x: 1.0975876, y: 1.442976}
-      - {x: 1.0588989, y: -0.7556009}
-      - {x: 0.05447632, y: -1.1900309}
-      - {x: 1.6036034, y: -1.2136421}
-      - {x: 2.8373413, y: -1.0336523}
-      - {x: 4.03108, y: -0.6443374}
-      - {x: 5.0667458, y: 0.028319359}
-      - {x: 5.3209877, y: 0.4749279}
-      - {x: 5.3753624, y: 0.9472952}
-      - {x: 5.214237, y: 1.3663235}
-      - {x: 4.8113623, y: 1.7829037}
+    - - {x: 4.191223, y: 0.44661808}
+      - {x: 3.1739388, y: 0.7222986}
+      - {x: 2.1440468, y: 0.91970253}
+      - {x: 1.0904045, y: 1.0786085}
+      - {x: -0.24348354, y: 1.2168577}
+      - {x: -0.13280106, y: 0.5020027}
+      - {x: -0.1327858, y: -0.3668213}
+      - {x: -0.16526169, y: -0.6322173}
+      - {x: 1.6306305, y: -0.8485403}
+      - {x: 2.791275, y: -0.7353277}
+      - {x: 3.9550185, y: -0.55981994}
+      - {x: 4.424221, y: -0.43258095}
+      - {x: 5.072098, y: -0.1964426}
+      - {x: 5.2047234, y: -0.12577438}
+      - {x: 5.2567863, y: -0.03292942}
+      - {x: 5.205929, y: 0.040097237}
+      - {x: 5.093876, y: 0.12739182}
+      - {x: 5.0832367, y: 0.13462448}
+      - {x: 4.849429, y: 0.22532177}
   m_UseDelaunayMesh: 0
 --- !u!114 &3614864172355720149
 MonoBehaviour:
@@ -358,7 +363,7 @@ GameObject:
   - component: {fileID: 7011922192512821088}
   - component: {fileID: 27510858187477024}
   - component: {fileID: 1066895347653817357}
-  - component: {fileID: 7144145772889742267}
+  - component: {fileID: 6489979340676061125}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -426,15 +431,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 954315051, guid: 29edcf0858e9d774cb619a509c37136b, type: 3}
+  m_Sprite: {fileID: 353424496, guid: 29edcf0858e9d774cb619a509c37136b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 8.3125, y: 5}
+  m_Size: {x: 8, y: 8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &8140907983845801907
@@ -462,7 +467,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &1226179712731378915
 BoxCollider2D:
@@ -499,9 +504,9 @@ BoxCollider2D:
   m_Offset: {x: 0, y: -0.15}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.508, y: 0.36}
+    pivot: {x: 0.5, y: 0.36}
     oldSize: {x: 8, y: 8}
-    newSize: {x: 8.3125, y: 5}
+    newSize: {x: 8, y: 8}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -712,8 +717,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1292a623c71804e41b69a2bd434ee51f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
-  groundSpeedAceleration: 75
+  moveSpeed: 11
+  groundSpeedAceleration: 100
   airSpeedAceleration: 70
   walkStopRate: 0.2
   jumpPower: 25
@@ -722,10 +727,9 @@ MonoBehaviour:
   maximumFallSpeed: -40
   canDash: 1
   dashPower: 25
-  afterDashTime: 0.15
-  dashCooldown: 2
+  dashTime: 0.5
+  dashCooldown: 1
   dashStopRate: 10
-  tr: {fileID: 7144145772889742267}
   climbSpeed: 5
   centerLadderMoveSpeed: 10
   ladderCenterPosition: {fileID: 0}
@@ -734,10 +738,9 @@ MonoBehaviour:
   isWallJumping: 0
   wallJumpingTime: 0.5
   wallJumpingDuration: 0.25
-  wallJumpingPower: {x: 7, y: 22}
+  wallJumpingPower: {x: 7, y: 24}
   playerCollider: {fileID: 0}
   cameraFollowGO: {fileID: 0}
-  rb: {fileID: 8140907983845801907}
   _isFacingRight: 1
 --- !u!114 &1497399364266092045
 MonoBehaviour:
@@ -751,18 +754,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c365358ef1687844a4ed49054964e0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundBoxSize: {x: 0.85, y: 0.15}
-  wallBoxSize: {x: 0.15, y: 2}
-  ceilingBoxSize: {x: 0.85, y: 0.15}
+  groundBoxSize: {x: 1, y: 0.2}
+  wallBoxSize: {x: 0.4, y: 1.5}
+  ceilingBoxSize: {x: 1, y: 0.2}
   groundLayer:
     serializedVersion: 2
     m_Bits: 4224
   jumpWallLayer:
     serializedVersion: 2
     m_Bits: 4096
-  groundCastDistance: 1.95
-  wallCastDistance: -0.6
-  ceilingCastDistance: -1.65
+  groundCastDistance: 2
+  wallCastDistance: -0.75
+  ceilingCastDistance: -1.7
   _isGrounded: 0
   _isOnWall: 0
   _isOnJumpWall: 0
@@ -797,14 +800,14 @@ MonoBehaviour:
   damageableDeath:
     m_PersistentCalls:
       m_Calls: []
-  slowMotionDuration: 0.5
+  slowMotionDuration: 0.3
   slowMotionFactor: 0.2
-  _maxHealth: 5000
-  _health: 5000
+  _maxHealth: 100
+  _health: 100
   _isAlive: 1
   _isInvincible: 0
   timeSinceHit: 0
-  invincibleTime: 3
+  invincibleTime: 2
 --- !u!114 &27510858187477024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -840,7 +843,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    m_ImpulseDuration: 0.2
+    m_ImpulseDuration: 0.1
     m_ImpulseType: 0
     m_DissipationRate: 0.25
     m_RawSignal: {fileID: 0}
@@ -872,119 +875,22 @@ MonoBehaviour:
     m_DissipationDistance: 100
     m_PropagationSpeed: 343
   m_DefaultVelocity: {x: 0, y: 0, z: 0}
---- !u!96 &7144145772889742267
-TrailRenderer:
-  serializedVersion: 3
+--- !u!114 &6489979340676061125
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7076371970001519899}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 0
-  m_LightProbeUsage: 0
-  m_ReflectionProbeUsage: 0
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Time: 0.5
-  m_PreviewTimeScale: 1
-  m_Parameters:
-    serializedVersion: 3
-    widthMultiplier: 1
-    widthCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0.5
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    colorGradient:
-      serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 0}
-      key2: {r: 0, g: 0, b: 0, a: 0}
-      key3: {r: 0, g: 0, b: 0, a: 0}
-      key4: {r: 0, g: 0, b: 0, a: 0}
-      key5: {r: 0, g: 0, b: 0, a: 0}
-      key6: {r: 0, g: 0, b: 0, a: 0}
-      key7: {r: 0, g: 0, b: 0, a: 0}
-      ctime0: 0
-      ctime1: 65535
-      ctime2: 0
-      ctime3: 0
-      ctime4: 0
-      ctime5: 0
-      ctime6: 0
-      ctime7: 0
-      atime0: 0
-      atime1: 65535
-      atime2: 0
-      atime3: 0
-      atime4: 0
-      atime5: 0
-      atime6: 0
-      atime7: 0
-      m_Mode: 0
-      m_ColorSpace: 0
-      m_NumColorKeys: 2
-      m_NumAlphaKeys: 2
-    numCornerVertices: 0
-    numCapVertices: 0
-    alignment: 0
-    textureMode: 0
-    textureScale: {x: 1, y: 1}
-    shadowBias: 0.5
-    generateLightingData: 0
-  m_MinVertexDistance: 0.1
-  m_MaskInteraction: 0
-  m_Autodestruct: 0
-  m_Emitting: 0
-  m_ApplyActiveColorSpace: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e12068baf75e4ca41a62eda4018c7998, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ghostPrefab: {fileID: 5134861467908741798, guid: 45d3e5afe2a46744cace90edc7dc70bc, type: 3}
+  ghostSpawnInterval: 0.1
+  ghostLifeTime: 0.3
+  ghostColor: {r: 0.39510062, g: 0.0029262658, b: 0.5169811, a: 1}
 --- !u!1 &7700074076194060024
 GameObject:
   m_ObjectHideFlags: 0
