@@ -14,6 +14,7 @@ internal class AnimationString
     internal static string yVelocity = "yVelocity";
     internal static string isInAir = "isInAir";
     internal static string isDashing = "isDashing";
+    internal static string isDashed = "isDashed";
     internal static string isWallGrabbing = "isWallGrabbing";
     internal static string attackTrigger = "attack";
     internal static string canMove = "canMove";

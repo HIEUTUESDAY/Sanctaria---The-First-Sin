@@ -802,8 +802,8 @@ MonoBehaviour:
       m_Calls: []
   slowMotionDuration: 0.3
   slowMotionFactor: 0.2
-  _maxHealth: 100
-  _health: 100
+  _maxHealth: 5000
+  _health: 5000
   _isAlive: 1
   _isInvincible: 0
   timeSinceHit: 0

@@ -81,7 +81,7 @@ public class Damageable : MonoBehaviour
         { 
             return animator.GetBool(AnimationString.onAttack); 
         }
-        private set
+        set
         {
             animator.GetBool(AnimationString.onAttack);
         }
@@ -93,7 +93,7 @@ public class Damageable : MonoBehaviour
         {
             return animator.GetBool(AnimationString.lockVelocity);
         }
-        private set
+        set
         {
             animator.SetBool(AnimationString.lockVelocity, value);
         }
@@ -118,7 +118,7 @@ public class Damageable : MonoBehaviour
 
     [SerializeField]
     private float timeSinceHit  = 0;
-    public float invincibleTime = 0.25f;
+    public float invincibleTime = 2f;
 
     private void Awake()
     {
@@ -138,29 +138,7 @@ public class Damageable : MonoBehaviour
 
     public bool Hit(int damage, Vector2 knockback, Vector2 hitDirection, int attackType)
     {
-        if (IsAlive && !IsInvincible && OnAttack == true)
-        {
-            // Beable to hit
-            Health -= damage;
-            IsInvincible = true;
-
-            // Spawn Damage Particle with direction
-            hitSplashManager.ShowHitSplash(transform.position, hitDirection, attackType);
-
-            // Camera shake and slow motion when deal damage
-            if (gameObject.CompareTag("Enemy"))
-            {
-                CoroutineManager.Instance.StartCoroutine(ApplySlowMotion());
-            }
-            CameraShakeManager.instance.CameraShake(impulseSource);
-
-            // Deal damage but no hit animation while attacking
-            damageableHit?.Invoke(damage, knockback);
-            CharacterEvent.characterDamaged.Invoke(gameObject, damage);
-
-            return true;
-        }
-        else if (IsAlive && !IsInvincible && OnAttack == false)
+        if (IsAlive && !IsInvincible)
         {
             // Beable to hit
             Health -= damage;
@@ -177,8 +155,11 @@ public class Damageable : MonoBehaviour
             CameraShakeManager.instance.CameraShake(impulseSource);
 
             // Notify other subcribed components that damageable was hit to handle the knockback
-            animator.SetTrigger(AnimationString.hitTrigger);
-            LockVelocity = true;
+            if (!OnAttack) 
+            { 
+                animator.SetTrigger(AnimationString.hitTrigger);
+            }
+
             damageableHit?.Invoke(damage, knockback);
             CharacterEvent.characterDamaged.Invoke(gameObject, damage);
 

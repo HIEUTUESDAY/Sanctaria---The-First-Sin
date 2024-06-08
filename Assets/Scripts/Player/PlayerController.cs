@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
+using static UnityEngine.Rendering.DebugUI;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
 
@@ -123,6 +124,29 @@ public class PlayerController : MonoBehaviour
         {
             _isDashing = value;
             animator.SetBool(AnimationString.isDashing, value);
+        }
+    }
+
+    public bool _isDashed = false;
+
+    public bool IsDashed
+    {
+        get
+        {
+            return _isDashed;
+        }
+        private set
+        {
+            _isDashed = value;
+            animator.SetBool(AnimationString.isDashed, value);
+        }
+    }
+
+    public bool IsWallSliding
+    {
+        get
+        {
+            return animator.GetBool(AnimationString.isOnJumpWall);
         }
     }
 
@@ -287,7 +311,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.started && canDash && touchingDirections.IsGrounded && !isClimbing)
+        if (context.started && canDash && CanMove && touchingDirections.IsGrounded && !isClimbing)
         {
             if (dashCoroutine != null)
             {
@@ -300,7 +324,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && !IsWallSliding)
         {
             animator.SetTrigger(AnimationString.attackTrigger);
         }
@@ -308,7 +332,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnHit(int damage, Vector2 knockback)
     {
-        rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
+        StartCoroutine(Knockback(knockback));
     }
 
     public void OnClimb(InputAction.CallbackContext context)
@@ -528,19 +552,13 @@ public class PlayerController : MonoBehaviour
         canDash = false;
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0;
-
-        // Start the ghost trail effect
         ghostTrail.StartGhostTrail();
 
-        // Calculate the direction of the dash based on the player's facing direction
         float dashDirection = IsFacingRight ? 1f : -1f;
-
         float dashEndTime = Time.time + dashTime;
+        float dashDelay = 0.15f;
 
-        float dashStartDelay = 0.15f;
-        yield return new WaitForSeconds(dashStartDelay);
-
-        // Apply dash velocity with direction
+        yield return new WaitForSeconds(dashDelay);
         rb.velocity = new Vector2(dashDirection * dashPower, 0f);
 
         // Check for ground while dashing
@@ -566,12 +584,15 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, dashStopRate), rb.velocity.y);
         }
 
-        // Stop the ghost trail effect
         ghostTrail.StopGhostTrail();
-
         IsDashing = false;
         rb.gravityScale = originalGravity;
+        IsDashed = true;
+
+        float afterDashTime = 0.5f;
+        yield return new WaitForSeconds(afterDashTime);
         damageable.IsInvincible = false;
+        IsDashed = false;
 
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
@@ -596,5 +617,14 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(wallJumpingDuration);
         isWallJumping = false;
         this.SetFacingDirection(horizontalInput);
+    }
+
+    private IEnumerator Knockback(Vector2 knockback)
+    {
+        // Apply knockback velocity
+        damageable.LockVelocity = true;
+        rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
+        yield return new WaitForSeconds(0.25f);
+        damageable.LockVelocity = false;
     }
 }
