@@ -90,24 +90,17 @@ public class FlyingEye : MonoBehaviour
 
     private void UpdateDirection()
     {
-        Vector3 localScale = transform.localScale;
-        if (transform.localScale.x > 0)
+        if(rb.velocity.x < 0)
         {
-            // Facing right
-            if(rb.velocity.x < 0)
-            {
-                // Flip 
-                transform.localScale = new Vector3(localScale.x * -1, localScale.y, localScale.z);
-            }
+            // Flip 
+            Vector3 rotator = new Vector3(transform.rotation.x, 180f, transform.rotation.z);
+            transform.rotation = Quaternion.Euler(rotator);
         }
         else
         {
-            // Facing left
-            if (rb.velocity.x > 0)
-            {
-                // Flip 
-                transform.localScale = new Vector3(localScale.x * -1, localScale.y, localScale.z);
-            }
+            // Flip 
+            Vector3 rotator = new Vector3(transform.rotation.x, 0f, transform.rotation.z);
+            transform.rotation = Quaternion.Euler(rotator);
         }
     }
 

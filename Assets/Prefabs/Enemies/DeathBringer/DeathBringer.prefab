@@ -204,7 +204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDamage: 15
   knockback: {x: 2, y: 2}
-  damageCooldown: 2
+  damageCooldown: 1
   attackType: 0
 --- !u!1 &6119559526930401058
 GameObject:
@@ -442,7 +442,7 @@ MonoBehaviour:
   ceilingCastDistance: -1.75
   _isGrounded: 0
   _isOnWall: 0
-  _isOnJumpWall: 0
+  _isOnClimbWall: 0
   _isOnCeiling: 0
 --- !u!114 &7633927072233972195
 MonoBehaviour:

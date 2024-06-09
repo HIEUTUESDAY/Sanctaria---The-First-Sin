@@ -7,11 +7,13 @@ public class TouchingDirections : MonoBehaviour
     public Vector2 groundBoxSize;
     public Vector2 wallBoxSize;
     public Vector2 ceilingBoxSize;
+    public Vector2 grabWallBoxSize;
     public LayerMask groundLayer;
     public LayerMask jumpWallLayer;
     public float groundCastDistance;
     public float wallCastDistance;
     public float ceilingCastDistance;
+    public float grabWallCastDistance;
 
     Animator animator;
 
@@ -33,8 +35,7 @@ public class TouchingDirections : MonoBehaviour
 
     [SerializeField]
     private bool _isOnWall;
-    private Vector2 wallCheckDirection => gameObject.transform.localScale.x > 0 ? Vector2.right : Vector2.left;
-
+    
     public bool IsOnWall
     {
         get
@@ -49,18 +50,18 @@ public class TouchingDirections : MonoBehaviour
     }
 
     [SerializeField]
-    private bool _isOnJumpWall;
+    private bool _isGrabWallDetected;
 
-    public bool IsOnJumpWall
+    public bool IsGrabWallDetected
     {
         get
         {
-            return _isOnJumpWall;
+            return _isGrabWallDetected;
         }
         private set
         {
-            _isOnJumpWall = value;
-            animator.SetBool(AnimationString.isOnJumpWall, value);
+            _isGrabWallDetected = value;
+            animator.SetBool(AnimationString.isHangWallDetected, value);
         }
     }
 
@@ -89,8 +90,8 @@ public class TouchingDirections : MonoBehaviour
     {
         IsGrounded = Physics2D.BoxCast(transform.position, groundBoxSize, 0, -transform.up, groundCastDistance, groundLayer);
         IsOnWall = Physics2D.BoxCast(transform.position, wallBoxSize, 0, -transform.right, wallCastDistance, groundLayer);
-        IsOnJumpWall = Physics2D.BoxCast(transform.position, wallBoxSize, 0, -transform.right, wallCastDistance, jumpWallLayer);
         IsOnCeiling = Physics2D.BoxCast(transform.position, ceilingBoxSize, 0, -transform.up, ceilingCastDistance, groundLayer);
+        IsGrabWallDetected = Physics2D.BoxCast(transform.position, grabWallBoxSize, 0, -transform.right, grabWallCastDistance, jumpWallLayer);
     }
 
     private void OnDrawGizmos()
@@ -98,5 +99,6 @@ public class TouchingDirections : MonoBehaviour
         Gizmos.DrawWireCube(transform.position - transform.up * groundCastDistance, groundBoxSize);
         Gizmos.DrawWireCube(transform.position - transform.right * wallCastDistance, wallBoxSize);
         Gizmos.DrawWireCube(transform.position - transform.up * ceilingCastDistance, ceilingBoxSize);
+        Gizmos.DrawWireCube(transform.position - transform.right * grabWallCastDistance, grabWallBoxSize);
     }
 }
