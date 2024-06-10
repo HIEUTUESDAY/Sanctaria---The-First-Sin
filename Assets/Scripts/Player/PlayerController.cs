@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float dashStopRate = 5f;
     [Space(5)]
 
-    [Header("Climbing")]
+    [Header("Ladder Climbing")]
     [SerializeField] private float climbSpeed = 5f;
     [SerializeField] private float centerLadderMoveSpeed = 2f;
     private bool isOnLadder;
@@ -48,10 +48,12 @@ public class PlayerController : MonoBehaviour
     private Collider2D ladderCollider;
     [Space(5)]
 
-    [Header("Walling")]
-    [SerializeField] private bool isWallJumping;
+    [Header("Wall Jumping")]
+    [SerializeField] private float wallSlideSpeed = 0.5f;
+    [SerializeField] private float wallSlideDuration = 0.5f;
+    [SerializeField] private bool canWallJump;
+    private bool isWallJumping;
     private float wallJumpingDirection;
-    private bool canWallJump;
     [SerializeField] private float wallJumpingTime = 1f;
     private float wallJumpingCounter;
     [SerializeField] private float wallJumpingDuration = 0.25f;
@@ -243,6 +245,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         this.GroundCheck();
+        this.SetFacingCheck();
         this.FallCheck();
         this.WallHangCheck();
         this.LadderClimbCheck();
@@ -252,10 +255,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isClimbing)
-        {
-            this.Move();
-        }
+        this.Move();
         this.LadderClimb();
         this.WallJump();
     }
@@ -267,11 +267,6 @@ public class PlayerController : MonoBehaviour
         if (IsAlive)
         {
             IsMoving = horizontalInput != Vector2.zero;
-
-            if (!isClimbing || horizontalInput != Vector2.zero || CanMove)
-            {
-                SetFacingDirection(horizontalInput);
-            }
         }
         else
         {
@@ -322,7 +317,7 @@ public class PlayerController : MonoBehaviour
             {
                 StopCoroutine(dashCoroutine);
             }
-            dashCoroutine = StartCoroutine(Dashing());
+            dashCoroutine = CoroutineManager.Instance.StartCoroutine(Dashing());
         }
     }
 
@@ -337,7 +332,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnHit(int damage, Vector2 knockback)
     {
-        StartCoroutine(Knockback(knockback));
+        CoroutineManager.Instance.StartCoroutine(Knockback(knockback));
     }
 
     public void OnClimb(InputAction.CallbackContext context)
@@ -350,13 +345,13 @@ public class PlayerController : MonoBehaviour
         if (context.started && touchingDirections.IsGrabWallDetected && IsInAir && !IsWallHanging)
         {
             animator.SetTrigger(AnimationString.wallHangTrigger);
-            StartCoroutine(WallHanging());
+            CoroutineManager.Instance.StartCoroutine(WallHanging());
         }
     }
 
     private void Move()
     {
-        if (!damageable.LockVelocity && !isWallJumping && !IsWallHanging)
+        if (!damageable.LockVelocity && !isWallJumping && !IsWallHanging && !isClimbing)
         {
             if (horizontalInput.x == 0 && !IsDashing)
             {
@@ -370,9 +365,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void SetFacingCheck()
+    {
+        if (IsMoving && CanMove)
+        {
+            this.SetFacingDirection(horizontalInput);
+        }
+    }
+
     private void SetFacingDirection(Vector2 moveInput)
     {
-        if (!isWallJumping && !IsWallHanging)
+        if (!isWallJumping && !IsWallHanging && !IsDashing && !isClimbing)
         {
             if (moveInput.x > 0 && !IsFacingRight)
             {
@@ -656,27 +659,36 @@ public class PlayerController : MonoBehaviour
         Vector2 directionToWall = IsFacingRight ? Vector2.right : Vector2.left;
 
         // Move the player towards the wall
-        float moveTime = 0.01f;
-        float moveSpeed = 1000f;
-        float moveStartTime = Time.time;
-
-        while (Time.time < moveStartTime + moveTime)
+        float moveSpeed = 100f;
+        while (!touchingDirections.IsOnWall)
         {
             rb.velocity = new Vector2(directionToWall.x * moveSpeed, 0);
             yield return null;
         }
 
-        // Slide down for a short duration
-        float slideTime = 0.55f;
-        float slideSpeed = 0.5f;
+        canWallJump = true;
+
+        // Slide down the wall a little
         float startTime = Time.time;
-        while (Time.time < startTime + slideTime)
+        while (Time.time < startTime + wallSlideDuration)
         {
-            rb.velocity = new Vector2(rb.velocity.x, -slideSpeed);
+            float t = (Time.time - startTime) / wallSlideDuration;
+            float slideSpeed = Mathf.Lerp(wallSlideSpeed, 0, t);
+            rb.velocity = new Vector2(0, -slideSpeed);
+
+            if (isWallJumping)
+            {
+                CoroutineManager.Instance.StartCoroutine(WallJumping());
+                yield break;
+            }
             yield return null;
         }
 
-        rb.velocity = Vector2.zero;
-        canWallJump = true;
+        // Stop slide down
+        while (IsWallHanging)
+        {
+            rb.velocity = Vector2.zero;
+            yield return null;
+        }
     }
 }
