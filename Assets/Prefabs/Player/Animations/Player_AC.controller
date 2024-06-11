@@ -579,12 +579,6 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: wallHang
     m_EventTreshold: 0
-  - m_ConditionMode: 1
-    m_ConditionEvent: isHangWallDetected
-    m_EventTreshold: 0
-  - m_ConditionMode: 1
-    m_ConditionEvent: isInAir
-    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -827940677694214021}
   m_Solo: 0
@@ -736,12 +730,6 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: wallHang
-    m_EventTreshold: 0
-  - m_ConditionMode: 1
-    m_ConditionEvent: isHangWallDetected
-    m_EventTreshold: 0
-  - m_ConditionMode: 1
-    m_ConditionEvent: isInAir
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -827940677694214021}
@@ -928,6 +916,7 @@ AnimatorState:
   - {fileID: -1153758670944591046}
   m_StateMachineBehaviours:
   - {fileID: 6967488765474892473}
+  - {fileID: 3740006331121672897}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -1519,6 +1508,23 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!114 &3740006331121672897
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ab1ac8f4342c124183856db9518135b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boolName: isInvincible
+  updateOnStateMachine: 0
+  updateOnState: 1
+  valueOnEnter: 1
+  valueOnExit: 0
 --- !u!1101 &4850240448060995842
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

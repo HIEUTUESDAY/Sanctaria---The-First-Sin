@@ -44,20 +44,23 @@ TagManager:
   - name: Background
     uniqueID: 2550009245
     locked: 0
-  - name: TilesetBackground
+  - name: TilesetBehindOfGround
     uniqueID: 1983845359
     locked: 0
-  - name: Tileset
+  - name: TilesetGround
     uniqueID: 1410917019
     locked: 0
-  - name: Decoration
-    uniqueID: 3993673651
+  - name: NonCollusion
+    uniqueID: 3005454943
     locked: 0
   - name: OneWayPlatform
     uniqueID: 2991611167
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: TilesetFrontOfGround
+    uniqueID: 3993673651
     locked: 0
   - name: Effect
     uniqueID: 751310211

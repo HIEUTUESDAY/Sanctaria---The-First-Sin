@@ -318,9 +318,9 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_AngularDrag: 0
+  m_GravityScale: 6
+  m_Material: {fileID: 6200000, guid: 9db87a4fe9ace3445bd27a24abfde6d5, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -329,7 +329,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &3075804072611085715
 CapsuleCollider2D:
@@ -431,6 +431,7 @@ MonoBehaviour:
   groundBoxSize: {x: 0.3, y: 0.1}
   wallBoxSize: {x: 0.5, y: 2}
   ceilingBoxSize: {x: 0.3, y: 0.1}
+  grabWallBoxSize: {x: 0, y: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -440,9 +441,10 @@ MonoBehaviour:
   groundCastDistance: 1.75
   wallCastDistance: -1
   ceilingCastDistance: -1.75
+  grabWallCastDistance: 0
   _isGrounded: 0
   _isOnWall: 0
-  _isOnClimbWall: 0
+  _isGrabWallDetected: 0
   _isOnCeiling: 0
 --- !u!114 &7633927072233972195
 MonoBehaviour:
@@ -488,8 +490,8 @@ MonoBehaviour:
         m_CallState: 2
   slowMotionDuration: 0.1
   slowMotionFactor: 0.2
-  _maxHealth: 200
-  _health: 200
+  _maxHealth: 120
+  _health: 120
   _isAlive: 1
   _isInvincible: 0
   timeSinceHit: 0

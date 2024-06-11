@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float climbSpeed = 5f;
     [SerializeField] private float centerLadderMoveSpeed = 2f;
     private bool isOnLadder;
-    private bool isClimbing;
+    private bool isLadderClimbing;
     [SerializeField] private Transform ladderCenterPosition;
     private Collider2D ladderCollider;
     [Space(5)]
@@ -51,7 +51,6 @@ public class PlayerController : MonoBehaviour
     [Header("Wall Jumping")]
     [SerializeField] private float wallSlideSpeed = 0.5f;
     [SerializeField] private float wallSlideDuration = 0.5f;
-    [SerializeField] private bool canWallJump;
     private bool isWallJumping;
     private float wallJumpingDirection;
     [SerializeField] private float wallJumpingTime = 1f;
@@ -277,9 +276,9 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.started && isClimbing)
+        if (context.started && isLadderClimbing)
         {
-            isClimbing = false;
+            isLadderClimbing = false;
             rb.gravityScale = originalGravityScale;
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
         }
@@ -292,7 +291,7 @@ public class PlayerController : MonoBehaviour
             jumpBufferTimeCounter -= Time.deltaTime;
         }
 
-        if (context.started && wallJumpingCounter > 0f && IsWallHanging && canWallJump)
+        if (context.started && wallJumpingCounter > 0f && IsWallHanging)
         {
             CoroutineManager.Instance.StartCoroutine(WallJumping());
         }
@@ -311,7 +310,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.started && canDash && CanMove && touchingDirections.IsGrounded && !isClimbing)
+        if (context.started && canDash && CanMove && touchingDirections.IsGrounded && !isLadderClimbing)
         {
             if (dashCoroutine != null)
             {
@@ -324,7 +323,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (context.started && !IsWallHanging && !IsDashing && !isClimbing)
+        if (context.started && !IsWallHanging && !IsDashing && !isLadderClimbing)
         {
             animator.SetTrigger(AnimationString.attackTrigger);
         }
@@ -351,7 +350,7 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        if (!damageable.LockVelocity && !isWallJumping && !IsWallHanging && !isClimbing)
+        if (!damageable.LockVelocity && !isWallJumping && !IsWallHanging && !isLadderClimbing)
         {
             if (horizontalInput.x == 0 && !IsDashing)
             {
@@ -375,7 +374,7 @@ public class PlayerController : MonoBehaviour
 
     private void SetFacingDirection(Vector2 moveInput)
     {
-        if (!isWallJumping && !IsWallHanging && !IsDashing && !isClimbing)
+        if (!isWallJumping && !IsWallHanging && !IsDashing && !isLadderClimbing)
         {
             if (moveInput.x > 0 && !IsFacingRight)
             {
@@ -413,7 +412,7 @@ public class PlayerController : MonoBehaviour
 
     private void LadderClimb()
     {
-        if (isClimbing)
+        if (isLadderClimbing)
         {
             rb.gravityScale = 0f;
             rb.velocity = new Vector2(0f, verticalInput.y * climbSpeed);
@@ -478,12 +477,12 @@ public class PlayerController : MonoBehaviour
     {
         if (isOnLadder && !damageable.LockVelocity && verticalInput.y != 0 && rb.velocity.y <= 1)
         {
-            isClimbing = true;
+            isLadderClimbing = true;
             rb.velocity = new Vector2(0f, rb.velocity.y);
         }
         if (!isOnLadder)
         {
-            isClimbing = false;
+            isLadderClimbing = false;
         }
     }
 
@@ -531,7 +530,7 @@ public class PlayerController : MonoBehaviour
         if (collision.CompareTag("Ladder"))
         {
             isOnLadder = false;
-            isClimbing = false;
+            isLadderClimbing = false;
             rb.gravityScale = originalGravityScale;
             ladderCollider = null;
         }
@@ -637,7 +636,6 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(wallJumpingDuration);
         isWallJumping = false;
-        this.SetFacingDirection(horizontalInput);
     }
 
     private IEnumerator Knockback(Vector2 knockback)
@@ -652,7 +650,6 @@ public class PlayerController : MonoBehaviour
     private IEnumerator WallHanging()
     {
         IsWallHanging = true;
-        canWallJump = false;
         rb.gravityScale = 0;
 
         // Determine the direction to the wall
@@ -665,8 +662,6 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(directionToWall.x * moveSpeed, 0);
             yield return null;
         }
-
-        canWallJump = true;
 
         // Slide down the wall a little
         float startTime = Time.time;

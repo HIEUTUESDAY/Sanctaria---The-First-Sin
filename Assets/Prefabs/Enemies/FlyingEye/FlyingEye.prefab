@@ -161,7 +161,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 1314640984, guid: 62aeb62fff1cad54b9f7a6428356d5a9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 9.375, y: 9.375}
@@ -186,7 +186,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 9db87a4fe9ace3445bd27a24abfde6d5, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -195,7 +195,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &1780114605518023584
 CapsuleCollider2D:
@@ -265,13 +265,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348a6aa12ddffd845bc9111966112621, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flightSpeed: 5
+  flightSpeed: 7
   waypointReachedDistance: 0.5
   bodyHitZone: {fileID: 6955133328303509184}
   deathCollider: {fileID: 6918750946143625382}
-  waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
+  waypoints: []
 --- !u!114 &7166224528689480472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -304,8 +302,8 @@ MonoBehaviour:
         m_CallState: 2
   slowMotionDuration: 0.1
   slowMotionFactor: 0.2
-  _maxHealth: 100
-  _health: 10
+  _maxHealth: 70
+  _health: 70
   _isAlive: 1
   _isInvincible: 0
   timeSinceHit: 0
