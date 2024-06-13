@@ -18,6 +18,8 @@ internal class AnimationString
     internal static string wallHangTrigger = "wallHang";
     internal static string isHangWallDetected = "isHangWallDetected";
     internal static string isWallHanging = "isWallHanging";
+    internal static string isWallJumping = "isWallJumping";
+    internal static string isLadderClimbing = "isLadderClimbing";
     internal static string attackTrigger = "attack";
     internal static string canMove = "canMove";
     internal static string hasTarget = "hasTarget";
@@ -28,4 +30,5 @@ internal class AnimationString
     internal static string attackCooldown = "attackCooldown";
     internal static string onAttack = "onAttack";
     internal static string isInvincible = "isInvincible";
+    internal static string upInput = "upInput";
 }
