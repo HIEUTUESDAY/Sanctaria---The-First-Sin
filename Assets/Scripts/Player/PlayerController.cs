@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
     [Space(5)]
 
     [Header("OnWayPlatformMovement")]
-    [SerializeField] private CapsuleCollider2D playerCollider;
+    [SerializeField] private BoxCollider2D playerCollider;
     [Space(5)]
 
     [Header("Camera")]
@@ -76,6 +76,7 @@ public class PlayerController : MonoBehaviour
     private CameraFollowObject cameraFollowObject;
     private GhostTrail ghostTrail;
     private Coroutine dashCoroutine;
+    private HealthBar healthBar;
     private float fallSpeedYDampingChangeThreshold;
     private float originalGravityScale;
 

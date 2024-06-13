@@ -488,10 +488,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  slowMotionDuration: 0.1
-  slowMotionFactor: 0.2
-  _maxHealth: 120
-  _health: 120
+  slowMotionDuration: 0.15
+  slowMotionFactor: 0.3
+  _maxHealth: 150
+  _health: 150
   _isAlive: 1
   _isInvincible: 0
   timeSinceHit: 0

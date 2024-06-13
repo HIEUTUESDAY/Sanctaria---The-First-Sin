@@ -990,9 +990,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c365358ef1687844a4ed49054964e0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundBoxSize: {x: 1, y: 0.2}
+  groundBoxSize: {x: 1.2, y: 0.1}
   wallBoxSize: {x: 0.1, y: 1.5}
-  ceilingBoxSize: {x: 1, y: 0.2}
+  ceilingBoxSize: {x: 1.2, y: 0.1}
   grabWallBoxSize: {x: 1.5, y: 0.1}
   groundLayer:
     serializedVersion: 2
@@ -1000,9 +1000,9 @@ MonoBehaviour:
   jumpWallLayer:
     serializedVersion: 2
     m_Bits: 4096
-  groundCastDistance: 2
+  groundCastDistance: 1.95
   wallCastDistance: -0.7
-  ceilingCastDistance: -1.5
+  ceilingCastDistance: -1.45
   grabWallCastDistance: -1.4
   _isGrounded: 0
   _isOnWall: 0
@@ -1038,14 +1038,14 @@ MonoBehaviour:
   damageableDeath:
     m_PersistentCalls:
       m_Calls: []
-  slowMotionDuration: 0.3
-  slowMotionFactor: 0.2
+  slowMotionDuration: 0.2
+  slowMotionFactor: 0.3
   _maxHealth: 100
   _health: 100
   _isAlive: 1
   _isInvincible: 0
   timeSinceHit: 0
-  invincibleTime: 3
+  invincibleTime: 2
 --- !u!114 &27510858187477024
 MonoBehaviour:
   m_ObjectHideFlags: 0
