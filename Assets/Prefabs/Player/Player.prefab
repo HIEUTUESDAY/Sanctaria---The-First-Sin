@@ -938,6 +938,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 8b55a1b7-8685-444c-96e2-31edf552ad41
     m_ActionName: Player/WallGrab[/Keyboard/j]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4373586563205427431}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnHeal
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7bc4f077-d41b-4107-8348-038379c1b145
+    m_ActionName: Player/Heal[/Keyboard/f]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1042,6 +1058,8 @@ MonoBehaviour:
   slowMotionFactor: 0.3
   _maxHealth: 100
   _health: 100
+  _maxStamina: 100
+  _stamina: 100
   _isAlive: 1
   _isInvincible: 0
   timeSinceHit: 0

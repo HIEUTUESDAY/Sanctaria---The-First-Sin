@@ -12,7 +12,6 @@ public class Damageable : MonoBehaviour
     [SerializeField] private UnityEvent damageableDeath;
     [SerializeField] private float slowMotionDuration = 0.5f;
     [SerializeField] private float slowMotionFactor = 0.2f;
-    [SerializeField] private HealthBar healthBar;
 
     private CinemachineImpulseSource impulseSource;
     private HitSplashManager hitSplashManager;
@@ -161,13 +160,11 @@ public class Damageable : MonoBehaviour
     {
         hitSplashManager = GetComponent<HitSplashManager>();
         impulseSource = GetComponent<CinemachineImpulseSource>();
-        this.SetHealthBar();
     }
 
     private void Update()
     {
         this.OnBecameInvisible();
-        this.SetHealth();
     }
 
     public bool Hit(int damage, Vector2 knockback, Vector2 hitDirection, int attackType)
@@ -232,23 +229,6 @@ public class Damageable : MonoBehaviour
         }
         else
             return false;
-    }
-
-    private void SetHealthBar()
-    {
-        if(gameObject.tag == "Player")
-        {
-            healthBar.SetMaxHealth(MaxHealth);
-            healthBar.SetMaxStamina(MaxStamina);
-        }
-    }
-
-    private void SetHealth()
-    {
-        if (gameObject.tag == "Player")
-        {
-            healthBar.SetHealth(Health);
-        }
     }
 
     private IEnumerator ApplySlowMotion()

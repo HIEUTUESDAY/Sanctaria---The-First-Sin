@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
     private CameraFollowObject cameraFollowObject;
     private GhostTrail ghostTrail;
     private Coroutine dashCoroutine;
-    private HealthBar healthBar;
+    private HealthManager healthManager;
     private float fallSpeedYDampingChangeThreshold;
     private float originalGravityScale;
 
@@ -257,6 +257,7 @@ public class PlayerController : MonoBehaviour
         touchingDirections = GetComponent<TouchingDirections>();
         damageable = GetComponent<Damageable>();
         ghostTrail = GetComponent<GhostTrail>();
+        healthManager = GetComponent<HealthManager>();
         originalGravityScale = rb.gravityScale;
     }
 
@@ -373,6 +374,17 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetTrigger(AnimationString.wallHangTrigger);
             CoroutineManager.Instance.StartCoroutine(WallHanging());
+        }
+    }
+
+    public void OnHeal(InputAction.CallbackContext context)
+    {
+        if (context.started && IsAlive && healthManager.currentHealthPotions > 0)
+        {
+            if (!damageable.LockVelocity && touchingDirections.IsGrounded)
+            {
+                animator.SetTrigger(AnimationString.healTrigger);
+            }
         }
     }
 
@@ -547,6 +559,16 @@ public class PlayerController : MonoBehaviour
 
             CameraManger.instance.lerpYDamping(false);
         }
+    }
+
+    private void Heal()
+    {
+        if (IsAlive && healthManager.currentHealthPotions > 0)
+        {
+            bool heal = damageable.Heal(healthManager.healthRestore);
+            healthManager.currentHealthPotions--;
+        }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
