@@ -597,6 +597,7 @@ GameObject:
   - component: {fileID: 4373586563205427431}
   - component: {fileID: 1497399364266092045}
   - component: {fileID: 7011922192512821088}
+  - component: {fileID: 8873606055120743211}
   - component: {fileID: 27510858187477024}
   - component: {fileID: 1066895347653817357}
   - component: {fileID: 6489979340676061125}
@@ -954,6 +955,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 7bc4f077-d41b-4107-8348-038379c1b145
     m_ActionName: Player/Heal[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4373586563205427431}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnSaveGameFile
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1f50e386-d246-4eb9-9c59-fbf9fe209641
+    m_ActionName: Player/SavePoint[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1064,6 +1081,22 @@ MonoBehaviour:
   _isInvincible: 0
   timeSinceHit: 0
   invincibleTime: 2
+--- !u!114 &8873606055120743211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7076371970001519899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f52430efe84470544a84a274e9066304, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
+  maxHealthPotions: 2
+  healthRestore: 50
+  _currentHealthPotions: 0
 --- !u!114 &27510858187477024
 MonoBehaviour:
   m_ObjectHideFlags: 0

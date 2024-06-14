@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector2 wallJumpingPower = new Vector2(15f, 25f);
     [Space(5)]
 
-    [Header("OnWayPlatformMovement")]
+    [Header("One Way Platform Movement")]
     [SerializeField] private BoxCollider2D playerCollider;
     [Space(5)]
 
@@ -65,7 +65,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject cameraFollowGO;
     [Space(5)]
 
+    [Header("Save Point")]
+    [SerializeField] public bool isInSavePoint;
+    [SerializeField] private SavePointManager savePointManager;
+    [Space(5)]
 
+
+    public static PlayerController instance;
     private Rigidbody2D rb;
     private Animator animator;
     private Vector2 horizontalInput;
@@ -76,7 +82,7 @@ public class PlayerController : MonoBehaviour
     private CameraFollowObject cameraFollowObject;
     private GhostTrail ghostTrail;
     private Coroutine dashCoroutine;
-    private HealthManager healthManager;
+    private HealthPotion healthPotion;
     private float fallSpeedYDampingChangeThreshold;
     private float originalGravityScale;
 
@@ -252,18 +258,20 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        instance = this;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         touchingDirections = GetComponent<TouchingDirections>();
         damageable = GetComponent<Damageable>();
         ghostTrail = GetComponent<GhostTrail>();
-        healthManager = GetComponent<HealthManager>();
+        healthPotion = GetComponent<HealthPotion>();
         originalGravityScale = rb.gravityScale;
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        LoadPlayer();
         cameraFollowObject = cameraFollowGO.GetComponent<CameraFollowObject>();
         fallSpeedYDampingChangeThreshold = CameraManger.instance._fallSpeedYDampingChangeThreshold;
     }
@@ -286,6 +294,29 @@ public class PlayerController : MonoBehaviour
         this.Move();
         this.LadderClimb();
         this.WallJump();
+    }
+
+    public void SavePlayer()
+    {
+        SaveSystem.SavePlayer(this);
+    }
+
+    public void LoadPlayer()
+    {
+        PlayerData data = SaveSystem.LoadPlayer();
+
+        if (data != null)
+        {
+            Vector3 position;
+            position.x = data.position[0];
+            position.y = data.position[1];
+            position.z = data.position[2];
+            transform.position = position;
+
+            damageable.Health = data.health;
+            damageable.Stamina = data.stamina;
+            healthPotion.CurrentHealthPotions = data.healthPostions;
+        }
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -379,12 +410,23 @@ public class PlayerController : MonoBehaviour
 
     public void OnHeal(InputAction.CallbackContext context)
     {
-        if (context.started && IsAlive && healthManager.currentHealthPotions > 0)
+        if (context.started && IsAlive && healthPotion._currentHealthPotions > 0)
         {
             if (!damageable.LockVelocity && touchingDirections.IsGrounded)
             {
                 animator.SetTrigger(AnimationString.healTrigger);
             }
+        }
+    }
+
+    public void OnSaveGameFile(InputAction.CallbackContext context)
+    {
+        if (context.started && IsAlive && touchingDirections.IsGrounded && isInSavePoint)
+        {
+            animator.SetTrigger(AnimationString.saveTrigger);
+            this.RestoreFullStats();
+            this.ActivateSavePoint();
+            SaveSystem.SavePlayer(this);
         }
     }
 
@@ -563,12 +605,27 @@ public class PlayerController : MonoBehaviour
 
     private void Heal()
     {
-        if (IsAlive && healthManager.currentHealthPotions > 0)
+        if (IsAlive && healthPotion._currentHealthPotions > 0)
         {
-            bool heal = damageable.Heal(healthManager.healthRestore);
-            healthManager.currentHealthPotions--;
+            bool heal = damageable.Heal(healthPotion.healthRestore);
+            healthPotion._currentHealthPotions--;
         }
         
+    }
+
+    private void RestoreFullStats()
+    {
+        damageable.Health = damageable.MaxHealth;
+        damageable.Stamina = damageable.MaxStamina;
+        healthPotion.CurrentHealthPotions = healthPotion.maxHealthPotions;
+    }
+
+    private void ActivateSavePoint()
+    {
+        if (savePointManager != null)
+        {
+            savePointManager.IsActivate = true;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -577,6 +634,12 @@ public class PlayerController : MonoBehaviour
         {
             isOnLadder = true;
             ladderCollider = collision;
+        }
+
+        if (collision.CompareTag("SavePoint"))
+        {
+            isInSavePoint = true;
+            savePointManager = collision.GetComponent<SavePointManager>();
         }
     }
 
@@ -588,6 +651,12 @@ public class PlayerController : MonoBehaviour
             IsLadderClimbing = false;
             rb.gravityScale = originalGravityScale;
             ladderCollider = null;
+        }
+
+        if (collision.CompareTag("SavePoint"))
+        {
+            isInSavePoint = false;
+            savePointManager = null;
         }
     }
 

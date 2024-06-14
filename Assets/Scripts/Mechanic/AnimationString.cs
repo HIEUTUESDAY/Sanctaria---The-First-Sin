@@ -19,6 +19,7 @@ internal class AnimationString
     internal static string isWallHanging = "isWallHanging";
     internal static string isWallJumping = "isWallJumping";
     internal static string isLadderClimbing = "isLadderClimbing";
+    internal static string isActivated = "isActivated";
     internal static string isInvincible = "isInvincible";
     internal static string yVelocity = "yVelocity";
     internal static string canMove = "canMove";
@@ -33,4 +34,6 @@ internal class AnimationString
     internal static string hitTrigger = "hitTrigger";
     internal static string wallHangTrigger = "wallHangTrigger";
     internal static string healTrigger = "healTrigger";
+    internal static string saveTrigger = "saveTrigger";
+
 }

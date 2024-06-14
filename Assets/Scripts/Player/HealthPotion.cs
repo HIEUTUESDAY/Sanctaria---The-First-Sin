@@ -2,18 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthManager : MonoBehaviour
+public class HealthPotion : MonoBehaviour
 {
+    private Damageable damageable;
 
     [SerializeField] private HealthBar healthBar;
 
-
     [Header("Health Potions")]
-    [SerializeField] private int maxHealthPotions = 2;
-    public int currentHealthPotions;
+    public int maxHealthPotions = 2;
     public int healthRestore = 50;
 
-    private Damageable damageable;
+    public int _currentHealthPotions;
+
+    public int CurrentHealthPotions
+    {
+        get
+        {
+            return _currentHealthPotions;
+        }
+        set
+        {
+            _currentHealthPotions = value;
+        }
+    }
 
 
     private void Awake()
@@ -37,7 +48,7 @@ public class HealthManager : MonoBehaviour
 
     private void SetHealthPotions()
     {
-        currentHealthPotions = maxHealthPotions;
+        _currentHealthPotions = maxHealthPotions;
     }
 
     private void SetHealthBar()
@@ -50,7 +61,7 @@ public class HealthManager : MonoBehaviour
     private void UpdateHealthBar()
     {
         healthBar.SetHealth(damageable.Health);
-        healthBar.SetHealthPotions(currentHealthPotions);
+        healthBar.SetHealthPotions(_currentHealthPotions);
     }
 
 }

@@ -7,6 +7,7 @@ TagManager:
   - Ladder
   - OneWayPlatform
   - Enemy
+  - SavePoint
   layers:
   - Default
   - TransparentFX
