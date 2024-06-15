@@ -1,0 +1,1241 @@
+fileFormatVersion: 2
+guid: 4781015e57cfcab46907ee070fee4132
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_0
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 320
+        width: 66
+        height: 85
+      alignment: 9
+      pivot: {x: 0.66, y: 0.36}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6e1bf58152d89d4ca85899a6f699f9e
+      internalID: 885090903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_1
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 320
+        width: 71
+        height: 85
+      alignment: 9
+      pivot: {x: 0.675, y: 0.36}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72404bfb749855741980a6522a0a6552
+      internalID: 1472157147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_2
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 320
+        width: 66
+        height: 85
+      alignment: 9
+      pivot: {x: 0.73, y: 0.36}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b34b39f7d2b7854c80b50f83537d422
+      internalID: -666175181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_3
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 320
+        width: 62
+        height: 85
+      alignment: 9
+      pivot: {x: 0.715, y: 0.36}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8969f1d3f6b0343409c0ff7038072908
+      internalID: 1293255868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_4
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 320
+        width: 51
+        height: 75
+      alignment: 9
+      pivot: {x: 0.7, y: 0.405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 246c264b2cab0d64ea85cdd32d607862
+      internalID: 2061402572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_5
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 317
+        width: 44
+        height: 79
+      alignment: 9
+      pivot: {x: 0.67, y: 0.421}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6376d519661bd944aa128ccb4a54484f
+      internalID: -1622287730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_6
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 315
+        width: 44
+        height: 81
+      alignment: 9
+      pivot: {x: 0.67, y: 0.435}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 879e49ae0b9fecb4b9ba11dbedbbe100
+      internalID: 1385957801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_7
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 314
+        width: 41
+        height: 82
+      alignment: 9
+      pivot: {x: 0.715, y: 0.445}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7e501c459657d047a9c347a44a520b4
+      internalID: -1135665676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_8
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 320
+        width: 43
+        height: 78
+      alignment: 9
+      pivot: {x: 0.683, y: 0.39}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92c1172cd7bacfe48b471d4a91a5522b
+      internalID: -465076567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_9
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 208
+        width: 75
+        height: 85
+      alignment: 9
+      pivot: {x: 0.405, y: 0.36}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8d183331b850a34f8af3e600b92b45b
+      internalID: 565903025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_10
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 208
+        width: 74
+        height: 85
+      alignment: 9
+      pivot: {x: 0.41, y: 0.36}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63e14d6465a220041b813b21092657f3
+      internalID: -1955214539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_11
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 208
+        width: 72
+        height: 85
+      alignment: 9
+      pivot: {x: 0.42, y: 0.36}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f99bf3a40642db4cb1b29fbbf500f93
+      internalID: -1854171098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_12
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 208
+        width: 70
+        height: 85
+      alignment: 9
+      pivot: {x: 0.43, y: 0.36}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc3d3f756c7d95343a3147b151053367
+      internalID: -1277977269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_13
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 208
+        width: 75
+        height: 85
+      alignment: 9
+      pivot: {x: 0.405, y: 0.36}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fede4da0f1d783428f9a2f02a5bf3d9
+      internalID: -707955464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_14
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 208
+        width: 74
+        height: 85
+      alignment: 9
+      pivot: {x: 0.41, y: 0.36}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f968be954afee0e4497b27cf81c3f519
+      internalID: 872402123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_15
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 208
+        width: 70
+        height: 85
+      alignment: 9
+      pivot: {x: 0.435, y: 0.36}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64812e2c21fedfe47925a61a6fcb8279
+      internalID: -973794231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_16
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 208
+        width: 67
+        height: 85
+      alignment: 9
+      pivot: {x: 0.455, y: 0.36}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b809072dfb50a004c85fa5fb9bb7c243
+      internalID: 2107390069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_17
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 208
+        width: 61
+        height: 85
+      alignment: 9
+      pivot: {x: 0.5, y: 0.36}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d19023a888113d541a557ddee2e84fe5
+      internalID: 136854978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_18
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 208
+        width: 56
+        height: 85
+      alignment: 9
+      pivot: {x: 0.545, y: 0.36}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae6f51b76b3ff0046a25a39060daf1ea
+      internalID: -1019225988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_19
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 208
+        width: 72
+        height: 85
+      alignment: 9
+      pivot: {x: 0.425, y: 0.36}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: becdfdfbd61b2344da0443e64f75fd0c
+      internalID: -1666366401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_20
+      rect:
+        serializedVersion: 2
+        x: 1264
+        y: 208
+        width: 70
+        height: 85
+      alignment: 9
+      pivot: {x: 0.435, y: 0.36}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 779834d60c978cd4d9a590fa75ed4d59
+      internalID: 1163289085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_21
+      rect:
+        serializedVersion: 2
+        x: 1376
+        y: 208
+        width: 75
+        height: 85
+      alignment: 9
+      pivot: {x: 0.41, y: 0.36}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ff20cba74ebbde4ba36eced1305ade6
+      internalID: -1077650418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_22
+      rect:
+        serializedVersion: 2
+        x: 1488
+        y: 208
+        width: 64
+        height: 85
+      alignment: 9
+      pivot: {x: 0.465, y: 0.36}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3eecdd4efbd02e94fa7f03c9b22847dd
+      internalID: -144159712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_23
+      rect:
+        serializedVersion: 2
+        x: 1599
+        y: 207
+        width: 68
+        height: 85
+      alignment: 9
+      pivot: {x: 0.452, y: 0.372}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19c4349a57db711429537e66bf138ea4
+      internalID: 632114601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_24
+      rect:
+        serializedVersion: 2
+        x: 1712
+        y: 208
+        width: 68
+        height: 85
+      alignment: 9
+      pivot: {x: 0.435, y: 0.36}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2241f6294cb6b2c4a805d4743131722c
+      internalID: 906403055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_27
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 110
+        width: 79
+        height: 90
+      alignment: 9
+      pivot: {x: 0.4, y: 0.385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 200b206b4fba1c64eb0da3aecc3e0cdc
+      internalID: 586385988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_29
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 110
+        width: 75
+        height: 90
+      alignment: 9
+      pivot: {x: 0.415, y: 0.395}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 140727f2dc38cff448a70ceb30a27ff9
+      internalID: -1548532809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_30
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 111
+        width: 76
+        height: 90
+      alignment: 9
+      pivot: {x: 0.4, y: 0.385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 141d8057428d6f9429d5b34b380ee321
+      internalID: -805262568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_32
+      rect:
+        serializedVersion: 2
+        x: 815
+        y: 111
+        width: 56
+        height: 90
+      alignment: 9
+      pivot: {x: 0.56, y: 0.385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b4df579dbb256f4795397ee19dc5303
+      internalID: -1874467779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_25
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 111
+        width: 55
+        height: 90
+      alignment: 9
+      pivot: {x: 0.553, y: 0.385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a28299fc42488054da4a5563b3ffbce4
+      internalID: 1845510460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_26
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 111
+        width: 76
+        height: 90
+      alignment: 9
+      pivot: {x: 0.4, y: 0.385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37cc662d26529cf429433ac7c59c9ddf
+      internalID: 1950409883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_28
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 111
+        width: 81
+        height: 90
+      alignment: 9
+      pivot: {x: 0.375, y: 0.385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cda454796b756940a8885dea63774bc
+      internalID: 2058434166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_31
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 109
+        width: 85
+        height: 90
+      alignment: 9
+      pivot: {x: 0.358, y: 0.407}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 178ae5ecbed03d049aa8301b5c4c6478
+      internalID: -1423292594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_33
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 111
+        width: 55
+        height: 90
+      alignment: 9
+      pivot: {x: 0.552, y: 0.385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a57f6c967100da8419cf0a1977e4163b
+      internalID: 1695866087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_34
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 111
+        width: 55
+        height: 90
+      alignment: 9
+      pivot: {x: 0.552, y: 0.385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 665460728f6173d4eba741d0db1bb80c
+      internalID: 79673181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_35
+      rect:
+        serializedVersion: 2
+        x: 1153
+        y: 111
+        width: 55
+        height: 90
+      alignment: 9
+      pivot: {x: 0.533, y: 0.385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e01b9a19c32dac4b88852f2b70679fc
+      internalID: -1678504256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_36
+      rect:
+        serializedVersion: 2
+        x: 1264
+        y: 111
+        width: 55
+        height: 90
+      alignment: 9
+      pivot: {x: 0.551, y: 0.385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e62675da7d90f64469e8f7530713f8d8
+      internalID: 1263461743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_37
+      rect:
+        serializedVersion: 2
+        x: 1376
+        y: 111
+        width: 55
+        height: 90
+      alignment: 9
+      pivot: {x: 0.552, y: 0.385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2410c1560814902448633633c420c021
+      internalID: 1919633618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_38
+      rect:
+        serializedVersion: 2
+        x: 1488
+        y: 111
+        width: 55
+        height: 90
+      alignment: 9
+      pivot: {x: 0.552, y: 0.385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 055124c0e38837545ada64e5039f2002
+      internalID: -1947721497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_39
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 111
+        width: 55
+        height: 90
+      alignment: 9
+      pivot: {x: 0.552, y: 0.385}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 181b03786d4cecc48aa43c4e35c66f3e
+      internalID: -133686504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_45
+      rect:
+        serializedVersion: 2
+        x: 1712
+        y: 110
+        width: 54
+        height: 90
+      alignment: 9
+      pivot: {x: 0.545, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0725419a9a7d1374c863c155d972f205
+      internalID: 404252328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_46
+      rect:
+        serializedVersion: 2
+        x: 1824
+        y: 109
+        width: 53
+        height: 90
+      alignment: 9
+      pivot: {x: 0.535, y: 0.405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fbd095c8c8f23f44a3d16bc358630b0
+      internalID: 2076028801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_48
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 11
+        width: 52
+        height: 75
+      alignment: 9
+      pivot: {x: 0.527, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 549dfbf3897471e47bdab477935043d1
+      internalID: -89846413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_49
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 11
+        width: 51
+        height: 75
+      alignment: 9
+      pivot: {x: 0.518, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f15db54977dd01345bcdb3526d4a821d
+      internalID: -1256391557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_50
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 12
+        width: 50
+        height: 75
+      alignment: 9
+      pivot: {x: 0.51, y: 0.475}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bcb9956a651bfe4b960b4b44fd303a3
+      internalID: 992257277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_51
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 13
+        width: 48
+        height: 75
+      alignment: 9
+      pivot: {x: 0.525, y: 0.46}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 797db0d94b5cbf44692edfcf9005dded
+      internalID: -448263224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_52
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 15
+        width: 62
+        height: 75
+      alignment: 9
+      pivot: {x: 0.405, y: 0.43}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 376ced16940ed4b4aa815f42c6188809
+      internalID: 2070192976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_53
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 16
+        width: 59
+        height: 72
+      alignment: 9
+      pivot: {x: 0.405, y: 0.43}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4563048c53a4b514f85388e46069fc5a
+      internalID: 2091507212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_54
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 16
+        width: 47
+        height: 70
+      alignment: 9
+      pivot: {x: 0.57, y: 0.43}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc481566a12794b488191cb230a5d18c
+      internalID: 1130238342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_savepoint_enter_firsttime_55
+      rect:
+        serializedVersion: 2
+        x: 795
+        y: 16
+        width: 68
+        height: 71
+      alignment: 9
+      pivot: {x: 0.72, y: 0.43}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1959ea74ae4ecb40909bdd7043b1768
+      internalID: 610027094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      penitent_savepoint_enter_firsttime_0: 885090903
+      penitent_savepoint_enter_firsttime_1: 1472157147
+      penitent_savepoint_enter_firsttime_10: -1955214539
+      penitent_savepoint_enter_firsttime_11: -1854171098
+      penitent_savepoint_enter_firsttime_12: -1277977269
+      penitent_savepoint_enter_firsttime_13: -707955464
+      penitent_savepoint_enter_firsttime_14: 872402123
+      penitent_savepoint_enter_firsttime_15: -973794231
+      penitent_savepoint_enter_firsttime_16: 2107390069
+      penitent_savepoint_enter_firsttime_17: 136854978
+      penitent_savepoint_enter_firsttime_18: -1019225988
+      penitent_savepoint_enter_firsttime_19: -1666366401
+      penitent_savepoint_enter_firsttime_2: -666175181
+      penitent_savepoint_enter_firsttime_20: 1163289085
+      penitent_savepoint_enter_firsttime_21: -1077650418
+      penitent_savepoint_enter_firsttime_22: -144159712
+      penitent_savepoint_enter_firsttime_23: 632114601
+      penitent_savepoint_enter_firsttime_24: 906403055
+      penitent_savepoint_enter_firsttime_25: 1845510460
+      penitent_savepoint_enter_firsttime_26: 1950409883
+      penitent_savepoint_enter_firsttime_27: 586385988
+      penitent_savepoint_enter_firsttime_28: 2058434166
+      penitent_savepoint_enter_firsttime_29: -1548532809
+      penitent_savepoint_enter_firsttime_3: 1293255868
+      penitent_savepoint_enter_firsttime_30: -805262568
+      penitent_savepoint_enter_firsttime_31: -1423292594
+      penitent_savepoint_enter_firsttime_32: -1874467779
+      penitent_savepoint_enter_firsttime_33: 1695866087
+      penitent_savepoint_enter_firsttime_34: 79673181
+      penitent_savepoint_enter_firsttime_35: -1678504256
+      penitent_savepoint_enter_firsttime_36: 1263461743
+      penitent_savepoint_enter_firsttime_37: 1919633618
+      penitent_savepoint_enter_firsttime_38: -1947721497
+      penitent_savepoint_enter_firsttime_39: -133686504
+      penitent_savepoint_enter_firsttime_4: 2061402572
+      penitent_savepoint_enter_firsttime_45: 404252328
+      penitent_savepoint_enter_firsttime_46: 2076028801
+      penitent_savepoint_enter_firsttime_47: -1451751852
+      penitent_savepoint_enter_firsttime_48: -89846413
+      penitent_savepoint_enter_firsttime_49: -1256391557
+      penitent_savepoint_enter_firsttime_5: -1622287730
+      penitent_savepoint_enter_firsttime_50: 992257277
+      penitent_savepoint_enter_firsttime_51: -448263224
+      penitent_savepoint_enter_firsttime_52: 2070192976
+      penitent_savepoint_enter_firsttime_53: 2091507212
+      penitent_savepoint_enter_firsttime_54: 1130238342
+      penitent_savepoint_enter_firsttime_55: 610027094
+      penitent_savepoint_enter_firsttime_6: 1385957801
+      penitent_savepoint_enter_firsttime_7: -1135665676
+      penitent_savepoint_enter_firsttime_8: -465076567
+      penitent_savepoint_enter_firsttime_9: 565903025
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

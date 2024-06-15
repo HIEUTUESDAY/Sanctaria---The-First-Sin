@@ -14,6 +14,8 @@ public static class SaveSystem
 
         formatter.Serialize(stream, data);
         stream.Close();
+        Debug.Log("Game File saved at " + path);
+
     }
 
     public static PlayerData LoadPlayer()

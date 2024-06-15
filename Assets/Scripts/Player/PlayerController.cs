@@ -424,9 +424,6 @@ public class PlayerController : MonoBehaviour
         if (context.started && IsAlive && touchingDirections.IsGrounded && isInSavePoint)
         {
             animator.SetTrigger(AnimationString.saveTrigger);
-            this.RestoreFullStats();
-            this.ActivateSavePoint();
-            SaveSystem.SavePlayer(this);
         }
     }
 

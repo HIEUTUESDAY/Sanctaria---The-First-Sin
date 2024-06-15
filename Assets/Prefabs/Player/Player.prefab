@@ -1011,6 +1011,8 @@ MonoBehaviour:
   wallJumpingPower: {x: 7, y: 25}
   playerCollider: {fileID: 1226179712731378915}
   cameraFollowGO: {fileID: 0}
+  isInSavePoint: 0
+  savePointManager: {fileID: 0}
 --- !u!114 &1497399364266092045
 MonoBehaviour:
   m_ObjectHideFlags: 0
