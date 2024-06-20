@@ -1,34 +1,29 @@
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 public static class SaveSystem
 {
-    public static void SavePlayer(PlayerController player)
+    public static void SaveGame(PlayerController player, int slotIndex)
     {
-        BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/player.bin";
-        FileStream stream = new FileStream(path, FileMode.Create);
+        string path = Application.persistentDataPath + "/savefile" + slotIndex + ".json";
 
-        PlayerData data = new PlayerData(player);
+        GameData data = new GameData();
+        data.playerData = new PlayerData(player);
+        data.currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name; // Save the current scene
 
-        formatter.Serialize(stream, data);
-        stream.Close();
-        Debug.Log("Game File saved at " + path);
+        string json = JsonUtility.ToJson(data, true);
+        File.WriteAllText(path, json);
 
+        Debug.Log("Game file saved at " + path);
     }
 
-    public static PlayerData LoadPlayer()
+    public static GameData LoadGame(int slotIndex)
     {
-        string path = Application.persistentDataPath + "/player.bin";
+        string path = Application.persistentDataPath + "/savefile" + slotIndex + ".json";
         if (File.Exists(path))
         {
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(path, FileMode.Open);
-
-            PlayerData data = formatter.Deserialize(stream) as PlayerData;
-            stream.Close();
-
+            string json = File.ReadAllText(path);
+            GameData data = JsonUtility.FromJson<GameData>(json);
             return data;
         }
         else
@@ -38,4 +33,3 @@ public static class SaveSystem
         }
     }
 }
-

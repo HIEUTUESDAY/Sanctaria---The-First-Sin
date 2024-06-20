@@ -39,7 +39,7 @@ public class FadeRemoveBehavior : StateMachineBehaviour
 
             if (timeElapsed > fadeTime)
             {
-                Destroy(objToRemove);
+                objToRemove.SetActive(false);
             }
         }        
     }

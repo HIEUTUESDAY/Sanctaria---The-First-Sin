@@ -1,10 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
-using static UnityEngine.Rendering.DebugUI;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
 public class DeathBringer : MonoBehaviour
@@ -16,9 +13,11 @@ public class DeathBringer : MonoBehaviour
     [SerializeField] private float facingSpotRange = 20f;
     [SerializeField] private float behindSpotRange = 2f;
     [SerializeField] private float chaseDuration = 2f;
+    [SerializeField] private float timeToSwitchToIdle = 5f;
+    private float timeNotSpottingTarget;
 
     private float chaseTimer;
-    private float stopTimeRemaining; 
+    private float stopTimeRemaining;
     private bool isFlipping;
     private bool waitForFlip;
     private Vector3 lastPlayerPosition;
@@ -29,11 +28,29 @@ public class DeathBringer : MonoBehaviour
     [SerializeField] Transform behindSpotPoint;
     [SerializeField] private GameObject bodyHitZone;
 
-    Rigidbody2D rb;
-    TouchingDirections touchingDirections;
-    Animator animator;
-    Damageable damageable;
-    Transform playerTransform;
+    private Rigidbody2D rb;
+    private SpriteRenderer spriteRenderer;
+    private TouchingDirections touchingDirections;
+    private Animator animator;
+    public Damageable damageable;
+    private Transform playerTransform;
+
+    private enum State { Idle, Patrolling, Chasing }
+
+    private State currentState;
+    private State CurrentState
+    {
+        get { return currentState; }
+        set
+        {
+            if (currentState != value)
+            {
+                OnStateExit(currentState);
+                currentState = value;
+                OnStateEnter(currentState);
+            }
+        }
+    }
 
     private enum WalkableDirection { Right, Left }
 
@@ -43,7 +60,8 @@ public class DeathBringer : MonoBehaviour
     private WalkableDirection WalkDirection
     {
         get { return _walkDirection; }
-        set {
+        set
+        {
             if (_walkDirection != value)
             {
                 if (value == WalkableDirection.Right)
@@ -54,7 +72,7 @@ public class DeathBringer : MonoBehaviour
                     WalkDirectionVector = Vector2.right;
                     IsFacingRight = !IsFacingRight;
                 }
-                else if(value == WalkableDirection.Left)
+                else if (value == WalkableDirection.Left)
                 {
                     // If currently facing right, rotate 180 degrees to face left
                     Vector3 rotator = new Vector3(transform.rotation.x, 180f, transform.rotation.z);
@@ -63,7 +81,8 @@ public class DeathBringer : MonoBehaviour
                     IsFacingRight = !IsFacingRight;
                 }
             }
-            _walkDirection = value; }
+            _walkDirection = value;
+        }
     }
 
     public bool _isFacingRight = true;
@@ -98,6 +117,7 @@ public class DeathBringer : MonoBehaviour
                     isFlipping = false;
                     CanMove = true;
                 }
+                CurrentState = State.Chasing;
             }
         }
     }
@@ -116,12 +136,12 @@ public class DeathBringer : MonoBehaviour
 
     public bool _hasTarget = false;
 
-    public bool HasTarget 
+    public bool HasTarget
     {
         get { return _hasTarget; }
-        private set 
-        { 
-            _hasTarget = value; 
+        private set
+        {
+            _hasTarget = value;
             animator.SetBool(AnimationString.hasTarget, value);
         }
     }
@@ -140,21 +160,22 @@ public class DeathBringer : MonoBehaviour
         }
     }
 
-    public float AttackCooldown 
+    public float AttackCooldown
     {
         get
         {
             return animator.GetFloat(AnimationString.attackCooldown);
-        } 
+        }
         private set
         {
             animator.SetFloat(AnimationString.attackCooldown, Mathf.Max(value, 0));
-        } 
+        }
     }
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = rb.GetComponent<SpriteRenderer>();
         touchingDirections = GetComponent<TouchingDirections>();
         animator = GetComponent<Animator>();
         damageable = GetComponent<Damageable>();
@@ -162,7 +183,8 @@ public class DeathBringer : MonoBehaviour
 
     private void Start()
     {
-        this.GetPlayerTranform();
+        this.GetPlayerTransform();
+        CurrentState = State.Idle; // Set the initial state
     }
 
     void Update()
@@ -170,23 +192,89 @@ public class DeathBringer : MonoBehaviour
         this.SpotTargetDetection(facingSpotRange, behindSpotRange);
         this.HasTargetDetection();
         this.AttackDelay();
-        this.ChasingDurtionCounter();
+        this.ChasingDurationCounter();
+
+        switch (CurrentState)
+        {
+            case State.Idle:
+                // Idle behavior
+                if (CanMove && groundZone.detectedCols.Count > 0)
+                {
+                    CurrentState = State.Patrolling;
+                }
+                break;
+            case State.Patrolling:
+                // Patrolling behavior
+                break;
+            case State.Chasing:
+                // Chasing behavior
+                if (!SpotTarget)
+                {
+                    timeNotSpottingTarget += Time.deltaTime;
+                    if (timeNotSpottingTarget >= timeToSwitchToIdle)
+                    {
+                        CurrentState = State.Idle;
+                    }
+                }
+                else
+                {
+                    timeNotSpottingTarget = 0;
+                }
+                break;
+        }
     }
+
 
     private void FixedUpdate()
     {
-        if (chaseTimer > 0)
+        switch (CurrentState)
         {
-            this.ChasingTarget();
-        }
-        else
-        {
-            this.Move();
+            case State.Patrolling:
+                this.Move();
+                break;
+            case State.Chasing:
+                this.ChasingTarget();
+                break;
         }
 
         this.WallHitFlip();
         this.NoGroundFlip();
         this.FlippingCheck();
+    }
+
+    private void OnStateEnter(State state)
+    {
+        switch (state)
+        {
+            case State.Idle:
+                // Enter Idle state
+                rb.velocity = Vector2.zero;
+                IsMoving = false;
+                break;
+            case State.Patrolling:
+                // Enter Patrolling state
+                break;
+            case State.Chasing:
+                // Enter Chasing state
+                timeNotSpottingTarget = 0;
+                break;
+        }
+    }
+
+    private void OnStateExit(State state)
+    {
+        switch (state)
+        {
+            case State.Idle:
+                // Exit Idle state
+                break;
+            case State.Patrolling:
+                // Exit Patrolling state
+                break;
+            case State.Chasing:
+                // Exit Chasing state
+                break;
+        }
     }
 
     private void Move()
@@ -210,7 +298,6 @@ public class DeathBringer : MonoBehaviour
             IsMoving = false;
         }
     }
-
 
     private void Flip()
     {
@@ -243,7 +330,7 @@ public class DeathBringer : MonoBehaviour
         {
             waitForFlip = true;
         }
-        else if(!waitBeforeFlip)
+        else if (!waitBeforeFlip)
         {
             Flip();
         }
@@ -309,16 +396,17 @@ public class DeathBringer : MonoBehaviour
         RaycastHit2D facingHitTarget = Physics2D.Linecast(facingSpotPoint.position, facingEndPos, LayerMask.GetMask("Ground", "Player"));
         RaycastHit2D behindHitTarget = Physics2D.Linecast(behindSpotPoint.position, behindEndPos, LayerMask.GetMask("Ground", "Player"));
 
+        bool spotted = false;
+
         if (facingHitTarget.collider != null)
         {
             if (facingHitTarget.collider.gameObject.CompareTag("Player"))
             {
-                SpotTarget = true;
+                spotted = true;
                 Debug.DrawLine(facingSpotPoint.position, facingHitTarget.point, Color.green);
             }
             else
             {
-                SpotTarget = false;
                 Debug.DrawLine(facingSpotPoint.position, facingHitTarget.point, Color.blue);
             }
         }
@@ -331,7 +419,7 @@ public class DeathBringer : MonoBehaviour
         {
             if (behindHitTarget.collider.gameObject.CompareTag("Player"))
             {
-                SpotTarget = true;
+                spotted = true;
                 Debug.DrawLine(behindSpotPoint.position, behindHitTarget.point, Color.green);
                 if (!damageable.LockVelocity)
                 {
@@ -340,7 +428,6 @@ public class DeathBringer : MonoBehaviour
             }
             else
             {
-                SpotTarget = false;
                 Debug.DrawLine(behindSpotPoint.position, behindHitTarget.point, Color.blue);
             }
         }
@@ -349,7 +436,9 @@ public class DeathBringer : MonoBehaviour
             Debug.DrawLine(behindSpotPoint.position, behindEndPos, Color.red);
         }
 
+        SpotTarget = spotted;
     }
+
 
     private void HasTargetDetection()
     {
@@ -366,7 +455,7 @@ public class DeathBringer : MonoBehaviour
 
     private void ChasingTarget()
     {
-        if (playerTransform != null && (SpotTarget || chaseTimer > 0))
+        if (CanMove && playerTransform != null && (SpotTarget || chaseTimer > 0))
         {
             Vector3 targetPosition = SpotTarget ? playerTransform.position : lastPlayerPosition;
             Vector2 directionToTarget = targetPosition - transform.position;
@@ -401,7 +490,7 @@ public class DeathBringer : MonoBehaviour
         }
     }
 
-    private void ChasingDurtionCounter()
+    private void ChasingDurationCounter()
     {
         if (!SpotTarget)
         {
@@ -414,17 +503,17 @@ public class DeathBringer : MonoBehaviour
             else
             {
                 lastPlayerPosition = Vector3.zero;
+                CurrentState = State.Patrolling; 
             }
         }
     }
 
-    private void GetPlayerTranform()
+    private void GetPlayerTransform()
     {
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
 
         if (playerObject != null)
         {
-
             playerTransform = playerObject.transform;
         }
         else
@@ -457,4 +546,14 @@ public class DeathBringer : MonoBehaviour
     {
         bodyHitZone.SetActive(false);
     }
+
+    public void RespawnSetup()
+    {
+        damageable.IsAlive = true;
+        damageable.CurrentHealth = damageable.MaxHealth;
+        Color color = spriteRenderer.color;
+        color.a = 1f;
+        spriteRenderer.color = color;
+    }
+
 }

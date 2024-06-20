@@ -27,7 +27,7 @@ public class UIManager : MonoBehaviour
         CharacterEvent.characterHealed -= CharacterHealed;
     }
 
-    public void CharacterTookDamage(GameObject character, int damageReceived)
+    public void CharacterTookDamage(GameObject character, float damageReceived)
     {
         // Create text at where character get hit
         Vector3 spawnPosition = Camera.main.WorldToScreenPoint(character.transform.position);
@@ -37,7 +37,7 @@ public class UIManager : MonoBehaviour
         tmpText.text = ("-"+damageReceived.ToString());
     }
 
-    public void CharacterHealed(GameObject character, int healthRestored)
+    public void CharacterHealed(GameObject character, float healthRestored)
     {
         // Create text at where character get heal
         Vector3 spawnPosition = Camera.main.WorldToScreenPoint(character.transform.position);

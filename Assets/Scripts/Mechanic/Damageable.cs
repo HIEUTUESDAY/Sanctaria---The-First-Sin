@@ -8,7 +8,7 @@ using Cinemachine;
 
 public class Damageable : MonoBehaviour
 {
-    [SerializeField] private UnityEvent<int, Vector2> damageableHit;
+    [SerializeField] private UnityEvent<float, Vector2> damageableHit;
     [SerializeField] private UnityEvent damageableDeath;
     [SerializeField] private float slowMotionDuration = 0.5f;
     [SerializeField] private float slowMotionFactor = 0.2f;
@@ -18,9 +18,9 @@ public class Damageable : MonoBehaviour
     private Animator animator;
 
     [SerializeField]
-    private int _maxHealth = 100;
+    private float _maxHealth = 100;
 
-    public int MaxHealth
+    public float MaxHealth
     { 
         get 
         {
@@ -34,20 +34,20 @@ public class Damageable : MonoBehaviour
     }
 
     [SerializeField]
-    private int _health = 100;
+    private float _currentHealth = 100;
 
-    public int Health
+    public float CurrentHealth
     {
         get
         {
-            return _health;
+            return _currentHealth;
         }
         set
         {
-            _health = value;
+            _currentHealth = value;
 
             // Character die when health drop below 0
-            if (_health <= 0)
+            if (_currentHealth <= 0)
             {
                 IsAlive = false;
             }
@@ -55,9 +55,9 @@ public class Damageable : MonoBehaviour
     }
 
     [SerializeField]
-    private int _maxStamina = 100;
+    private float _maxStamina = 100;
 
-    public int MaxStamina
+    public float MaxStamina
     {
         get
         {
@@ -71,17 +71,48 @@ public class Damageable : MonoBehaviour
     }
 
     [SerializeField]
-    private int _stamina = 100;
+    private float _currentStamina = 100;
 
-    public int Stamina
+    public float CurrentStamina
     {
         get
         {
-            return _stamina;
+            return _currentStamina;
         }
         set
         {
-            _stamina = value;
+            _currentStamina = value;
+        }
+    }
+
+    [SerializeField]
+    private int _maxHealthPotion = 2;
+    public float healthRestore = 50f;
+
+    public int MaxHealthPotion
+    {
+        get
+        {
+            return _maxHealthPotion;
+        }
+        set
+        {
+            _maxHealthPotion = value;
+        }
+    }
+
+    [SerializeField] 
+    private int _currentHealthPotion;
+
+    public int CurrentHealthPotion
+    {
+        get
+        {
+            return _currentHealthPotion;
+        }
+        set
+        {
+            _currentHealthPotion = value;
         }
     }
 
@@ -131,6 +162,21 @@ public class Damageable : MonoBehaviour
     }
 
     [SerializeField]
+    private bool _wasHit = false;
+
+    public bool WasHit
+    {
+        get
+        {
+            return _wasHit;
+        }
+        private set
+        {
+            _wasHit = value;
+        }
+    }
+
+    [SerializeField]
     private bool _isInvincible = false;
 
     public bool IsInvincible
@@ -167,22 +213,19 @@ public class Damageable : MonoBehaviour
         this.OnBecameInvisible();
     }
 
-    public bool Hit(int damage, Vector2 knockback, Vector2 hitDirection, int attackType)
+    public bool Hit(float damage, Vector2 knockback, Vector2 hitDirection, int attackType)
     {
         if (IsAlive && !IsInvincible)
         {
             // Beable to hit
-            Health -= damage;
-            IsInvincible = true;
+            CurrentHealth -= damage;
+            WasHit = true;
 
             // Spawn Damage Particle with direction
             hitSplashManager.ShowHitSplash(transform.position, hitDirection, attackType);
 
-            // Camera shake and slow motion when deal damage
-            if (gameObject.CompareTag("Enemy"))
-            {
-                StartCoroutine(ApplySlowMotion());
-            }
+            StartCoroutine(ApplySlowMotion());
+
             CameraShakeManager.instance.CameraShake(impulseSource);
 
             // Notify other subcribed components that damageable was hit to handle the knockback
@@ -193,7 +236,6 @@ public class Damageable : MonoBehaviour
 
             damageableHit?.Invoke(damage, knockback);
             CharacterEvent.characterDamaged.Invoke(gameObject, damage);
-
             return true;
         }
         // Unable to hit
@@ -203,27 +245,31 @@ public class Damageable : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        if (IsInvincible)
+        if (WasHit)
         {
+            IsInvincible = true;
+            timeSinceHit += Time.deltaTime;
+
             if (timeSinceHit > invincibleTime)
             {
                 // Remove invincible after a short time
                 IsInvincible = false;
+                WasHit = false;
                 timeSinceHit = 0;
             }
-
-            timeSinceHit += Time.deltaTime;
         }
     }
 
     // Return whether the player was healed or not
-    public bool Heal(int healthRestore)
+    public bool UseHealthPotion()
     {
-        if (IsAlive && Health < MaxHealth)
+        if (IsAlive && !LockVelocity)
         {
-            int maxHeal = Mathf.Max(MaxHealth - Health, 0);
-            int actualHeal = Mathf.Min(maxHeal, healthRestore);
-            Health += actualHeal;
+            float maxHeal = Mathf.Max(MaxHealth - CurrentHealth, 0);
+            float actualHeal = Mathf.Min(maxHeal, healthRestore);
+            CurrentHealth += actualHeal;
+            CurrentStamina = MaxStamina;
+            CurrentHealthPotion -= 1;
             CharacterEvent.characterHealed(gameObject, actualHeal);
             return true;
         }

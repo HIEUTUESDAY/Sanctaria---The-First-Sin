@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5b68f10c9670bf9428543c2565eafa25
+guid: e291a80444305444ba96abfdad61bdaf
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,211 +123,295 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: penitent_air_upward_attack_0
+      name: penitent_run_0
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 240
+        width: 80
+        height: 80
+      alignment: 9
+      pivot: {x: 0.61, y: 0.37}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 889aac65031042646800ff39d8584e80
+      internalID: 32049899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_run_1
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 240
+        width: 80
+        height: 80
+      alignment: 9
+      pivot: {x: 0.64, y: 0.38}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c7bf6c858ccc134b999d5324d9ffb34
+      internalID: 674851651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_run_2
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 240
+        width: 80
+        height: 80
+      alignment: 9
+      pivot: {x: 0.65, y: 0.38}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d978b39ce5824f47890872ad82d1052
+      internalID: 333915007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_run_3
       rect:
         serializedVersion: 2
         x: 0
-        y: 140
-        width: 128
-        height: 140
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.485, y: 0.33}
+      pivot: {x: 0.67, y: 0.38}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb1593a09ea43e749b7edadab3f38179
-      internalID: -514167788
+      spriteID: 19807e824763ddd43bf65acd57b7c20b
+      internalID: 1201263387
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: penitent_air_upward_attack_1
+      name: penitent_run_4
       rect:
         serializedVersion: 2
-        x: 128
-        y: 140
-        width: 128
-        height: 140
+        x: 80
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.485, y: 0.33}
+      pivot: {x: 0.66, y: 0.38}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 71e7b0b023f1cff44aae18992c5f5d91
-      internalID: 1760050223
+      spriteID: 900a8ca5b7a54254e9b8f1c49deb030b
+      internalID: -1098269103
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: penitent_air_upward_attack_2
+      name: penitent_run_5
       rect:
         serializedVersion: 2
-        x: 256
-        y: 140
-        width: 128
-        height: 140
+        x: 160
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.485, y: 0.33}
+      pivot: {x: 0.63, y: 0.38}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ef6ca9a4812e59442bb5b30255b4d44d
-      internalID: -1747622895
+      spriteID: 4223ec9771e51a141a970a0593993e2a
+      internalID: -1319628233
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: penitent_air_upward_attack_3
+      name: penitent_run_6
       rect:
         serializedVersion: 2
-        x: 384
-        y: 140
-        width: 128
-        height: 140
+        x: 240
+        y: 160
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.485, y: 0.33}
+      pivot: {x: 0.61, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e81eeb6038392ef4286a1bd3c6fb7b8f
-      internalID: 1368216699
+      spriteID: 6a16cf31776f4ad4cba2c35fa92d9ff4
+      internalID: -921383617
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: penitent_air_upward_attack_4
+      name: penitent_run_7
       rect:
         serializedVersion: 2
-        x: 512
-        y: 140
-        width: 128
-        height: 140
+        x: 0
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.485, y: 0.33}
+      pivot: {x: 0.59, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c6848956cb34a0341b25754037eaa616
-      internalID: -1529449394
+      spriteID: 326d280dac6ceb942a131a5ce913cf13
+      internalID: -2082999407
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: penitent_air_upward_attack_5
+      name: penitent_run_8
       rect:
         serializedVersion: 2
-        x: 640
-        y: 140
-        width: 128
-        height: 140
+        x: 80
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.485, y: 0.33}
+      pivot: {x: 0.58, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ad534b5ea304f8419047286731b94c5
-      internalID: -43601443
+      spriteID: 3d238ae91f5ad0b4ab585eded277177b
+      internalID: -669911543
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: penitent_air_upward_attack_6
+      name: penitent_run_9
       rect:
         serializedVersion: 2
-        x: 768
-        y: 140
-        width: 128
-        height: 140
+        x: 160
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.485, y: 0.33}
+      pivot: {x: 0.59, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd9c835e0a2f25a4d9efece6266813ff
-      internalID: -411234961
+      spriteID: 78426bb915dd2d348980e138a39bb636
+      internalID: -2139966872
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: penitent_air_upward_attack_7
+      name: penitent_run_10
       rect:
         serializedVersion: 2
-        x: 896
-        y: 140
-        width: 128
-        height: 140
+        x: 240
+        y: 80
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.485, y: 0.33}
+      pivot: {x: 0.6, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0a090ebdbe4b3a040ab98525321dd791
-      internalID: -1054673920
+      spriteID: aa628ef7542c10647996e9568d9bdf0f
+      internalID: 1201388388
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: penitent_air_upward_attack_8
+      name: penitent_run_11
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 128
-        height: 140
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.485, y: 0.33}
+      pivot: {x: 0.64, y: 0.37}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 93a051af73436d74095f82f04941d489
-      internalID: -453241626
+      spriteID: 59cea9323c1233346bbf1e442f9c18c0
+      internalID: -537626978
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: penitent_air_upward_attack_9
+      name: penitent_run_12
       rect:
         serializedVersion: 2
-        x: 128
+        x: 80
         y: 0
-        width: 128
-        height: 140
+        width: 80
+        height: 80
       alignment: 9
-      pivot: {x: 0.485, y: 0.33}
+      pivot: {x: 0.66, y: 0.37}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c451beda59c8a1540959b561dfac8be9
-      internalID: 36988700
+      spriteID: 87c5dadcd0727ba4b8afb74a1ac89312
+      internalID: 1691770867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_run_13
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 80
+        height: 80
+      alignment: 9
+      pivot: {x: 0.64, y: 0.35}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cb62c3f41454a944a7f9bb78a7afb8d
+      internalID: -112471806
       vertices: []
       indices: 
       edges: []
@@ -343,16 +427,20 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      penitent_air_upward_attack_0: -514167788
-      penitent_air_upward_attack_1: 1760050223
-      penitent_air_upward_attack_2: -1747622895
-      penitent_air_upward_attack_3: 1368216699
-      penitent_air_upward_attack_4: -1529449394
-      penitent_air_upward_attack_5: -43601443
-      penitent_air_upward_attack_6: -411234961
-      penitent_air_upward_attack_7: -1054673920
-      penitent_air_upward_attack_8: -453241626
-      penitent_air_upward_attack_9: 36988700
+      penitent_run_0: 32049899
+      penitent_run_1: 674851651
+      penitent_run_10: 1201388388
+      penitent_run_11: -537626978
+      penitent_run_12: 1691770867
+      penitent_run_13: -112471806
+      penitent_run_2: 333915007
+      penitent_run_3: 1201263387
+      penitent_run_4: -1098269103
+      penitent_run_5: -1319628233
+      penitent_run_6: -921383617
+      penitent_run_7: -2082999407
+      penitent_run_8: -669911543
+      penitent_run_9: -2139966872
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

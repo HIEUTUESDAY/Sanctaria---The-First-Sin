@@ -132,7 +132,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      inventory-spritesheet_0: 1219609988
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

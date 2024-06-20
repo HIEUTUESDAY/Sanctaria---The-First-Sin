@@ -1,13 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
+using static UnityEngine.EventSystems.EventTrigger;
 using static UnityEngine.Rendering.DebugUI;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
@@ -61,6 +64,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private BoxCollider2D playerCollider;
     [Space(5)]
 
+    [Header("Stamina")]
+    [SerializeField] private float staminaRegenSpeed = 5f;
+    [SerializeField] private float dashStaminaCost = 30f;
+    [SerializeField] private float wallHangStaminaCost = 10f;
+
     [Header("Camera")]
     [SerializeField] private GameObject cameraFollowGO;
     [Space(5)]
@@ -70,6 +78,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private SavePointManager savePointManager;
     [Space(5)]
 
+    public string currentArea;
 
     public static PlayerController instance;
     private Rigidbody2D rb;
@@ -81,8 +90,8 @@ public class PlayerController : MonoBehaviour
     private GameObject currentOneWayPlatform;
     private CameraFollowObject cameraFollowObject;
     private GhostTrail ghostTrail;
+    private HealthBar healthBar;
     private Coroutine dashCoroutine;
-    private HealthPotion healthPotion;
     private float fallSpeedYDampingChangeThreshold;
     private float originalGravityScale;
 
@@ -264,16 +273,16 @@ public class PlayerController : MonoBehaviour
         touchingDirections = GetComponent<TouchingDirections>();
         damageable = GetComponent<Damageable>();
         ghostTrail = GetComponent<GhostTrail>();
-        healthPotion = GetComponent<HealthPotion>();
+        healthBar = GetComponent<HealthBar>();
         originalGravityScale = rb.gravityScale;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        LoadPlayer();
         cameraFollowObject = cameraFollowGO.GetComponent<CameraFollowObject>();
         fallSpeedYDampingChangeThreshold = CameraManger.instance._fallSpeedYDampingChangeThreshold;
+        this.SetHealthBar();
     }
 
     // Update is called once per frame
@@ -287,6 +296,9 @@ public class PlayerController : MonoBehaviour
         this.LadderClimbCheck();
         this.OneWayCheck();
         this.YDampingCheck();
+        this.StaminaRegeneration();
+        this.UpdateHealthBar();
+        this.UpdateCurrentArea();
     }
 
     private void FixedUpdate()
@@ -296,27 +308,10 @@ public class PlayerController : MonoBehaviour
         this.WallJump();
     }
 
-    public void SavePlayer()
+    public void SaveGame()
     {
-        SaveSystem.SavePlayer(this);
-    }
-
-    public void LoadPlayer()
-    {
-        PlayerData data = SaveSystem.LoadPlayer();
-
-        if (data != null)
-        {
-            Vector3 position;
-            position.x = data.position[0];
-            position.y = data.position[1];
-            position.z = data.position[2];
-            transform.position = position;
-
-            damageable.Health = data.health;
-            damageable.Stamina = data.stamina;
-            healthPotion.CurrentHealthPotions = data.healthPostions;
-        }
+        GameManager gameManager = FindObjectOfType<GameManager>();
+        gameManager.SaveGame(this);
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -368,24 +363,23 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        if (context.started && IsAlive && !IsWallHanging && !IsDashing && !IsLadderClimbing)
+        {
+            animator.SetTrigger(AnimationString.attackTrigger);
+        }
+    }
+
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.started && canDash && CanMove && touchingDirections.IsGrounded && !IsLadderClimbing)
+        if (context.started && canDash && CanMove && touchingDirections.IsGrounded && !IsLadderClimbing && damageable.CurrentStamina >= dashStaminaCost)
         {
             if (dashCoroutine != null)
             {
                 StopCoroutine(dashCoroutine);
             }
             dashCoroutine = CoroutineManager.Instance.StartCoroutine(Dashing());
-        }
-    }
-
-
-    public void OnAttack(InputAction.CallbackContext context)
-    {
-        if (context.started && !IsWallHanging && !IsDashing && !IsLadderClimbing)
-        {
-            animator.SetTrigger(AnimationString.attackTrigger);
         }
     }
 
@@ -399,33 +393,46 @@ public class PlayerController : MonoBehaviour
         verticalInput = context.ReadValue<Vector2>();
     }
 
-    public void OnWallGrab(InputAction.CallbackContext context)
+    public void OnWallHang(InputAction.CallbackContext context)
     {
-        if (context.started && touchingDirections.IsGrabWallDetected && IsInAir && !IsWallHanging)
+        if (context.started && CanMove && touchingDirections.IsGrabWallDetected && IsInAir && !IsWallHanging && damageable.CurrentStamina >= wallHangStaminaCost)
         {
             animator.SetTrigger(AnimationString.wallHangTrigger);
             CoroutineManager.Instance.StartCoroutine(WallHanging());
         }
     }
 
-    public void OnHeal(InputAction.CallbackContext context)
+    public void OnUseHealthPotion(InputAction.CallbackContext context)
     {
-        if (context.started && IsAlive && healthPotion._currentHealthPotions > 0)
+        if (context.started && IsAlive && CanMove && touchingDirections.IsGrounded && damageable.CurrentHealthPotion > 0)
         {
-            if (!damageable.LockVelocity && touchingDirections.IsGrounded)
-            {
-                animator.SetTrigger(AnimationString.healTrigger);
-            }
+            animator.SetTrigger(AnimationString.healTrigger);
         }
     }
 
     public void OnSaveGameFile(InputAction.CallbackContext context)
     {
-        if (context.started && IsAlive && touchingDirections.IsGrounded && isInSavePoint)
+        if (context.started && IsAlive && CanMove && touchingDirections.IsGrounded && isInSavePoint)
         {
             animator.SetTrigger(AnimationString.saveTrigger);
         }
     }
+
+    private void SetHealthBar()
+    {
+        damageable.CurrentHealthPotion = damageable.MaxHealthPotion;
+        healthBar.SetMaxHealth(damageable.MaxHealth);
+        healthBar.SetMaxStamina(damageable.MaxStamina);
+        healthBar.SetMaxHealthPotions(damageable.MaxHealthPotion);
+    }
+
+    private void UpdateHealthBar()
+    {
+        healthBar.SetHealth(damageable.CurrentHealth);
+        healthBar.SetStamina(damageable.CurrentStamina);
+        healthBar.SetHealthPotions(damageable.CurrentHealthPotion);
+    }
+
 
     private void InputCheck()
     {
@@ -511,7 +518,7 @@ public class PlayerController : MonoBehaviour
 
     private void WallHangCheck()
     {
-        if (!touchingDirections.IsGrabWallDetected || IsWallJumping || damageable.LockVelocity)
+        if (!touchingDirections.IsGrabWallDetected || IsWallJumping || animator.GetBool(AnimationString.hitTrigger))
         {
             IsWallHanging = false;
             rb.gravityScale = originalGravityScale;
@@ -600,29 +607,34 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Heal()
-    {
-        if (IsAlive && healthPotion._currentHealthPotions > 0)
-        {
-            bool heal = damageable.Heal(healthPotion.healthRestore);
-            healthPotion._currentHealthPotions--;
-        }
-        
-    }
-
     private void RestoreFullStats()
     {
-        damageable.Health = damageable.MaxHealth;
-        damageable.Stamina = damageable.MaxStamina;
-        healthPotion.CurrentHealthPotions = healthPotion.maxHealthPotions;
+        damageable.CurrentHealth = damageable.MaxHealth;
+        damageable.CurrentStamina = damageable.MaxStamina;
+        damageable.CurrentHealthPotion = damageable.MaxHealthPotion;
     }
 
-    private void ActivateSavePoint()
+    private void StaminaRegeneration()
+    {
+        if (damageable.CurrentStamina < damageable.MaxStamina)
+        {
+            damageable.CurrentStamina += (staminaRegenSpeed * Time.deltaTime);
+            damageable.CurrentStamina = Mathf.Min(damageable.CurrentStamina, damageable.MaxStamina);
+        }
+    }
+
+    private void ActivateSavePointAndRespawn()
     {
         if (savePointManager != null)
         {
-            savePointManager.IsActivate = true;
+            savePointManager.ActivateSavePoint();
+            savePointManager.RespawnEnemiesAfterSpawn();
         }
+    }
+
+    private void UpdateCurrentArea()
+    {
+        currentArea = SceneManager.GetActiveScene().name;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -681,8 +693,18 @@ public class PlayerController : MonoBehaviour
         Physics2D.IgnoreCollision(playerCollider, platformCollider, false);
     }
 
+    private IEnumerator Knockback(Vector2 knockback)
+    {
+        // Apply knockback velocity
+        damageable.LockVelocity = true;
+        rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
+        yield return new WaitForSeconds(0.25f);
+        damageable.LockVelocity = false;
+    }
+
     private IEnumerator Dashing()
     {
+        damageable.CurrentStamina -= dashStaminaCost;
         damageable.IsInvincible = true;
         IsDashing = true;
         canDash = false;
@@ -758,17 +780,9 @@ public class PlayerController : MonoBehaviour
         IsWallJumping = false;
     }
 
-    private IEnumerator Knockback(Vector2 knockback)
-    {
-        // Apply knockback velocity
-        damageable.LockVelocity = true;
-        rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
-        yield return new WaitForSeconds(0.25f);
-        damageable.LockVelocity = false;
-    }
-
     private IEnumerator WallHanging()
     {
+        damageable.CurrentStamina -= wallHangStaminaCost;
         IsWallHanging = true;
         rb.gravityScale = 0;
 
@@ -777,32 +791,22 @@ public class PlayerController : MonoBehaviour
 
         // Move the player towards the wall
         float moveSpeed = 100f;
-        while (!touchingDirections.IsOnWall)
+        while (!touchingDirections.IsOnWall && IsWallHanging)
         {
             if (touchingDirections.IsGrabWallDetected && !IsWallJumping)
             {
                 rb.velocity = new Vector2(directionToWall.x * moveSpeed, 0);
-            }
-            else
-            {
-                yield break;
             }
             yield return null;
         }
 
         // Slide down the wall a little
         float startTime = Time.time;
-        while (Time.time < startTime + wallSlideDuration)
+        while (Time.time < startTime + wallSlideDuration && IsWallHanging)
         {
             float t = (Time.time - startTime) / wallSlideDuration;
             float slideSpeed = Mathf.Lerp(wallSlideSpeed, 0, t);
             rb.velocity = new Vector2(0, -slideSpeed);
-
-            if (IsWallJumping)
-            {
-                CoroutineManager.Instance.StartCoroutine(WallJumping());
-                yield break;
-            }
             yield return null;
         }
 

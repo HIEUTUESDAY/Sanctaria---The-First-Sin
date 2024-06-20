@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 7166224528689480472}
   - component: {fileID: 8107405483297076257}
   - component: {fileID: 6450554613266017197}
+  - component: {fileID: 3440936970555744814}
   m_Layer: 6
   m_Name: FlyingEye
   m_TagString: Enemy
@@ -270,6 +271,7 @@ MonoBehaviour:
   bodyHitZone: {fileID: 6955133328303509184}
   deathCollider: {fileID: 6918750946143625382}
   waypoints: []
+  damageable: {fileID: 0}
 --- !u!114 &7166224528689480472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,8 +305,14 @@ MonoBehaviour:
   slowMotionDuration: 0.15
   slowMotionFactor: 0.3
   _maxHealth: 50
-  _health: 50
+  _currentHealth: 50
+  _maxStamina: 100
+  _currentStamina: 100
+  _maxHealthPotion: 2
+  healthRestore: 50
+  _currentHealthPotion: 0
   _isAlive: 1
+  _wasHit: 0
   _isInvincible: 0
   timeSinceHit: 0
   invincibleTime: 0.1
@@ -376,6 +384,19 @@ MonoBehaviour:
     m_DissipationDistance: 100
     m_PropagationSpeed: 343
   m_DefaultVelocity: {x: 0.25, y: -0.25, z: 0}
+--- !u!114 &3440936970555744814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478563843609171175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9455af15b414c46a2807bc6efd48b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemies: []
 --- !u!1 &6955133328303509184
 GameObject:
   m_ObjectHideFlags: 0

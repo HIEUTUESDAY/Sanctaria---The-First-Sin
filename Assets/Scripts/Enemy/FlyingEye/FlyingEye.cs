@@ -12,11 +12,12 @@ public class FlyingEye : MonoBehaviour
     [SerializeField] private Collider2D deathCollider;
     [SerializeField] private List<Transform> waypoints;
 
-    Rigidbody2D rb;
-    Animator animator;
-    Damageable damageable;
+    private Rigidbody2D rb;
+    private SpriteRenderer spriteRenderer;
+    private Animator animator;
+    public Damageable damageable;
 
-    Transform nextWaypoint;
+    private Transform nextWaypoint;
     int waypointNum = 0;
 
 
@@ -31,6 +32,7 @@ public class FlyingEye : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = rb.GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         damageable = GetComponent<Damageable>();
     }
@@ -111,5 +113,17 @@ public class FlyingEye : MonoBehaviour
         rb.gravityScale = 2f;
         rb.velocity = new Vector2(0, rb.velocity.y);
         deathCollider.enabled = true;
+    }
+
+    public void RespawnSetup()
+    {
+        damageable.IsAlive = true;
+        damageable.CurrentHealth = damageable.MaxHealth;
+        rb.gravityScale = 0f;
+        bodyHitZone.SetActive(true);
+        deathCollider.enabled = false;
+        Color color = spriteRenderer.color;
+        color.a = 1f;
+        spriteRenderer.color = color;
     }
 }

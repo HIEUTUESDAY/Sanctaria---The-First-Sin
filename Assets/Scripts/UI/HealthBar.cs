@@ -10,23 +10,23 @@ public class HealthBar : MonoBehaviour
 
     public Slider[] healthPotionsSlider;
 
-    public void SetMaxHealth(int health)
+    public void SetMaxHealth(float health)
     {
         healthSlider.maxValue = health;
         healthSlider.value = health;
     }
-    public void SetHealth(int heatlh)
+    public void SetHealth(float heatlh)
     {
         healthSlider.value = heatlh;
     }
 
-    public void SetMaxStamina(int stamina)
+    public void SetMaxStamina(float stamina)
     {
         staminaSlider.maxValue = stamina;
         staminaSlider.value = stamina;
     }
 
-    public void SetStamina(int stamina)
+    public void SetStamina(float stamina)
     {
         staminaSlider.value = stamina;
     }

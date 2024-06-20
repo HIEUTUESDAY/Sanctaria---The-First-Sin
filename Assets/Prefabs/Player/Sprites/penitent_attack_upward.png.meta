@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: penitent_upward_attack_0
+      name: penitent_attack_upward_0
       rect:
         serializedVersion: 2
         x: 0
@@ -131,20 +131,20 @@ TextureImporter:
         width: 128
         height: 160
       alignment: 9
-      pivot: {x: 0.506, y: 0.2}
+      pivot: {x: 0.5, y: 0.19}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 15c96288eebf6c742a6c16937775702a
-      internalID: -1304110458
+      spriteID: d28d4bc92506b7342a8c18d57be23df5
+      internalID: -1297785874
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: penitent_upward_attack_1
+      name: penitent_attack_upward_1
       rect:
         serializedVersion: 2
         x: 128
@@ -152,20 +152,20 @@ TextureImporter:
         width: 128
         height: 160
       alignment: 9
-      pivot: {x: 0.506, y: 0.2}
+      pivot: {x: 0.5, y: 0.19}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a28da8949a49b640a7591b73404741e
-      internalID: 1474044648
+      spriteID: 3cc1212cc15422246bdaccebe00e67c5
+      internalID: 1083308539
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: penitent_upward_attack_2
+      name: penitent_attack_upward_2
       rect:
         serializedVersion: 2
         x: 256
@@ -173,20 +173,20 @@ TextureImporter:
         width: 128
         height: 160
       alignment: 9
-      pivot: {x: 0.506, y: 0.2}
+      pivot: {x: 0.5, y: 0.19}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f9c733ca3aefc646b0654f394769a64
-      internalID: -1197225899
+      spriteID: 192b745a42c483847b3cb98ddb0ea112
+      internalID: 689379799
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: penitent_upward_attack_3
+      name: penitent_attack_upward_3
       rect:
         serializedVersion: 2
         x: 384
@@ -194,20 +194,20 @@ TextureImporter:
         width: 128
         height: 160
       alignment: 9
-      pivot: {x: 0.506, y: 0.2}
+      pivot: {x: 0.5, y: 0.19}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ff3c8d2cf735ac047bdc93a3442502b0
-      internalID: -510632213
+      spriteID: d2c4fcb37ad1e8c41a9fe6742438c12f
+      internalID: -942384375
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: penitent_upward_attack_4
+      name: penitent_attack_upward_4
       rect:
         serializedVersion: 2
         x: 512
@@ -215,20 +215,20 @@ TextureImporter:
         width: 128
         height: 160
       alignment: 9
-      pivot: {x: 0.506, y: 0.2}
+      pivot: {x: 0.5, y: 0.19}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ad8aadf1eb7f4c428af9c103e56d1de
-      internalID: -1452550279
+      spriteID: 24898b983ef7efb4eb587964ac412550
+      internalID: 1296979925
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: penitent_upward_attack_5
+      name: penitent_attack_upward_5
       rect:
         serializedVersion: 2
         x: 640
@@ -236,20 +236,20 @@ TextureImporter:
         width: 128
         height: 160
       alignment: 9
-      pivot: {x: 0.506, y: 0.2}
+      pivot: {x: 0.5, y: 0.19}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5901c53da46939f4988808a74ae5da97
-      internalID: 168176698
+      spriteID: b8749a653c3ece0458327b112d00e4ca
+      internalID: 406210519
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: penitent_upward_attack_6
+      name: penitent_attack_upward_6
       rect:
         serializedVersion: 2
         x: 768
@@ -257,20 +257,20 @@ TextureImporter:
         width: 128
         height: 160
       alignment: 9
-      pivot: {x: 0.506, y: 0.2}
+      pivot: {x: 0.5, y: 0.19}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d440532d4e5c28940bc4865717464d63
-      internalID: -1294641484
+      spriteID: ba8a2d95fed1b4d49909a43b352948ad
+      internalID: 983189846
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: penitent_upward_attack_7
+      name: penitent_attack_upward_7
       rect:
         serializedVersion: 2
         x: 896
@@ -278,20 +278,20 @@ TextureImporter:
         width: 128
         height: 160
       alignment: 9
-      pivot: {x: 0.506, y: 0.2}
+      pivot: {x: 0.5, y: 0.19}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 45f59f97919d4de4cab923be0ba01c43
-      internalID: 1710536865
+      spriteID: f58f1b0573cd8594ab950c944bd9cf2a
+      internalID: -1297539742
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: penitent_upward_attack_8
+      name: penitent_attack_upward_8
       rect:
         serializedVersion: 2
         x: 0
@@ -299,20 +299,20 @@ TextureImporter:
         width: 128
         height: 160
       alignment: 9
-      pivot: {x: 0.506, y: 0.2}
+      pivot: {x: 0.5, y: 0.19}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 80c0828e825e49749ae469167237b220
-      internalID: -2040434574
+      spriteID: a00fdbfad4633674c93098ffdee22cca
+      internalID: -271775362
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: penitent_upward_attack_9
+      name: penitent_attack_upward_9
       rect:
         serializedVersion: 2
         x: 128
@@ -320,20 +320,20 @@ TextureImporter:
         width: 128
         height: 160
       alignment: 9
-      pivot: {x: 0.506, y: 0.2}
+      pivot: {x: 0.5, y: 0.19}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 55742a97e86593743b5a5649f5d094da
-      internalID: -2124092353
+      spriteID: 4f38eafdeed503d4abd18984932438dc
+      internalID: -1015213471
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: penitent_upward_attack_10
+      name: penitent_attack_upward_10
       rect:
         serializedVersion: 2
         x: 256
@@ -341,20 +341,20 @@ TextureImporter:
         width: 128
         height: 160
       alignment: 9
-      pivot: {x: 0.506, y: 0.2}
+      pivot: {x: 0.5, y: 0.19}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 430e8510585e2284186d755f6aececc7
-      internalID: -1532331494
+      spriteID: d4652ee93ceba4e44b2dceb2e746bfb0
+      internalID: -103968160
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: penitent_upward_attack_11
+      name: penitent_attack_upward_11
       rect:
         serializedVersion: 2
         x: 384
@@ -362,14 +362,14 @@ TextureImporter:
         width: 128
         height: 160
       alignment: 9
-      pivot: {x: 0.506, y: 0.2}
+      pivot: {x: 0.5, y: 0.19}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bcfba850be4124b4498a6d3537f343b3
-      internalID: -646547405
+      spriteID: f6d12bb8b4070a545a5f42d37ff23f60
+      internalID: -681941634
       vertices: []
       indices: 
       edges: []
@@ -385,18 +385,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      penitent_upward_attack_0: -1304110458
-      penitent_upward_attack_1: 1474044648
-      penitent_upward_attack_10: -1532331494
-      penitent_upward_attack_11: -646547405
-      penitent_upward_attack_2: -1197225899
-      penitent_upward_attack_3: -510632213
-      penitent_upward_attack_4: -1452550279
-      penitent_upward_attack_5: 168176698
-      penitent_upward_attack_6: -1294641484
-      penitent_upward_attack_7: 1710536865
-      penitent_upward_attack_8: -2040434574
-      penitent_upward_attack_9: -2124092353
+      penitent_attack_upward_0: -1297785874
+      penitent_attack_upward_1: 1083308539
+      penitent_attack_upward_10: -103968160
+      penitent_attack_upward_11: -681941634
+      penitent_attack_upward_2: 689379799
+      penitent_attack_upward_3: -942384375
+      penitent_attack_upward_4: 1296979925
+      penitent_attack_upward_5: 406210519
+      penitent_attack_upward_6: 983189846
+      penitent_attack_upward_7: -1297539742
+      penitent_attack_upward_8: -271775362
+      penitent_attack_upward_9: -1015213471
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
