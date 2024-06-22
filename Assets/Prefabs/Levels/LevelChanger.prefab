@@ -92,8 +92,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connection: {fileID: 0}
-  targetSenceName: 
-  spawnPosition: {fileID: 5713267315557611677}
+  targetSceneName: 
+  spawnPosition: {fileID: 0}
 --- !u!1 &6132639181437078477
 GameObject:
   m_ObjectHideFlags: 0

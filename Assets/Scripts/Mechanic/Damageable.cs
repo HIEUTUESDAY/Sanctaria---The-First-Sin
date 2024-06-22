@@ -8,13 +8,13 @@ using Cinemachine;
 
 public class Damageable : MonoBehaviour
 {
-    [SerializeField] private UnityEvent<float, Vector2> damageableHit;
-    [SerializeField] private UnityEvent damageableDeath;
+    public UnityEvent<float, Vector2> damageableHit;
+    public UnityEvent damageableDeath;
     [SerializeField] private float slowMotionDuration = 0.5f;
     [SerializeField] private float slowMotionFactor = 0.2f;
 
     private CinemachineImpulseSource impulseSource;
-    private HitSplashManager hitSplashManager;
+    private HitSplashEvent hitSplashManager;
     private Animator animator;
 
     [SerializeField]
@@ -204,7 +204,7 @@ public class Damageable : MonoBehaviour
 
     private void Start()
     {
-        hitSplashManager = GetComponent<HitSplashManager>();
+        hitSplashManager = GetComponent<HitSplashEvent>();
         impulseSource = GetComponent<CinemachineImpulseSource>();
     }
 
@@ -226,14 +226,14 @@ public class Damageable : MonoBehaviour
 
             StartCoroutine(ApplySlowMotion());
 
-            CameraShakeManager.instance.CameraShake(impulseSource);
+            CameraShakeManager.Instance.CameraShake(impulseSource);
 
-            // Notify other subcribed components that damageable was hit to handle the knockback
             if (!OnAttack) 
             { 
                 animator.SetTrigger(AnimationString.hitTrigger);
             }
 
+            // Notify other subcribed components that damageable was hit to handle the knockback
             damageableHit?.Invoke(damage, knockback);
             CharacterEvent.characterDamaged.Invoke(gameObject, damage);
             return true;

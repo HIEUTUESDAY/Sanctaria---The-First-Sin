@@ -1016,6 +1016,8 @@ MonoBehaviour:
   cameraFollowGO: {fileID: 0}
   isInSavePoint: 0
   savePointManager: {fileID: 0}
+  currentArea: 
+  scriptablePlayerData: {fileID: 11400000, guid: 28f9108de9b3d044a8770be3d227fd6a, type: 2}
 --- !u!114 &1497399364266092045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1060,7 +1062,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageableHit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4373586563205427431}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnHit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   damageableDeath:
     m_PersistentCalls:
       m_Calls: []

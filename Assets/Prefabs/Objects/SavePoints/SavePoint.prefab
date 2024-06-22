@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 4277559914105263189}
   - component: {fileID: 2051030543772843931}
   - component: {fileID: 8475480913706386790}
-  - component: {fileID: 5685134557225306064}
+  - component: {fileID: 7716941814823328486}
+  - component: {fileID: 6655945180368291427}
   m_Layer: 0
   m_Name: SavePoint
   m_TagString: SavePoint
@@ -153,7 +154,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5685134557225306064
+--- !u!114 &7716941814823328486
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,6 +163,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 5941720816112997980}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 173488615bade0c44b56e67234adf340, type: 3}
+  m_Script: {fileID: 11500000, guid: 955b56c5d0d4775409ca19ddd809d946, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6655945180368291427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5941720816112997980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a17694276d619d340a0133ab14c83b19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemies: []

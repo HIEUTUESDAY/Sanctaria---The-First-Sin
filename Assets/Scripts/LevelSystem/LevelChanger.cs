@@ -3,17 +3,19 @@ using UnityEngine.SceneManagement;
 
 public class LevelChanger : MonoBehaviour
 {
-    [SerializeField] private LevelConnection connection;
-
-    [SerializeField] private string targetSenceName;
-
+    [SerializeField] private ScriptableLevelConnection connection;
+    [SerializeField] private string targetSceneName;
     [SerializeField] private Transform spawnPosition;
 
     private void Start()
     {
-        if(connection == LevelConnection.ActiveConnection)
+        if (connection == ScriptableLevelConnection.ActiveConnection)
         {
-            FindObjectOfType<PlayerController>().transform.position = spawnPosition.position;
+            var player = FindObjectOfType<PlayerController>();
+            if (player != null)
+            {
+                player.transform.position = spawnPosition.position;
+            }
         }
     }
 
@@ -23,9 +25,8 @@ public class LevelChanger : MonoBehaviour
 
         if (player != null)
         {
-            LevelConnection.ActiveConnection = connection;
-            SceneManager.LoadScene(targetSenceName);
+            ScriptableLevelConnection.ActiveConnection = connection;
+            SceneManager.LoadScene(targetSceneName);
         }
-        
     }
 }

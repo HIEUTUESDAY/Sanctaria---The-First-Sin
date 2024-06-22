@@ -1,17 +1,9 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using UnityEngine.Tilemaps;
-using UnityEngine.UIElements;
-using static UnityEngine.EventSystems.EventTrigger;
-using static UnityEngine.Rendering.DebugUI;
+
 
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
 
@@ -81,6 +73,7 @@ public class PlayerController : MonoBehaviour
     public string currentArea;
 
     public static PlayerController instance;
+    public ScriptablePlayerData scriptablePlayerData;
     private Rigidbody2D rb;
     private Animator animator;
     private Vector2 horizontalInput;
@@ -91,7 +84,6 @@ public class PlayerController : MonoBehaviour
     private CameraFollowObject cameraFollowObject;
     private GhostTrail ghostTrail;
     private HealthBar healthBar;
-    private Coroutine dashCoroutine;
     private float fallSpeedYDampingChangeThreshold;
     private float originalGravityScale;
 
@@ -249,7 +241,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public bool CanMove 
+    public bool CanMove
     {
         get
         {
@@ -280,9 +272,9 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        this.LoadScriptablePlayerData();
         cameraFollowObject = cameraFollowGO.GetComponent<CameraFollowObject>();
         fallSpeedYDampingChangeThreshold = CameraManger.instance._fallSpeedYDampingChangeThreshold;
-        this.SetHealthBar();
     }
 
     // Update is called once per frame
@@ -299,6 +291,7 @@ public class PlayerController : MonoBehaviour
         this.StaminaRegeneration();
         this.UpdateHealthBar();
         this.UpdateCurrentArea();
+        this.SaveScriptablePlayerData();
     }
 
     private void FixedUpdate()
@@ -314,119 +307,26 @@ public class PlayerController : MonoBehaviour
         gameManager.SaveGame(this);
     }
 
-    public void OnMove(InputAction.CallbackContext context)
+    public void LoadScriptablePlayerData()
     {
-        horizontalInput = context.ReadValue<Vector2>();
-
-        if (IsAlive)
+        if (scriptablePlayerData != null)
         {
-            IsMoving = horizontalInput != Vector2.zero;
+            damageable.CurrentHealth = scriptablePlayerData.health;
+            damageable.CurrentStamina = scriptablePlayerData.stamina;
+            damageable.CurrentHealthPotion = scriptablePlayerData.healthPotion;
         }
-        else
+    }
+    public void SaveScriptablePlayerData()
+    {
+        if (scriptablePlayerData != null)
         {
-            IsMoving = false;
+            scriptablePlayerData.health = damageable.CurrentHealth;
+            scriptablePlayerData.stamina = damageable.CurrentStamina;
+            scriptablePlayerData.healthPotion = damageable.CurrentHealthPotion;
         }
     }
 
-
-    public void OnJump(InputAction.CallbackContext context)
-    {
-        if (context.started && IsLadderClimbing)
-        {
-            IsLadderClimbing = false;
-            rb.gravityScale = originalGravityScale;
-            rb.velocity = new Vector2(rb.velocity.x, jumpPower);
-        }
-        else if (context.started)
-        {
-            jumpBufferTimeCounter = jumpBufferTime;
-        }
-        else
-        {
-            jumpBufferTimeCounter -= Time.deltaTime;
-        }
-
-        if (context.started && wallJumpingCounter > 0f && IsWallHanging)
-        {
-            CoroutineManager.Instance.StartCoroutine(WallJumping());
-        }
-
-        if (jumpBufferTimeCounter > 0f && coyoteTimeCounter > 0f && CanMove)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, jumpPower);
-            jumpBufferTimeCounter = 0f;
-        }
-
-        if (context.canceled && rb.velocity.y > 0)
-        {
-            coyoteTimeCounter = 0f;
-        }
-    }
-
-    public void OnAttack(InputAction.CallbackContext context)
-    {
-        if (context.started && IsAlive && !IsWallHanging && !IsDashing && !IsLadderClimbing)
-        {
-            animator.SetTrigger(AnimationString.attackTrigger);
-        }
-    }
-
-    public void OnDash(InputAction.CallbackContext context)
-    {
-        if (context.started && canDash && CanMove && touchingDirections.IsGrounded && !IsLadderClimbing && damageable.CurrentStamina >= dashStaminaCost)
-        {
-            if (dashCoroutine != null)
-            {
-                StopCoroutine(dashCoroutine);
-            }
-            dashCoroutine = CoroutineManager.Instance.StartCoroutine(Dashing());
-        }
-    }
-
-    public void OnHit(int damage, Vector2 knockback)
-    {
-        CoroutineManager.Instance.StartCoroutine(Knockback(knockback));
-    }
-
-    public void OnClimb(InputAction.CallbackContext context)
-    {
-        verticalInput = context.ReadValue<Vector2>();
-    }
-
-    public void OnWallHang(InputAction.CallbackContext context)
-    {
-        if (context.started && CanMove && touchingDirections.IsGrabWallDetected && IsInAir && !IsWallHanging && damageable.CurrentStamina >= wallHangStaminaCost)
-        {
-            animator.SetTrigger(AnimationString.wallHangTrigger);
-            CoroutineManager.Instance.StartCoroutine(WallHanging());
-        }
-    }
-
-    public void OnUseHealthPotion(InputAction.CallbackContext context)
-    {
-        if (context.started && IsAlive && CanMove && touchingDirections.IsGrounded && damageable.CurrentHealthPotion > 0)
-        {
-            animator.SetTrigger(AnimationString.healTrigger);
-        }
-    }
-
-    public void OnSaveGameFile(InputAction.CallbackContext context)
-    {
-        if (context.started && IsAlive && CanMove && touchingDirections.IsGrounded && isInSavePoint)
-        {
-            animator.SetTrigger(AnimationString.saveTrigger);
-        }
-    }
-
-    private void SetHealthBar()
-    {
-        damageable.CurrentHealthPotion = damageable.MaxHealthPotion;
-        healthBar.SetMaxHealth(damageable.MaxHealth);
-        healthBar.SetMaxStamina(damageable.MaxStamina);
-        healthBar.SetMaxHealthPotions(damageable.MaxHealthPotion);
-    }
-
-    private void UpdateHealthBar()
+    public void UpdateHealthBar()
     {
         healthBar.SetHealth(damageable.CurrentHealth);
         healthBar.SetStamina(damageable.CurrentStamina);
@@ -584,7 +484,7 @@ public class PlayerController : MonoBehaviour
         {
             if (currentOneWayPlatform != null)
             {
-                CoroutineManager.Instance.StartCoroutine(DisableCollision());
+                CoroutineManager.Instance.StartCoroutineManager(DisableCollision());
             }
         }
     }
@@ -737,7 +637,6 @@ public class PlayerController : MonoBehaviour
                 yield return new WaitForSeconds(dashCooldown);
                 canDash = true;
 
-                dashCoroutine = null;
                 yield break;
             }
             yield return null;
@@ -759,8 +658,6 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
-
-        dashCoroutine = null;
     }
 
     private IEnumerator WallJumping()
@@ -815,6 +712,105 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = Vector2.zero;
             yield return null;
+        }
+    }
+
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        horizontalInput = context.ReadValue<Vector2>();
+
+        if (IsAlive)
+        {
+            IsMoving = horizontalInput != Vector2.zero;
+        }
+        else
+        {
+            IsMoving = false;
+        }
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if (context.started && IsLadderClimbing)
+        {
+            IsLadderClimbing = false;
+            rb.gravityScale = originalGravityScale;
+            rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+        }
+        else if (context.started)
+        {
+            jumpBufferTimeCounter = jumpBufferTime;
+        }
+        else
+        {
+            jumpBufferTimeCounter -= Time.deltaTime;
+        }
+
+        if (context.started && wallJumpingCounter > 0f && IsWallHanging)
+        {
+            CoroutineManager.Instance.StartCoroutineManager(WallJumping());
+        }
+
+        if (jumpBufferTimeCounter > 0f && coyoteTimeCounter > 0f && CanMove)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+            jumpBufferTimeCounter = 0f;
+        }
+
+        if (context.canceled && rb.velocity.y > 0)
+        {
+            coyoteTimeCounter = 0f;
+        }
+    }
+
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        if (context.started && IsAlive && !IsWallHanging && !IsDashing && !IsLadderClimbing)
+        {
+            animator.SetTrigger(AnimationString.attackTrigger);
+        }
+    }
+
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        if (context.started && canDash && CanMove && touchingDirections.IsGrounded && !IsLadderClimbing && damageable.CurrentStamina >= dashStaminaCost)
+        {
+            CoroutineManager.Instance.StartCoroutineManager(Dashing());
+        }
+    }
+
+    public void OnHit(float damage, Vector2 knockback)
+    {
+        CoroutineManager.Instance.StartCoroutineManager(Knockback(knockback));
+    }
+
+    public void OnClimb(InputAction.CallbackContext context)
+    {
+        verticalInput = context.ReadValue<Vector2>();
+    }
+
+    public void OnWallHang(InputAction.CallbackContext context)
+    {
+        if (context.started && CanMove && touchingDirections.IsGrabWallDetected && IsInAir && !IsWallHanging && damageable.CurrentStamina >= wallHangStaminaCost)
+        {
+            animator.SetTrigger(AnimationString.wallHangTrigger);
+            CoroutineManager.Instance.StartCoroutineManager(WallHanging());
+        }
+    }
+
+    public void OnUseHealthPotion(InputAction.CallbackContext context)
+    {
+        if (context.started && IsAlive && CanMove && touchingDirections.IsGrounded && damageable.CurrentHealthPotion > 0)
+        {
+            animator.SetTrigger(AnimationString.healTrigger);
+        }
+    }
+
+    public void OnSaveGameFile(InputAction.CallbackContext context)
+    {
+        if (context.started && IsAlive && CanMove && touchingDirections.IsGrounded && isInSavePoint)
+        {
+            animator.SetTrigger(AnimationString.saveTrigger);
         }
     }
 }
