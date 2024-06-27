@@ -993,8 +993,8 @@ MonoBehaviour:
   airSpeedAceleration: 100
   walkStopRate: 0.2
   jumpPower: 25
-  coyoteTime: 0.15
-  jumpBufferTime: 0.15
+  coyoteTime: 0.1
+  jumpBufferTime: 0.1
   maximumFallSpeed: -40
   canDash: 1
   dashPower: 25

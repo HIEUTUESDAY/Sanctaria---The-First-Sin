@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
 public class DeathBringer : MonoBehaviour
 {
-    [SerializeField] private float walkSpeed = 2f;
+    [SerializeField] private float patrolSpeed = 2f;
     [SerializeField] private float chaseSpeed = 4f;
     [SerializeField] private float minStopTime = 3f;
     [SerializeField] private float maxStopTime = 9f;
@@ -15,9 +15,9 @@ public class DeathBringer : MonoBehaviour
     [SerializeField] private float chaseDuration = 2f;
     [SerializeField] private float timeToSwitchToIdle = 5f;
     private float timeNotSpottingTarget;
-
     private float chaseTimer;
     private float stopTimeRemaining;
+
     private bool isFlipping;
     private bool waitForFlip;
     private Vector3 lastPlayerPosition;
@@ -184,7 +184,7 @@ public class DeathBringer : MonoBehaviour
     private void Start()
     {
         this.GetPlayerTransform();
-        CurrentState = State.Idle; // Set the initial state
+        CurrentState = State.Patrolling; // Set the initial state
     }
 
     void Update()
@@ -198,13 +198,13 @@ public class DeathBringer : MonoBehaviour
         {
             case State.Idle:
                 // Idle behavior
+                break;
+            case State.Patrolling:
+                // Patrolling behavior
                 if (CanMove && groundZone.detectedCols.Count > 0)
                 {
                     CurrentState = State.Patrolling;
                 }
-                break;
-            case State.Patrolling:
-                // Patrolling behavior
                 break;
             case State.Chasing:
                 // Chasing behavior
@@ -283,7 +283,7 @@ public class DeathBringer : MonoBehaviour
         {
             if (CanMove && !HasTarget && groundZone.detectedCols.Count > 0)
             {
-                rb.velocity = new Vector2(walkSpeed * WalkDirectionVector.x, rb.velocity.y);
+                rb.velocity = new Vector2(patrolSpeed * WalkDirectionVector.x, rb.velocity.y);
                 IsMoving = true;
             }
             else

@@ -8,6 +8,7 @@ TagManager:
   - OneWayPlatform
   - Enemy
   - SavePoint
+  - GroundDetectionZone
   layers:
   - Default
   - TransparentFX

@@ -10,7 +10,7 @@ public class EnemyChaseSOBase : ScriptableObject
 
     protected Transform playerTransform;
 
-    public void Initialize(GameObject gameObject, Enemy enemy)
+    public virtual void Initialize(GameObject gameObject, Enemy enemy)
     {
         this.gameObject = gameObject;
         transform = gameObject.transform;
@@ -31,7 +31,7 @@ public class EnemyChaseSOBase : ScriptableObject
 
     public virtual void DoFrameUpdateLogic()
     {
-
+        
     }
 
     public virtual void DoPhysicsUpdateLogic()

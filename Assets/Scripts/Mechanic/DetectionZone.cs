@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-
 public class DetectionZone : MonoBehaviour
 {
     public List<Collider2D> detectedCols = new List<Collider2D>();
@@ -12,15 +11,22 @@ public class DetectionZone : MonoBehaviour
     private void Awake()
     {
         col = GetComponent<Collider2D>();
+        col.isTrigger = true;
     }
 
-    private void OnTriggerEnter2D(Collider2D collusion)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        detectedCols.Add(collusion);    
+        if (!detectedCols.Contains(collision))
+        {
+            detectedCols.Add(collision);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        detectedCols.Remove(collision);
+        if (detectedCols.Contains(collision))
+        {
+            detectedCols.Remove(collision);
+        }
     }
 }

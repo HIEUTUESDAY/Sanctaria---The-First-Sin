@@ -7,6 +7,5 @@ public interface IEnemyMoveable
     Rigidbody2D RB { get; set; }
     bool IsFacingRight { get; set; }
     void MoveEnemy(Vector2 velocity);
-    void FacingCheck(Vector2 velocity);
-
+    void FlipEnemy();
 }

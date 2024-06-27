@@ -10,7 +10,7 @@ public class EnemyAttackSOBase : ScriptableObject
 
     protected Transform playerTransform;
 
-    public void Initialize(GameObject gameObject, Enemy enemy)
+    public virtual void Initialize(GameObject gameObject, Enemy enemy)
     {
         this.gameObject = gameObject;
         transform = gameObject.transform;
