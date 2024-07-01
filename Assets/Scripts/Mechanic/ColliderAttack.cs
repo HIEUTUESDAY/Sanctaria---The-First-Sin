@@ -16,7 +16,7 @@ public class ColliderAttack : MonoBehaviour
         if (canDealDamage)
         {
             // See if it can be hit
-            Damageable damageable = collision.GetComponent<Damageable>();
+            IDamageableBase damageable = collision.GetComponent<IDamageableBase>();
 
             if (damageable != null)
             {
@@ -26,12 +26,8 @@ public class ColliderAttack : MonoBehaviour
                 Vector2 hitDirection = (collision.transform.position - transform.position).normalized;
 
                 // Hit the target
-                bool hitTarget = damageable.Hit(attackDamage, deliveredKnockback, hitDirection, attackType);
-
-                if (hitTarget)
-                {
-                    StartCoroutine(DamageCooldown());
-                }
+                damageable.TakeDamage(attackDamage, deliveredKnockback, hitDirection, attackType);
+                StartCoroutine(DamageCooldown());
             }
         }
     }

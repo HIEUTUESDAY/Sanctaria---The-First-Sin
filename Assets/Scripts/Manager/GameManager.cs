@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SaveGame(PlayerController player)
+    public void SaveGame(Player player)
     {
         SaveSystem.SaveGame(player, currentSlotIndex); // Save using the current slot index
     }

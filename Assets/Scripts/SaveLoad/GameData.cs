@@ -17,7 +17,7 @@ public class PlayerData
     public int healthPostions;
     public string currentArea;
 
-    public PlayerData(PlayerController player)
+    public PlayerData(Player player)
     {
         position = new float[3];
         position[0] = player.transform.position.x;

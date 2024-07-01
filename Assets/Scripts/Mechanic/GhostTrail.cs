@@ -8,12 +8,12 @@ public class GhostTrail : MonoBehaviour
     [SerializeField] private float ghostLifeTime = 0.5f;
     [SerializeField] private Color ghostColor = new Color(1f, 1f, 1f, 0.5f);
 
-    PlayerController player;
+    Player player;
     Coroutine ghostCoroutine;
 
     private void Awake()
     {
-        player = GetComponent<PlayerController>();
+        player = GetComponent<Player>();
     }
 
     public void StartGhostTrail()

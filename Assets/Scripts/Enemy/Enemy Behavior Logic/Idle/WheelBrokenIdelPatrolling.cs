@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using static UnityEngine.Rendering.DebugUI;
 
 [CreateAssetMenu(fileName = "Idle-Patrol Around", menuName = "Enemy Logic/Idle Logic/Patrol Around")]
 public class WheelBrokenIdlePatrolling : EnemyIdleSOBase
@@ -11,8 +12,35 @@ public class WheelBrokenIdlePatrolling : EnemyIdleSOBase
     [SerializeField] private float minStopTime = 2f;
     [SerializeField] private float maxStopTime = 6f;
 
-    private bool CanMove { get => enemy.Animator.GetBool(AnimationString.canMove); }
+    public bool CanMove { get{ return enemy.Animator.GetBool(AnimationString.canMove); } }
     private bool isFlipping = false;
+
+    public bool IsMoving
+    {
+        get { return enemy.Animator.GetBool(AnimationString.isMoving); }
+        private set
+        {
+            enemy.Animator.SetBool(AnimationString.isMoving, value);
+        }
+    }
+
+    public bool SpotTarget
+    {
+        get { return enemy.Animator.GetBool(AnimationString.spotTarget); }
+        private set
+        {
+            enemy.Animator.SetBool(AnimationString.spotTarget, value);
+        }
+    }
+
+    public float AttackCooldown
+    {
+        get { return enemy.Animator.GetFloat(AnimationString.attackCooldown); }
+        private set
+        {
+            enemy.Animator.SetFloat(AnimationString.attackCooldown, Mathf.Max(value, 0));
+        }
+    }
 
     private DetectionZone GroundZone;
     private DetectionZone AttackZone;
@@ -51,11 +79,8 @@ public class WheelBrokenIdlePatrolling : EnemyIdleSOBase
         base.DoFrameUpdateLogic();
 
         CheckForTarget(facingSpotRange, behindSpotRange);
-
-        if (AttackZone.detectedCols.Count > 0)
-        {
-            enemy.StateMachine.ChangeState(enemy.AttackState);
-        }
+        DetectTarget();
+        HasTarget();
     }
 
     public override void DoPhysicsUpdateLogic()
@@ -65,6 +90,7 @@ public class WheelBrokenIdlePatrolling : EnemyIdleSOBase
         Move();
         WallHitFlip();
         NoGroundFlip();
+        ResetAttackCooldown();
     }
 
     public override void ResetValues()
@@ -72,22 +98,24 @@ public class WheelBrokenIdlePatrolling : EnemyIdleSOBase
         base.ResetValues();
 
         isFlipping = false;
-        enemy.StopAllCoroutines();
+        SpotTarget = false;
+        enemy.StopCoroutine(WallHitFlipCoroutine());
+        enemy.StopCoroutine(NoGroundFlipCoroutine());
     }
 
     private void Move()
     {
-        if (CanMove && GroundZone.detectedCols.Count > 0)
+        if (CanMove && GroundZone.detectedCols.Count > 0 && !isFlipping)
         {
             Vector2 direction = (enemy.IsFacingRight ? Vector2.right : Vector2.left).normalized;
             Vector2 moveDirection = new Vector2(patrolSpeed * direction.x, enemy.RB.velocity.y);
             enemy.MoveEnemy(moveDirection);
-            enemy.Animator.SetBool(AnimationString.isMoving, true);
+            IsMoving = true;
         }
         else
         {
             enemy.MoveEnemy(Vector2.zero);
-            enemy.Animator.SetBool(AnimationString.isMoving, false);
+            IsMoving = false;
         }
     }
 
@@ -101,7 +129,7 @@ public class WheelBrokenIdlePatrolling : EnemyIdleSOBase
 
     private void NoGroundFlip()
     {
-        if (enemy.TouchingDirections.IsGrounded && GroundZone.detectedCols.Count <= 0f && !isFlipping)
+        if (enemy.TouchingDirections.IsGrounded && GroundZone.detectedCols.Count <= 0 && !isFlipping)
         {
             enemy.StartCoroutine(NoGroundFlipCoroutine());
         }
@@ -125,22 +153,60 @@ public class WheelBrokenIdlePatrolling : EnemyIdleSOBase
 
         Vector2 facingEndPos = FacingSpotPoint.position + Vector3.right * facingCastDistance;
         Vector2 behindEndPos = BehindSpotPoint.position + Vector3.left * behindCastDistance;
-        RaycastHit2D facingHitTarget = Physics2D.Linecast(FacingSpotPoint.position, facingEndPos, LayerMask.GetMask("Ground", "Player"));
-        RaycastHit2D behindHitTarget = Physics2D.Linecast(BehindSpotPoint.position, behindEndPos, LayerMask.GetMask("Ground", "Player"));
 
-        if(facingHitTarget.collider != null)
+        RaycastHit2D facingHitTarget = Physics2D.Linecast(FacingSpotPoint.position, facingEndPos, LayerMask.GetMask("Player", "Ground"));
+        RaycastHit2D behindHitTarget = Physics2D.Linecast(BehindSpotPoint.position, behindEndPos, LayerMask.GetMask("Player", "Ground"));
+
+        if (facingHitTarget.collider != null)
         {
-            if (facingHitTarget.collider.gameObject.CompareTag("Player"))
+            if (facingHitTarget.collider.CompareTag("Player"))
             {
-                enemy.StateMachine.ChangeState(enemy.ChaseState);
+                SpotTarget = true;
             }
         }
-        else if (behindHitTarget.collider != null)
+        else
         {
-            if (behindHitTarget.collider.gameObject.CompareTag("Player"))
+            SpotTarget = false;
+        }
+
+        if (behindHitTarget.collider != null)
+        {
+            if (behindHitTarget.collider.CompareTag("Player"))
             {
-                enemy.StateMachine.ChangeState(enemy.ChaseState);
+                SpotTarget = true;
             }
+        }
+        else
+        {
+            SpotTarget = false;
+        }
+    }
+
+    private void HasTarget()
+    {
+        if (AttackZone.detectedCols.Count > 0)
+        {
+            enemy.StateMachine.ChangeState(enemy.AttackState);
+        }
+    }
+
+    private void DetectTarget()
+    {
+        if (SpotTarget)
+        {
+            enemy.StateMachine.ChangeState(enemy.ChaseState);
+        }
+        else
+        {
+            return;
+        }
+    }
+
+    private void ResetAttackCooldown()
+    {
+        if (AttackCooldown > 0)
+        {
+            AttackCooldown -= Time.deltaTime;
         }
     }
 

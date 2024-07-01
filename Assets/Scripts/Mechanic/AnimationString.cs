@@ -18,7 +18,7 @@ internal class AnimationString
     internal static string isHangWallDetected = "isHangWallDetected";
     internal static string isWallHanging = "isWallHanging";
     internal static string isWallJumping = "isWallJumping";
-    internal static string isLadderClimbing = "isLadderClimbing";
+    internal static string isClimbing = "isClimbing";
     internal static string isActivated = "isActivated";
     internal static string isInvincible = "isInvincible";
     internal static string yVelocity = "yVelocity";

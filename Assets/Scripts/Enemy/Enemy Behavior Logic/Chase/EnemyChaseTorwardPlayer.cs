@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using static UnityEngine.Rendering.DebugUI;
 
 [CreateAssetMenu(fileName = "Chase-Torward Player", menuName = "Enemy Logic/Chase Logic/Torward Player")]
 public class EnemyChaseTorwardPlayer : EnemyChaseSOBase
@@ -13,8 +14,34 @@ public class EnemyChaseTorwardPlayer : EnemyChaseSOBase
 
     private Vector3 targetPosition;
 
-    private bool CanMove { get => enemy.Animator.GetBool(AnimationString.canMove);}
-    private bool spotTarget;
+    private bool CanMove { get { return enemy.Animator.GetBool(AnimationString.canMove); } }
+
+    public bool IsMoving
+    {
+        get { return enemy.Animator.GetBool(AnimationString.isMoving); }
+        private set
+        {
+            enemy.Animator.SetBool(AnimationString.isMoving, value);
+        }
+    }
+
+    public bool SpotTarget
+    {
+        get { return enemy.Animator.GetBool(AnimationString.spotTarget); }
+        private set
+        {
+            enemy.Animator.SetBool(AnimationString.spotTarget, value);
+        }
+    }
+
+    public float AttackCooldown
+    {
+        get { return enemy.Animator.GetFloat(AnimationString.attackCooldown); }
+        private set
+        {
+            enemy.Animator.SetFloat(AnimationString.attackCooldown, Mathf.Max(value, 0));
+        }
+    }
 
     private DetectionZone GroundZone;
     private DetectionZone AttackZone;
@@ -57,11 +84,9 @@ public class EnemyChaseTorwardPlayer : EnemyChaseSOBase
 
         CheckForTarget(facingSpotRange, behindSpotRange);
         SetChaseDuration();
+        ResetAttackCooldown();
+        SwitchToAttackState();
 
-        if(AttackZone.detectedCols.Count > 0)
-        {
-            enemy.StateMachine.ChangeState(enemy.AttackState);
-        }
     }
 
     public override void DoPhysicsUpdateLogic()
@@ -75,19 +100,19 @@ public class EnemyChaseTorwardPlayer : EnemyChaseSOBase
     {
         base.ResetValues();
 
-        spotTarget = false;
+        SpotTarget = false;
         chaseTimer = 0;
     }
 
     private void SetChaseDuration()
     {
-        if (spotTarget)
+        if (SpotTarget)
         {
             chaseTimer = chaseDuration;
         }
         else
         {
-            chaseTimer -= Time.fixedDeltaTime;
+            chaseTimer -= Time.deltaTime;
         }
 
         if (chaseTimer <= 0)
@@ -114,29 +139,35 @@ public class EnemyChaseTorwardPlayer : EnemyChaseSOBase
 
         Vector2 facingEndPos = FacingSpotPoint.position + Vector3.right * facingCastDistance;
         Vector2 behindEndPos = BehindSpotPoint.position + Vector3.left * behindCastDistance;
-        RaycastHit2D facingHitTarget = Physics2D.Linecast(FacingSpotPoint.position, facingEndPos, LayerMask.GetMask("Ground", "Player"));
-        RaycastHit2D behindHitTarget = Physics2D.Linecast(BehindSpotPoint.position, behindEndPos, LayerMask.GetMask("Ground", "Player"));
+
+        RaycastHit2D facingHitTarget = Physics2D.Linecast(FacingSpotPoint.position, facingEndPos, LayerMask.GetMask("Player", "Ground"));
+        RaycastHit2D behindHitTarget = Physics2D.Linecast(BehindSpotPoint.position, behindEndPos, LayerMask.GetMask("Player", "Ground"));
 
         if (facingHitTarget.collider != null)
         {
             if (facingHitTarget.collider.CompareTag("Player"))
             {
-                spotTarget = true;
-            }
-        }
-        else if(behindHitTarget.collider != null)
-        {
-            if (behindHitTarget.collider.CompareTag("Player"))
-            {
-                spotTarget = true;
+                SpotTarget = true;
             }
         }
         else
         {
-            spotTarget = false;
+            SpotTarget = false;
         }
 
+        if (behindHitTarget.collider != null)
+        {
+            if (behindHitTarget.collider.CompareTag("Player"))
+            {
+                SpotTarget = true;
+            }
+        }
+        else
+        {
+            SpotTarget = false;
+        }
     }
+
 
     private void ChasingTarget()
     {
@@ -156,13 +187,29 @@ public class EnemyChaseTorwardPlayer : EnemyChaseSOBase
                 Vector2 direction = (targetPosition - transform.position).normalized;
                 Vector2 moveDirection = new Vector2(chaseSpeed * direction.x, enemy.RB.velocity.y);
                 enemy.MoveEnemy(moveDirection);
-                enemy.Animator.SetBool(AnimationString.isMoving, true);
+                IsMoving = true;
             }
             else
             {
                 enemy.MoveEnemy(Vector2.zero);
-                enemy.Animator.SetBool(AnimationString.isMoving, false);
+                IsMoving = false;
             }
+        }
+    }
+
+    private void SwitchToAttackState()
+    {
+        if (AttackZone.detectedCols.Count > 0)
+        {
+            enemy.StateMachine.ChangeState(enemy.AttackState);
+        }
+    }
+
+    private void ResetAttackCooldown()
+    {
+        if (AttackCooldown > 0)
+        {
+            AttackCooldown -= Time.deltaTime;
         }
     }
 }

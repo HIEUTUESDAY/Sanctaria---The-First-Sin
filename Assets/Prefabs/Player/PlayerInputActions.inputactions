@@ -69,7 +69,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "UseHealthPotion",
+                    "name": "Heal",
                     "type": "Button",
                     "id": "7bc4f077-d41b-4107-8348-038379c1b145",
                     "expectedControlType": "Button",
@@ -392,7 +392,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "UseHealthPotion",
+                    "action": "Heal",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

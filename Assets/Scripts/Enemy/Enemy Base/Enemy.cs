@@ -126,7 +126,7 @@ public class Enemy : MonoBehaviour, IEnemyDamageable, IEnemyMoveable
         StateMachine.CurrentEnemyState.PhysicsUpdate();
     }
 
-    #region Hit function & coroutines
+    #region Take damage function & coroutines
 
     public void TakeDamage(float damage, Vector2 knockback, Vector2 hitDirection, int attackType)
     {

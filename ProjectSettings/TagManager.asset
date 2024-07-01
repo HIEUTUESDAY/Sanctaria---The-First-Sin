@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - SavePoint
   - GroundDetectionZone
+  - Obstacle
   layers:
   - Default
   - TransparentFX

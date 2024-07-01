@@ -117,21 +117,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private bool _isInAir = false;
-
-    public bool IsInAir
-    {
-        get
-        {
-            return _isInAir;
-        }
-        private set
-        {
-            _isInAir = value;
-            animator.SetBool(AnimationString.isInAir, value);
-        }
-    }
-
     private bool _isDashing = false;
 
     public bool IsDashing
@@ -190,17 +175,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private bool _isLadderClimbing;
-    public bool IsLadderClimbing
+    private bool _isClimbing;
+    public bool IsClimbing
     {
         get
         {
-            return _isLadderClimbing;
+            return _isClimbing;
         }
         private set
         {
-            _isLadderClimbing = value;
-            animator.SetBool(AnimationString.isLadderClimbing, value);
+            _isClimbing = value;
+            animator.SetBool(AnimationString.isClimbing, value);
         }
     }
 
@@ -301,11 +286,11 @@ public class PlayerController : MonoBehaviour
         this.WallJump();
     }
 
-    public void SaveGame()
+/*    public void SaveGame()
     {
         GameManager gameManager = FindObjectOfType<GameManager>();
         gameManager.SaveGame(this);
-    }
+    }*/
 
     public void LoadScriptablePlayerData()
     {
@@ -316,6 +301,7 @@ public class PlayerController : MonoBehaviour
             damageable.CurrentHealthPotion = scriptablePlayerData.healthPotion;
         }
     }
+
     public void SaveScriptablePlayerData()
     {
         if (scriptablePlayerData != null)
@@ -341,7 +327,7 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        if (!damageable.LockVelocity && !IsWallJumping && !IsWallHanging && !IsLadderClimbing)
+        if (!damageable.LockVelocity && !IsWallJumping && !IsWallHanging && !IsClimbing)
         {
             if (horizontalInput.x == 0 && !IsDashing)
             {
@@ -365,7 +351,7 @@ public class PlayerController : MonoBehaviour
 
     private void SetFacingDirection(Vector2 moveInput)
     {
-        if (!IsWallJumping && !IsWallHanging && !IsDashing && !IsLadderClimbing)
+        if (!IsWallJumping && !IsWallHanging && !IsDashing && !IsClimbing)
         {
             if (moveInput.x > 0 && !IsFacingRight)
             {
@@ -403,7 +389,7 @@ public class PlayerController : MonoBehaviour
 
     private void LadderClimb()
     {
-        if (IsLadderClimbing)
+        if (IsClimbing)
         {
             rb.gravityScale = 0f;
             rb.velocity = new Vector2(0f, verticalInput.y * climbSpeed);
@@ -445,20 +431,18 @@ public class PlayerController : MonoBehaviour
         if (touchingDirections.IsGrounded)
         {
             coyoteTimeCounter = coyoteTime;
-            IsInAir = false;
             animator.SetFloat(AnimationString.yVelocity, 0);
         }
         else
         {
             coyoteTimeCounter -= Time.deltaTime;
-            IsInAir = true;
             animator.SetFloat(AnimationString.yVelocity, rb.velocity.y);
         }
     }
 
     private void FallCheck()
     {
-        if (IsInAir && rb.velocity.y < maximumFallSpeed)
+        if (!touchingDirections.IsGrounded && rb.velocity.y < maximumFallSpeed)
         {
             rb.velocity = new Vector2(rb.velocity.x, maximumFallSpeed);
         }
@@ -468,12 +452,12 @@ public class PlayerController : MonoBehaviour
     {
         if (isOnLadder && !damageable.LockVelocity && verticalInput.y != 0 && rb.velocity.y <= 1)
         {
-            IsLadderClimbing = true;
+            IsClimbing = true;
             rb.velocity = new Vector2(0f, rb.velocity.y);
         }
         if (!isOnLadder)
         {
-            IsLadderClimbing = false;
+            IsClimbing = false;
         }
     }
 
@@ -557,7 +541,7 @@ public class PlayerController : MonoBehaviour
         if (collision.CompareTag("Ladder"))
         {
             isOnLadder = false;
-            IsLadderClimbing = false;
+            IsClimbing = false;
             rb.gravityScale = originalGravityScale;
             ladderCollider = null;
         }
@@ -731,9 +715,9 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.started && IsLadderClimbing)
+        if (context.started && IsClimbing)
         {
-            IsLadderClimbing = false;
+            IsClimbing = false;
             rb.gravityScale = originalGravityScale;
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
         }
@@ -765,7 +749,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (context.started && IsAlive && !IsWallHanging && !IsDashing && !IsLadderClimbing)
+        if (context.started && IsAlive && !IsWallHanging && !IsDashing && !IsClimbing)
         {
             animator.SetTrigger(AnimationString.attackTrigger);
         }
@@ -773,7 +757,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.started && canDash && CanMove && touchingDirections.IsGrounded && !IsLadderClimbing && damageable.CurrentStamina >= dashStaminaCost)
+        if (context.started && canDash && CanMove && touchingDirections.IsGrounded && !IsClimbing && damageable.CurrentStamina >= dashStaminaCost)
         {
             CoroutineManager.Instance.StartCoroutineManager(Dashing());
         }
@@ -791,7 +775,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnWallHang(InputAction.CallbackContext context)
     {
-        if (context.started && CanMove && touchingDirections.IsGrabWallDetected && IsInAir && !IsWallHanging && damageable.CurrentStamina >= wallHangStaminaCost)
+        if (context.started && CanMove && touchingDirections.IsGrabWallDetected && !touchingDirections.IsGrounded && !IsWallHanging && damageable.CurrentStamina >= wallHangStaminaCost)
         {
             animator.SetTrigger(AnimationString.wallHangTrigger);
             CoroutineManager.Instance.StartCoroutineManager(WallHanging());

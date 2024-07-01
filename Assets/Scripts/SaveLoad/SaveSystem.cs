@@ -3,7 +3,7 @@ using UnityEngine;
 
 public static class SaveSystem
 {
-    public static void SaveGame(PlayerController player, int slotIndex)
+    public static void SaveGame(Player player, int slotIndex)
     {
         string path = Application.persistentDataPath + "/savefile" + slotIndex + ".json";
 
