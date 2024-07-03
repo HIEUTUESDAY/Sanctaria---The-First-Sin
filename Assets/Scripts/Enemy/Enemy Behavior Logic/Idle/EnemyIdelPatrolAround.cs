@@ -6,11 +6,12 @@ using UnityEngine.EventSystems;
 using static UnityEngine.Rendering.DebugUI;
 
 [CreateAssetMenu(fileName = "Idle-Patrol Around", menuName = "Enemy Logic/Idle Logic/Patrol Around")]
-public class WheelBrokenIdlePatrolling : EnemyIdleSOBase
+public class EnemyIdlePatrolAround : EnemyIdleSOBase
 {
     [SerializeField] private float patrolSpeed = 2f;
     [SerializeField] private float minStopTime = 2f;
     [SerializeField] private float maxStopTime = 6f;
+    [SerializeField] private float flipDelay = 2f;
 
     public bool CanMove { get{ return enemy.Animator.GetBool(AnimationString.canMove); } }
     private bool isFlipping = false;
@@ -72,6 +73,9 @@ public class WheelBrokenIdlePatrolling : EnemyIdleSOBase
     public override void DoExitLogic()
     {
         base.DoExitLogic();
+
+        CoroutineManager.Instance.StopCoroutineManager(WallHitFlipCoroutine());
+        CoroutineManager.Instance.StopCoroutineManager(NoGroundFlipCoroutine());
     }
 
     public override void DoFrameUpdateLogic()
@@ -81,6 +85,8 @@ public class WheelBrokenIdlePatrolling : EnemyIdleSOBase
         CheckForTarget(facingSpotRange, behindSpotRange);
         DetectTarget();
         HasTarget();
+        WallHitFlip();
+        NoGroundFlip();
     }
 
     public override void DoPhysicsUpdateLogic()
@@ -88,8 +94,6 @@ public class WheelBrokenIdlePatrolling : EnemyIdleSOBase
         base.DoPhysicsUpdateLogic();
 
         Move();
-        WallHitFlip();
-        NoGroundFlip();
         ResetAttackCooldown();
     }
 
@@ -99,8 +103,6 @@ public class WheelBrokenIdlePatrolling : EnemyIdleSOBase
 
         isFlipping = false;
         SpotTarget = false;
-        enemy.StopCoroutine(WallHitFlipCoroutine());
-        enemy.StopCoroutine(NoGroundFlipCoroutine());
     }
 
     private void Move()
@@ -123,7 +125,7 @@ public class WheelBrokenIdlePatrolling : EnemyIdleSOBase
     {
         if (enemy.TouchingDirections.IsGrounded && enemy.TouchingDirections.IsOnWall && !isFlipping)
         {
-            enemy.StartCoroutine(WallHitFlipCoroutine());
+            CoroutineManager.Instance.StartCoroutineManager(WallHitFlipCoroutine());
         }
     }
 
@@ -131,7 +133,7 @@ public class WheelBrokenIdlePatrolling : EnemyIdleSOBase
     {
         if (enemy.TouchingDirections.IsGrounded && GroundZone.detectedCols.Count <= 0 && !isFlipping)
         {
-            enemy.StartCoroutine(NoGroundFlipCoroutine());
+            CoroutineManager.Instance.StartCoroutineManager(NoGroundFlipCoroutine());
         }
     }
 
@@ -215,8 +217,9 @@ public class WheelBrokenIdlePatrolling : EnemyIdleSOBase
         isFlipping = true;
         enemy.FlipEnemy();
         yield return new WaitForSeconds(Random.Range(minStopTime, maxStopTime));
-        isFlipping = false;
         Move();
+        yield return new WaitForSeconds(flipDelay);
+        isFlipping = false;
     }
 
     private IEnumerator NoGroundFlipCoroutine()
@@ -224,8 +227,9 @@ public class WheelBrokenIdlePatrolling : EnemyIdleSOBase
         isFlipping = true;
         yield return new WaitForSeconds(Random.Range(minStopTime, maxStopTime));
         enemy.FlipEnemy();
-        isFlipping = false;
         Move();
+        yield return new WaitForSeconds(flipDelay);
+        isFlipping = false;
     }
 
 }

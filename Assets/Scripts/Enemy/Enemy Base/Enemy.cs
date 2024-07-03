@@ -76,9 +76,9 @@ public class Enemy : MonoBehaviour, IEnemyDamageable, IEnemyMoveable
 
     #region ScriptableObject variables
 
-    [SerializeField] private EnemyIdleSOBase EnemyIdleBase;
-    [SerializeField] private EnemyChaseSOBase EnemyChaseBase;
-    [SerializeField] private EnemyAttackSOBase EnemyAttackBase;
+    [field: SerializeField] public EnemyIdleSOBase EnemyIdleBase { get; set; }
+    [field: SerializeField] public EnemyChaseSOBase EnemyChaseBase { get; set; }
+    [field: SerializeField] public EnemyAttackSOBase EnemyAttackBase { get; set; }
 
     public EnemyIdleSOBase EnemyIdleBaseInstance { get; set; }
     public EnemyChaseSOBase EnemyChaseBaseInstance { get; set; }
@@ -88,42 +88,42 @@ public class Enemy : MonoBehaviour, IEnemyDamageable, IEnemyMoveable
 
     public void Awake()
     {
-        EnemyIdleBaseInstance = Instantiate(EnemyIdleBase);
-        EnemyChaseBaseInstance = Instantiate(EnemyChaseBase);
-        EnemyAttackBaseInstance = Instantiate(EnemyAttackBase);
+        AwakeSetup();
+    }
 
-        StateMachine = new EnemyStateMachine();
-
-        IdleState = new EnemyIdleState(this, StateMachine);
-        ChaseState = new EnemyChaseState(this, StateMachine);
-        AttackState = new EnemyAttackState(this, StateMachine);
+    protected virtual void AwakeSetup()
+    {
+        
     }
 
     public void Start()
     {
-        CurrentHealth = MaxHealth;
+        StartSetup();
+    }
 
-        RB = GetComponent<Rigidbody2D>();
-        TouchingDirections = GetComponent<TouchingDirections>();
-        Animator = GetComponent<Animator>();
-        HitSplashEvent = GetComponent<HitSplashEvent>();
-        ImpulseSource = GetComponent<CinemachineImpulseSource>();
-
-        EnemyIdleBaseInstance.Initialize(gameObject, this);
-        EnemyChaseBaseInstance.Initialize(gameObject, this);
-        EnemyAttackBaseInstance.Initialize(gameObject, this);
-
-        StateMachine.Initialize(IdleState);
+    protected virtual void StartSetup()
+    {
+       
     }
 
     public void Update()
     {
-        StateMachine.CurrentEnemyState.FrameUpdate();
+        UpdateSetup();
+    }
+
+    protected virtual void UpdateSetup()
+    {
+
     }
 
     public void FixedUpdate()
     {
-        StateMachine.CurrentEnemyState.PhysicsUpdate();
+        FixedUpdateSetup();
+    }
+
+    protected virtual void FixedUpdateSetup()
+    {
+
     }
 
     #region Take damage function & coroutines
@@ -137,17 +137,13 @@ public class Enemy : MonoBehaviour, IEnemyDamageable, IEnemyMoveable
 
             // Spawn Damage Particle with direction
             HitSplashEvent.ShowHitSplash(transform.position, hitDirection, attackType);
-            StartCoroutine(ApplySlowMotion());
+            CoroutineManager.Instance.StartCoroutineManager(ApplySlowMotion());
             CameraShakeManager.Instance.CameraShake(ImpulseSource);
             Animator.SetTrigger(AnimationString.hitTrigger);
 
             // Notify other subcribed components that damageable was hit to handle the knockback
             DamageableHit?.Invoke(damage, knockback);
             CharacterEvent.characterDamaged.Invoke(gameObject, damage);
-        }
-        else
-        {
-            return;
         }
     }
 
@@ -185,12 +181,21 @@ public class Enemy : MonoBehaviour, IEnemyDamageable, IEnemyMoveable
 
     #endregion
 
+    #region Respanwn functions
+
+    public virtual void RespawnSetup()
+    {
+
+    }
+
+    #endregion
+
     #region Animation Triggers
 
     private void AnimationTriggerEnvent(AniamtionTriggerType triggerType)
     {
         // TODO: fill in one StateManchine is created
-        StateMachine.CurrentEnemyState.AnimationTriggerEvent(triggerType);
+        /*StateMachine.CurrentEnemyState.AnimationTriggerEvent(triggerType);*/
     }
 
     public enum AniamtionTriggerType

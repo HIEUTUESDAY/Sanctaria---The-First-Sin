@@ -27,19 +27,11 @@ public class EnemyManager : MonoBehaviour
     {
         foreach (GameObject enemy in enemies)
         {
-            // Set the enemy game object to active
-            enemy.SetActive(true);
             // Reset the enemy's health and other attributes if needed
-            DeathBringer deathBringer = enemy.GetComponent<DeathBringer>();
-            if (deathBringer != null)
+            Enemy dieEnemy = enemy.GetComponent<Enemy>();
+            if(dieEnemy != null && !dieEnemy.IsAlive)
             {
-                deathBringer.RespawnSetup();
-            }
-
-            FlyingEye flyingEye = enemy.GetComponent<FlyingEye>();
-            if (flyingEye != null)
-            {
-                flyingEye.RespawnSetup();
+                dieEnemy.RespawnSetup();
             }
         }
     }

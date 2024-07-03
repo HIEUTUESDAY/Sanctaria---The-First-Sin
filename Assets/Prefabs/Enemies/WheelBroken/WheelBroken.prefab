@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8336152758320000833}
-  - component: {fileID: 3208513081667281020}
+  - component: {fileID: 3591786836798738503}
   - component: {fileID: 387634613884232746}
   m_Layer: 9
   m_Name: Body Hit Zone
@@ -64,8 +64,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8771942258577264302}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &3208513081667281020
-BoxCollider2D:
+--- !u!70 &3591786836798738503
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -97,18 +97,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
   m_Size: {x: 1, y: 3}
-  m_EdgeRadius: 0
+  m_Direction: 0
 --- !u!114 &387634613884232746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,7 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDamage: 15
-  knockback: {x: 1, y: 1}
+  knockback: {x: 2, y: 2}
   damageCooldown: 3
   attackType: 0
 --- !u!1 &5413719337324381024
@@ -364,9 +354,9 @@ GameObject:
   - component: {fileID: 8771942258577264302}
   - component: {fileID: 6177573566294617025}
   - component: {fileID: 3488453505225230439}
-  - component: {fileID: 6627651578315346330}
+  - component: {fileID: 5734536981928801023}
   - component: {fileID: 1061642837243477641}
-  - component: {fileID: 2656637376784440164}
+  - component: {fileID: 7589368999813637776}
   - component: {fileID: 3972146953887047303}
   - component: {fileID: 2355953727792656423}
   - component: {fileID: 1492307794455640191}
@@ -477,8 +467,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &6627651578315346330
-BoxCollider2D:
+--- !u!70 &5734536981928801023
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -510,18 +500,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.76, y: 0.3}
-    oldSize: {x: 8.75, y: 5.8125}
-    newSize: {x: 1.4, y: 0.93}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.65, y: 3.45}
-  m_EdgeRadius: 0
+  m_Size: {x: 1.5, y: 3.45}
+  m_Direction: 0
 --- !u!95 &1061642837243477641
 Animator:
   serializedVersion: 5
@@ -543,7 +523,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2656637376784440164
+--- !u!114 &7589368999813637776
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -552,7 +532,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8755155197576199263}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9781a273c1a03634086f2705fa1cb6ce, type: 3}
+  m_Script: {fileID: 11500000, guid: b8b10dc4d16701847b2c4829a3a35611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   slowMotionDuration: 0.15
@@ -567,9 +547,9 @@ MonoBehaviour:
   _currentHealth: 0
   _isAlive: 1
   <IsFacingRight>k__BackingField: 1
-  EnemyIdleBase: {fileID: 0}
-  EnemyChaseBase: {fileID: 0}
-  EnemyAttackBase: {fileID: 0}
+  <EnemyIdleBase>k__BackingField: {fileID: 0}
+  <EnemyChaseBase>k__BackingField: {fileID: 0}
+  <EnemyAttackBase>k__BackingField: {fileID: 0}
 --- !u!114 &3972146953887047303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -582,9 +562,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c365358ef1687844a4ed49054964e0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundBoxSize: {x: 1.5, y: 0.1}
+  groundBoxSize: {x: 1, y: 0.1}
   wallBoxSize: {x: 0.1, y: 2}
-  ceilingBoxSize: {x: 1.5, y: 0.1}
+  ceilingBoxSize: {x: 1, y: 0.1}
   grabWallBoxSize: {x: 0, y: 0}
   groundLayer:
     serializedVersion: 2
@@ -593,7 +573,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   groundCastDistance: 1.75
-  wallCastDistance: -0.85
+  wallCastDistance: -0.8
   ceilingCastDistance: -1.75
   grabWallCastDistance: 0
   _isGrounded: 0

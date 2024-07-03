@@ -6,7 +6,7 @@ using System;
 
 public class CameraManger : MonoBehaviour
 {
-    public static CameraManger instance;
+    public static CameraManger Instance;
 
     [SerializeField] private CinemachineVirtualCamera[] _allVirtualCameras;
 
@@ -31,9 +31,9 @@ public class CameraManger : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
 
         for (int i = 0; i < _allVirtualCameras.Length; i++)
@@ -55,7 +55,7 @@ public class CameraManger : MonoBehaviour
         _startingTrackedObjectOffset = _framingTransposer.m_TrackedObjectOffset;
     }
 
-    public void lerpYDamping(bool isPlayerFalling)
+    public void LerpYDamping(bool isPlayerFalling)
     {
         _lerpYPanCoroutine = StartCoroutine(LerpYAction(isPlayerFalling));
     }

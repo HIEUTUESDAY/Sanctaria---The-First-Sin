@@ -3,23 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WheelBroken : Enemy
+public class EnragedPilgrim : Enemy
 {
-    private SpriteRenderer spriteRenderer;
-
     protected override void AwakeSetup()
     {
         base.AwakeSetup();
 
         EnemyIdleBaseInstance = Instantiate(EnemyIdleBase);
         EnemyChaseBaseInstance = Instantiate(EnemyChaseBase);
-        EnemyAttackBaseInstance = Instantiate(EnemyAttackBase);
 
         StateMachine = new EnemyStateMachine();
 
         IdleState = new EnemyIdleState(this, StateMachine);
         ChaseState = new EnemyChaseState(this, StateMachine);
-        AttackState = new EnemyAttackState(this, StateMachine);
     }
 
     protected override void StartSetup()
@@ -33,11 +29,9 @@ public class WheelBroken : Enemy
         Animator = GetComponent<Animator>();
         HitSplashEvent = GetComponent<HitSplashEvent>();
         ImpulseSource = GetComponent<CinemachineImpulseSource>();
-        spriteRenderer = RB.GetComponent<SpriteRenderer>();
 
         EnemyIdleBaseInstance.Initialize(gameObject, this);
         EnemyChaseBaseInstance.Initialize(gameObject, this);
-        EnemyAttackBaseInstance.Initialize(gameObject, this);
 
         StateMachine.Initialize(IdleState);
     }
@@ -60,11 +54,5 @@ public class WheelBroken : Enemy
     {
         base.RespawnSetup();
 
-        gameObject.SetActive(true);
-        IsAlive = true;
-        CurrentHealth = MaxHealth;
-        Color color = spriteRenderer.color;
-        color.a = 1f;
-        spriteRenderer.color = color;
     }
 }

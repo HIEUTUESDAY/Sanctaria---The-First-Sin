@@ -45,7 +45,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     [Space(5)]
 
     [Header("Wall Jumping")]
-    [SerializeField] private float wallSlideSpeed = 1.5f;
+    [SerializeField] private float wallSlideSpeed = 1f;
     [SerializeField] private float wallSlideDuration = 0.5f;
     private float wallJumpingDirection;
     [SerializeField] private float wallJumpingTime = 1f;
@@ -177,19 +177,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     #endregion
 
-    #region Player Input Variables
-
-    public bool MoveInput { get; set; }
-    public bool JumpInput { get; set; }
-    public bool AttackInput { get; set; }
-    public bool DashInput { get; set; }
-    public bool ClimbInput { get; set; }
-    public bool WallHangInput { get; set; }
-    public bool HealInput { get; set; }
-    public bool SavePointInput { get; set; }
-
-    #endregion
-
     #region IPlayerDamageable variables
 
     public float MaxHealth { get; set; } = 100f;
@@ -301,7 +288,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     #endregion
 
-    #region Player events
+    #region Player events system
 
     [field: SerializeField] public UnityEvent<float, Vector2> DamageableHit { get; set; }
     [field: SerializeField] public UnityEvent DamageableDie { get; set; }
@@ -326,7 +313,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     {
         LoadScriptablePlayerData();
         CameraFollowObject = CameraFollowGO.GetComponent<CameraFollowObject>();
-        FallSpeedYDampingChangeThreshold = CameraManger.instance._fallSpeedYDampingChangeThreshold;
+        FallSpeedYDampingChangeThreshold = CameraManger.Instance._fallSpeedYDampingChangeThreshold;
 
     }
 
@@ -365,7 +352,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
             // Spawn Damage Particle with direction
             HitSplashEvent.ShowHitSplash(transform.position, hitDirection, attackType);
-            StartCoroutine(ApplySlowMotion());
+            CoroutineManager.Instance.StartCoroutineManager(ApplySlowMotion());
             CameraShakeManager.Instance.CameraShake(ImpulseSource);
             Animator.SetTrigger(AnimationString.hitTrigger);
 
@@ -460,7 +447,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     #endregion
 
-    #region Move functions
+    #region Movement functions
 
     private void Move()
     {
@@ -478,10 +465,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         }
     }
 
-    #endregion
-
-    #region Climb functions
-
     private void LadderClimb()
     {
         if (IsClimbing)
@@ -496,10 +479,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             }
         }
     }
-
-    #endregion
-
-    #region WallJump functions
 
     private void WallJump()
     {
@@ -570,7 +549,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     #endregion
 
-    #region Player checks
+    #region Player checking functions
 
     private void SetFacingCheck()
     {
@@ -639,18 +618,18 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     private void YDampingCheck()
     {
         //if player falling past the certain speed threshold
-        if (RB.velocity.y < FallSpeedYDampingChangeThreshold && !CameraManger.instance.IsLerpingYDamping && !CameraManger.instance.LerpedFromPlayerFalling)
+        if (RB.velocity.y < FallSpeedYDampingChangeThreshold && !CameraManger.Instance.IsLerpingYDamping && !CameraManger.Instance.LerpedFromPlayerFalling)
         {
-            CameraManger.instance.lerpYDamping(true);
+            CameraManger.Instance.LerpYDamping(true);
         }
 
         //if player are standing or moving
-        if (RB.velocity.y >= 0f && !CameraManger.instance.IsLerpingYDamping && CameraManger.instance.LerpedFromPlayerFalling)
+        if (RB.velocity.y >= 0f && !CameraManger.Instance.IsLerpingYDamping && CameraManger.Instance.LerpedFromPlayerFalling)
         {
             //rest so it can be called again
-            CameraManger.instance.LerpedFromPlayerFalling = false;
+            CameraManger.Instance.LerpedFromPlayerFalling = false;
 
-            CameraManger.instance.lerpYDamping(false);
+            CameraManger.Instance.LerpYDamping(false);
         }
     }
 

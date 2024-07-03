@@ -259,7 +259,7 @@ public class PlayerController : MonoBehaviour
     {
         this.LoadScriptablePlayerData();
         cameraFollowObject = cameraFollowGO.GetComponent<CameraFollowObject>();
-        fallSpeedYDampingChangeThreshold = CameraManger.instance._fallSpeedYDampingChangeThreshold;
+        fallSpeedYDampingChangeThreshold = CameraManger.Instance._fallSpeedYDampingChangeThreshold;
     }
 
     // Update is called once per frame
@@ -476,18 +476,18 @@ public class PlayerController : MonoBehaviour
     private void YDampingCheck()
     {
         //if player falling past the certain speed threshold
-        if (rb.velocity.y < fallSpeedYDampingChangeThreshold && !CameraManger.instance.IsLerpingYDamping && !CameraManger.instance.LerpedFromPlayerFalling)
+        if (rb.velocity.y < fallSpeedYDampingChangeThreshold && !CameraManger.Instance.IsLerpingYDamping && !CameraManger.Instance.LerpedFromPlayerFalling)
         {
-            CameraManger.instance.lerpYDamping(true);
+            CameraManger.Instance.LerpYDamping(true);
         }
 
         //if player are standing or moving
-        if (rb.velocity.y >= 0f && !CameraManger.instance.IsLerpingYDamping && CameraManger.instance.LerpedFromPlayerFalling)
+        if (rb.velocity.y >= 0f && !CameraManger.Instance.IsLerpingYDamping && CameraManger.Instance.LerpedFromPlayerFalling)
         {
             //rest so it can be called again
-            CameraManger.instance.LerpedFromPlayerFalling = false;
+            CameraManger.Instance.LerpedFromPlayerFalling = false;
 
-            CameraManger.instance.lerpYDamping(false);
+            CameraManger.Instance.LerpYDamping(false);
         }
     }
 

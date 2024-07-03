@@ -24,7 +24,7 @@ public class CoroutineManager : MonoBehaviour
         return StartCoroutine(coroutine);
     }
 
-    public void StopCoroutineManager(Coroutine coroutine)
+    public void StopCoroutineManager(IEnumerator coroutine)
     {
         if (coroutine != null)
         {
