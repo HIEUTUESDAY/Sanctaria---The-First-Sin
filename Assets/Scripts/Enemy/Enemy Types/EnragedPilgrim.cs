@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class EnragedPilgrim : Enemy
 {
+    [SerializeField] private Collider2D attackCollider;
+    [SerializeField] private Collider2D bodyHitCollider;
+
     protected override void AwakeSetup()
     {
         base.AwakeSetup();
@@ -29,6 +32,7 @@ public class EnragedPilgrim : Enemy
         Animator = GetComponent<Animator>();
         HitSplashEvent = GetComponent<HitSplashEvent>();
         ImpulseSource = GetComponent<CinemachineImpulseSource>();
+        SR = RB.GetComponent<SpriteRenderer>();
 
         EnemyIdleBaseInstance.Initialize(gameObject, this);
         EnemyChaseBaseInstance.Initialize(gameObject, this);
@@ -50,9 +54,27 @@ public class EnragedPilgrim : Enemy
         StateMachine.CurrentEnemyState.PhysicsUpdate();
     }
 
+    public void OnDead()
+    {
+        // Fall down when is dead
+        attackCollider.enabled = false;
+        bodyHitCollider.enabled = false;
+    }
+
     public override void RespawnSetup()
     {
         base.RespawnSetup();
 
+        gameObject.SetActive(true);
+        IsAlive = true;
+        CurrentHealth = MaxHealth;
+        attackCollider.enabled = true;
+        bodyHitCollider.enabled = true;
+        Color color = SR.color;
+        color.a = 1f;
+        SR.color = color;
     }
+
+   
+
 }

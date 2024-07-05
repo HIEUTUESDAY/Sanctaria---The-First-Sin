@@ -35,9 +35,7 @@ public class ColliderAttack : MonoBehaviour
     private IEnumerator DamageCooldown()
     {
         canDealDamage = false;
-        GetComponent<Collider2D>().enabled = false;
         yield return new WaitForSeconds(damageCooldown);
-        GetComponent<Collider2D>().enabled = true;
         canDealDamage = true;
     }
 }

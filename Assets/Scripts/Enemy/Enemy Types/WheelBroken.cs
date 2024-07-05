@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class WheelBroken : Enemy
 {
-    private SpriteRenderer spriteRenderer;
+    [SerializeField] private Collider2D bodyHitCollider;
 
     protected override void AwakeSetup()
     {
@@ -33,7 +33,7 @@ public class WheelBroken : Enemy
         Animator = GetComponent<Animator>();
         HitSplashEvent = GetComponent<HitSplashEvent>();
         ImpulseSource = GetComponent<CinemachineImpulseSource>();
-        spriteRenderer = RB.GetComponent<SpriteRenderer>();
+        SR = RB.GetComponent<SpriteRenderer>();
 
         EnemyIdleBaseInstance.Initialize(gameObject, this);
         EnemyChaseBaseInstance.Initialize(gameObject, this);
@@ -56,6 +56,12 @@ public class WheelBroken : Enemy
         StateMachine.CurrentEnemyState.PhysicsUpdate();
     }
 
+    public void OnDead()
+    {
+        // Fall down when is dead
+        bodyHitCollider.enabled = false;
+    }
+
     public override void RespawnSetup()
     {
         base.RespawnSetup();
@@ -63,8 +69,9 @@ public class WheelBroken : Enemy
         gameObject.SetActive(true);
         IsAlive = true;
         CurrentHealth = MaxHealth;
-        Color color = spriteRenderer.color;
+        bodyHitCollider.enabled = true;
+        Color color = SR.color;
         color.a = 1f;
-        spriteRenderer.color = color;
+        SR.color = color;
     }
 }

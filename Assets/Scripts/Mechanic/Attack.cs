@@ -21,7 +21,6 @@ public class Attack : MonoBehaviour
             Vector2 hitDirection = (collision.transform.position - transform.position).normalized;
 
             damageable.TakeDamage(attackDamage, deliveredKnockback, hitDirection, attackType);
-
         }
     }
 }

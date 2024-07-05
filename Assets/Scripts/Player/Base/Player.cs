@@ -214,7 +214,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
             if (value == false)
             {
-                DamageableDie.Invoke();
+                DamageableDead.Invoke();
             }
         }
     }
@@ -291,7 +291,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     #region Player events system
 
     [field: SerializeField] public UnityEvent<float, Vector2> DamageableHit { get; set; }
-    [field: SerializeField] public UnityEvent DamageableDie { get; set; }
+    [field: SerializeField] public UnityEvent DamageableDead { get; set; }
 
     #endregion
 

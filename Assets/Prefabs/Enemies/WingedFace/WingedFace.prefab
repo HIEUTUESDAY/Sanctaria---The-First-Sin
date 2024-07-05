@@ -159,7 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDamage: 20
   knockback: {x: 2, y: 2}
-  damageCooldown: 1
+  damageCooldown: 2
   attackType: 0
 --- !u!1 &8419181204838262253
 GameObject:
@@ -354,12 +354,12 @@ MonoBehaviour:
   <DamageableHit>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
-  <DamageableDie>k__BackingField:
+  <DamageableDead>k__BackingField:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1647738228462106225}
         m_TargetAssemblyTypeName: WingedFace, Assembly-CSharp
-        m_MethodName: OnDeath
+        m_MethodName: OnDead
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -376,6 +376,7 @@ MonoBehaviour:
   <EnemyIdleBase>k__BackingField: {fileID: 11400000, guid: 4fee9a9c74e0137429bf1560ce20df33, type: 2}
   <EnemyChaseBase>k__BackingField: {fileID: 0}
   <EnemyAttackBase>k__BackingField: {fileID: 0}
+  bodyHitCollider: {fileID: 3222287337882847074}
   deathCollider: {fileID: 6842802022869974410}
 --- !u!114 &7206701975970760636
 MonoBehaviour:

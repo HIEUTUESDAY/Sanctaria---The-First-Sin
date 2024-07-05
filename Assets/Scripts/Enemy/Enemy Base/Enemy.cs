@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour, IEnemyDamageable, IEnemyMoveable
 {
     #region Enemy variables
 
+    public SpriteRenderer SR { get; set; }
     public TouchingDirections TouchingDirections { get; set; }
     public Animator Animator { get; set; }
     public HitSplashEvent HitSplashEvent { get; set; }
@@ -21,7 +22,7 @@ public class Enemy : MonoBehaviour, IEnemyDamageable, IEnemyMoveable
     #region IEnemyDamageable variables
 
     [field: SerializeField] public UnityEvent<float, Vector2> DamageableHit { get; set; }
-    [field: SerializeField] public UnityEvent DamageableDie { get; set; }
+    [field: SerializeField] public UnityEvent DamageableDead { get; set; }
     [field: SerializeField] public float MaxHealth { get; set; } = 100f;
 
     [field: SerializeField]
@@ -51,7 +52,7 @@ public class Enemy : MonoBehaviour, IEnemyDamageable, IEnemyMoveable
 
             if (value == false)
             {
-                DamageableDie.Invoke();
+                DamageableDead.Invoke();
             }
         }
     }

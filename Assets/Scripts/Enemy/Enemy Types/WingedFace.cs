@@ -2,12 +2,11 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class WingedFace : Enemy
-{ 
-    [SerializeField] public Collider2D deathCollider;
-    private SpriteRenderer spriteRenderer;
+{
+    [SerializeField] private Collider2D bodyHitCollider;
+    [SerializeField] private Collider2D deathCollider;
 
     protected override void AwakeSetup()
     {
@@ -18,6 +17,7 @@ public class WingedFace : Enemy
         StateMachine = new EnemyStateMachine();
 
         IdleState = new EnemyIdleState(this, StateMachine);
+
     }
 
     protected override void StartSetup()
@@ -31,7 +31,7 @@ public class WingedFace : Enemy
         Animator = GetComponent<Animator>();
         HitSplashEvent = GetComponent<HitSplashEvent>();
         ImpulseSource = GetComponent<CinemachineImpulseSource>();
-        spriteRenderer = RB.GetComponent<SpriteRenderer>();
+        SR = RB.GetComponent<SpriteRenderer>();
 
         EnemyIdleBaseInstance.Initialize(gameObject, this);
 
@@ -52,9 +52,10 @@ public class WingedFace : Enemy
         StateMachine.CurrentEnemyState.PhysicsUpdate();
     }
 
-    public void OnDeath()
+    public void OnDead()
     {
         // Fall down when is dead
+        bodyHitCollider.enabled = false;
         RB.gravityScale = 2f;
         RB.velocity = new Vector2(0, RB.velocity.y);
         deathCollider.enabled = true;
@@ -67,10 +68,11 @@ public class WingedFace : Enemy
         gameObject.SetActive(true);
         IsAlive = true;
         CurrentHealth = MaxHealth;
+        bodyHitCollider.enabled = true;
         RB.gravityScale = 0f;
         deathCollider.enabled = false;
-        Color color = spriteRenderer.color;
+        Color color = SR.color;
         color.a = 1f;
-        spriteRenderer.color = color;
+        SR.color = color;
     }
 }

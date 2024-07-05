@@ -2234,6 +2234,10 @@ PrefabInstance:
       propertyPath: waypoints.Array.data[1]
       value: 
       objectReference: {fileID: 1960996135}
+    - target: {fileID: 1647738228462106225, guid: 658f4607bb23726489b80850e538e83b, type: 3}
+      propertyPath: <EnemyIdleBase>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 72543aa4f6785c744be875b18c2c4ac6, type: 2}
     - target: {fileID: 6922263271624772975, guid: 658f4607bb23726489b80850e538e83b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -39.83
@@ -2293,6 +2297,10 @@ PrefabInstance:
     - target: {fileID: 8419181204838262253, guid: 658f4607bb23726489b80850e538e83b, type: 3}
       propertyPath: m_Name
       value: WingedFace_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419181204838262253, guid: 658f4607bb23726489b80850e538e83b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6138,29 +6146,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 6f6034e41515c33438e8582d00cc8798, type: 2}
     - target: {fileID: 7589368999813637776, guid: 01c9c6c92cb6dfc46ba717078934119c, type: 3}
-      propertyPath: EnemyIdleBase
-      value: 
-      objectReference: {fileID: 11400000, guid: a5797ebcae4ab0f43b8b08dd23749255, type: 2}
-    - target: {fileID: 7589368999813637776, guid: 01c9c6c92cb6dfc46ba717078934119c, type: 3}
-      propertyPath: EnemyChaseBase
-      value: 
-      objectReference: {fileID: 11400000, guid: af0fbb5b5799ebe4e8769c725759d4ba, type: 2}
-    - target: {fileID: 7589368999813637776, guid: 01c9c6c92cb6dfc46ba717078934119c, type: 3}
-      propertyPath: EnemyAttackBase
-      value: 
-      objectReference: {fileID: 11400000, guid: 6f6034e41515c33438e8582d00cc8798, type: 2}
-    - target: {fileID: 7589368999813637776, guid: 01c9c6c92cb6dfc46ba717078934119c, type: 3}
       propertyPath: <EnemyIdleBase>k__BackingField
       value: 
-      objectReference: {fileID: 11400000, guid: a5797ebcae4ab0f43b8b08dd23749255, type: 2}
+      objectReference: {fileID: 11400000, guid: 7a9b5bc61a19a9249aa78bb624d2afcc, type: 2}
     - target: {fileID: 7589368999813637776, guid: 01c9c6c92cb6dfc46ba717078934119c, type: 3}
       propertyPath: <EnemyChaseBase>k__BackingField
       value: 
-      objectReference: {fileID: 11400000, guid: af0fbb5b5799ebe4e8769c725759d4ba, type: 2}
+      objectReference: {fileID: 11400000, guid: 49a61bd6ee956c64ca7cde0d20b05a62, type: 2}
     - target: {fileID: 7589368999813637776, guid: 01c9c6c92cb6dfc46ba717078934119c, type: 3}
       propertyPath: <EnemyAttackBase>k__BackingField
       value: 
-      objectReference: {fileID: 11400000, guid: 6f6034e41515c33438e8582d00cc8798, type: 2}
+      objectReference: {fileID: 11400000, guid: e247ce4310eee5f4a8d3b7d4766c7bd8, type: 2}
     - target: {fileID: 8755155197576199263, guid: 01c9c6c92cb6dfc46ba717078934119c, type: 3}
       propertyPath: m_Name
       value: WheelBroken
@@ -51814,6 +51810,10 @@ PrefabInstance:
       propertyPath: waypoints.Array.data[1]
       value: 
       objectReference: {fileID: 1751545664}
+    - target: {fileID: 1647738228462106225, guid: 658f4607bb23726489b80850e538e83b, type: 3}
+      propertyPath: <EnemyIdleBase>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 72543aa4f6785c744be875b18c2c4ac6, type: 2}
     - target: {fileID: 6922263271624772975, guid: 658f4607bb23726489b80850e538e83b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 50.83
@@ -51873,6 +51873,10 @@ PrefabInstance:
     - target: {fileID: 8419181204838262253, guid: 658f4607bb23726489b80850e538e83b, type: 3}
       propertyPath: m_Name
       value: WingedFace
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419181204838262253, guid: 658f4607bb23726489b80850e538e83b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
