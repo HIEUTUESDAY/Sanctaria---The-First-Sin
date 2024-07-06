@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class SavePointManager : MonoBehaviour
 {
@@ -11,7 +11,7 @@ public class SavePointManager : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
-        enemyManager = GetComponent<EnemyManager>();
+        enemyManager = FindObjectOfType<EnemyManager>();
     }
 
     private bool isActivate = false;
@@ -25,8 +25,19 @@ public class SavePointManager : MonoBehaviour
             if (isActivate)
             {
                 animator.SetBool(AnimationString.isActivated, true);
-                Debug.Log("Save point activated");
             }
+        }
+    }
+
+    public void SaveGame()
+    {
+        GameManager gameManager = FindObjectOfType<GameManager>();
+        Player player = FindObjectOfType<Player>();
+        if (player != null)
+        {
+            Checkpoint checkpoint = new Checkpoint(SceneManager.GetActiveScene().name, transform.position);
+            gameManager.SetCurrentCheckpoint(checkpoint);
+            gameManager.SaveGame(player);
         }
     }
 
@@ -38,10 +49,9 @@ public class SavePointManager : MonoBehaviour
 
     public void ActivateSavePoint()
     {
-        if (IsActivate == false) 
+        if (IsActivate == false)
         {
             IsActivate = true;
         }
     }
 }
-

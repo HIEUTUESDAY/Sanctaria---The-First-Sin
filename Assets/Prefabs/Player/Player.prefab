@@ -225,7 +225,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0
+  m_AngularDrag: 0.05
   m_GravityScale: 6
   m_Material: {fileID: 6200000, guid: 9db87a4fe9ace3445bd27a24abfde6d5, type: 2}
   m_IncludeLayers:
@@ -536,7 +536,6 @@ MonoBehaviour:
   slowMotionFactor: 0.2
   timeSinceHit: 0
   invincibleTime: 2
-  currentArea: 
   ScriptablePlayerData: {fileID: 11400000, guid: 28f9108de9b3d044a8770be3d227fd6a, type: 2}
   _currentHealth: 0
   <CurrentStamina>k__BackingField: 0

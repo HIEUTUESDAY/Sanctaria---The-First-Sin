@@ -82,10 +82,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     [SerializeField] private float invincibleTime = 2f;
     [Space(5)]
 
-    [Header("Game Area")]
-    public string currentArea;
-    [Space(5)]
-
     private static Player Instance;
     [SerializeField] private ScriptablePlayerData ScriptablePlayerData;
     private Animator Animator;
@@ -329,7 +325,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         StaminaRegeneration();
         UpdateHealthBar();
         BeInvisible();
-        UpdateCurrentArea();
         SaveScriptablePlayerData();
     }
 
@@ -499,12 +494,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     #region Player animation event functions
 
-    public void SaveGame()
-    {
-        GameManager gameManager = FindObjectOfType<GameManager>();
-        gameManager.SaveGame(this);
-    }
-
     private void UseHealthPotion()
     {
         if (IsAlive && !LockVelocity)
@@ -529,22 +518,34 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         CurrentHealthPotion = MaxHealthPotion;
     }
 
-    private void ActivateSavePointAndRespawn()
+    private void ActivateSavePoint()
     {
         if (SavePointManager != null)
         {
             SavePointManager.ActivateSavePoint();
+            SavePointManager.SaveGame();
             SavePointManager.RespawnEnemiesAfterSpawn();
         }
     }
 
+    private void Respawn()
+    {
+        GameManager.Instance.RespawnPlayer(this);
+        RestoreFullStats();
+    }
+
     #endregion
 
-    #region Player area update
+    #region Player envent system functions
 
-    private void UpdateCurrentArea()
+    public void OnHit(float damage, Vector2 knockback)
     {
-        currentArea = SceneManager.GetActiveScene().name;
+        CoroutineManager.Instance.StartCoroutineManager(Knockback(knockback));
+    }
+
+    public void OnDeath()
+    {
+
     }
 
     #endregion
@@ -728,11 +729,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         {
             CoroutineManager.Instance.StartCoroutineManager(Dashing());
         }
-    }
-
-    public void OnHit(float damage, Vector2 knockback)
-    {
-        CoroutineManager.Instance.StartCoroutineManager(Knockback(knockback));
     }
 
     public void OnClimb(InputAction.CallbackContext context)

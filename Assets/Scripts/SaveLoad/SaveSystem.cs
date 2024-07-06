@@ -3,13 +3,13 @@ using UnityEngine;
 
 public static class SaveSystem
 {
-    public static void SaveGame(Player player, int slotIndex)
+    public static void SaveGame(Player player, Checkpoint checkpoint, int slotIndex)
     {
         string path = Application.persistentDataPath + "/savefile" + slotIndex + ".json";
 
         GameData data = new GameData();
-        data.playerData = new PlayerData(player);
-        data.currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name; // Save the current scene
+        data.playerData = new PlayerData(player, checkpoint);
+        data.currentCheckpoint = checkpoint;
 
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(path, json);

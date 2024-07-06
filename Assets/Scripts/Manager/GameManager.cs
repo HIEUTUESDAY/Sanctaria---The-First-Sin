@@ -1,5 +1,7 @@
+using System.Collections;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,6 +10,10 @@ public class GameManager : MonoBehaviour
     private string savePath;
     public int currentSlotIndex;
 
+    private Checkpoint currentCheckpoint;
+    private GameData loadedGameData;
+    private bool isLoadingGame = false;
+
     private void Awake()
     {
         if (Instance == null)
@@ -15,7 +21,7 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
             savePath = Application.persistentDataPath + "/";
-            currentSlotIndex = 1; // Set the default slot to 1
+            currentSlotIndex = 1;
         }
         else
         {
@@ -25,37 +31,70 @@ public class GameManager : MonoBehaviour
 
     public void SaveGame(Player player)
     {
-        SaveSystem.SaveGame(player, currentSlotIndex); // Save using the current slot index
+        SaveSystem.SaveGame(player, currentCheckpoint, currentSlotIndex);
     }
 
     public GameData LoadGame(int slotIndex)
     {
-        currentSlotIndex = slotIndex; // Set the current slot index when loading
-        return SaveSystem.LoadGame(slotIndex);
+        currentSlotIndex = slotIndex;
+        GameData data = SaveSystem.LoadGame(slotIndex);
+        if (data != null)
+        {
+            currentCheckpoint = data.currentCheckpoint;
+            loadedGameData = data; // Store the loaded game data
+        }
+        return data;
     }
 
-    public void ApplyGameData(PlayerController player, GameData data)
+    public void StartLoadingGame()
     {
-        if (player == null)
+        if (loadedGameData != null)
         {
-            Debug.LogError("Player is null");
-            return;
+            isLoadingGame = true;
+            StartCoroutine(LoadGameCoroutine(loadedGameData.currentCheckpoint.sceneName));
+        }
+    }
+
+    public void ApplyGameData(Player player, GameData data)
+    {
+        if (player != null)
+        {
+            player.transform.position = new Vector3(data.currentCheckpoint.position[0], data.currentCheckpoint.position[1], data.currentCheckpoint.position[2]);
+            player.CurrentHealth = data.playerData.health;
+            player.CurrentStamina = data.playerData.stamina;
+            player.CurrentHealthPotion = data.playerData.healthPotions;
+        }
+    }
+
+    public void RespawnPlayer(Player player)
+    {
+        if (currentCheckpoint != null)
+        {
+            player.transform.position = new Vector3(currentCheckpoint.position[0], currentCheckpoint.position[1], currentCheckpoint.position[2]);
+            player.IsAlive = true;
+        }
+    }
+
+    public void SetCurrentCheckpoint(Checkpoint checkpoint)
+    {
+        currentCheckpoint = checkpoint;
+    }
+
+    private IEnumerator LoadGameCoroutine(string sceneName)
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
         }
 
-        player.transform.position = new Vector3(data.playerData.position[0], data.playerData.position[1], data.playerData.position[2]);
-
-        Damageable damageable = player.GetComponent<Damageable>();
-        if (damageable != null)
+        Player player = FindObjectOfType<Player>();
+        if (player != null && loadedGameData != null)
         {
-            damageable.CurrentHealth = data.playerData.health;
-            damageable.CurrentStamina = data.playerData.stamina;
-            damageable.CurrentHealthPotion = data.playerData.healthPostions;
+            ApplyGameData(player, loadedGameData);
+            isLoadingGame = false;
+            Debug.Log("Loaded Game from Slot " + currentSlotIndex);
         }
-        else
-        {
-            Debug.LogError("Damageable component not found on PlayerController");
-        }
-
-        player.currentArea = data.playerData.currentArea;
     }
 }

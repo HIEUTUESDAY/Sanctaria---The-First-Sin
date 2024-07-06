@@ -56,30 +56,8 @@ public class PlayMenu : MonoBehaviour
 
     public void LoadGame(int slotIndex)
     {
-        GameManager.Instance.currentSlotIndex = slotIndex; // Set the current slot index in the GameManager
-        StartCoroutine(LoadGameCoroutine(slotIndex));
-    }
-
-    private IEnumerator LoadGameCoroutine(int slotIndex)
-    {
-        GameData saveData = GameManager.Instance.LoadGame(slotIndex);
-        if (saveData != null)
-        {
-            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(saveData.currentScene);
-
-            while (!asyncLoad.isDone)
-            {
-                yield return null;
-            }
-
-            PlayerController player = FindObjectOfType<PlayerController>();
-            GameManager.Instance.ApplyGameData(player, saveData);
-            Debug.Log("Loaded Game from Slot " + slotIndex);
-        }
-        else
-        {
-            Debug.LogError("No save data found in slot " + slotIndex);
-        }
+        GameManager.Instance.LoadGame(slotIndex); // Load the game data
+        GameManager.Instance.StartLoadingGame(); // Start the game loading process
     }
 
     public void StartNewGame(int slotIndex)
