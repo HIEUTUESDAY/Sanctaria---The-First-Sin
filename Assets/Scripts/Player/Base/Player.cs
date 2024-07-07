@@ -69,7 +69,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     [Header("Save Point")]
     [SerializeField] public bool isInSavePoint;
-    private SavePointManager SavePointManager;
+    private CheckPointManager SavePointManager;
     [Space(5)]
 
     [Header("Camera Shake")]
@@ -82,18 +82,17 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     [SerializeField] private float invincibleTime = 2f;
     [Space(5)]
 
-    private static Player Instance;
     [SerializeField] private ScriptablePlayerData ScriptablePlayerData;
-    private Animator Animator;
-    private TouchingDirections TouchingDirections;
-    private GameObject CurrentOneWayPlatform;
-    private CameraFollowObject CameraFollowObject;
-    private GhostTrail GhostTrail;
-    private HealthBar HealthBar;
+    public Animator Animator;
+    public TouchingDirections TouchingDirections;
+    public GameObject CurrentOneWayPlatform;
+    public CameraFollowObject CameraFollowObject;
+    public GhostTrail GhostTrail;
+    public HealthBar HealthBar;
+    public HitSplashEvent HitSplashEvent;
+    public CinemachineImpulseSource ImpulseSource;
     private float FallSpeedYDampingChangeThreshold;
     private float OriginalGravityScale;
-    private HitSplashEvent HitSplashEvent;
-    private CinemachineImpulseSource ImpulseSource;
 
     #endregion
 
@@ -293,7 +292,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     public void Awake()
     {
-        Instance = this;
         RB = GetComponent<Rigidbody2D>();
         Animator = GetComponent<Animator>();
         TouchingDirections = GetComponent<TouchingDirections>();
@@ -494,7 +492,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     #region Player animation event functions
 
-    private void UseHealthPotion()
+    public void UseHealthPotion()
     {
         if (IsAlive && !LockVelocity)
         {
@@ -511,27 +509,26 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         }
     }
 
-    private void RestoreFullStats()
+    public void RestoreFullStats()
     {
         CurrentHealth = MaxHealth;
         CurrentStamina = MaxStamina;
         CurrentHealthPotion = MaxHealthPotion;
     }
 
-    private void ActivateSavePoint()
+    public void ActivateSavePoint()
     {
         if (SavePointManager != null)
         {
-            SavePointManager.ActivateSavePoint();
-            SavePointManager.SaveGame();
+            SavePointManager.ActivateCheckPoint();
+            SavePointManager.SaveCheckPoint();
             SavePointManager.RespawnEnemiesAfterSpawn();
         }
     }
 
-    private void Respawn()
+    public void Respawn()
     {
-        GameManager.Instance.RespawnPlayer(this);
-        RestoreFullStats();
+        GameManager.Instance.RespawnPlayer();
     }
 
     #endregion
@@ -552,7 +549,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     #region Player checking functions
 
-    private void SetFacingCheck()
+    public void SetFacingCheck()
     {
         if (IsMoving && CanMove)
         {
@@ -560,7 +557,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         }
     }
 
-    private void GroundCheck()
+    public void GroundCheck()
     {
         if (TouchingDirections.IsGrounded)
         {
@@ -574,7 +571,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         }
     }
 
-    private void FallCheck()
+    public void FallCheck()
     {
         if (!TouchingDirections.IsGrounded && RB.velocity.y < maximumFallSpeed)
         {
@@ -582,7 +579,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         }
     }
 
-    private void LadderClimbCheck()
+    public void LadderClimbCheck()
     {
         if (isOnLadder && !LockVelocity && VerticalInput.y != 0 && RB.velocity.y <= 1)
         {
@@ -595,7 +592,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         }
     }
 
-    private void WallHangCheck()
+    public void WallHangCheck()
     {
         if (!TouchingDirections.IsGrabWallDetected || IsWallJumping || Animator.GetBool(AnimationString.hitTrigger))
         {
@@ -605,7 +602,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     }
 
 
-    private void OneWayCheck()
+    public void OneWayCheck()
     {
         if (VerticalInput.y < 0)
         {
@@ -616,7 +613,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         }
     }
 
-    private void YDampingCheck()
+    public void YDampingCheck()
     {
         //if player falling past the certain speed threshold
         if (RB.velocity.y < FallSpeedYDampingChangeThreshold && !CameraManger.Instance.IsLerpingYDamping && !CameraManger.Instance.LerpedFromPlayerFalling)
@@ -634,7 +631,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         }
     }
 
-    private void InputCheck()
+    public void InputCheck()
     {
         Animator.SetBool(AnimationString.upInput, VerticalInput.y > 0);
     }
@@ -766,7 +763,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     #region Player Coroutines
 
-    public IEnumerator DisableCollision()
+    private IEnumerator DisableCollision()
     {
         CompositeCollider2D PlatformCollider = CurrentOneWayPlatform.GetComponent<CompositeCollider2D>();
         Physics2D.IgnoreCollision(PlayerCollider, PlatformCollider);
@@ -774,7 +771,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         Physics2D.IgnoreCollision(PlayerCollider, PlatformCollider, false);
     }
 
-    public IEnumerator Knockback(Vector2 knockback)
+    private IEnumerator Knockback(Vector2 knockback)
     {
         // Apply knockback velocity
         LockVelocity = true;
@@ -783,14 +780,14 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         LockVelocity = false;
     }
 
-    public IEnumerator ApplySlowMotion()
+    private IEnumerator ApplySlowMotion()
     {
         Time.timeScale = slowMotionFactor;
         yield return new WaitForSecondsRealtime(slowMotionDuration);
         Time.timeScale = 1f;
     }
 
-    public IEnumerator Dashing()
+    private IEnumerator Dashing()
     {
         CurrentStamina -= dashStaminaCost;
         IsInvincible = true;
@@ -848,7 +845,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         canDash = true;
     }
 
-    public IEnumerator WallJumping()
+    private IEnumerator WallJumping()
     {
         IsWallJumping = true;
         RB.velocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y);
@@ -865,7 +862,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         IsWallJumping = false;
     }
 
-    public IEnumerator WallHanging()
+    private IEnumerator WallHanging()
     {
         CurrentStamina -= wallHangStaminaCost;
         IsWallHanging = true;
@@ -918,7 +915,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         if (collision.CompareTag("SavePoint"))
         {
             isInSavePoint = true;
-            SavePointManager = collision.GetComponent<SavePointManager>();
+            SavePointManager = collision.GetComponent<CheckPointManager>();
         }
     }
 

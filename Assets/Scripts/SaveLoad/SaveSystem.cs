@@ -9,7 +9,7 @@ public static class SaveSystem
 
         GameData data = new GameData();
         data.playerData = new PlayerData(player, checkpoint);
-        data.currentCheckpoint = checkpoint;
+        data.checkpoint = checkpoint;
 
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(path, json);

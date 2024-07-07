@@ -20,7 +20,10 @@ public class Attack : MonoBehaviour
             // Calculate hit direction
             Vector2 hitDirection = (collision.transform.position - transform.position).normalized;
 
-            damageable.TakeDamage(attackDamage, deliveredKnockback, hitDirection, attackType);
+            if (damageable != null)
+            {
+                damageable.TakeDamage(attackDamage, deliveredKnockback, hitDirection, attackType);
+            }
         }
     }
 }

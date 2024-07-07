@@ -6,13 +6,15 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+    private GameData gameData;
 
     private string savePath;
-    public int currentSlotIndex;
+    private int currentSlotIndex;
 
-    private Checkpoint currentCheckpoint;
-    private GameData loadedGameData;
-    private bool isLoadingGame = false;
+    public bool isRespawnPlayer = false;
+    public bool isNewGame = false;
+    public bool isLoadGame = false;
+
 
     private void Awake()
     {
@@ -21,7 +23,6 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
             savePath = Application.persistentDataPath + "/";
-            currentSlotIndex = 1;
         }
         else
         {
@@ -29,72 +30,140 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SaveGame(Player player)
-    {
-        SaveSystem.SaveGame(player, currentCheckpoint, currentSlotIndex);
-    }
+    #region Load menus data
 
-    public GameData LoadGame(int slotIndex)
+    public GameData LoadSaveSlotData(int slotIndex)
     {
-        currentSlotIndex = slotIndex;
         GameData data = SaveSystem.LoadGame(slotIndex);
-        if (data != null)
-        {
-            currentCheckpoint = data.currentCheckpoint;
-            loadedGameData = data; // Store the loaded game data
-        }
         return data;
     }
 
-    public void StartLoadingGame()
+    #endregion
+
+    #region New, Load and Save game functions
+
+    public void SaveGame(Player player, Checkpoint checkpoint)
     {
-        if (loadedGameData != null)
+        SaveSystem.SaveGame(player, checkpoint, currentSlotIndex);
+    }
+
+    public void NewGame(int slotIndex)
+    {
+        if (!isNewGame)
         {
-            isLoadingGame = true;
-            StartCoroutine(LoadGameCoroutine(loadedGameData.currentCheckpoint.sceneName));
+            currentSlotIndex = slotIndex;
+            StartCoroutine(NewGameCoroutine());
         }
     }
 
-    public void ApplyGameData(Player player, GameData data)
+    public void LoadGame(int slotIndex)
+    {
+        if (!isLoadGame)
+        {
+            currentSlotIndex = slotIndex;
+            gameData = SaveSystem.LoadGame(currentSlotIndex);
+
+            if (gameData != null)
+            {
+                StartCoroutine(LoadGameCoroutine());
+            }
+        }
+       
+    }
+
+    public void LoadGameData(Player player, GameData data)
     {
         if (player != null)
         {
-            player.transform.position = new Vector3(data.currentCheckpoint.position[0], data.currentCheckpoint.position[1], data.currentCheckpoint.position[2]);
+            player.transform.position = new Vector3(data.checkpoint.position[0], data.checkpoint.position[1], data.checkpoint.position[2]);
             player.CurrentHealth = data.playerData.health;
             player.CurrentStamina = data.playerData.stamina;
             player.CurrentHealthPotion = data.playerData.healthPotions;
         }
     }
 
-    public void RespawnPlayer(Player player)
+    public void RespawnPlayer()
     {
-        if (currentCheckpoint != null)
+        if (!isRespawnPlayer)
         {
-            player.transform.position = new Vector3(currentCheckpoint.position[0], currentCheckpoint.position[1], currentCheckpoint.position[2]);
-            player.IsAlive = true;
+            gameData = SaveSystem.LoadGame(currentSlotIndex);
+
+            if (gameData != null)
+            {
+                StartCoroutine(RespawnPlayerCoroutine());
+            }
         }
     }
 
-    public void SetCurrentCheckpoint(Checkpoint checkpoint)
+    public void SetRespawnPlayerData(Player player)
     {
-        currentCheckpoint = checkpoint;
+        player.IsAlive = true;
+        player.transform.position = new Vector3(gameData.checkpoint.position[0], gameData.checkpoint.position[1], gameData.checkpoint.position[2]);
+        player.RestoreFullStats();
     }
 
-    private IEnumerator LoadGameCoroutine(string sceneName)
-    {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+    #endregion
 
-        while (!asyncLoad.isDone)
+    #region GameManager coroutines
+
+    private IEnumerator NewGameCoroutine()
+    {
+        isNewGame = true;
+        AsyncOperation asyncNewGame = SceneManager.LoadSceneAsync("Level1.1");
+
+        while (!asyncNewGame.isDone)
         {
             yield return null;
         }
 
         Player player = FindObjectOfType<Player>();
-        if (player != null && loadedGameData != null)
+
+        Transform newGamePosition = GameObject.Find("NewGamePosition").GetComponent<Transform>();
+
+        if (player != null && newGamePosition != null)
         {
-            ApplyGameData(player, loadedGameData);
-            isLoadingGame = false;
-            Debug.Log("Loaded Game from Slot " + currentSlotIndex);
+            player.transform.position = newGamePosition.position;
+            isLoadGame = false;
         }
     }
+
+    private IEnumerator LoadGameCoroutine()
+    {
+        isLoadGame = true;
+        AsyncOperation asyncLoadGame = SceneManager.LoadSceneAsync(gameData.checkpoint.sceneName);
+
+        while (!asyncLoadGame.isDone)
+        {
+            yield return null;
+        }
+
+        Player player = FindObjectOfType<Player>();
+
+        if (player != null && gameData != null)
+        {
+            LoadGameData(player, gameData);
+            isLoadGame = false;
+        }
+    }
+
+    private IEnumerator RespawnPlayerCoroutine()
+    {
+        isRespawnPlayer = true;
+        AsyncOperation asyncLoadGame = SceneManager.LoadSceneAsync(gameData.checkpoint.sceneName);
+
+        while (!asyncLoadGame.isDone)
+        {
+            yield return null;
+        }
+
+        Player player = FindObjectOfType<Player>();
+
+        if (player != null && gameData != null)
+        {
+            SetRespawnPlayerData(player);
+            isRespawnPlayer = false;
+        }
+    }
+
+    #endregion
 }

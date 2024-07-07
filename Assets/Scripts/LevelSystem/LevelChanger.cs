@@ -11,7 +11,7 @@ public class LevelChanger : MonoBehaviour
     {
         if (connection == ScriptableLevelConnection.ActiveConnection)
         {
-            var player = FindObjectOfType<Player>();
+            Player player = FindObjectOfType<Player>();
             if (player != null)
             {
                 player.transform.position = spawnPosition.position;
@@ -21,7 +21,7 @@ public class LevelChanger : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        var player = collision.collider.GetComponent<Player>();
+        Player player = collision.collider.GetComponent<Player>();
 
         if (player != null)
         {

@@ -36,8 +36,8 @@ public class PlayMenu : MonoBehaviour
             {
                 saveSlots[i].loadButton.gameObject.SetActive(true);
                 saveSlots[i].newGameButton.gameObject.SetActive(false);
-                GameData saveData = GameManager.Instance.LoadGame(i + 1);
-                saveSlots[i].infoText.text = "Area: " + saveData.playerData.currentArea;
+                GameData saveData = GameManager.Instance.LoadSaveSlotData(i + 1);
+                saveSlots[i].infoText.text = "Area: " + saveData.checkpoint.sceneName;
                 int index = i + 1; // Capture the index for the button click event
                 saveSlots[i].loadButton.onClick.RemoveAllListeners();
                 saveSlots[i].loadButton.onClick.AddListener(() => LoadGame(index));
@@ -56,13 +56,11 @@ public class PlayMenu : MonoBehaviour
 
     public void LoadGame(int slotIndex)
     {
-        GameManager.Instance.LoadGame(slotIndex); // Load the game data
-        GameManager.Instance.StartLoadingGame(); // Start the game loading process
+        GameManager.Instance.LoadGame(slotIndex);
     }
 
     public void StartNewGame(int slotIndex)
     {
-        GameManager.Instance.currentSlotIndex = slotIndex; // Set the current slot index when starting a new game
-        SceneManager.LoadScene("Level1.1");
+        GameManager.Instance.NewGame(slotIndex);
     }
 }

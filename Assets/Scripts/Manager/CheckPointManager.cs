@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SavePointManager : MonoBehaviour
+public class CheckPointManager : MonoBehaviour
 {
     private Animator animator;
     private EnemyManager enemyManager;
@@ -29,25 +29,23 @@ public class SavePointManager : MonoBehaviour
         }
     }
 
-    public void SaveGame()
+    public void SaveCheckPoint()
     {
         GameManager gameManager = FindObjectOfType<GameManager>();
         Player player = FindObjectOfType<Player>();
         if (player != null)
         {
             Checkpoint checkpoint = new Checkpoint(SceneManager.GetActiveScene().name, transform.position);
-            gameManager.SetCurrentCheckpoint(checkpoint);
-            gameManager.SaveGame(player);
+            gameManager.SaveGame(player, checkpoint);
         }
     }
 
     public void RespawnEnemiesAfterSpawn()
     {
         enemyManager.RespawnAllEnemies();
-        Debug.Log("Respawn all enemy");
     }
 
-    public void ActivateSavePoint()
+    public void ActivateCheckPoint()
     {
         if (IsActivate == false)
         {

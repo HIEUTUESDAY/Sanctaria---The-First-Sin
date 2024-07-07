@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameData
 {
     public PlayerData playerData;
-    public Checkpoint currentCheckpoint;
+    public Checkpoint checkpoint;
 }
 
 [System.Serializable]
@@ -14,14 +14,12 @@ public class PlayerData
     public float health;
     public float stamina;
     public int healthPotions;
-    public string currentArea;
 
     public PlayerData(Player player, Checkpoint checkpoint)
     {
         health = player.CurrentHealth;
         stamina = player.CurrentStamina;
         healthPotions = player.CurrentHealthPotion;
-        currentArea = checkpoint.sceneName;
     }
 }
 
