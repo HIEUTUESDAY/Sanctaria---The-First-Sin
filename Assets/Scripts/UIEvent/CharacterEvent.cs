@@ -14,4 +14,7 @@ public class CharacterEvent
 
     // Character healed and healed value
     public static UnityAction<GameObject, float> characterHealed;
+
+    // Character hit splash when got hit
+    public static UnityAction<GameObject, Vector2, int> hitSplash;
 }

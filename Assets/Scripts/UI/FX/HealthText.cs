@@ -22,13 +22,6 @@ public class HealthText : MonoBehaviour
         startColor = textMeshPro.color;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     private void Update()
     {
         textTransform.position += moveSpeed * Time.deltaTime;

@@ -383,7 +383,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: DeathBringer_Attack
-  m_Speed: 1
+  m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 3339497938776956556}
@@ -482,7 +482,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DeathBringer_AC
+  m_Name: WheelBroken_AC
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: isAlive
@@ -678,6 +678,10 @@ AnimatorStateMachine:
   - {fileID: -7472761200998214547}
   m_EntryTransitions: []
   m_StateMachineTransitions:
+  - first: {fileID: -456940100405473966}
+    second:
+    - {fileID: -410053716670640313}
+    - {fileID: 4311665849150505399}
   - first: {fileID: 1182653788347091214}
     second:
     - {fileID: -881292124931175361}
@@ -685,10 +689,6 @@ AnimatorStateMachine:
   - first: {fileID: 5477426440659852519}
     second:
     - {fileID: -1572934239921728924}
-  - first: {fileID: -456940100405473966}
-    second:
-    - {fileID: -410053716670640313}
-    - {fileID: 4311665849150505399}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 580, y: 210, z: 0}
   m_EntryPosition: {x: 80, y: 80, z: 0}

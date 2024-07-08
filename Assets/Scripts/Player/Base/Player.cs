@@ -339,19 +339,16 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     {
         if (IsAlive && !IsInvincible)
         {
-            // Beable to hit
             CurrentHealth -= damage;
             WasHit = true;
 
-            // Spawn Damage Particle with direction
-            HitSplashEvent.ShowHitSplash(transform.position, hitDirection, attackType);
             CoroutineManager.Instance.StartCoroutineManager(ApplySlowMotion());
             CameraShakeManager.Instance.CameraShake(ImpulseSource);
             Animator.SetTrigger(AnimationString.hitTrigger);
 
-            // Notify other subcribed components that damageable was hit to handle the knockback
             DamageableHit?.Invoke(damage, knockback);
             CharacterEvent.characterDamaged.Invoke(gameObject, damage);
+            CharacterEvent.hitSplash.Invoke(gameObject, hitDirection, attackType);
         }
         else
         {
@@ -638,7 +635,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     #endregion
 
-    #region Load & Save player current data
+    #region Load & Save player SO data
 
     public void LoadScriptablePlayerData()
     {

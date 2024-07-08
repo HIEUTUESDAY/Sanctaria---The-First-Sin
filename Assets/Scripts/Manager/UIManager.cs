@@ -7,6 +7,8 @@ public class UIManager : MonoBehaviour
 {
     public GameObject damageTextPrefab;
     public GameObject healthTextPrefab;
+    public GameObject[] playerHitSplashPrefab;
+    public GameObject[] nonPlayerHitSplashPrefab;
 
     public Canvas gameCanvas;
 
@@ -19,12 +21,14 @@ public class UIManager : MonoBehaviour
     {
         CharacterEvent.characterDamaged += CharacterTookDamage;
         CharacterEvent.characterHealed += CharacterHealed;
+        CharacterEvent.hitSplash += ShowHitSplash;
     }
 
     private void OnDisable()
     {
         CharacterEvent.characterDamaged -= CharacterTookDamage;
         CharacterEvent.characterHealed -= CharacterHealed;
+        CharacterEvent.hitSplash -= ShowHitSplash;
     }
 
     public void CharacterTookDamage(GameObject character, float damageReceived)
@@ -45,5 +49,34 @@ public class UIManager : MonoBehaviour
         TMP_Text tmpText = Instantiate(healthTextPrefab, spawnPosition, Quaternion.identity, gameCanvas.transform).GetComponent<TMP_Text>();
 
         tmpText.text = ("+"+healthRestored.ToString());
+    }
+
+    public void ShowHitSplash(GameObject character, Vector2 hitDirection, int attackType)
+    {
+        Vector3 spawnPosition = character.transform.position;
+
+        GameObject hitSplash;
+
+        if (character.tag == "Player")
+        {
+           
+            hitSplash = Instantiate(playerHitSplashPrefab[attackType], spawnPosition, Quaternion.identity);
+        }
+        else
+        {
+            hitSplash = Instantiate(nonPlayerHitSplashPrefab[attackType], spawnPosition, Quaternion.identity);
+        }
+
+        if (hitSplash != null)
+        {
+            if (hitDirection.x < 0)
+            {
+                hitSplash.transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+            else
+            {
+                hitSplash.transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+        }
     }
 }
