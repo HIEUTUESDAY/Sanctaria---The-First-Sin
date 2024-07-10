@@ -11,7 +11,6 @@ public interface IPlayerDamageable : IDamageableBase
     int MaxHealthPotion { get; set; }
     int CurrentHealthPotion { get; set; }
     float HealthRestore {  get; set; }
-    bool IsAlive { get; set; }
     bool IsInvincible { get; set; }
     bool WasHit { get; set; }
     bool LockVelocity { get; set; }

@@ -85,7 +85,7 @@ public class WheelBrokenAttackBasic : EnemyAttackSOBase
 
     private void AttackPlayer()
     {
-        if (AttackZone.detectedCols.Count > 0 && CanMove)
+        if (AttackZone.attackableCols.Count > 0 && CanMove)
         {
             HasTarget = true;
             enemy.MoveEnemy(Vector2.zero);
@@ -103,7 +103,7 @@ public class WheelBrokenAttackBasic : EnemyAttackSOBase
 
     private void SwitchToChaseState()
     {
-        if (AttackZone.detectedCols.Count <= 0 && CanMove)
+        if (AttackZone.attackableCols.Count <= 0 && CanMove)
         {
             enemy.StateMachine.ChangeState(enemy.ChaseState);
         }

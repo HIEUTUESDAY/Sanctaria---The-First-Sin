@@ -1,82 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3626941219487350509
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3527169211453734138}
-  - component: {fileID: 6842802022869974410}
-  m_Layer: 6
-  m_Name: DeathCollider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3527169211453734138
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3626941219487350509}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6922263271624772975}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &6842802022869974410
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3626941219487350509}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.032527924, y: -1.2195501}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.541832, y: 0.80945396}
-  m_EdgeRadius: 0
 --- !u!1 &8313074555493497143
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,7 +65,7 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.2}
+  m_Offset: {x: 0, y: 0}
   m_Size: {x: 1.5, y: 1.5}
   m_Direction: 0
 --- !u!114 &8474850426298761054
@@ -158,7 +81,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDamage: 20
-  knockback: {x: 2, y: 2}
+  knockback: {x: 3, y: 2}
   damageCooldown: 2
   attackType: 0
 --- !u!1 &8419181204838262253
@@ -176,7 +99,6 @@ GameObject:
   - component: {fileID: 2001330961462332770}
   - component: {fileID: 1647738228462106225}
   - component: {fileID: 7206701975970760636}
-  - component: {fileID: 6267593441376612503}
   - component: {fileID: 7198365394021542600}
   m_Layer: 6
   m_Name: WingedFace
@@ -199,7 +121,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3563975869611163111}
-  - {fileID: 3527169211453734138}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5872057159866270703
@@ -243,12 +164,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1314640984, guid: 62aeb62fff1cad54b9f7a6428356d5a9, type: 3}
+  m_Sprite: {fileID: 2114697417, guid: ee0f5d119fb4d404dabfe09d2b9f4f25, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 9.375, y: 9.375}
+  m_Size: {x: 6.75, y: 6.1875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -313,8 +234,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.2}
-  m_Size: {x: 1.5, y: 2}
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1.5, y: 1.5}
   m_Direction: 0
 --- !u!95 &2001330961462332770
 Animator:
@@ -369,7 +290,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  <MaxHealth>k__BackingField: 100
+  <MaxHealth>k__BackingField: 20
   _currentHealth: 0
   _isAlive: 1
   <IsFacingRight>k__BackingField: 1
@@ -377,7 +298,6 @@ MonoBehaviour:
   <EnemyChaseBase>k__BackingField: {fileID: 0}
   <EnemyAttackBase>k__BackingField: {fileID: 0}
   bodyHitCollider: {fileID: 3222287337882847074}
-  deathCollider: {fileID: 6842802022869974410}
 --- !u!114 &7206701975970760636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -395,21 +315,6 @@ MonoBehaviour:
   - {fileID: 0}
   nextPoint: {fileID: 0}
   pointNumber: 0
---- !u!114 &6267593441376612503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8419181204838262253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e0896c4861cd804b9df21cfcdb3e08d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hitSplashPrefab:
-  - {fileID: 6892350221140759542, guid: dd1da905caf478840b2a9b5259fd77ba, type: 3}
-  - {fileID: 3743834501123866132, guid: 3e2e229d1ca250f408c119a22c16a268, type: 3}
 --- !u!114 &7198365394021542600
 MonoBehaviour:
   m_ObjectHideFlags: 0

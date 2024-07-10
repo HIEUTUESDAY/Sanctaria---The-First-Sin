@@ -89,7 +89,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     public CameraFollowObject CameraFollowObject;
     public GhostTrail GhostTrail;
     public HealthBar HealthBar;
-    public HitSplashEvent HitSplashEvent;
     public CinemachineImpulseSource ImpulseSource;
     private float FallSpeedYDampingChangeThreshold;
     private float OriginalGravityScale;
@@ -298,7 +297,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         GhostTrail = GetComponent<GhostTrail>();
         HealthBar = GetComponent<HealthBar>();
         OriginalGravityScale = RB.gravityScale;
-        HitSplashEvent = GetComponent<HitSplashEvent>();
         ImpulseSource = GetComponent<CinemachineImpulseSource>();
        
     }

@@ -186,7 +186,7 @@ public class WheelBrokenIdlePatrolAround : EnemyIdleSOBase
 
     private void HasTarget()
     {
-        if (AttackZone.detectedCols.Count > 0)
+        if (AttackZone.attackableCols.Count > 0)
         {
             enemy.StateMachine.ChangeState(enemy.AttackState);
         }

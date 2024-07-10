@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aff0d756af8a2a44b18d70127f48564, type: 3}
   m_Name: WheelBroken Chase - Torward Player
   m_EditorClassIdentifier: 
-  chaseSpeed: 4
+  chaseSpeed: 2
   chaseDuration: 3
   facingSpotRange: 20
   behindSpotRange: 10

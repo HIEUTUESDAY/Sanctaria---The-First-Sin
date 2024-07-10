@@ -11,17 +11,15 @@ public class Attack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        IDamageableBase damageable = collision.GetComponent<IDamageableBase>();
-
         if (collision != null)
         {
-            Vector2 deliveredKnockback = transform.parent.rotation.y == 0 ? knockback : new Vector2(-knockback.x, knockback.y);
+            IDamageableBase damageable = collision.GetComponent<IDamageableBase>();
 
-            // Calculate hit direction
-            Vector2 hitDirection = (collision.transform.position - transform.position).normalized;
-
-            if (damageable != null)
+            if (damageable != null && damageable.IsAlive)
             {
+                Vector2 deliveredKnockback = transform.parent.rotation.y == 0 ? knockback : new Vector2(-knockback.x, knockback.y);
+                Vector2 hitDirection = (collision.transform.position - transform.position).normalized;
+
                 damageable.TakeDamage(attackDamage, deliveredKnockback, hitDirection, attackType);
             }
         }

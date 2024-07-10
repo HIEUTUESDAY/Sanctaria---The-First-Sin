@@ -13,19 +13,15 @@ public class ColliderAttack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (canDealDamage)
+        if (collision != null)
         {
-            // See if it can be hit
             IDamageableBase damageable = collision.GetComponent<IDamageableBase>();
 
-            if (damageable != null)
+            if (damageable != null && damageable.IsAlive && canDealDamage)
             {
                 Vector2 deliveredKnockback = transform.parent.rotation.y == 0 ? knockback : new Vector2(-knockback.x, knockback.y);
-
-                // Calculate hit direction
                 Vector2 hitDirection = (collision.transform.position - transform.position).normalized;
 
-                // Hit the target
                 damageable.TakeDamage(attackDamage, deliveredKnockback, hitDirection, attackType);
                 StartCoroutine(DamageCooldown());
             }

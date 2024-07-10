@@ -6,7 +6,6 @@ using UnityEngine;
 public class WingedFace : Enemy
 {
     [SerializeField] private Collider2D bodyHitCollider;
-    [SerializeField] private Collider2D deathCollider;
 
     protected override void AwakeSetup()
     {
@@ -29,7 +28,6 @@ public class WingedFace : Enemy
         RB = GetComponent<Rigidbody2D>();
         TouchingDirections = GetComponent<TouchingDirections>();
         Animator = GetComponent<Animator>();
-        HitSplashEvent = GetComponent<HitSplashEvent>();
         ImpulseSource = GetComponent<CinemachineImpulseSource>();
         SR = RB.GetComponent<SpriteRenderer>();
 
@@ -56,9 +54,6 @@ public class WingedFace : Enemy
     {
         // Fall down when is dead
         bodyHitCollider.enabled = false;
-        RB.gravityScale = 2f;
-        RB.velocity = new Vector2(0, RB.velocity.y);
-        deathCollider.enabled = true;
     }
 
     public override void RespawnSetup()
@@ -69,8 +64,6 @@ public class WingedFace : Enemy
         IsAlive = true;
         CurrentHealth = MaxHealth;
         bodyHitCollider.enabled = true;
-        RB.gravityScale = 0f;
-        deathCollider.enabled = false;
         Color color = SR.color;
         color.a = 1f;
         SR.color = color;

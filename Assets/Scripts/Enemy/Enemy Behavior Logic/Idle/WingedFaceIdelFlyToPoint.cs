@@ -46,16 +46,13 @@ public class WingedFaceIdelFlyToPoint : EnemyIdleSOBase
     {
         base.DoPhysicsUpdateLogic();
 
-        if (enemy.IsAlive && WayPoint != null && WayPoint.pointList.Count > 0)
+        if (enemy.IsAlive && WayPoint != null && WayPoint.pointList.Count > 0 && CanMove)
         {
-            if (CanMove)
-            {
-                FlyToWayPoint();
-            }
-            else
-            {
-                enemy.MoveEnemy(Vector2.zero);
-            }
+           FlyToWayPoint();
+        }
+        else
+        {
+            enemy.MoveEnemy(Vector2.zero);
         }
     }
 
@@ -71,7 +68,11 @@ public class WingedFaceIdelFlyToPoint : EnemyIdleSOBase
         distanceToWayPoint = Vector2.Distance(WayPoint.nextPoint.position, enemy.transform.position);
 
         Vector2 flyDirection = directionToWaypoint * flightSpeed;
-        enemy.MoveEnemy(flyDirection);
+        if (CanMove)
+        {
+            enemy.MoveEnemy(flyDirection);
+
+        }
         ChangeDirection();
 
         // Check if we need to switch waypoint

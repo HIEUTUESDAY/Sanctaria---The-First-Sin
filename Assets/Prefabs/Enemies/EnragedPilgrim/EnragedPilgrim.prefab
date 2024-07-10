@@ -96,8 +96,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.13}
-  m_Size: {x: 1, y: 3}
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 3.3}
   m_Direction: 0
 --- !u!114 &1104903072495099469
 MonoBehaviour:
@@ -207,6 +207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detectedCols: []
+  attackableCols: []
 --- !u!114 &8812172993090927696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,7 +270,6 @@ GameObject:
   - component: {fileID: 5276885798149289282}
   - component: {fileID: 5721420345687445818}
   - component: {fileID: 2364815148162954340}
-  - component: {fileID: 7647572136753300329}
   - component: {fileID: 5850335697219394311}
   m_Layer: 6
   m_Name: EnragedPilgrim
@@ -409,7 +409,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.13}
+  m_Offset: {x: 0, y: 0}
   m_Size: {x: 1.2, y: 3.5}
   m_Direction: 0
 --- !u!95 &5276885798149289282
@@ -486,9 +486,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c365358ef1687844a4ed49054964e0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundBoxSize: {x: 1, y: 0.1}
-  wallBoxSize: {x: 0.1, y: 2}
-  ceilingBoxSize: {x: 1, y: 0.1}
+  groundBoxSize: {x: 1, y: 0.5}
+  wallBoxSize: {x: 1, y: 2}
+  ceilingBoxSize: {x: 1, y: 0.5}
   grabWallBoxSize: {x: 0, y: 0}
   groundLayer:
     serializedVersion: 2
@@ -496,29 +496,14 @@ MonoBehaviour:
   jumpWallLayer:
     serializedVersion: 2
     m_Bits: 0
-  groundCastDistance: 1.9
-  wallCastDistance: -0.65
-  ceilingCastDistance: -1.65
+  groundCastDistance: 2
+  wallCastDistance: -1
+  ceilingCastDistance: -2
   grabWallCastDistance: 0
   _isGrounded: 0
   _isOnWall: 0
   _isGrabWallDetected: 0
   _isOnCeiling: 0
---- !u!114 &7647572136753300329
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8150908932776393123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e0896c4861cd804b9df21cfcdb3e08d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hitSplashPrefab:
-  - {fileID: 6892350221140759542, guid: dd1da905caf478840b2a9b5259fd77ba, type: 3}
-  - {fileID: 3743834501123866132, guid: 3e2e229d1ca250f408c119a22c16a268, type: 3}
 --- !u!114 &5850335697219394311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -599,7 +584,7 @@ Transform:
   m_GameObject: {fileID: 8608153858513838990}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.002, y: -2.18, z: 0}
+  m_LocalPosition: {x: 1, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -648,7 +633,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 1}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &7156233270073522150
 MonoBehaviour:
@@ -663,3 +648,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detectedCols: []
+  attackableCols: []

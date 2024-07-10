@@ -5,15 +5,19 @@ using UnityEngine;
 
 public class HitSplash : MonoBehaviour
 {
-    public float timeToDestroy = 1f;
-    private float timeElapsed = 0f;
+    public Animator animator;
+    public string animationName;
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
+
 
     private void Update()
     {
-        timeElapsed += Time.deltaTime;
-
-
-        if (timeElapsed >= timeToDestroy)
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        if (stateInfo.IsName(animationName) && stateInfo.normalizedTime >= 1.0f)
         {
             Destroy(gameObject);
         }

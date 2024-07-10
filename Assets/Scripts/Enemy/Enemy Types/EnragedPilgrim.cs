@@ -30,7 +30,6 @@ public class EnragedPilgrim : Enemy
         RB = GetComponent<Rigidbody2D>();
         TouchingDirections = GetComponent<TouchingDirections>();
         Animator = GetComponent<Animator>();
-        HitSplashEvent = GetComponent<HitSplashEvent>();
         ImpulseSource = GetComponent<CinemachineImpulseSource>();
         SR = RB.GetComponent<SpriteRenderer>();
 

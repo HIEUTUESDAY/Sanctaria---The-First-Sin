@@ -119,4 +119,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c73ce43fa7a88114cb8b38f94f1cd861, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToDestroy: 0.35
+  animator: {fileID: 0}
+  animationName: PlayerHitSplash

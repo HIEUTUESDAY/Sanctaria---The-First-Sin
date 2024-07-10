@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5949906eb8174524a815b7b1365b033e
+guid: ee0f5d119fb4d404dabfe09d2b9f4f25
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,169 +123,169 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Attack_0
+      name: WingedFace_idle_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 198
+        width: 108
+        height: 99
+      alignment: 9
+      pivot: {x: 0.5, y: 0.57}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a01adea3f043d6f4ebdceb7026ed43bc
+      internalID: 2114697417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WingedFace_idle_1
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 198
+        width: 108
+        height: 99
+      alignment: 9
+      pivot: {x: 0.5, y: 0.57}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 375a9a714cbea1b4ba8a25abdc249757
+      internalID: -1466103967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WingedFace_idle_2
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 198
+        width: 108
+        height: 99
+      alignment: 9
+      pivot: {x: 0.5, y: 0.57}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7380058d3a43dd438057e4a47911f57
+      internalID: 58780639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WingedFace_idle_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 99
+        width: 108
+        height: 99
+      alignment: 9
+      pivot: {x: 0.5, y: 0.57}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a23ff5d0d6c53be4b99387afdce5ae0e
+      internalID: -2016686347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WingedFace_idle_4
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 99
+        width: 108
+        height: 99
+      alignment: 9
+      pivot: {x: 0.5, y: 0.57}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfb2e0bb58db3a449832a3a996b10ddb
+      internalID: -488091931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WingedFace_idle_5
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 99
+        width: 108
+        height: 99
+      alignment: 9
+      pivot: {x: 0.5, y: 0.57}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef5c2839044cee042bff6a6b987cb513
+      internalID: 1331362469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WingedFace_idle_6
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 150
-        height: 150
+        width: 108
+        height: 99
       alignment: 9
-      pivot: {x: 0.53, y: 0.5}
+      pivot: {x: 0.5, y: 0.57}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 684255c4778a5bd4fbd464bcc2624c94
-      internalID: -2092347970
+      spriteID: 65c022d73879e9e4986ef0a8cd8900b8
+      internalID: 1516932268
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack_1
+      name: WingedFace_idle_7
       rect:
         serializedVersion: 2
-        x: 150
+        x: 108
         y: 0
-        width: 150
-        height: 150
+        width: 108
+        height: 99
       alignment: 9
-      pivot: {x: 0.53, y: 0.5}
+      pivot: {x: 0.5, y: 0.57}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5cab551a9af95424382dce6fabc37122
-      internalID: 1408742197
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack_2
-      rect:
-        serializedVersion: 2
-        x: 300
-        y: 0
-        width: 150
-        height: 150
-      alignment: 9
-      pivot: {x: 0.53, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6a998a6b852366a42b50f2b1ec51f12c
-      internalID: 1482918226
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack_3
-      rect:
-        serializedVersion: 2
-        x: 450
-        y: 0
-        width: 150
-        height: 150
-      alignment: 9
-      pivot: {x: 0.53, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 294807221ff0eb84cb49b54e16da7517
-      internalID: -1259954074
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack_4
-      rect:
-        serializedVersion: 2
-        x: 600
-        y: 0
-        width: 150
-        height: 150
-      alignment: 9
-      pivot: {x: 0.53, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4df84fdb1907fbd4986baaade735fa01
-      internalID: 34127622
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack_5
-      rect:
-        serializedVersion: 2
-        x: 750
-        y: 0
-        width: 150
-        height: 150
-      alignment: 9
-      pivot: {x: 0.53, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9fc7955d544a3574d8916770cfb67eef
-      internalID: 222111733
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack_6
-      rect:
-        serializedVersion: 2
-        x: 900
-        y: 0
-        width: 150
-        height: 150
-      alignment: 9
-      pivot: {x: 0.53, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 40c490469c118c447a6c7f3adf99ea21
-      internalID: -814000357
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack_7
-      rect:
-        serializedVersion: 2
-        x: 1050
-        y: 0
-        width: 150
-        height: 150
-      alignment: 9
-      pivot: {x: 0.53, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 790e982e6d7822d4eb0a6a58568b7575
-      internalID: 945961822
+      spriteID: 8a86d9467ee1b9d44bb3779825cb0c39
+      internalID: 1503186809
       vertices: []
       indices: 
       edges: []
@@ -301,14 +301,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Attack_0: -2092347970
-      Attack_1: 1408742197
-      Attack_2: 1482918226
-      Attack_3: -1259954074
-      Attack_4: 34127622
-      Attack_5: 222111733
-      Attack_6: -814000357
-      Attack_7: 945961822
+      WingedFace_idle_0: 2114697417
+      WingedFace_idle_1: -1466103967
+      WingedFace_idle_2: 58780639
+      WingedFace_idle_3: -2016686347
+      WingedFace_idle_4: -488091931
+      WingedFace_idle_5: 1331362469
+      WingedFace_idle_6: 1516932268
+      WingedFace_idle_7: 1503186809
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

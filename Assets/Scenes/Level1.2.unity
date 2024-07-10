@@ -2238,13 +2238,21 @@ PrefabInstance:
       propertyPath: <EnemyIdleBase>k__BackingField
       value: 
       objectReference: {fileID: 11400000, guid: 72543aa4f6785c744be875b18c2c4ac6, type: 2}
+    - target: {fileID: 5872057159866270703, guid: 658f4607bb23726489b80850e538e83b, type: 3}
+      propertyPath: m_Size.x
+      value: 5.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 5872057159866270703, guid: 658f4607bb23726489b80850e538e83b, type: 3}
+      propertyPath: m_Size.y
+      value: 4.0625
+      objectReference: {fileID: 0}
     - target: {fileID: 6922263271624772975, guid: 658f4607bb23726489b80850e538e83b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -39.83
+      value: -35.63
       objectReference: {fileID: 0}
     - target: {fileID: 6922263271624772975, guid: 658f4607bb23726489b80850e538e83b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.25
+      value: -4.27
       objectReference: {fileID: 0}
     - target: {fileID: 6922263271624772975, guid: 658f4607bb23726489b80850e538e83b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6115,9 +6123,9 @@ PrefabInstance:
       propertyPath: EnemyAttackBase
       value: 
       objectReference: {fileID: 11400000, guid: 6f6034e41515c33438e8582d00cc8798, type: 2}
-    - target: {fileID: 5734536981928801023, guid: 01c9c6c92cb6dfc46ba717078934119c, type: 3}
-      propertyPath: m_Size.x
-      value: 1.65
+    - target: {fileID: 5715564397959698036, guid: 01c9c6c92cb6dfc46ba717078934119c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5948956060538873549, guid: 01c9c6c92cb6dfc46ba717078934119c, type: 3}
       propertyPath: m_Enabled
@@ -6314,7 +6322,7 @@ PrefabInstance:
     - target: {fileID: 6177573566294617025, guid: 01c9c6c92cb6dfc46ba717078934119c, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -1599045286, guid: aa956a23a5f3b104db956cb9cd79fe2b, type: 3}
+      objectReference: {fileID: -1304792863, guid: 3ebe0c34938383e4fa8a87cd17f7ab11, type: 3}
     - target: {fileID: 7589368999813637776, guid: 01c9c6c92cb6dfc46ba717078934119c, type: 3}
       propertyPath: <EnemyIdleBase>k__BackingField
       value: 

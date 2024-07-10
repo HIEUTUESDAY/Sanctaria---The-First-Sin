@@ -12,7 +12,6 @@ public class Enemy : MonoBehaviour, IEnemyDamageable, IEnemyMoveable
     public SpriteRenderer SR { get; set; }
     public TouchingDirections TouchingDirections { get; set; }
     public Animator Animator { get; set; }
-    public HitSplashEvent HitSplashEvent { get; set; }
     public CinemachineImpulseSource ImpulseSource { get; set; }
     [SerializeField] private float slowMotionDuration = 0.5f;
     [SerializeField] private float slowMotionFactor = 0.2f;

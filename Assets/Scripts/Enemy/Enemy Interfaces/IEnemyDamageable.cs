@@ -9,5 +9,4 @@ public interface IEnemyDamageable : IDamageableBase
     //TODO: add any functions when needed
     float MaxHealth { get; set; }
     float CurrentHealth { get; set; }
-    bool IsAlive { get; set; }
 }
