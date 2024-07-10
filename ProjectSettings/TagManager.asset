@@ -9,7 +9,7 @@ TagManager:
   - Enemy
   - SavePoint
   - GroundDetectionZone
-  - Obstacle
+  - Item
   layers:
   - Default
   - TransparentFX
@@ -26,7 +26,7 @@ TagManager:
   - JumpWall
   - EnemyAttackZone
   - EnemySpotZone
-  - 
+  - Item
   - 
   - 
   - 

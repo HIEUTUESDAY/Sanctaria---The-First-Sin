@@ -82,6 +82,11 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     [SerializeField] private float invincibleTime = 2f;
     [Space(5)]
 
+    [Header("Item")]
+    [SerializeField] private bool canCollectItem;
+    private Item Item;
+    [Space(5)]
+
     [SerializeField] private ScriptablePlayerData ScriptablePlayerData;
     public Animator Animator;
     public TouchingDirections TouchingDirections;
@@ -713,6 +718,12 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         {
             Animator.SetTrigger(AnimationString.attackTrigger);
         }
+
+        // Testing collect function
+        if(context.started && canCollectItem)
+        {
+            Item.CollectItem();
+        }
     }
 
     public void OnDash(InputAction.CallbackContext context)
@@ -912,6 +923,12 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             isInSavePoint = true;
             SavePointManager = collision.GetComponent<CheckPointManager>();
         }
+
+        if (collision.CompareTag("Item"))
+        {
+            canCollectItem = true;
+            Item = collision.GetComponent<Item>();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -928,6 +945,12 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         {
             isInSavePoint = false;
             SavePointManager = null;
+        }
+
+        if (collision.CompareTag("Item"))
+        {
+            canCollectItem = false;
+            Item = null;
         }
     }
 
