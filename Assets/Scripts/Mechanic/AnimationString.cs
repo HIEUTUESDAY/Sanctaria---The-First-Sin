@@ -27,7 +27,6 @@ internal class AnimationString
     internal static string spotTarget = "spotTarget";
     internal static string lockVelocity = "lockVelocity";
     internal static string attackCooldown = "attackCooldown";
-    internal static string onAttack = "onAttack";
     internal static string upInput = "upInput";
 
     internal static string attackTrigger = "attackTrigger";
@@ -35,5 +34,7 @@ internal class AnimationString
     internal static string wallHangTrigger = "wallHangTrigger";
     internal static string healTrigger = "healTrigger";
     internal static string saveTrigger = "saveTrigger";
+    internal static string collectFloorTrigger = "collectFloorTrigger";
+    internal static string collectHalfTrigger = "collectHalfTrigger";
 
 }

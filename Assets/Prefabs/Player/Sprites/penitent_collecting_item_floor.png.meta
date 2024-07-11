@@ -1,0 +1,712 @@
+fileFormatVersion: 2
+guid: 244ea1f73d5a2584a8e015d175fa8d24
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: penitent_collecting_item_floor_0
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 0
+        width: 67
+        height: 112
+      alignment: 9
+      pivot: {x: 0.7, y: 0.415}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e3a917f8ffe6da469d4f27bec1eb977
+      internalID: -788775962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_collecting_item_floor_1
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 0
+        width: 62
+        height: 112
+      alignment: 9
+      pivot: {x: 0.74, y: 0.415}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a696ff5ce1e92848883ce57e0df1913
+      internalID: 1695562724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_collecting_item_floor_2
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 0
+        width: 51
+        height: 112
+      alignment: 9
+      pivot: {x: 0.747, y: 0.415}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10b871416340a4548995b0a6e835dc69
+      internalID: -1115342795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_collecting_item_floor_3
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 0
+        width: 44
+        height: 112
+      alignment: 9
+      pivot: {x: 0.73, y: 0.415}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 331646642c8b1a84a8bb22afb130dadd
+      internalID: -662972540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_collecting_item_floor_4
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 0
+        width: 32
+        height: 112
+      alignment: 9
+      pivot: {x: 0.65, y: 0.415}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9dcfb7e490b23846a25b573b4fcd365
+      internalID: 450650179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_collecting_item_floor_5
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 0
+        width: 32
+        height: 112
+      alignment: 9
+      pivot: {x: 0.555, y: 0.415}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0280c069a3640244813a0cda59e3dfb
+      internalID: 31148984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_collecting_item_floor_6
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 0
+        width: 45
+        height: 112
+      alignment: 9
+      pivot: {x: 0.17, y: 0.415}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83fda1521937e744ebec1cb14e72bfd6
+      internalID: 380823403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_collecting_item_floor_7
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 0
+        width: 55
+        height: 112
+      alignment: 9
+      pivot: {x: 0.12, y: 0.415}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4acd9b95e03e6641a36781f063a395b
+      internalID: -984880526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_collecting_item_floor_8
+      rect:
+        serializedVersion: 2
+        x: 710
+        y: 0
+        width: 44
+        height: 112
+      alignment: 9
+      pivot: {x: 0.17, y: 0.415}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad4dc338cf5783648b9a56595b68ffdf
+      internalID: 581971043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_collecting_item_floor_9
+      rect:
+        serializedVersion: 2
+        x: 788
+        y: 0
+        width: 38
+        height: 112
+      alignment: 9
+      pivot: {x: 0.25, y: 0.415}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbdc590fdf834634181a31a2f9134778
+      internalID: 129352084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_collecting_item_floor_10
+      rect:
+        serializedVersion: 2
+        x: 868
+        y: 0
+        width: 38
+        height: 112
+      alignment: 9
+      pivot: {x: 0.25, y: 0.415}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8be7c7cfc4e60a745b1ca9be21785f35
+      internalID: 919691375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_collecting_item_floor_11
+      rect:
+        serializedVersion: 2
+        x: 946
+        y: 0
+        width: 40
+        height: 112
+      alignment: 9
+      pivot: {x: 0.29, y: 0.415}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f227b58f67137034f83f87d7351b5dec
+      internalID: 1874599765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_collecting_item_floor_12
+      rect:
+        serializedVersion: 2
+        x: 1028
+        y: 0
+        width: 38
+        height: 112
+      alignment: 9
+      pivot: {x: 0.255, y: 0.415}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd4777c7bfc17b74296b873860de0f14
+      internalID: -1300931282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_collecting_item_floor_13
+      rect:
+        serializedVersion: 2
+        x: 1112
+        y: 0
+        width: 34
+        height: 112
+      alignment: 9
+      pivot: {x: 0.165, y: 0.415}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d733b1ac17083c34b9776c09dcb31c0e
+      internalID: 1326716858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_collecting_item_floor_14
+      rect:
+        serializedVersion: 2
+        x: 1192
+        y: 0
+        width: 34
+        height: 112
+      alignment: 9
+      pivot: {x: 0.165, y: 0.415}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32f8c0f503e9dca468af660bd5bf0127
+      internalID: 1897820788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_collecting_item_floor_15
+      rect:
+        serializedVersion: 2
+        x: 1272
+        y: 0
+        width: 34
+        height: 112
+      alignment: 9
+      pivot: {x: 0.165, y: 0.415}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08d490a9cabc5b64cad1766960f3e454
+      internalID: 739663702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_collecting_item_floor_16
+      rect:
+        serializedVersion: 2
+        x: 1354
+        y: 0
+        width: 32
+        height: 112
+      alignment: 9
+      pivot: {x: 0.115, y: 0.415}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 152f2a557600c17438bfeb476047cfb2
+      internalID: -1068754693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_collecting_item_floor_17
+      rect:
+        serializedVersion: 2
+        x: 1434
+        y: 0
+        width: 40
+        height: 112
+      alignment: 9
+      pivot: {x: 0.09, y: 0.415}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 356252d52f726af48952a4d95b849f2a
+      internalID: 1956472560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_collecting_item_floor_18
+      rect:
+        serializedVersion: 2
+        x: 1519
+        y: 0
+        width: 46
+        height: 112
+      alignment: 9
+      pivot: {x: 0.145, y: 0.415}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d6bf5185cae0d4409a78236562cabbb
+      internalID: -331134576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_collecting_item_floor_19
+      rect:
+        serializedVersion: 2
+        x: 1596
+        y: 0
+        width: 45
+        height: 112
+      alignment: 9
+      pivot: {x: 0.28, y: 0.415}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8317e3689f3704344aba7131b6c6eb8d
+      internalID: -509034466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_collecting_item_floor_20
+      rect:
+        serializedVersion: 2
+        x: 1671
+        y: 0
+        width: 32
+        height: 112
+      alignment: 9
+      pivot: {x: 0.55, y: 0.415}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4df87c6b728d0fd4c8b3449eb94993c8
+      internalID: -1762130156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_collecting_item_floor_21
+      rect:
+        serializedVersion: 2
+        x: 1747
+        y: 0
+        width: 32
+        height: 112
+      alignment: 9
+      pivot: {x: 0.68, y: 0.415}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cef2dfc381335442ba413cc1ece00a5
+      internalID: 1203908835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_collecting_item_floor_22
+      rect:
+        serializedVersion: 2
+        x: 1818
+        y: 0
+        width: 44
+        height: 112
+      alignment: 9
+      pivot: {x: 0.73, y: 0.415}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c2163d9cdf77374b94f6473175e932d
+      internalID: 2006635386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_collecting_item_floor_23
+      rect:
+        serializedVersion: 2
+        x: 1890
+        y: 0
+        width: 62
+        height: 112
+      alignment: 9
+      pivot: {x: 0.747, y: 0.415}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 725fc506d183d444290093229d088b9e
+      internalID: -1775139243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_collecting_item_floor_24
+      rect:
+        serializedVersion: 2
+        x: 1982
+        y: 0
+        width: 66
+        height: 112
+      alignment: 9
+      pivot: {x: 0.733, y: 0.415}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf8dc0cb12e81e04b92740e82eb6ad28
+      internalID: -1292051429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_collecting_item_floor_25
+      rect:
+        serializedVersion: 2
+        x: 2077
+        y: 0
+        width: 67
+        height: 112
+      alignment: 9
+      pivot: {x: 0.708, y: 0.415}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a07b0eff052f05d4097b73d843cb554b
+      internalID: 1532803014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      penitent_collecting_item_floor_0: -788775962
+      penitent_collecting_item_floor_1: 1695562724
+      penitent_collecting_item_floor_10: 919691375
+      penitent_collecting_item_floor_11: 1874599765
+      penitent_collecting_item_floor_12: -1300931282
+      penitent_collecting_item_floor_13: 1326716858
+      penitent_collecting_item_floor_14: 1897820788
+      penitent_collecting_item_floor_15: 739663702
+      penitent_collecting_item_floor_16: -1068754693
+      penitent_collecting_item_floor_17: 1956472560
+      penitent_collecting_item_floor_18: -331134576
+      penitent_collecting_item_floor_19: -509034466
+      penitent_collecting_item_floor_2: -1115342795
+      penitent_collecting_item_floor_20: -1762130156
+      penitent_collecting_item_floor_21: 1203908835
+      penitent_collecting_item_floor_22: 2006635386
+      penitent_collecting_item_floor_23: -1775139243
+      penitent_collecting_item_floor_24: -1292051429
+      penitent_collecting_item_floor_25: 1532803014
+      penitent_collecting_item_floor_3: -662972540
+      penitent_collecting_item_floor_4: 450650179
+      penitent_collecting_item_floor_5: 31148984
+      penitent_collecting_item_floor_6: 380823403
+      penitent_collecting_item_floor_7: -984880526
+      penitent_collecting_item_floor_8: 581971043
+      penitent_collecting_item_floor_9: 129352084
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

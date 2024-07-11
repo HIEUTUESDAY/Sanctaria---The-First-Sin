@@ -83,8 +83,8 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     [Space(5)]
 
     [Header("Item")]
-    [SerializeField] private bool canCollectItem;
-    private Item Item;
+    [SerializeField] private bool hasItemInRange;
+    [SerializeField] private Item Item;
     [Space(5)]
 
     [SerializeField] private ScriptablePlayerData ScriptablePlayerData;
@@ -253,7 +253,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     public Vector2 VerticalInput { get; set; }
     public Rigidbody2D RB { get; set; }
     [field: SerializeField] public bool IsFacingRight { get; set; } = true;
-    public bool CanMove { get => Animator.GetBool(AnimationString.canMove); }
+    public bool CanMove { get => Animator.GetBool(AnimationString.canMove);}
 
     public float currentSpeed;
     public float CurrentSpeed
@@ -531,6 +531,14 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         GameManager.Instance.RespawnPlayer();
     }
 
+    public void CollectItem()
+    {
+        if (hasItemInRange && Item != null)
+        {
+            Item.CollectItem();
+        }
+    }
+
     #endregion
 
     #region Player envent system functions
@@ -702,6 +710,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
         if (jumpBufferTimeCounter > 0f && coyoteTimeCounter > 0f && CanMove)
         {
+            IsDashing = false;
             RB.velocity = new Vector2(RB.velocity.x, jumpPower);
             jumpBufferTimeCounter = 0f;
         }
@@ -718,17 +727,11 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         {
             Animator.SetTrigger(AnimationString.attackTrigger);
         }
-
-        // Testing collect function
-        if(context.started && canCollectItem)
-        {
-            Item.CollectItem();
-        }
     }
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.started && canDash && CanMove && TouchingDirections.IsGrounded && !IsClimbing && CurrentStamina >= dashStaminaCost)
+        if (context.started && canDash && CanMove && TouchingDirections.IsGrounded && !IsDashing && !IsClimbing && CurrentStamina >= dashStaminaCost)
         {
             CoroutineManager.Instance.StartCoroutineManager(Dashing());
         }
@@ -762,6 +765,18 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         if (context.started && IsAlive && CanMove && TouchingDirections.IsGrounded && isInSavePoint)
         {
             Animator.SetTrigger(AnimationString.saveTrigger);
+        }
+    }
+
+    public void OnCollectItem(InputAction.CallbackContext context)
+    {
+        if (context.started && hasItemInRange && Item.IsOnFloor)
+        {
+            Animator.SetTrigger(AnimationString.collectFloorTrigger);
+        }
+        else if (context.started && hasItemInRange && !Item.IsOnFloor)
+        {
+            Animator.SetTrigger(AnimationString.collectHalfTrigger);
         }
     }
 
@@ -926,7 +941,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
         if (collision.CompareTag("Item"))
         {
-            canCollectItem = true;
+            hasItemInRange = true;
             Item = collision.GetComponent<Item>();
         }
     }
@@ -949,7 +964,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
         if (collision.CompareTag("Item"))
         {
-            canCollectItem = false;
+            hasItemInRange = false;
             Item = null;
         }
     }

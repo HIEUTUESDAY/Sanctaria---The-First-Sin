@@ -7,12 +7,12 @@ public class InventoryManager : MonoBehaviour
 {
     public GameObject InventoryMenu;
     private bool menuActivated = false;
-
+    public ItemSlot[] itemSlot;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -37,8 +37,24 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public void AddItem(string itemName, int quantity, Sprite itemSprite)
+    public void AddItem(string itemName, string itemDescription, Sprite itemSprite)
     {
-        Debug.Log("Item name: " + itemName + "Item quantity: " + quantity + "Item sprite:" + itemSprite);
+        for (int i = 0; i < itemSlot.Length; i++)
+        {
+            if (itemSlot[i].isFill == false)
+            {
+                itemSlot[i].AddItem(itemName, itemDescription, itemSprite);
+                return;
+            }
+        } 
+    }
+
+    public void DeselectAllSlot()
+    {
+        for (int i = 0; i < itemSlot.Length; i++)
+        {
+            itemSlot[i].selectedShader.SetActive(false);
+            itemSlot[i].isSelected = false;
+        }
     }
 }
