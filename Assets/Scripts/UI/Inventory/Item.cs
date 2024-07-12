@@ -9,6 +9,8 @@ public class Item : MonoBehaviour
     [SerializeField] private Sprite sprite;
     [SerializeField] private bool isOnFloor;
     [TextArea][SerializeField] private string itemDescription;
+    [SerializeField] private InventoryCategory category;
+
     public bool IsOnFloor
     {
         get { return isOnFloor; }
@@ -43,8 +45,15 @@ public class Item : MonoBehaviour
     {
         if (canBeCollect)
         {
-            inventoryManager.AddItem(itemName, itemDescription, sprite);
+            inventoryManager.AddItem(category, itemName, itemDescription, sprite);
             Destroy(gameObject);
         }
+    }
+
+    public enum InventoryCategory
+    {
+        QuestItems,
+        MeaCulpaHearts,
+        Prayers
     }
 }

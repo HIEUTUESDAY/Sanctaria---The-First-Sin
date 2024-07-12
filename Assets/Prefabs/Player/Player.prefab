@@ -550,7 +550,9 @@ MonoBehaviour:
   slowMotionDuration: 0.15
   slowMotionFactor: 0.2
   timeSinceHit: 0
-  invincibleTime: 1
+  invincibleTime: 2
+  hasItemInRange: 0
+  Item: {fileID: 0}
   ScriptablePlayerData: {fileID: 11400000, guid: 28f9108de9b3d044a8770be3d227fd6a, type: 2}
   Animator: {fileID: 0}
   TouchingDirections: {fileID: 0}

@@ -21,5 +21,4 @@ public class EnemyState
 
     public virtual void PhysicsUpdate() { }
 
-    public virtual void AnimationTriggerEvent(Enemy.AniamtionTriggerType triggerType) { }
 }

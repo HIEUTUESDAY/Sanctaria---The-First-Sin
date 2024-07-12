@@ -51,10 +51,6 @@ public class WheelBrokenChaseTorwardPlayer : EnemyChaseSOBase
     [SerializeField] private float facingSpotRange = 20f;
     [SerializeField] private float behindSpotRange = 10f;
 
-    public override void DoAnimationTriggerEventLogic(Enemy.AniamtionTriggerType triggerType)
-    {
-        base.DoAnimationTriggerEventLogic(triggerType);
-    }
     public override void Initialize(GameObject gameObject, Enemy enemy)
     {
         base.Initialize(gameObject, enemy);

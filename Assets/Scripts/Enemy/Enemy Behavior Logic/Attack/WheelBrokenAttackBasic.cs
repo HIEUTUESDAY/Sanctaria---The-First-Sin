@@ -37,11 +37,6 @@ public class WheelBrokenAttackBasic : EnemyAttackSOBase
         }
     }
 
-    public override void DoAnimationTriggerEventLogic(Enemy.AniamtionTriggerType triggerType)
-    {
-        base.DoAnimationTriggerEventLogic(triggerType);
-    }
-
     public override void Initialize(GameObject gameObject, Enemy enemy)
     {
         base.Initialize(gameObject, enemy);

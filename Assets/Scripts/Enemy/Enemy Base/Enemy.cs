@@ -188,22 +188,4 @@ public class Enemy : MonoBehaviour, IEnemyDamageable, IEnemyMoveable
     }
 
     #endregion
-
-    #region Animation Triggers
-
-    private void AnimationTriggerEnvent(AniamtionTriggerType triggerType)
-    {
-        // TODO: fill in one StateManchine is created
-        /*StateMachine.CurrentEnemyState.AnimationTriggerEvent(triggerType);*/
-    }
-
-    public enum AniamtionTriggerType
-    {
-        EnemyIdle,
-        EnemyChase,
-        EnemyAttack,
-        EnemyHit
-    }
-
-    #endregion
 }

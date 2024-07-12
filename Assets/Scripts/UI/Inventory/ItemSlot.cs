@@ -7,7 +7,6 @@ using TMPro;
 
 public class ItemSlot : MonoBehaviour, IPointerClickHandler
 {
-
     [Header("Item data")]
     public string itemName;
     public Sprite itemSprite;
@@ -47,12 +46,12 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
             itemSlotImage.sprite = emptyItemSlotBGI;
         }
 
-        if(isFill && !isSelected)
+        if (isFill && !isSelected)
         {
             itemSlotImage.sprite = fillItemSlotBGI;
         }
 
-        if(isFill && isSelected) 
+        if (isFill && isSelected)
         {
             itemSlotImage.sprite = selectedItemSlotBGI;
         }
@@ -68,9 +67,19 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
         itemImage.sprite = itemSprite;
     }
 
+    public void ClearItem()
+    {
+        this.itemName = "";
+        this.itemDescription = "";
+        this.itemSprite = null;
+        isFill = false;
+
+        itemImage.sprite = emptySprite;
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
-        if(eventData.button == PointerEventData.InputButton.Left)
+        if (eventData.button == PointerEventData.InputButton.Left)
         {
             OnLeftClick();
         }
@@ -83,13 +92,13 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
 
     private void OnLeftClick()
     {
-        inventoryManager.DeselectAllSlot();
+        inventoryManager.DeselectAllSlots(new ItemSlot[] { this });
         selectedShader.SetActive(true);
         isSelected = true;
 
         // Fill item description 
         itemDesImage.sprite = itemSprite;
-        if(itemDesImage.sprite == null)
+        if (itemDesImage.sprite == null)
         {
             itemDesImage.sprite = emptySprite;
         }
@@ -99,6 +108,6 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
 
     private void OnRightClick()
     {
-
+        // Handle right-click if needed
     }
 }

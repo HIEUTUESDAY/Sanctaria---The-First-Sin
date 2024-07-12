@@ -38,11 +38,6 @@ public class EnragedPilgrimIdlePatrolAround : EnemyIdleSOBase
     [SerializeField] private float facingSpotRange = 10f;
     [SerializeField] private float behindSpotRange = 5f;
 
-    public override void DoAnimationTriggerEventLogic(Enemy.AniamtionTriggerType triggerType)
-    {
-        base.DoAnimationTriggerEventLogic(triggerType);
-    }
-
     public override void Initialize(GameObject gameObject, Enemy enemy)
     {
         base.Initialize(gameObject, enemy);
