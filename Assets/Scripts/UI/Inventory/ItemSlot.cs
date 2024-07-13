@@ -36,7 +36,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     private void Start()
     {
         itemSlotImage = GetComponent<Image>();
-        inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
+        inventoryManager = GameObject.Find("Inventory").GetComponent<InventoryManager>();
     }
 
     private void Update()
@@ -92,7 +92,20 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
 
     private void OnLeftClick()
     {
-        inventoryManager.DeselectAllSlots(new ItemSlot[] { this });
+        // Ensure to deselect all slots of the current active inventory
+        switch (inventoryManager.currentInventoryIndex)
+        {
+            case 0:
+                inventoryManager.DeselectSlots(inventoryManager.questItemSlots);
+                break;
+            case 1:
+                inventoryManager.DeselectSlots(inventoryManager.meaCulpaHeartSlots);
+                break;
+            case 2:
+                inventoryManager.DeselectSlots(inventoryManager.prayerSlots);
+                break;
+        }
+
         selectedShader.SetActive(true);
         isSelected = true;
 

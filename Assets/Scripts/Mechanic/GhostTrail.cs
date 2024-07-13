@@ -20,16 +20,16 @@ public class GhostTrail : MonoBehaviour
     {
         if (ghostCoroutine != null)
         {
-            StopCoroutine(ghostCoroutine);
+            CoroutineManager.Instance.StopCoroutineManager(ghostCoroutine);
         }
-        ghostCoroutine = StartCoroutine(GenerateGhostTrail());
+        ghostCoroutine = CoroutineManager.Instance.StartCoroutineManager(GenerateGhostTrail());
     }
 
     public void StopGhostTrail()
     {
         if (ghostCoroutine != null)
         {
-            StopCoroutine(ghostCoroutine);
+            CoroutineManager.Instance.StopCoroutineManager(ghostCoroutine);
             ghostCoroutine = null;
         }
     }
@@ -43,7 +43,7 @@ public class GhostTrail : MonoBehaviour
             ghostSpriteRenderer.sprite = GetComponent<SpriteRenderer>().sprite;
             ghostSpriteRenderer.color = ghostColor;
 
-            StartCoroutine(FadeAndDestroy(ghost, ghostLifeTime));
+            CoroutineManager.Instance.StartCoroutineManager(FadeAndDestroy(ghost, ghostLifeTime));
             yield return new WaitForSeconds(ghostSpawnInterval);
         }
     }

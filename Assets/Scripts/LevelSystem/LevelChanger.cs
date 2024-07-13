@@ -11,7 +11,7 @@ public class LevelChanger : MonoBehaviour
     {
         if (connection == ScriptableLevelConnection.ActiveConnection)
         {
-            Player player = FindObjectOfType<Player>();
+            Player player = GameObject.Find("Player").GetComponent<Player>();
             if (player != null)
             {
                 player.transform.position = spawnPosition.position;
@@ -25,6 +25,7 @@ public class LevelChanger : MonoBehaviour
 
         if (player != null)
         {
+            Player.Instance.StopAllCoroutines();
             ScriptableLevelConnection.ActiveConnection = connection;
             SceneManager.LoadScene(targetSceneName);
         }

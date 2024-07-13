@@ -1,13 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.InputSystem;
 using static Item;
+using System.Collections.Generic;
+using UnityEngine.InputSystem;
+using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
     public GameObject InventoryMenu;
     private bool menuActivated = false;
+    public GameObject[] Inventories;
+    public int currentInventoryIndex = 0;
     public ItemSlot[] questItemSlots;
     public ItemSlot[] meaCulpaHeartSlots;
     public ItemSlot[] prayerSlots;
@@ -18,11 +19,22 @@ public class InventoryManager : MonoBehaviour
     void Start()
     {
         LoadInventories();
+        UpdateActiveInventoryUI();
     }
 
     void Update()
     {
-
+        if (menuActivated)
+        {
+            if (Keyboard.current.qKey.wasPressedThisFrame)
+            {
+                PreviousInventory();
+            }
+            if (Keyboard.current.eKey.wasPressedThisFrame)
+            {
+                NextInventory();
+            }
+        }
     }
 
     public void OnOpenInventoryMenu(InputAction.CallbackContext context)
@@ -38,6 +50,28 @@ public class InventoryManager : MonoBehaviour
             Time.timeScale = 1;
             InventoryMenu.SetActive(false);
             menuActivated = false;
+        }
+    }
+
+    private void PreviousInventory()
+    {
+        Inventories[currentInventoryIndex].SetActive(false);
+        currentInventoryIndex = (currentInventoryIndex - 1 + Inventories.Length) % Inventories.Length;
+        UpdateActiveInventoryUI();
+    }
+
+    private void NextInventory()
+    {
+        Inventories[currentInventoryIndex].SetActive(false);
+        currentInventoryIndex = (currentInventoryIndex + 1) % Inventories.Length;
+        UpdateActiveInventoryUI();
+    }
+
+    private void UpdateActiveInventoryUI()
+    {
+        for (int i = 0; i < Inventories.Length; i++)
+        {
+            Inventories[i].SetActive(i == currentInventoryIndex);
         }
     }
 
@@ -76,7 +110,7 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public void DeselectAllSlots(ItemSlot[] slots)
+    public void DeselectSlots(ItemSlot[] slots)
     {
         for (int i = 0; i < slots.Length; i++)
         {

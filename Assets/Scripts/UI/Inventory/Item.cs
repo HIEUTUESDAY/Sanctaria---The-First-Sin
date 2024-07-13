@@ -22,7 +22,7 @@ public class Item : MonoBehaviour
 
     private void Start()
     {
-        inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
+        inventoryManager = GameObject.Find("Inventory").GetComponent<InventoryManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

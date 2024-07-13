@@ -63,10 +63,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     private float dashStaminaCost = 30f;
     private float wallHangStaminaCost = 10f;
 
-    [Header("Camera")]
-    [SerializeField] private GameObject CameraFollowGO;
-    [Space(5)]
-
     [Header("Save Point")]
     [SerializeField] public bool isInSavePoint;
     private CheckPointManager SavePointManager;
@@ -86,7 +82,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     [SerializeField] private bool hasItemInRange;
     [SerializeField] private Item Item;
     [Space(5)]
-
+    
     [SerializeField] private ScriptablePlayerData ScriptablePlayerData;
     public Animator Animator;
     public TouchingDirections TouchingDirections;
@@ -294,7 +290,27 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     #endregion
 
-    public void Awake()
+    #region Player Singleton implementation
+
+    public static Player Instance { get; private set; }
+
+    #endregion
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+            Initialize();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void Initialize()
     {
         RB = GetComponent<Rigidbody2D>();
         Animator = GetComponent<Animator>();
@@ -303,18 +319,14 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         HealthBar = GetComponent<HealthBar>();
         OriginalGravityScale = RB.gravityScale;
         ImpulseSource = GetComponent<CinemachineImpulseSource>();
-       
     }
 
-    public void Start()
+    private void Start()
     {
         LoadScriptablePlayerData();
-        CameraFollowObject = CameraFollowGO.GetComponent<CameraFollowObject>();
-        FallSpeedYDampingChangeThreshold = CameraManger.Instance._fallSpeedYDampingChangeThreshold;
-
     }
 
-    public void Update()
+    private void Update()
     {
         SetFacingCheck();
         GroundCheck();
@@ -329,7 +341,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         SaveScriptablePlayerData();
     }
 
-    public void FixedUpdate()
+    private void FixedUpdate()
     {
         Move();
         WallJump();
@@ -382,6 +394,8 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     public void TurnPlayer()
     {
+        CameraFollowObject = GameObject.Find("CameraFollowObject").GetComponent<CameraFollowObject>();
+
         if (IsFacingRight)
         {
             Vector3 rotator = new Vector3(transform.rotation.x, 180f, transform.rotation.z);
@@ -559,7 +573,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     public void SetFacingCheck()
     {
-        if (IsMoving && CanMove)
+        if (IsMoving)
         {
             SetFacing(HorizontalInput);
         }
@@ -583,6 +597,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     {
         if (!TouchingDirections.IsGrounded && RB.velocity.y < maximumFallSpeed)
         {
+            FallSpeedYDampingChangeThreshold = CameraManger.Instance._fallSpeedYDampingChangeThreshold;
             RB.velocity = new Vector2(RB.velocity.x, maximumFallSpeed);
         }
     }

@@ -5,20 +5,32 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager Instance { get; private set; }
+
     public GameObject damageTextPrefab;
     public GameObject healthTextPrefab;
     public GameObject[] playerHitSplashPrefab;
     public GameObject[] nonPlayerHitSplashPrefab;
 
-    public Canvas gameCanvas;
+    public Transform VFXcanvas;
 
     private void Awake()
     {
-        gameCanvas = FindObjectOfType<Canvas>();
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnEnable()
     {
+        VFXcanvas = FindObjectOfType<Canvas>().transform.Find("VFX");
+
         CharacterEvent.characterDamaged += CharacterTookDamage;
         CharacterEvent.characterHealed += CharacterHealed;
         CharacterEvent.hitSplash += ShowHitSplash;
@@ -36,9 +48,9 @@ public class UIManager : MonoBehaviour
         // Create text at where character get hit
         Vector3 spawnPosition = Camera.main.WorldToScreenPoint(character.transform.position);
 
-        TMP_Text tmpText = Instantiate(damageTextPrefab, spawnPosition, Quaternion.identity, gameCanvas.transform).GetComponent<TMP_Text>();
+        TMP_Text tmpText = Instantiate(damageTextPrefab, spawnPosition, Quaternion.identity, VFXcanvas).GetComponent<TMP_Text>();
 
-        tmpText.text = ("-"+damageReceived.ToString());
+        tmpText.text = ("-" + damageReceived.ToString());
     }
 
     public void CharacterHealed(GameObject character, float healthRestored)
@@ -46,9 +58,9 @@ public class UIManager : MonoBehaviour
         // Create text at where character get heal
         Vector3 spawnPosition = Camera.main.WorldToScreenPoint(character.transform.position);
 
-        TMP_Text tmpText = Instantiate(healthTextPrefab, spawnPosition, Quaternion.identity, gameCanvas.transform).GetComponent<TMP_Text>();
+        TMP_Text tmpText = Instantiate(healthTextPrefab, spawnPosition, Quaternion.identity, VFXcanvas).GetComponent<TMP_Text>();
 
-        tmpText.text = ("+"+healthRestored.ToString());
+        tmpText.text = ("+" + healthRestored.ToString());
     }
 
     public void ShowHitSplash(GameObject character, Vector2 hitDirection, int attackType)
@@ -59,12 +71,11 @@ public class UIManager : MonoBehaviour
 
         if (character.tag == "Player")
         {
-           
-            hitSplash = Instantiate(playerHitSplashPrefab[attackType], spawnPosition, Quaternion.identity);
+            hitSplash = Instantiate(playerHitSplashPrefab[attackType], spawnPosition, Quaternion.identity, VFXcanvas);
         }
         else
         {
-            hitSplash = Instantiate(nonPlayerHitSplashPrefab[attackType], spawnPosition, Quaternion.identity);
+            hitSplash = Instantiate(nonPlayerHitSplashPrefab[attackType], spawnPosition, Quaternion.identity, VFXcanvas);
         }
 
         if (hitSplash != null)
