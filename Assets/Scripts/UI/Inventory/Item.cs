@@ -18,12 +18,6 @@ public class Item : MonoBehaviour
     }
     private bool canBeCollect = false;
 
-    private InventoryManager inventoryManager;
-
-    private void Start()
-    {
-        inventoryManager = GameObject.Find("Inventory").GetComponent<InventoryManager>();
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -45,7 +39,7 @@ public class Item : MonoBehaviour
     {
         if (canBeCollect)
         {
-            inventoryManager.AddItem(category, itemName, itemDescription, sprite);
+            InventoryManager.Instance.AddItem(category, itemName, itemDescription, sprite);
             Destroy(gameObject);
         }
     }

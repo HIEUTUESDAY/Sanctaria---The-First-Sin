@@ -573,7 +573,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     public void SetFacingCheck()
     {
-        if (IsMoving)
+        if (IsMoving && CanMove)
         {
             SetFacing(HorizontalInput);
         }

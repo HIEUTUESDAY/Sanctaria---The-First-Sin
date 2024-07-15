@@ -29,14 +29,11 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     public TMP_Text itemDesText;
     [Space(5)]
 
-    public GameObject selectedShader;
     public bool isSelected;
-    private InventoryManager inventoryManager;
 
     private void Start()
     {
         itemSlotImage = GetComponent<Image>();
-        inventoryManager = GameObject.Find("Inventory").GetComponent<InventoryManager>();
     }
 
     private void Update()
@@ -50,8 +47,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
         {
             itemSlotImage.sprite = fillItemSlotBGI;
         }
-
-        if (isFill && isSelected)
+        else if (isFill && isSelected)
         {
             itemSlotImage.sprite = selectedItemSlotBGI;
         }
@@ -79,34 +75,36 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (eventData.button == PointerEventData.InputButton.Left)
+        if(UIManager.Instance.menuActivated)
         {
-            OnLeftClick();
-        }
+            if (eventData.button == PointerEventData.InputButton.Left)
+            {
+                OnLeftClick();
+            }
 
-        if (eventData.button == PointerEventData.InputButton.Right)
-        {
-            OnRightClick();
+            if (eventData.button == PointerEventData.InputButton.Right)
+            {
+                OnRightClick();
+            }
         }
     }
 
     private void OnLeftClick()
     {
         // Ensure to deselect all slots of the current active inventory
-        switch (inventoryManager.currentInventoryIndex)
+        switch (InventoryManager.Instance.currentInventoryIndex)
         {
             case 0:
-                inventoryManager.DeselectSlots(inventoryManager.questItemSlots);
+                InventoryManager.Instance.DeselectSlots(InventoryManager.Instance.questItemSlots);
                 break;
             case 1:
-                inventoryManager.DeselectSlots(inventoryManager.meaCulpaHeartSlots);
+                InventoryManager.Instance.DeselectSlots(InventoryManager.Instance.meaCulpaHeartSlots);
                 break;
             case 2:
-                inventoryManager.DeselectSlots(inventoryManager.prayerSlots);
+                InventoryManager.Instance.DeselectSlots(InventoryManager.Instance.prayerSlots);
                 break;
         }
 
-        selectedShader.SetActive(true);
         isSelected = true;
 
         // Fill item description 
@@ -123,4 +121,5 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     {
         // Handle right-click if needed
     }
+
 }

@@ -2,28 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; }
-
+    public Transform VFXcanvas;
     public GameObject damageTextPrefab;
     public GameObject healthTextPrefab;
     public GameObject[] playerHitSplashPrefab;
     public GameObject[] nonPlayerHitSplashPrefab;
-
-    public Transform VFXcanvas;
+    public GameObject inventoryMenu;
+    public bool menuActivated = false;
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
         }
     }
 
@@ -88,6 +84,22 @@ public class UIManager : MonoBehaviour
             {
                 hitSplash.transform.rotation = Quaternion.Euler(0, 0, 0);
             }
+        }
+    }
+
+    public void OpenInventoryMenu(InputAction.CallbackContext context)
+    {
+        if (context.started && !menuActivated)
+        {
+            Time.timeScale = 0;
+            inventoryMenu.SetActive(true);
+            menuActivated = true;
+        }
+        else if (context.started && menuActivated)
+        {
+            Time.timeScale = 1;
+            inventoryMenu.SetActive(false);
+            menuActivated = false;
         }
     }
 }

@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    public GameObject InventoryMenu;
-    private bool menuActivated = false;
+    public static InventoryManager Instance {  get; private set; }
     public GameObject[] Inventories;
     public int currentInventoryIndex = 0;
     public ItemSlot[] questItemSlots;
@@ -16,6 +15,14 @@ public class InventoryManager : MonoBehaviour
     public MeaCulpaHeartsInventorySO meaCulpaHeartsInventorySO;
     public PrayersInventorySO prayersInventorySO;
 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
+
     void Start()
     {
         LoadInventories();
@@ -24,7 +31,7 @@ public class InventoryManager : MonoBehaviour
 
     void Update()
     {
-        if (menuActivated)
+        if (UIManager.Instance.menuActivated)
         {
             if (Keyboard.current.qKey.wasPressedThisFrame)
             {
@@ -37,30 +44,14 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public void OnOpenInventoryMenu(InputAction.CallbackContext context)
-    {
-        if (context.started && !menuActivated)
-        {
-            Time.timeScale = 0;
-            InventoryMenu.SetActive(true);
-            menuActivated = true;
-        }
-        else if (context.started && menuActivated)
-        {
-            Time.timeScale = 1;
-            InventoryMenu.SetActive(false);
-            menuActivated = false;
-        }
-    }
-
-    private void PreviousInventory()
+    public void PreviousInventory()
     {
         Inventories[currentInventoryIndex].SetActive(false);
         currentInventoryIndex = (currentInventoryIndex - 1 + Inventories.Length) % Inventories.Length;
         UpdateActiveInventoryUI();
     }
 
-    private void NextInventory()
+    public void NextInventory()
     {
         Inventories[currentInventoryIndex].SetActive(false);
         currentInventoryIndex = (currentInventoryIndex + 1) % Inventories.Length;
@@ -114,8 +105,10 @@ public class InventoryManager : MonoBehaviour
     {
         for (int i = 0; i < slots.Length; i++)
         {
-            slots[i].selectedShader.SetActive(false);
-            slots[i].isSelected = false;
+            if (slots[i].isSelected)
+            {
+                slots[i].isSelected = false;
+            }
         }
     }
 
