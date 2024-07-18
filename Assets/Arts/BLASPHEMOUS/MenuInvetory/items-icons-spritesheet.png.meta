@@ -207,13 +207,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: third_sin
+      name: item_thirdSin
       rect:
         serializedVersion: 2
-        x: 339
-        y: 97
-        width: 14
-        height: 19
+        x: 335
+        y: 95
+        width: 22
+        height: 22
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -228,13 +228,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: second_sin
+      name: item_secondSin
       rect:
         serializedVersion: 2
-        x: 369
-        y: 97
-        width: 14
-        height: 17
+        x: 365
+        y: 95
+        width: 22
+        height: 22
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -249,13 +249,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: first_sin
+      name: item_firstSin
       rect:
         serializedVersion: 2
-        x: 399
-        y: 97
-        width: 14
-        height: 17
+        x: 395
+        y: 95
+        width: 22
+        height: 22
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -278,7 +278,7 @@ TextureImporter:
         width: 30
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -286,6 +286,384 @@ TextureImporter:
       bones: []
       spriteID: 6b0df58c8846df74e9f78119b73adb7c
       internalID: 637745243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Heart_of_SmokingInsence
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 335
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d78c3e6145eddf74db3de5c6f07f2375
+      internalID: 1343711755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: equipment_fill
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 481
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44ebcdc7fc57d6e40b1f77bfe645faae
+      internalID: 895344877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prayer_TheForsakenHamlet
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 305
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9f86f40975be7a47be4cfeaec99a87b
+      internalID: -261049825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Heart_of_VirtuousPain
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 335
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 741746dadd2419e49a4dfb4839b36aa2
+      internalID: -1684499096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Heart_of_SaltpeterBlood
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 335
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d91a617ee57096340b83d71f9b7b9a61
+      internalID: -1072117130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Heart_of_Oils
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 335
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c621ece10b2ff14bba3c2bd87ee5739
+      internalID: 388952169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Heart_of_CeruleanIncense
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 335
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89d34ea18cbcd534dadf6db8c3eab9b7
+      internalID: -134038587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Heart_of_TheHolyPurge
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 335
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3381519f53414c1488e524d8de38ce1f
+      internalID: 1197292903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Heart_of_TheSingleTone
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 335
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 421bf02d7942a0f418bcb57642a39c0a
+      internalID: -1789079542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Heart_of_BoilingBlood
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 335
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 191325c4020ba8741a833e97e4d6aade
+      internalID: 129169622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Heart_of_UnnamedMinstrel
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 335
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2ebb0a61cdfb974fad777d58d228fd0
+      internalID: -1900855997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Heart_of_BrilliantDawn
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 335
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df83be74f3cfcac4fa15392936675061
+      internalID: -82112146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prayer_Seguiriya
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 305
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b778b002569421449b3199b72e00b0ee
+      internalID: 1972520653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prayer_DeblaLights
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 305
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 855576b0e8ae952439cb7b382a6ac21c
+      internalID: 1717784875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prayer_SaetaDolorosa
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 305
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4a7edac295236e459decce0fdb83bef
+      internalID: -1559486493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prayer_Taranto
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 305
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8045f18256e8014b94e189dfdfefe18
+      internalID: -1522298800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Prayer_Lorquiana
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 305
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5908d45982f5a8b4d9d72bb16a69c9e8
+      internalID: 581664574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "Prayer_Mirabr\xE1s"
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 305
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49f99fe5ef0c1d646b1688b3f51565ab
+      internalID: 2032263659
       vertices: []
       indices: 
       edges: []
@@ -301,14 +679,33 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      Heart_of_BoilingBlood: 129169622
+      Heart_of_BrilliantDawn: -82112146
+      Heart_of_CeruleanIncense: -134038587
+      Heart_of_Oils: 388952169
+      Heart_of_SaltpeterBlood: -1072117130
+      Heart_of_SmokingInsence: 1343711755
+      Heart_of_TheHolyPurge: 1197292903
+      Heart_of_TheSingleTone: -1789079542
+      Heart_of_UnnamedMinstrel: -1900855997
+      Heart_of_VirtuousPain: -1684499096
+      Prayer_DeblaLights: -2104527370
+      Prayer_Lorquiana: 581664574
+      "Prayer_Mirabr\xE1s": 2032263659
+      Prayer_SaetaDolorosa: -1559486493
+      Prayer_Seguiriya: 1972520653
+      Prayer_Taranto: -1522298800
+      Prayer_TheForsakenHamlet: -261049825
       empty_itemImage: 637745243
-      first_sin: -189204550
+      equipment_fill: 895344877
       itemSlot_empty: 616663545
       itemSlot_fill: 1536165663
       itemSlot_fill_used: 303646139
       itemSlot_selected: -247391969
-      second_sin: -899764519
-      third_sin: 1566242134
+      item_firstSin: -189204550
+      item_secondSin: -899764519
+      item_thirdSin: 1566242134
+      items-icons-spritesheet_0: -184253757
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

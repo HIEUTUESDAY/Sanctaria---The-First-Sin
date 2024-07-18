@@ -1,19 +1,28 @@
-using static Item;
+using static QuestItemCollectable;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    public static InventoryManager Instance {  get; private set; }
+    public static InventoryManager Instance { get; private set; }
+    public PlayerEquipment playerEquipment;
     public GameObject[] Inventories;
     public int currentInventoryIndex = 0;
-    public ItemSlot[] questItemSlots;
-    public ItemSlot[] meaCulpaHeartSlots;
-    public ItemSlot[] prayerSlots;
-    public QuestItemsInventorySO questItemsInventorySO;
-    public MeaCulpaHeartsInventorySO meaCulpaHeartsInventorySO;
-    public PrayersInventorySO prayersInventorySO;
+
+    public QuestItemSlot[] questItemSlots;
+    public MeaCulpaHeartSlot[] meaCulpaHeartSlots;
+    public PrayerSlot[] prayerSlots;
+
+    public MeaCulpaHeartEquipment meaCulpaHeartsEquipment;
+    public PrayerEquipment prayersEquipment;
+
+    public QuestItemInventorySO questItemsInventorySO;
+    public MeaCulpaHeartInventorySO meaCulpaHeartsInventorySO;
+    public PrayerInventorySO prayersInventorySO;
+
+    public MeaCulpaHeartEquipmentSO meaCulpaHeartsEquipmentSO;
+    public PrayerEquipmentSO prayersEquipmentSO;
 
     private void Awake()
     {
@@ -26,6 +35,7 @@ public class InventoryManager : MonoBehaviour
     void Start()
     {
         LoadInventories();
+        LoadEquipment();
         UpdateActiveInventoryUI();
     }
 
@@ -66,60 +76,56 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public void AddItem(InventoryCategory category, string itemName, string itemDescription, Sprite itemSprite)
+    public void AddQuestItemToInventory(QuestItem questItem)
     {
-        switch (category)
+        for (int i = 0; i < questItemSlots.Length; i++)
         {
-            case InventoryCategory.QuestItems:
-                AddItemToInventory(questItemSlots, questItemsInventorySO.items, itemName, itemDescription, itemSprite);
-                break;
-            case InventoryCategory.MeaCulpaHearts:
-                AddItemToInventory(meaCulpaHeartSlots, meaCulpaHeartsInventorySO.items, itemName, itemDescription, itemSprite);
-                break;
-            case InventoryCategory.Prayers:
-                AddItemToInventory(prayerSlots, prayersInventorySO.items, itemName, itemDescription, itemSprite);
-                break;
-        }
-    }
-
-    private void AddItemToInventory<T>(ItemSlot[] slots, List<T> inventory, string itemName, string itemDescription, Sprite itemSprite) where T : InventoryItem, new()
-    {
-        for (int i = 0; i < slots.Length; i++)
-        {
-            if (slots[i].isFill == false)
+            if (!questItemSlots[i].hasItem)
             {
-                slots[i].AddItem(itemName, itemDescription, itemSprite);
-                inventory.Add(new T
-                {
-                    itemName = itemName,
-                    itemDescription = itemDescription,
-                    itemSprite = itemSprite
-                });
+                questItemSlots[i].AddQuestItemSlot(questItem);
+                questItemsInventorySO.QuestItems.Add(questItem);
                 SaveInventories();
                 return;
             }
         }
     }
 
-    public void DeselectSlots(ItemSlot[] slots)
+    public void AddMeaCulpaHeartToInventory(MeaCulpaHeart meaCulpaHeart)
     {
-        for (int i = 0; i < slots.Length; i++)
+        for (int i = 0; i < meaCulpaHeartSlots.Length; i++)
         {
-            if (slots[i].isSelected)
+            if (!meaCulpaHeartSlots[i].hasItem)
             {
-                slots[i].isSelected = false;
+                meaCulpaHeartSlots[i].AddMeaCulpaHeartSlot(meaCulpaHeart);
+                meaCulpaHeartsInventorySO.MeaCulpaHearts.Add(meaCulpaHeart);
+                SaveInventories();
+                return;
+            }
+        }
+    }
+
+    public void AddPrayerToInventory(Prayer prayer)
+    {
+        for (int i = 0; i < prayerSlots.Length; i++)
+        {
+            if (!prayerSlots[i].hasItem)
+            {
+                prayerSlots[i].AddPrayerSlot(prayer);
+                prayersInventorySO.Prayers.Add(prayer);
+                SaveInventories();
+                return;
             }
         }
     }
 
     private void SaveInventories()
     {
-        questItemsInventorySO.items.Clear();
+        questItemsInventorySO.QuestItems.Clear();
         foreach (var slot in questItemSlots)
         {
-            if (slot.isFill)
+            if (slot.hasItem)
             {
-                questItemsInventorySO.items.Add(new QuestItems
+                questItemsInventorySO.QuestItems.Add(new QuestItem
                 {
                     itemName = slot.itemName,
                     itemDescription = slot.itemDescription,
@@ -128,30 +134,32 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
-        meaCulpaHeartsInventorySO.items.Clear();
+        meaCulpaHeartsInventorySO.MeaCulpaHearts.Clear();
         foreach (var slot in meaCulpaHeartSlots)
         {
-            if (slot.isFill)
+            if (slot.hasItem)
             {
-                meaCulpaHeartsInventorySO.items.Add(new MeaCulpaHearts
+                meaCulpaHeartsInventorySO.MeaCulpaHearts.Add(new MeaCulpaHeart
                 {
                     itemName = slot.itemName,
                     itemDescription = slot.itemDescription,
-                    itemSprite = slot.itemSprite
+                    itemSprite = slot.itemSprite,
+                    isEquip = slot.isItemEquipped
                 });
             }
         }
 
-        prayersInventorySO.items.Clear();
+        prayersInventorySO.Prayers.Clear();
         foreach (var slot in prayerSlots)
         {
-            if (slot.isFill)
+            if (slot.hasItem)
             {
-                prayersInventorySO.items.Add(new Prayers
+                prayersInventorySO.Prayers.Add(new Prayer
                 {
                     itemName = slot.itemName,
                     itemDescription = slot.itemDescription,
-                    itemSprite = slot.itemSprite
+                    itemSprite = slot.itemSprite,
+                    isEquip = slot.isItemEquipped
                 });
             }
         }
@@ -159,24 +167,123 @@ public class InventoryManager : MonoBehaviour
 
     private void LoadInventories()
     {
-        LoadInventory(questItemSlots, questItemsInventorySO.items);
-        LoadInventory(meaCulpaHeartSlots, meaCulpaHeartsInventorySO.items);
-        LoadInventory(prayerSlots, prayersInventorySO.items);
+        LoadQuestItemInventory(questItemSlots, questItemsInventorySO.QuestItems);
+        LoadMeaCulpaHeartInventory(meaCulpaHeartSlots, meaCulpaHeartsInventorySO.MeaCulpaHearts);
+        LoadPrayerInventory(prayerSlots, prayersInventorySO.Prayers);
     }
 
-    private void LoadInventory<T>(ItemSlot[] slots, List<T> inventory) where T : InventoryItem
+    private void LoadQuestItemInventory(QuestItemSlot[] slots, List<QuestItem> inventory)
     {
         for (int i = 0; i < slots.Length; i++)
         {
             if (i < inventory.Count)
             {
                 var item = inventory[i];
-                slots[i].AddItem(item.itemName, item.itemDescription, item.itemSprite);
+                slots[i].AddQuestItemSlot(item);
             }
             else
             {
-                slots[i].ClearItem();
+                slots[i].ClearQuestItemSlot();
             }
         }
+    }
+
+    private void LoadMeaCulpaHeartInventory(MeaCulpaHeartSlot[] slots, List<MeaCulpaHeart> inventory)
+    {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (i < inventory.Count)
+            {
+                var item = inventory[i];
+                slots[i].AddMeaCulpaHeartSlot(item);
+            }
+            else
+            {
+                slots[i].ClearMeaCulpaHeartSlot();
+            }
+        }
+    }
+
+    private void LoadPrayerInventory(PrayerSlot[] slots, List<Prayer> inventory)
+    {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (i < inventory.Count)
+            {
+                var item = inventory[i];
+                slots[i].AddPrayerSlot(item);
+            }
+            else
+            {
+                slots[i].ClearPrayerSlot();
+            }
+        }
+    }
+
+    public void EquipMeaCulpaHeart(MeaCulpaHeart meaCulpaHeart)
+    {
+        meaCulpaHeartsEquipment.EquipMeaCulpaHeart(meaCulpaHeart);
+        meaCulpaHeartsEquipmentSO.equippedMeaCulpaHeart = meaCulpaHeart;
+        playerEquipment.UpdateEquippedItems();
+    }
+
+    public void EquipPrayer(Prayer prayer)
+    {
+        prayersEquipment.EquipPrayer(prayer);
+        prayersEquipmentSO.equippedPrayer = prayer;
+    }
+
+    public void UnequipMeaCulpaHearts()
+    {
+        foreach (var slot in meaCulpaHeartSlots)
+        {
+            if (slot.isItemEquipped)
+            {
+                slot.isItemEquipped = false;
+            }
+        }
+        meaCulpaHeartsEquipment.UnequipMeaCulpaHeart();
+        meaCulpaHeartsEquipmentSO.equippedMeaCulpaHeart = null;
+        playerEquipment.UpdateEquippedItems();
+    }
+
+    public void UnequipPrayers()
+    {
+        foreach (var slot in prayerSlots)
+        {
+            if (slot.isItemEquipped)
+            {
+                slot.isItemEquipped = false;
+            }
+        }
+        prayersEquipment.UnequipPrayer();
+        prayersEquipmentSO.equippedPrayer = null;
+    }
+
+    private void LoadEquipment()
+    {
+        if (meaCulpaHeartsEquipmentSO.equippedMeaCulpaHeart != null)
+        {
+            meaCulpaHeartsEquipment.EquipMeaCulpaHeart(
+                meaCulpaHeartsEquipmentSO.equippedMeaCulpaHeart
+            );
+        }
+
+        if (prayersEquipmentSO.equippedPrayer != null)
+        {
+            prayersEquipment.EquipPrayer(
+                prayersEquipmentSO.equippedPrayer
+            );
+        }
+    }
+
+    public MeaCulpaHeart GetEquippedMeaCulpaHeart()
+    {
+        return meaCulpaHeartsEquipmentSO.equippedMeaCulpaHeart;
+    }
+
+    public Prayer GetEquippedPrayer()
+    {
+        return prayersEquipmentSO.equippedPrayer;
     }
 }

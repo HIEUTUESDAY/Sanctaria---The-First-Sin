@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df6f162040c4d1341a6bccc8fd31da32, type: 3}
   m_Name: PrayersInventory
   m_EditorClassIdentifier: 
-  items: []
+  Prayers: []

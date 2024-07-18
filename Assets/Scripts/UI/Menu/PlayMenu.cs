@@ -4,24 +4,23 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.SceneManagement;
 
 public class PlayMenu : MonoBehaviour
 {
     [System.Serializable]
     public class SaveSlot
     {
-        public Button newGameButton;
-        public Button loadButton;
+        public Button actionButton;
+        public GameObject newGameImage;
+        public GameObject loadGameImage;
         public TextMeshProUGUI infoText;
-        public int slotIndex;
     }
 
     public List<SaveSlot> saveSlots;
 
     private string savePath;
 
-    void Start()
+    private void Start()
     {
         savePath = Application.persistentDataPath + "/";
         RefreshSaveSlots();
@@ -34,23 +33,29 @@ public class PlayMenu : MonoBehaviour
             string filePath = savePath + "savefile" + (i + 1) + ".json";
             if (File.Exists(filePath))
             {
-                saveSlots[i].loadButton.gameObject.SetActive(true);
-                saveSlots[i].newGameButton.gameObject.SetActive(false);
-                GameData saveData = GameManager.Instance.LoadSaveSlotData(i + 1);
-                saveSlots[i].infoText.text = "Area: " + saveData.checkpoint.sceneName;
-                int index = i + 1; // Capture the index for the button click event
-                saveSlots[i].loadButton.onClick.RemoveAllListeners();
-                saveSlots[i].loadButton.onClick.AddListener(() => LoadGame(index));
+                saveSlots[i].newGameImage.SetActive(false);
+                saveSlots[i].loadGameImage.SetActive(true);
+                saveSlots[i].infoText.text = "Area: " + GameManager.Instance.LoadSaveSlotData(i + 1).checkpoint.sceneName;
             }
             else
             {
-                saveSlots[i].loadButton.gameObject.SetActive(false);
-                saveSlots[i].newGameButton.gameObject.SetActive(true);
+                saveSlots[i].newGameImage.SetActive(true);
+                saveSlots[i].loadGameImage.SetActive(false);
                 saveSlots[i].infoText.text = "New Game";
-                int index = i + 1; // Capture the index for the button click event
-                saveSlots[i].newGameButton.onClick.RemoveAllListeners();
-                saveSlots[i].newGameButton.onClick.AddListener(() => StartNewGame(index));
             }
+        }
+    }
+
+    public void HandleSaveSlot(int slotIndex)
+    {
+        string filePath = savePath + "savefile" + slotIndex + ".json";
+        if (File.Exists(filePath))
+        {
+            LoadGame(slotIndex);
+        }
+        else
+        {
+            StartNewGame(slotIndex);
         }
     }
 

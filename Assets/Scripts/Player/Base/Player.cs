@@ -13,45 +13,45 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     #region Player variables
 
     [Header("Moving")]
-    [SerializeField] private float moveSpeed = 10f;
-    [SerializeField] private float groundSpeedAceleration = 75f;
-    [SerializeField] private float airSpeedAceleration = 100f;
-    [SerializeField] private float stopRate = 0.2f;
+    public float moveSpeed = 10f;
+    public float groundSpeedAceleration = 75f;
+    public float airSpeedAceleration = 100f;
+    public float stopRate = 0.2f;
     [Space(5)]
 
     [Header("Jumping")]
-    [SerializeField] private float jumpPower = 25f;
-    [SerializeField] private float coyoteTime = 0.1f;
+    public float jumpPower = 25f;
+    public float coyoteTime = 0.1f;
     private float coyoteTimeCounter;
-    [SerializeField] private float jumpBufferTime = 0.1f;
+    public float jumpBufferTime = 0.1f;
     private float jumpBufferTimeCounter;
-    [SerializeField] private float maximumFallSpeed = -40f;
+    public float maximumFallSpeed = -40f;
     [Space(5)]
 
     [Header("Dashing")]
-    [SerializeField] private bool canDash = true;
-    [SerializeField] private float dashPower = 25f;
-    [SerializeField] private float dashTime = 0.5f;
-    [SerializeField] private float dashCooldown = 2f;
-    [SerializeField] private float dashStopRate = 5f;
+    public bool canDash = true;
+    public float dashPower = 25f;
+    public float dashTime = 0.5f;
+    public float dashCooldown = 2f;
+    public float dashStopRate = 5f;
     [Space(5)]
 
     [Header("Climbing")]
-    [SerializeField] private float climbSpeed = 5f;
-    [SerializeField] private float centerLadderMoveSpeed = 10f;
-    [SerializeField] private bool isOnLadder;
-    [SerializeField] private Transform LadderCenterPosition;
+    public float climbSpeed = 5f;
+    public float centerLadderMoveSpeed = 10f;
+    public bool isOnLadder;
+    public Transform LadderCenterPosition;
     private Collider2D ladderCollider;
     [Space(5)]
 
     [Header("Wall Jumping")]
-    [SerializeField] private float wallSlideSpeed = 1f;
-    [SerializeField] private float wallSlideDuration = 0.5f;
+    public float wallSlideSpeed = 1f;
+    public float wallSlideDuration = 0.5f;
     private float wallJumpingDirection;
-    [SerializeField] private float wallJumpingTime = 1f;
+    public float wallJumpingTime = 1f;
     private float wallJumpingCounter;
-    [SerializeField] private float wallJumpingDuration = 0.2f;
-    [SerializeField] private Vector2 wallJumpingPower = new Vector2(7f, 25f);
+    public float wallJumpingDuration = 0.2f;
+    public Vector2 wallJumpingPower = new Vector2(7f, 25f);
     [Space(5)]
 
     [Header("One Way Platform Movement")]
@@ -69,21 +69,21 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     [Space(5)]
 
     [Header("Camera Shake")]
-    [SerializeField] private float slowMotionDuration = 0.5f;
-    [SerializeField] private float slowMotionFactor = 0.2f;
+    public float slowMotionDuration = 0.5f;
+    public float slowMotionFactor = 0.2f;
     [Space(5)]
 
     [Header("Ivincible")]
-    [SerializeField] private float timeSinceHit = 0;
-    [SerializeField] private float invincibleTime = 2f;
+    public float timeSinceHit = 0;
+    public float invincibleTime = 2f;
     [Space(5)]
 
     [Header("Item")]
-    [SerializeField] private bool hasItemInRange;
-    [SerializeField] private Item Item;
+    public bool hasItemInRange;
+    public Collectable Item;
     [Space(5)]
-    
-    [SerializeField] private ScriptablePlayerData ScriptablePlayerData;
+
+    public ScriptablePlayerData ScriptablePlayerData;
     public Animator Animator;
     public TouchingDirections TouchingDirections;
     public GameObject CurrentOneWayPlatform;
@@ -438,6 +438,8 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     public void UpdateHealthBar()
     {
+        HealthBar.healthSlider.maxValue = MaxHealth;
+        HealthBar.staminaSlider.maxValue = MaxStamina;
         HealthBar.SetHealth(CurrentHealth);
         HealthBar.SetStamina(CurrentStamina);
         HealthBar.SetHealthPotions(CurrentHealthPotion);
@@ -458,47 +460,56 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     private void Move()
     {
-        if (!LockVelocity && !IsWallJumping && !IsWallHanging && !IsClimbing)
+        if (!UIManager.Instance.menuActivated)
         {
-            if (HorizontalInput.x == 0 && !IsDashing)
+            if (!LockVelocity && !IsWallJumping && !IsWallHanging && !IsClimbing)
             {
-                RB.velocity = new Vector2(Mathf.Lerp(RB.velocity.x, 0, stopRate), RB.velocity.y);
-                currentSpeed = 0;
-            }
-            else if (HorizontalInput.x != 0 && !IsDashing)
-            {
-                RB.velocity = new Vector2(HorizontalInput.x * CurrentSpeed, RB.velocity.y);
+                if (HorizontalInput.x == 0 && !IsDashing)
+                {
+                    RB.velocity = new Vector2(Mathf.Lerp(RB.velocity.x, 0, stopRate), RB.velocity.y);
+                    currentSpeed = 0;
+                }
+                else if (HorizontalInput.x != 0 && !IsDashing)
+                {
+                    RB.velocity = new Vector2(HorizontalInput.x * CurrentSpeed, RB.velocity.y);
+                }
             }
         }
     }
 
     private void LadderClimb()
     {
-        if (IsClimbing)
+        if (!UIManager.Instance.menuActivated)
         {
-            RB.gravityScale = 0f;
-            RB.velocity = new Vector2(0f, VerticalInput.y * climbSpeed);
-
-            if (ladderCollider != null)
+            if (IsClimbing)
             {
-                Vector3 targetPosition = new Vector3(ladderCollider.bounds.center.x, transform.position.y, transform.position.z);
-                transform.position = Vector3.Lerp(transform.position, targetPosition, centerLadderMoveSpeed * Time.deltaTime);
+                RB.gravityScale = 0f;
+                RB.velocity = new Vector2(0f, VerticalInput.y * climbSpeed);
+
+                if (ladderCollider != null)
+                {
+                    Vector3 targetPosition = new Vector3(ladderCollider.bounds.center.x, transform.position.y, transform.position.z);
+                    transform.position = Vector3.Lerp(transform.position, targetPosition, centerLadderMoveSpeed * Time.deltaTime);
+                }
             }
         }
     }
 
     private void WallJump()
     {
-        if (IsWallHanging)
+        if (!UIManager.Instance.menuActivated)
         {
-            IsWallJumping = false;
-            float jumpDirection = IsFacingRight ? 1f : -1f;
-            wallJumpingDirection = -jumpDirection;
-            wallJumpingCounter = wallJumpingTime;
-        }
-        else
-        {
-            wallJumpingCounter -= Time.deltaTime;
+            if (IsWallHanging)
+            {
+                IsWallJumping = false;
+                float jumpDirection = IsFacingRight ? 1f : -1f;
+                wallJumpingDirection = -jumpDirection;
+                wallJumpingCounter = wallJumpingTime;
+            }
+            else
+            {
+                wallJumpingCounter -= Time.deltaTime;
+            }
         }
     }
 
@@ -691,107 +702,135 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     {
         HorizontalInput = context.ReadValue<Vector2>();
 
-        if (IsAlive)
+        if (!UIManager.Instance.menuActivated)
         {
-            IsMoving = HorizontalInput != Vector2.zero;
-        }
-        else
-        {
-            IsMoving = false;
+            if (IsAlive)
+            {
+                IsMoving = HorizontalInput != Vector2.zero;
+            }
+            else
+            {
+                IsMoving = false;
+            }
         }
     }
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.started && IsClimbing)
+        if (!UIManager.Instance.menuActivated)
         {
-            IsClimbing = false;
-            RB.gravityScale = OriginalGravityScale;
-            RB.velocity = new Vector2(RB.velocity.x, jumpPower);
-        }
-        else if (context.started)
-        {
-            jumpBufferTimeCounter = jumpBufferTime;
-        }
-        else
-        {
-            jumpBufferTimeCounter -= Time.deltaTime;
-        }
+            if (context.started && IsClimbing)
+            {
+                IsClimbing = false;
+                RB.gravityScale = OriginalGravityScale;
+                RB.velocity = new Vector2(RB.velocity.x, jumpPower);
+            }
+            else if (context.started)
+            {
+                jumpBufferTimeCounter = jumpBufferTime;
+            }
+            else
+            {
+                jumpBufferTimeCounter -= Time.deltaTime;
+            }
 
-        if (context.started && wallJumpingCounter > 0f && IsWallHanging)
-        {
-            CoroutineManager.Instance.StartCoroutineManager(WallJumping());
-        }
+            if (context.started && wallJumpingCounter > 0f && IsWallHanging)
+            {
+                CoroutineManager.Instance.StartCoroutineManager(WallJumping());
+            }
 
-        if (jumpBufferTimeCounter > 0f && coyoteTimeCounter > 0f && CanMove)
-        {
-            IsDashing = false;
-            RB.velocity = new Vector2(RB.velocity.x, jumpPower);
-            jumpBufferTimeCounter = 0f;
-        }
+            if (jumpBufferTimeCounter > 0f && coyoteTimeCounter > 0f && CanMove)
+            {
+                IsDashing = false;
+                RB.velocity = new Vector2(RB.velocity.x, jumpPower);
+                jumpBufferTimeCounter = 0f;
+            }
 
-        if (context.canceled && RB.velocity.y > 0)
-        {
-            coyoteTimeCounter = 0f;
+            if (context.canceled && RB.velocity.y > 0)
+            {
+                coyoteTimeCounter = 0f;
+            }
         }
     }
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (context.started && IsAlive && !IsWallHanging && !IsDashing && !IsClimbing)
+        if (!UIManager.Instance.menuActivated)
         {
-            Animator.SetTrigger(AnimationString.attackTrigger);
+            if (context.started && IsAlive && !IsWallHanging && !IsDashing && !IsClimbing)
+            {
+                Animator.SetTrigger(AnimationString.attackTrigger);
+            }
         }
     }
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.started && canDash && CanMove && TouchingDirections.IsGrounded && !IsDashing && !IsClimbing && CurrentStamina >= dashStaminaCost)
+        if (!UIManager.Instance.menuActivated)
         {
-            CoroutineManager.Instance.StartCoroutineManager(Dashing());
+            if (context.started && canDash && CanMove && TouchingDirections.IsGrounded && !IsDashing && !IsClimbing && CurrentStamina >= dashStaminaCost)
+            {
+                CoroutineManager.Instance.StartCoroutineManager(Dashing());
+            }
         }
     }
 
     public void OnClimb(InputAction.CallbackContext context)
     {
         VerticalInput = context.ReadValue<Vector2>();
-        Animator.SetBool(AnimationString.upInput, VerticalInput.y > 0);
+
+        if (!UIManager.Instance.menuActivated)
+        {
+            Animator.SetBool(AnimationString.upInput, VerticalInput.y > 0);
+        }
     }
 
     public void OnWallHang(InputAction.CallbackContext context)
     {
-        if (context.started && CanMove && TouchingDirections.IsGrabWallDetected && !TouchingDirections.IsGrounded && !IsWallHanging && CurrentStamina >= wallHangStaminaCost)
+        if (!UIManager.Instance.menuActivated)
         {
-            Animator.SetTrigger(AnimationString.wallHangTrigger);
-            CoroutineManager.Instance.StartCoroutineManager(WallHanging());
+            if (context.started && CanMove && TouchingDirections.IsGrabWallDetected && !TouchingDirections.IsGrounded && !IsWallHanging && CurrentStamina >= wallHangStaminaCost)
+            {
+                Animator.SetTrigger(AnimationString.wallHangTrigger);
+                CoroutineManager.Instance.StartCoroutineManager(WallHanging());
+            }
         }
     }
 
     public void OnHeal(InputAction.CallbackContext context)
     {
-        if (context.started && IsAlive && CanMove && TouchingDirections.IsGrounded && CurrentHealthPotion > 0)
+        if (!UIManager.Instance.menuActivated)
         {
-            Animator.SetTrigger(AnimationString.healTrigger);
+            if (context.started && IsAlive && CanMove && TouchingDirections.IsGrounded && CurrentHealthPotion > 0)
+            {
+                Animator.SetTrigger(AnimationString.healTrigger);
+            }
         }
     }
 
     public void OnSavePoint(InputAction.CallbackContext context)
     {
-        if (context.started && IsAlive && CanMove && TouchingDirections.IsGrounded && isInSavePoint)
+        if (!UIManager.Instance.menuActivated)
         {
-            Animator.SetTrigger(AnimationString.saveTrigger);
+            if (context.started && IsAlive && CanMove && TouchingDirections.IsGrounded && isInSavePoint)
+            {
+                Animator.SetTrigger(AnimationString.saveTrigger);
+            }
         }
     }
 
     public void OnCollectItem(InputAction.CallbackContext context)
     {
-        if (context.started && hasItemInRange && Item.IsOnFloor)
+        if (!UIManager.Instance.menuActivated)
         {
-            Animator.SetTrigger(AnimationString.collectFloorTrigger);
-        }
-        else if (context.started && hasItemInRange && !Item.IsOnFloor)
-        {
-            Animator.SetTrigger(AnimationString.collectHalfTrigger);
+            if (context.started && hasItemInRange && Item.IsOnFloor)
+            {
+                Animator.SetTrigger(AnimationString.collectFloorTrigger);
+            }
+            else if (context.started && hasItemInRange && !Item.IsOnFloor)
+            {
+                Animator.SetTrigger(AnimationString.collectHalfTrigger);
+            }
         }
     }
 
@@ -957,7 +996,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         if (collision.CompareTag("Item"))
         {
             hasItemInRange = true;
-            Item = collision.GetComponent<Item>();
+            Item = collision.GetComponent<Collectable>();
         }
     }
 

@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class HighlightAnimation : MonoBehaviour
+public class SelectAnimation : MonoBehaviour
 {
+    public Button button;
     public GameObject shaderObject;
+    private QuestItemSlot itemSlot;
     private Image shaderImage;
     public Sprite[] spriteArray;
     public float speed = 0.05f;
@@ -14,14 +17,21 @@ public class HighlightAnimation : MonoBehaviour
 
     private void Start()
     {
+        itemSlot = GetComponent<QuestItemSlot>();
         shaderImage = shaderObject.GetComponent<Image>();
+        shaderObject.SetActive(false); // Ensure the shaderObject is initially inactive
     }
 
     private void Update()
     {
-        if (shaderObject.activeSelf)
+        if (EventSystem.current.currentSelectedGameObject == button.gameObject)
         {
+            shaderObject.SetActive(true);
             UpdateHighlight();
+        }
+        else
+        {
+            shaderObject.SetActive(false);
         }
     }
 

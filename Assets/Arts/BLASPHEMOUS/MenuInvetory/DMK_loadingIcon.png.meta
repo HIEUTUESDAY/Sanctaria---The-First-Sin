@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5480175b5f0540a479e5486dce1b2e94
+guid: 7bdea7078ede7e246816fd7b00952aa8
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,253 +123,169 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: description_big
+      name: DMK_loadingIcon_0
       rect:
         serializedVersion: 2
-        x: 239
-        y: 184
-        width: 272
-        height: 232
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8239be06e2219d947955554864749617
-      internalID: -1407034141
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: description_small
-      rect:
-        serializedVersion: 2
-        x: 239
-        y: 31
-        width: 272
-        height: 151
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f4d09634cbec4bd49bc94d62f9dbff64
-      internalID: -909889507
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: inventory_nonseclect
-      rect:
-        serializedVersion: 2
-        x: 47
-        y: 486
-        width: 45
-        height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 03a983d7b5e248b41b141031524fc355
-      internalID: -1573444701
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: inventory_seclect
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 486
-        width: 45
-        height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9812d0e382517164596ef6150b04d3ca
-      internalID: -740649972
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: questItem_selected
-      rect:
-        serializedVersion: 2
-        x: 241
-        y: 497
-        width: 29
-        height: 13
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 563d6dfeff627244d96f0e38c9c5b682
-      internalID: -824627837
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: meaculpa_selected
-      rect:
-        serializedVersion: 2
-        x: 142
-        y: 462
-        width: 14
-        height: 22
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a1edec1812defa5459b7dfb8ab0fb415
-      internalID: 1194759776
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: prayer_selected
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 466
-        width: 22
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dffbc19036c1e7d46b3c68714b978fa5
-      internalID: 1001844160
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: prayer_equipped
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 434
-        width: 36
-        height: 36
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d8cff970734347247bf41397191dc89b
-      internalID: -1790102548
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: meaculpa_nonselected
-      rect:
-        serializedVersion: 2
-        x: 164
-        y: 439
-        width: 14
-        height: 22
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 904f91be6aacc24478246ccf80e55c46
-      internalID: -864764552
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: prayer_nonselected
-      rect:
-        serializedVersion: 2
-        x: 161
-        y: 419
-        width: 22
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f06bebb09fce14d449f924d1041cdc35
-      internalID: -304154642
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: questItem_nonselected
-      rect:
-        serializedVersion: 2
-        x: 242
-        y: 450
-        width: 29
-        height: 13
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 64059a2bd35236a41b86ced16efcb78e
-      internalID: -1251095800
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: background
-      rect:
-        serializedVersion: 2
-        x: 60
-        y: 472
+        x: 0
+        y: 24
         width: 16
-        height: 10
+        height: 24
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 70dd1931d223b7b4fa7ce6162a96aada
-      internalID: -185362877
+      spriteID: 8bb48733769c78745bc3e6a77615d1cd
+      internalID: -291357143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DMK_loadingIcon_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 24
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e2fb8d5087a6d243aa2ab278797c114
+      internalID: -1357837606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DMK_loadingIcon_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 24
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c55874f2c9585d944be501a113a7da4d
+      internalID: -1156701243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DMK_loadingIcon_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 24
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90f798636b070f341a806ce21eab04f5
+      internalID: -777075345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DMK_loadingIcon_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c10e35c8289547346b0eb6c225a6c146
+      internalID: 1880120690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DMK_loadingIcon_5
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 548f4756a2205554bbf0c53f543d0c2d
+      internalID: 36834369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DMK_loadingIcon_6
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e844b1f8a9732f4894426ca3a65146f
+      internalID: -2084848666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DMK_loadingIcon_7
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef07151cdad354545b292de3176e6194
+      internalID: 1374065603
       vertices: []
       indices: 
       edges: []
@@ -385,18 +301,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      background: -185362877
-      description_big: 1219609988
-      description_small: -909889507
-      inventory_nonseclect: -1573444701
-      inventory_seclect: -740649972
-      meaculpa_nonselected: -864764552
-      meaculpa_selected: 1194759776
-      prayer_equipped: -1790102548
-      prayer_nonselected: -304154642
-      prayer_selected: 1001844160
-      questItem_nonselected: -1251095800
-      questItem_selected: -824627837
+      DMK_loadingIcon_0: -291357143
+      DMK_loadingIcon_1: -1357837606
+      DMK_loadingIcon_2: -1156701243
+      DMK_loadingIcon_3: -777075345
+      DMK_loadingIcon_4: 1880120690
+      DMK_loadingIcon_5: 36834369
+      DMK_loadingIcon_6: -2084848666
+      DMK_loadingIcon_7: 1374065603
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

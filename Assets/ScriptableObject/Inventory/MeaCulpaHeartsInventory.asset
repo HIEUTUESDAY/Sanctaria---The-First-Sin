@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15cd3be7217dbb841a2ab804228e0f92, type: 3}
   m_Name: MeaCulpaHeartsInventory
   m_EditorClassIdentifier: 
-  items: []
+  MeaCulpaHearts:
+  - itemName: Heart of The Single Tone
+    itemSprite: {fileID: -1789079542, guid: d6713fbc4497dca4c95a277d2e14fc1a, type: 3}
+    itemDescription: Slighly increase player stamina regeneration when equip
+    isEquip: 0
