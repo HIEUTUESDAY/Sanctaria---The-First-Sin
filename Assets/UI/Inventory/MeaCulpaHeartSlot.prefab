@@ -286,21 +286,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51121738e7628374995d21d1b0dfd0b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: 
-  itemSprite: {fileID: 0}
-  itemDescription: 
-  isItemEquipped: 0
-  hasItem: 0
-  itemSlotImage: {fileID: 61051331407485770}
-  emptyItemSlotBGI: {fileID: 616663545, guid: d6713fbc4497dca4c95a277d2e14fc1a, type: 3}
-  fillItemSlotBGI: {fileID: 1536165663, guid: d6713fbc4497dca4c95a277d2e14fc1a, type: 3}
-  selectedItemSlotBGI: {fileID: 303646139, guid: d6713fbc4497dca4c95a277d2e14fc1a, type: 3}
-  equippedItemSlotBGI: {fileID: 895344877, guid: d6713fbc4497dca4c95a277d2e14fc1a, type: 3}
-  itemImage: {fileID: 8284484670873479849}
-  emptyItemImage: {fileID: 637745243, guid: d6713fbc4497dca4c95a277d2e14fc1a, type: 3}
-  itemDesImage: {fileID: 0}
-  itemDesNameText: {fileID: 0}
-  itemDesText: {fileID: 0}
+  heartName: 
+  heartSprite: {fileID: 0}
+  heartDescription: 
+  heartDamageModifier: 0
+  heartDefenseModifier: 0
+  heartHealthModifier: 0
+  heartHealthRegenModifier: 0
+  heartStaminaModifier: 0
+  heartStaminaRegenModifier: 0
+  heartMoveSpeedModifier: 0
+  heartJumpPowerModifier: 0
+  heartWallJumpPowerModifier: 0
+  heartDashPowerModifier: 0
+  heartSlotImage: {fileID: 61051331407485770}
+  emptyHeartSlotBGI: {fileID: 616663545, guid: d6713fbc4497dca4c95a277d2e14fc1a, type: 3}
+  fillHeartSlotBGI: {fileID: 1536165663, guid: d6713fbc4497dca4c95a277d2e14fc1a, type: 3}
+  selectedHeartSlotBGI: {fileID: 303646139, guid: d6713fbc4497dca4c95a277d2e14fc1a, type: 3}
+  equippedHeartSlotBGI: {fileID: 895344877, guid: d6713fbc4497dca4c95a277d2e14fc1a, type: 3}
+  heartImage: {fileID: 8284484670873479849}
+  emptyHeartImage: {fileID: 637745243, guid: d6713fbc4497dca4c95a277d2e14fc1a, type: 3}
+  hasHeart: 0
+  isHeartEquipped: 0
+  heartDescriptionImage: {fileID: 0}
+  heartDescriptionNameText: {fileID: 0}
+  heartDescriptionText: {fileID: 0}
   button: {fileID: 2357501087400783477}
   isSelected: 0
   shaderAnimation: {fileID: 3490929958684731039}

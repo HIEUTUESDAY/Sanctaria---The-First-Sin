@@ -5,6 +5,5 @@ using UnityEngine;
 [System.Serializable]
 public class Prayer : Item
 {
-    public bool isEquip;
-
+    public bool isItemEquipped;
 }

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PrayerCollectable : Collectable
 {
-    
+    private bool isItemEquipped = false;
+
     public override void CollectItem()
     {
         base.CollectItem();
@@ -16,6 +17,7 @@ public class PrayerCollectable : Collectable
                 itemName = itemName,
                 itemDescription = itemDescription,
                 itemSprite = itemSprite,
+                isItemEquipped = isItemEquipped
             });
             Destroy(gameObject);
         }

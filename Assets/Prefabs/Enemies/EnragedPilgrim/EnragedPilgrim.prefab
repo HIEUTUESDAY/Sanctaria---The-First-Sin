@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDamage: 20
-  knockback: {x: 2, y: 2}
+  knockback: {x: 5, y: 2}
   damageCooldown: 3
   attackType: 0
 --- !u!1 &2222708328301968779

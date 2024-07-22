@@ -52,25 +52,12 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     private float wallJumpingCounter;
     public float wallJumpingDuration = 0.2f;
     public Vector2 wallJumpingPower = new Vector2(7f, 25f);
+    private float wallHangStaminaCost = 10f;
     [Space(5)]
 
-    [Header("One Way Platform Movement")]
-    private BoxCollider2D PlayerCollider;
-    [Space(5)]
-
-    [Header("Stamina")]
+    [Header("Stamina Regen")]
     private float staminaRegenSpeed = 5f;
     private float dashStaminaCost = 30f;
-    private float wallHangStaminaCost = 10f;
-
-    [Header("Save Point")]
-    [SerializeField] public bool isInSavePoint;
-    private CheckPointManager SavePointManager;
-    [Space(5)]
-
-    [Header("Camera Shake")]
-    public float slowMotionDuration = 0.5f;
-    public float slowMotionFactor = 0.2f;
     [Space(5)]
 
     [Header("Ivincible")]
@@ -78,9 +65,23 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     public float invincibleTime = 2f;
     [Space(5)]
 
-    [Header("Item")]
+    [Header("Collect Item")]
     public bool hasItemInRange;
     public Collectable Item;
+    [Space(5)]
+
+    [Header("Save Point")]
+    [SerializeField] public bool isInSavePoint;
+    private CheckPointManager SavePointManager;
+    [Space(5)]
+
+    [Header("One Way Platform Movement")]
+    private BoxCollider2D PlayerCollider;
+    [Space(5)]
+
+    [Header("Camera Shake")]
+    public float slowMotionDuration = 0.5f;
+    public float slowMotionFactor = 0.2f;
     [Space(5)]
 
     public ScriptablePlayerData ScriptablePlayerData;
@@ -93,6 +94,22 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     public CinemachineImpulseSource ImpulseSource;
     private float FallSpeedYDampingChangeThreshold;
     private float OriginalGravityScale;
+
+    #endregion
+
+    #region Player Equipment buffs
+
+    [Header("Equipment Buffs")]
+    public float damageBuff;
+    public float defenseBuff;
+    public float healthBuff;
+    public float healthRegenBuff;
+    public float staminaBuff;
+    public float staminaRegenBuff;
+    public float moveSpeedBuff;
+    public float jumpPowerBuff;
+    public float wallJumpPowerBuff;
+    public float dashPowerBuff;
 
     #endregion
 
@@ -174,32 +191,57 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     #region IPlayerDamageable variables
 
-    public float MaxHealth { get; set; } = 100f;
+    private float _maxHealth = 100f;
+    public float MaxHealth 
+    {
+        get => _maxHealth + healthBuff;
+        set
+        {
+            _maxHealth = value;
+        }
+    }
 
-    public float _currentHealth;
-
-    [SerializeField] public float CurrentHealth
+    private float _currentHealth;
+    public float CurrentHealth
     {
         get => _currentHealth;
         set
         {
             _currentHealth = value;
-            if (_currentHealth <= 0)
+
+            if (value <= 0)
             {
                 IsAlive = false;
             }
         }
     }
 
-    public float MaxStamina { get; set; } = 100f;
-    [field: SerializeField] public float CurrentStamina { get; set; }
+    private float _maxStamina = 100f;
+    public float MaxStamina 
+    {
+        get => _maxStamina + staminaBuff;
+        set
+        {
+            _maxStamina = value;
+        }
+    }
+
+    private float _currentStamina;
+    public float CurrentStamina
+    {
+        get => _currentStamina;
+        set
+        {
+            _currentStamina = value;
+        }
+    }
+
     public int MaxHealthPotion { get; set; } = 2;
     [field: SerializeField] public int CurrentHealthPotion { get; set; }
     [field: SerializeField] public float HealthRestore { get; set; } = 50f;
 
-    public bool _isAlive = true;
-
-    [SerializeField] public bool IsAlive
+    [SerializeField] private bool _isAlive = true;
+    public bool IsAlive
     {
         get => _isAlive;
         set
@@ -214,7 +256,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         }
     }
 
-    [SerializeField] public bool IsInvincible 
+    public bool IsInvincible 
     { 
         get 
         {
@@ -228,7 +270,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     public bool WasHit { get; set; }
 
-    [SerializeField] public bool LockVelocity
+    public bool LockVelocity
     {
         get
         {
@@ -239,7 +281,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             Animator.SetBool(AnimationString.lockVelocity, value);
         }
     }
-    [field: Space(5)]
 
     #endregion
 
@@ -251,7 +292,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     [field: SerializeField] public bool IsFacingRight { get; set; } = true;
     public bool CanMove { get => Animator.GetBool(AnimationString.canMove);}
 
-    public float currentSpeed;
+    [SerializeField] private float _currentSpeed;
     public float CurrentSpeed
     {
         get
@@ -261,16 +302,16 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
                 if (TouchingDirections.IsGrounded)
                 {
                     // On ground move speed
-                    currentSpeed += groundSpeedAceleration * Time.deltaTime;
-                    currentSpeed = Mathf.Min(currentSpeed, moveSpeed);
-                    return currentSpeed;
+                    _currentSpeed += groundSpeedAceleration * Time.deltaTime;
+                    _currentSpeed = Mathf.Min(_currentSpeed, moveSpeed + moveSpeedBuff);
+                    return _currentSpeed;
                 }
                 else
                 {
                     // In air move speed
-                    currentSpeed += airSpeedAceleration * Time.deltaTime;
-                    currentSpeed = Mathf.Min(currentSpeed, moveSpeed);
-                    return currentSpeed;
+                    _currentSpeed += airSpeedAceleration * Time.deltaTime;
+                    _currentSpeed = Mathf.Min(_currentSpeed, moveSpeed + moveSpeedBuff);
+                    return _currentSpeed;
                 }
             }
             else
@@ -278,6 +319,10 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
                 // Movement lock
                 return 0;
             }
+        }
+        set
+        {
+            _currentSpeed = value;
         }
     }
 
@@ -335,7 +380,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         OneWayCheck();
         YDampingCheck();
         WallHangCheck();
-        StaminaRegeneration();
+        HealthAndStaminaRegeneration();
         UpdateHealthBar();
         BeInvisible();
         SaveScriptablePlayerData();
@@ -354,15 +399,16 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     {
         if (IsAlive && !IsInvincible)
         {
-            CurrentHealth -= damage;
+            float damageTaken = damage - defenseBuff;
+            CurrentHealth -= damageTaken;
             WasHit = true;
 
             CoroutineManager.Instance.StartCoroutineManager(ApplySlowMotion());
             CameraShakeManager.Instance.CameraShake(ImpulseSource);
             Animator.SetTrigger(AnimationString.hitTrigger);
 
-            DamageableHit?.Invoke(damage, knockback);
-            CharacterEvent.characterDamaged.Invoke(gameObject, damage);
+            DamageableHit?.Invoke(damageTaken, knockback);
+            CharacterEvent.characterDamaged.Invoke(gameObject, damageTaken);
             CharacterEvent.hitSplash.Invoke(gameObject, hitDirection, attackType);
         }
         else
@@ -436,6 +482,25 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     #region UI health bar functions
 
+    public void HealthAndStaminaRegeneration()
+    {
+        if (CurrentHealth > MaxHealth)
+        {
+            CurrentHealth = MaxHealth;
+        }
+
+        if (CurrentStamina > MaxStamina)
+        {
+            CurrentStamina = MaxStamina;
+        }
+
+        if (CurrentStamina < MaxStamina)    
+        {
+            CurrentStamina += ((staminaRegenSpeed + staminaBuff) * Time.deltaTime);
+            CurrentStamina = Mathf.Min(CurrentStamina, MaxStamina);
+        }
+    }
+
     public void UpdateHealthBar()
     {
         HealthBar.healthSlider.maxValue = MaxHealth;
@@ -443,15 +508,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         HealthBar.SetHealth(CurrentHealth);
         HealthBar.SetStamina(CurrentStamina);
         HealthBar.SetHealthPotions(CurrentHealthPotion);
-    }
-
-    public void StaminaRegeneration()
-    {
-        if (CurrentStamina < MaxStamina)
-        {
-            CurrentStamina += (staminaRegenSpeed * Time.deltaTime);
-            CurrentStamina = Mathf.Min(CurrentStamina, MaxStamina);
-        }
     }
 
     #endregion
@@ -467,7 +523,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
                 if (HorizontalInput.x == 0 && !IsDashing)
                 {
                     RB.velocity = new Vector2(Mathf.Lerp(RB.velocity.x, 0, stopRate), RB.velocity.y);
-                    currentSpeed = 0;
+                    _currentSpeed = 0;
                 }
                 else if (HorizontalInput.x != 0 && !IsDashing)
                 {
@@ -522,7 +578,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         if (IsAlive && !LockVelocity)
         {
             float maxHeal = Mathf.Max(MaxHealth - CurrentHealth, 0);
-            float actualHeal = Mathf.Min(maxHeal, HealthRestore);
+            float actualHeal = Mathf.Min(maxHeal, HealthRestore + healthRegenBuff);
             CurrentHealth += actualHeal;
             CurrentStamina = MaxStamina;
             CurrentHealthPotion -= 1;
@@ -700,10 +756,9 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        HorizontalInput = context.ReadValue<Vector2>();
-
         if (!UIManager.Instance.menuActivated)
         {
+            HorizontalInput = context.ReadValue<Vector2>();
             if (IsAlive)
             {
                 IsMoving = HorizontalInput != Vector2.zero;
@@ -712,6 +767,11 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             {
                 IsMoving = false;
             }
+        }
+        else
+        {
+            HorizontalInput = Vector2.zero;
+            IsMoving = false;
         }
     }
 
@@ -723,7 +783,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             {
                 IsClimbing = false;
                 RB.gravityScale = OriginalGravityScale;
-                RB.velocity = new Vector2(RB.velocity.x, jumpPower);
+                RB.velocity = new Vector2(RB.velocity.x, jumpPower + jumpPowerBuff);
             }
             else if (context.started)
             {
@@ -742,7 +802,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             if (jumpBufferTimeCounter > 0f && coyoteTimeCounter > 0f && CanMove)
             {
                 IsDashing = false;
-                RB.velocity = new Vector2(RB.velocity.x, jumpPower);
+                RB.velocity = new Vector2(RB.velocity.x, jumpPower + jumpPowerBuff);
                 jumpBufferTimeCounter = 0f;
             }
 
@@ -777,11 +837,14 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     public void OnClimb(InputAction.CallbackContext context)
     {
-        VerticalInput = context.ReadValue<Vector2>();
-
         if (!UIManager.Instance.menuActivated)
         {
+            VerticalInput = context.ReadValue<Vector2>();
             Animator.SetBool(AnimationString.upInput, VerticalInput.y > 0);
+        }
+        else
+        {
+            VerticalInput = Vector2.zero;
         }
     }
 
@@ -864,7 +927,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     private IEnumerator Dashing()
     {
-        CurrentStamina -= dashStaminaCost;
+        _currentStamina -= dashStaminaCost;
         IsInvincible = true;
         IsDashing = true;
         canDash = false;
@@ -878,7 +941,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         float afterDashTime = 0.5f;
 
         yield return new WaitForSeconds(dashDelay);
-        RB.velocity = new Vector2(dashDirection * dashPower, 0f);
+        RB.velocity = new Vector2(dashDirection * (dashPower + dashPowerBuff), 0f);
 
         // Check for ground while dashing
         while (Time.time < dashEndTime)
@@ -923,7 +986,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     private IEnumerator WallJumping()
     {
         IsWallJumping = true;
-        RB.velocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y);
+        RB.velocity = new Vector2(wallJumpingDirection * (wallJumpingPower.x + wallJumpPowerBuff), wallJumpingPower.y + wallJumpPowerBuff);
         wallJumpingCounter = 0f;
 
         float jumpDirection = IsFacingRight ? 1f : -1f;
@@ -939,7 +1002,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     private IEnumerator WallHanging()
     {
-        CurrentStamina -= wallHangStaminaCost;
+        _currentStamina -= wallHangStaminaCost;
         IsWallHanging = true;
         RB.gravityScale = 0;
 
@@ -947,12 +1010,12 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         Vector2 directionToWall = IsFacingRight ? Vector2.right : Vector2.left;
 
         // Move the player towards the wall
-        float moveSpeed = 100f;
+        float moveToWallSpeed = 100f;
         while (!TouchingDirections.IsOnWall && IsWallHanging)
         {
             if (TouchingDirections.IsGrabWallDetected && !IsWallJumping)
             {
-                RB.velocity = new Vector2(directionToWall.x * moveSpeed, 0);
+                RB.velocity = new Vector2(directionToWall.x * moveToWallSpeed, 0);
             }
             yield return null;
         }

@@ -89,12 +89,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aec1149c1fd0ed749857e944aad37bf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meaCulpaHeartName: 
-  meaCulpaHeartSprite: {fileID: 0}
-  meaCulpaHeartDescription: 
-  hasMeaCulpaHeartEquipped: 0
+  equippedMeaCulpaHeart:
+    itemName: 
+    itemSprite: {fileID: 0}
+    itemDescription: 
+    isEquip: 0
   itemImage: {fileID: 1021492929828633136}
-  emptyItemImage: {fileID: 637745243, guid: d6713fbc4497dca4c95a277d2e14fc1a, type: 3}
+  emptyItemSprite: {fileID: 637745243, guid: d6713fbc4497dca4c95a277d2e14fc1a, type: 3}
 --- !u!1 &8052204962384521947
 GameObject:
   m_ObjectHideFlags: 0

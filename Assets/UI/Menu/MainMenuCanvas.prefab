@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &808798615935138212
 RectTransform:
   m_ObjectHideFlags: 0
@@ -516,6 +516,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1942383819876892609}
   shaderObject: {fileID: 8939562744044652740}
+  emmptySprite: {fileID: 637745243, guid: d6713fbc4497dca4c95a277d2e14fc1a, type: 3}
   spriteArray:
   - {fileID: -291357143, guid: 7bdea7078ede7e246816fd7b00952aa8, type: 3}
   - {fileID: -1357837606, guid: 7bdea7078ede7e246816fd7b00952aa8, type: 3}
@@ -526,6 +527,9 @@ MonoBehaviour:
   - {fileID: -2084848666, guid: 7bdea7078ede7e246816fd7b00952aa8, type: 3}
   - {fileID: 1374065603, guid: 7bdea7078ede7e246816fd7b00952aa8, type: 3}
   speed: 0.15
+  buttonTmpText: {fileID: 6433078143281460517}
+  selectedColorGradient: {fileID: 11400000, guid: 5bb419817d34b5f4daa1ec87a7db62b2, type: 2}
+  deselectedColorGradient: {fileID: 11400000, guid: 41521cef8b3fec94d90d871d3d2656dc, type: 2}
 --- !u!1 &727972801120151220
 GameObject:
   m_ObjectHideFlags: 0
@@ -837,6 +841,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 7586563417460846995}
   shaderObject: {fileID: 1215476100623413299}
+  emmptySprite: {fileID: 637745243, guid: d6713fbc4497dca4c95a277d2e14fc1a, type: 3}
   spriteArray:
   - {fileID: -291357143, guid: 7bdea7078ede7e246816fd7b00952aa8, type: 3}
   - {fileID: -1357837606, guid: 7bdea7078ede7e246816fd7b00952aa8, type: 3}
@@ -847,6 +852,9 @@ MonoBehaviour:
   - {fileID: -2084848666, guid: 7bdea7078ede7e246816fd7b00952aa8, type: 3}
   - {fileID: 1374065603, guid: 7bdea7078ede7e246816fd7b00952aa8, type: 3}
   speed: 0.15
+  buttonTmpText: {fileID: 3930981088147771758}
+  selectedColorGradient: {fileID: 11400000, guid: 5bb419817d34b5f4daa1ec87a7db62b2, type: 2}
+  deselectedColorGradient: {fileID: 11400000, guid: 41521cef8b3fec94d90d871d3d2656dc, type: 2}
 --- !u!1 &1215476100623413299
 GameObject:
   m_ObjectHideFlags: 0
@@ -864,7 +872,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8622011320162861279
 RectTransform:
   m_ObjectHideFlags: 0
@@ -939,7 +947,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5011273908995013134
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1196,7 +1204,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Current Area
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0d876e9aeb47c04499981a45123ac82f, type: 2}
   m_sharedMaterial: {fileID: -2299358364990239218, guid: 0d876e9aeb47c04499981a45123ac82f, type: 2}
@@ -1205,9 +1213,9 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4293914127
-  m_fontColor: {r: 0.058823533, g: 0.9333334, b: 0.93725497, a: 1}
-  m_enableVertexGradient: 0
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:
     topLeft: {r: 1, g: 1, b: 1, a: 1}
@@ -1560,7 +1568,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8452748322092447719
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2400,7 +2408,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Current Area
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0d876e9aeb47c04499981a45123ac82f, type: 2}
   m_sharedMaterial: {fileID: -2299358364990239218, guid: 0d876e9aeb47c04499981a45123ac82f, type: 2}
@@ -2409,9 +2417,9 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4293914127
-  m_fontColor: {r: 0.058823533, g: 0.9333334, b: 0.93725497, a: 1}
-  m_enableVertexGradient: 0
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:
     topLeft: {r: 1, g: 1, b: 1, a: 1}
@@ -2486,7 +2494,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7801660242482109101
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3043,7 +3051,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Current Area
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0d876e9aeb47c04499981a45123ac82f, type: 2}
   m_sharedMaterial: {fileID: -2299358364990239218, guid: 0d876e9aeb47c04499981a45123ac82f, type: 2}
@@ -3052,9 +3060,9 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4293914127
-  m_fontColor: {r: 0.058823533, g: 0.9333334, b: 0.93725497, a: 1}
-  m_enableVertexGradient: 0
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:
     topLeft: {r: 1, g: 1, b: 1, a: 1}
@@ -3989,7 +3997,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5179869360453593504
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4198,6 +4206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 2254546865424885342}
   shaderObject: {fileID: 7812983124529464966}
+  emmptySprite: {fileID: 637745243, guid: d6713fbc4497dca4c95a277d2e14fc1a, type: 3}
   spriteArray:
   - {fileID: -291357143, guid: 7bdea7078ede7e246816fd7b00952aa8, type: 3}
   - {fileID: -1357837606, guid: 7bdea7078ede7e246816fd7b00952aa8, type: 3}
@@ -4208,6 +4217,9 @@ MonoBehaviour:
   - {fileID: -2084848666, guid: 7bdea7078ede7e246816fd7b00952aa8, type: 3}
   - {fileID: 1374065603, guid: 7bdea7078ede7e246816fd7b00952aa8, type: 3}
   speed: 0.15
+  buttonTmpText: {fileID: 905801436774424937}
+  selectedColorGradient: {fileID: 11400000, guid: 5bb419817d34b5f4daa1ec87a7db62b2, type: 2}
+  deselectedColorGradient: {fileID: 11400000, guid: 41521cef8b3fec94d90d871d3d2656dc, type: 2}
 --- !u!1 &7035751310942271254
 GameObject:
   m_ObjectHideFlags: 0
@@ -4432,6 +4444,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 8609533229678146831}
   shaderObject: {fileID: 6409330892875794721}
+  emmptySprite: {fileID: 637745243, guid: d6713fbc4497dca4c95a277d2e14fc1a, type: 3}
   spriteArray:
   - {fileID: -291357143, guid: 7bdea7078ede7e246816fd7b00952aa8, type: 3}
   - {fileID: -1357837606, guid: 7bdea7078ede7e246816fd7b00952aa8, type: 3}
@@ -4442,6 +4455,9 @@ MonoBehaviour:
   - {fileID: -2084848666, guid: 7bdea7078ede7e246816fd7b00952aa8, type: 3}
   - {fileID: 1374065603, guid: 7bdea7078ede7e246816fd7b00952aa8, type: 3}
   speed: 0.15
+  buttonTmpText: {fileID: 7818365745892668660}
+  selectedColorGradient: {fileID: 11400000, guid: 5bb419817d34b5f4daa1ec87a7db62b2, type: 2}
+  deselectedColorGradient: {fileID: 11400000, guid: 41521cef8b3fec94d90d871d3d2656dc, type: 2}
 --- !u!1 &7503742053036152175
 GameObject:
   m_ObjectHideFlags: 0
@@ -4668,6 +4684,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 7560336491368633558}
   shaderObject: {fileID: 1399835645424994638}
+  emmptySprite: {fileID: 637745243, guid: d6713fbc4497dca4c95a277d2e14fc1a, type: 3}
   spriteArray:
   - {fileID: -291357143, guid: 7bdea7078ede7e246816fd7b00952aa8, type: 3}
   - {fileID: -1357837606, guid: 7bdea7078ede7e246816fd7b00952aa8, type: 3}
@@ -4678,6 +4695,9 @@ MonoBehaviour:
   - {fileID: -2084848666, guid: 7bdea7078ede7e246816fd7b00952aa8, type: 3}
   - {fileID: 1374065603, guid: 7bdea7078ede7e246816fd7b00952aa8, type: 3}
   speed: 0.15
+  buttonTmpText: {fileID: 7579198540430434418}
+  selectedColorGradient: {fileID: 11400000, guid: 5bb419817d34b5f4daa1ec87a7db62b2, type: 2}
+  deselectedColorGradient: {fileID: 11400000, guid: 41521cef8b3fec94d90d871d3d2656dc, type: 2}
 --- !u!1 &7784403821175520052
 GameObject:
   m_ObjectHideFlags: 0
@@ -4792,7 +4812,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6255542325450697323
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5001,6 +5021,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 415672553725763129}
   shaderObject: {fileID: 3558859578113049649}
+  emmptySprite: {fileID: 637745243, guid: d6713fbc4497dca4c95a277d2e14fc1a, type: 3}
   spriteArray:
   - {fileID: -291357143, guid: 7bdea7078ede7e246816fd7b00952aa8, type: 3}
   - {fileID: -1357837606, guid: 7bdea7078ede7e246816fd7b00952aa8, type: 3}
@@ -5011,6 +5032,9 @@ MonoBehaviour:
   - {fileID: -2084848666, guid: 7bdea7078ede7e246816fd7b00952aa8, type: 3}
   - {fileID: 1374065603, guid: 7bdea7078ede7e246816fd7b00952aa8, type: 3}
   speed: 0.15
+  buttonTmpText: {fileID: 8555452512293887506}
+  selectedColorGradient: {fileID: 11400000, guid: 5bb419817d34b5f4daa1ec87a7db62b2, type: 2}
+  deselectedColorGradient: {fileID: 11400000, guid: 41521cef8b3fec94d90d871d3d2656dc, type: 2}
 --- !u!1 &8273717820968307489
 GameObject:
   m_ObjectHideFlags: 0
@@ -5642,7 +5666,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &572287015145881201
 RectTransform:
   m_ObjectHideFlags: 0

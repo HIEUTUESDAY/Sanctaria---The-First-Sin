@@ -164,8 +164,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ce4b3f04952804c9a437ae5d79f17d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prayerName: 
-  prayerSprite: {fileID: 0}
-  prayerDescription: 
+  equippedPrayer:
+    itemName: 
+    itemSprite: {fileID: 0}
+    itemDescription: 
+    isEquip: 0
   itemImage: {fileID: 8827147189087037686}
-  emptyItemImage: {fileID: 637745243, guid: d6713fbc4497dca4c95a277d2e14fc1a, type: 3}
+  emptyItemSprite: {fileID: 637745243, guid: d6713fbc4497dca4c95a277d2e14fc1a, type: 3}

@@ -286,25 +286,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 466604e4b8c2abb4d97ef1100d72785b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: 
-  itemSprite: {fileID: 0}
-  itemDescription: 
-  isItemEquipped: 0
-  hasItem: 0
-  itemSlotImage: {fileID: 4421710342814751706}
-  emptyItemSlotBGI: {fileID: 616663545, guid: d6713fbc4497dca4c95a277d2e14fc1a, type: 3}
-  fillItemSlotBGI: {fileID: 1536165663, guid: d6713fbc4497dca4c95a277d2e14fc1a, type: 3}
-  selectedItemSlotBGI: {fileID: 303646139, guid: d6713fbc4497dca4c95a277d2e14fc1a, type: 3}
-  equippedItemSlotBGI: {fileID: 895344877, guid: d6713fbc4497dca4c95a277d2e14fc1a, type: 3}
-  itemImage: {fileID: 5727893831742548537}
-  emptyItemImage: {fileID: 637745243, guid: d6713fbc4497dca4c95a277d2e14fc1a, type: 3}
-  itemDesImage: {fileID: 0}
-  itemDesNameText: {fileID: 0}
-  itemDesText: {fileID: 0}
+  prayerName: 
+  prayerSprite: {fileID: 0}
+  prayerDescription: 
+  prayerSlotImage: {fileID: 4421710342814751706}
+  emptyPrayerSlotBGI: {fileID: 616663545, guid: d6713fbc4497dca4c95a277d2e14fc1a, type: 3}
+  fillPrayerSlotBGI: {fileID: 1536165663, guid: d6713fbc4497dca4c95a277d2e14fc1a, type: 3}
+  selectedPrayerSlotBGI: {fileID: 303646139, guid: d6713fbc4497dca4c95a277d2e14fc1a, type: 3}
+  equippedPrayerSlotBGI: {fileID: 895344877, guid: d6713fbc4497dca4c95a277d2e14fc1a, type: 3}
+  prayerImage: {fileID: 5727893831742548537}
+  emptyPrayerImage: {fileID: 637745243, guid: d6713fbc4497dca4c95a277d2e14fc1a, type: 3}
+  hasPrayer: 0
+  isPrayerEquipped: 0
+  prayerDesImage: {fileID: 0}
+  prayerDesNameText: {fileID: 0}
+  prayerDesText: {fileID: 0}
   button: {fileID: 2103868506274639589}
   isSelected: 0
   shaderAnimation: {fileID: 1006468414863271439}
-  prayerEquipment: {fileID: 0}
 --- !u!114 &8646697543305562557
 MonoBehaviour:
   m_ObjectHideFlags: 0

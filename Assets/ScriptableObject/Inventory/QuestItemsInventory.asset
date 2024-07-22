@@ -12,7 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7e204a1434b3a4b9b8014b202889cd, type: 3}
   m_Name: QuestItemsInventory
   m_EditorClassIdentifier: 
-  QuestItems:
-  - itemName: Second Sin
-    itemSprite: {fileID: -899764519, guid: d6713fbc4497dca4c95a277d2e14fc1a, type: 3}
-    itemDescription: Collect this to open the true ending
+  QuestItems: []

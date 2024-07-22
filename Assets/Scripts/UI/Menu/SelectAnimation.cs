@@ -3,35 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using TMPro;
 
 public class SelectAnimation : MonoBehaviour
 {
     public Button button;
     public GameObject shaderObject;
-    private QuestItemSlot itemSlot;
     private Image shaderImage;
+    public Sprite emmptySprite;
     public Sprite[] spriteArray;
     public float speed = 0.05f;
     private int indexSprite;
     private float timer;
 
+    public TMP_Text buttonTmpText;
+    public TMP_ColorGradient selectedColorGradient;
+    public TMP_ColorGradient deselectedColorGradient;
+
     private void Start()
     {
-        itemSlot = GetComponent<QuestItemSlot>();
         shaderImage = shaderObject.GetComponent<Image>();
-        shaderObject.SetActive(false); // Ensure the shaderObject is initially inactive
     }
 
     private void Update()
     {
         if (EventSystem.current.currentSelectedGameObject == button.gameObject)
         {
-            shaderObject.SetActive(true);
             UpdateHighlight();
+            buttonTmpText.colorGradientPreset = selectedColorGradient;
         }
         else
         {
-            shaderObject.SetActive(false);
+            shaderImage.sprite = emmptySprite;
+            buttonTmpText.colorGradientPreset = deselectedColorGradient;
         }
     }
 

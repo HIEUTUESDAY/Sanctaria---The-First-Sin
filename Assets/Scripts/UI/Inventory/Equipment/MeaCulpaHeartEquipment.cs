@@ -8,44 +8,35 @@ using UnityEngine.UI;
 
 public class MeaCulpaHeartEquipment : MonoBehaviour
 {
-    [Header("MeaCulpaHeart data")]
-    public string meaCulpaHeartName;
-    public Sprite meaCulpaHeartSprite;
-    public string meaCulpaHeartDescription;
-    public bool hasMeaCulpaHeartEquipped;
-    [Space(5)]
+    public MeaCulpaHeart equippedMeaCulpaHeart;
 
-    [Header("MeaCulpaHeart Eqiipment")]
+    [Header("MeaCulpaHeart Display")]
     [SerializeField] private Image itemImage;
-    [SerializeField] private Sprite emptyItemImage;
+    [SerializeField] private Sprite emptyItemSprite;
 
     private void Update()
     {
-        if (meaCulpaHeartSprite != null)
+        UpdateEquippedMeaCulpaHeartDisplay();
+    }
+
+    public void UpdateEquippedMeaCulpaHeartDisplay()
+    {
+        equippedMeaCulpaHeart = InventoryManager.Instance.GetEquippedMeaCulpaHeart();
+
+        if (equippedMeaCulpaHeart != null)
         {
-            itemImage.sprite = meaCulpaHeartSprite;
+            if (equippedMeaCulpaHeart.itemSprite != null)
+            {
+                itemImage.sprite = equippedMeaCulpaHeart.itemSprite;
+            }
+            else
+            {
+                itemImage.sprite = emptyItemSprite;
+            }
         }
         else
         {
-            itemImage.sprite = emptyItemImage;
+            itemImage.sprite = emptyItemSprite;
         }
-    }
-
-    public void EquipMeaCulpaHeart(MeaCulpaHeart meaCulpaHeart)
-    {
-        this.meaCulpaHeartName = meaCulpaHeart.itemName;
-        this.meaCulpaHeartDescription = meaCulpaHeart.itemDescription;
-        this.meaCulpaHeartSprite = meaCulpaHeart.itemSprite;
-
-        itemImage.sprite = meaCulpaHeart.itemSprite;
-    }
-
-    public void UnequipMeaCulpaHeart()
-    {
-        this.meaCulpaHeartName = "";
-        this.meaCulpaHeartDescription = "";
-        this.meaCulpaHeartSprite = null;
-
-        itemImage.sprite = emptyItemImage;
     }
 }

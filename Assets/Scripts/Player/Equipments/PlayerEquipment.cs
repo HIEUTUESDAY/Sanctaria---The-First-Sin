@@ -8,64 +8,70 @@ public class PlayerEquipment : MonoBehaviour
     private Player player;
     [SerializeField] private MeaCulpaHeart equippedMeaCulpaHeart;
     [SerializeField] private Prayer equippedPrayer;
-    private Dictionary<string, Action> meaCulpaHeartBonuses;
+
+    private void Awake()
+    {
+        player = GetComponent<Player>();
+    }
 
     private void Start()
     {
-        player = GetComponent<Player>();
-        InitializeMeaCulpaHeartBonuses();
-        UpdateEquippedItems();
+        EquipmentInitialize();
     }
 
-    private void InitializeMeaCulpaHeartBonuses()
+    private void EquipmentInitialize()
     {
-        meaCulpaHeartBonuses = new Dictionary<string, Action>
-        {
-            { "Heart of Smoking Incense", ApplyHeartOfSmokingIncenseBonus },
-            { "Heart of The Single Tone", ApplyHeartOfTheSingleToneBonus }
-            // Add more items and their bonus methods here
-        };
-    }
+        equippedMeaCulpaHeart = InventoryManager.Instance.GetEquippedMeaCulpaHeart();
+        AddMeaCulpaHeartBuffs(equippedMeaCulpaHeart);
 
-    public void UpdateEquippedItems()
-    {
-        var newEquippedMeaCulpaHeart = InventoryManager.Instance.GetEquippedMeaCulpaHeart();
-
-        if (newEquippedMeaCulpaHeart != equippedMeaCulpaHeart)
-        {
-            RemoveMeaCulpaHeartBonus();
-            equippedMeaCulpaHeart = newEquippedMeaCulpaHeart;
-            PerformMeaCulpaHeart();
-        }
         equippedPrayer = InventoryManager.Instance.GetEquippedPrayer();
+
     }
 
-    private void RemoveMeaCulpaHeartBonus()
+    public void UpdateEquippedMeaCulpaHeart()
     {
-        if (equippedMeaCulpaHeart != null && meaCulpaHeartBonuses.ContainsKey(equippedMeaCulpaHeart.itemName))
+        RemoveMeaCulpaHeartBuffs();
+        var newEquippedMeaCulpaHeart = InventoryManager.Instance.GetEquippedMeaCulpaHeart();
+        AddMeaCulpaHeartBuffs(newEquippedMeaCulpaHeart);
+        equippedMeaCulpaHeart = newEquippedMeaCulpaHeart;
+    }
+
+    public void UpdateEquippedPrayer()
+    {
+        var newEquippedPrayer = InventoryManager.Instance.GetEquippedPrayer();
+    }
+
+    public void AddMeaCulpaHeartBuffs( MeaCulpaHeart newEquippedMeaCulpaHeart)
+    {
+        if (newEquippedMeaCulpaHeart != null)
         {
-            switch (equippedMeaCulpaHeart.itemName)
-            {
-                case "Heart of Smoking Incense":
-                    player.moveSpeed -= 5f;
-                    break;
-                case "Heart of The Single Tone":
-                    player.MaxHealth -= 50f;
-                    break;
-                // Add more cases for other MeaCulpaHearts if needed
-                default:
-                    break;
-            }
+            player.damageBuff = newEquippedMeaCulpaHeart.damageModifier;
+            player.defenseBuff = newEquippedMeaCulpaHeart.defenseModifier;
+            player.healthBuff = newEquippedMeaCulpaHeart.healthModifier;
+            player.healthRegenBuff = newEquippedMeaCulpaHeart.healthRegenModifier;
+            player.staminaBuff = newEquippedMeaCulpaHeart.staminaModifier;
+            player.staminaRegenBuff = newEquippedMeaCulpaHeart.staminaRegenModifier;
+            player.moveSpeedBuff = newEquippedMeaCulpaHeart.moveSpeedModifier;
+            player.jumpPowerBuff = newEquippedMeaCulpaHeart.jumpPowerModifier;
+            player.wallJumpPowerBuff = newEquippedMeaCulpaHeart.wallJumpPowerModifier;
+            player.dashPowerBuff = newEquippedMeaCulpaHeart.dashPowerModifier;
         }
     }
 
-    public void PerformMeaCulpaHeart()
+    private void RemoveMeaCulpaHeartBuffs()
     {
-        if (equippedMeaCulpaHeart == null) return;
-
-        if (meaCulpaHeartBonuses.ContainsKey(equippedMeaCulpaHeart.itemName))
+        if(player != null)
         {
-            meaCulpaHeartBonuses[equippedMeaCulpaHeart.itemName].Invoke();
+            player.damageBuff = 0f;
+            player.defenseBuff = 0f;
+            player.healthBuff = 0f;
+            player.healthRegenBuff = 0f;
+            player.staminaBuff = 0f;
+            player.staminaRegenBuff = 0f;
+            player.moveSpeedBuff = 0f;
+            player.jumpPowerBuff = 0f;
+            player.wallJumpPowerBuff = 0f;
+            player.dashPowerBuff = 0f;
         }
     }
 
@@ -84,20 +90,6 @@ public class PlayerEquipment : MonoBehaviour
                 break;
         }
     }
-
-    #region MeaCulpaHearts function
-
-    private void ApplyHeartOfSmokingIncenseBonus()
-    {
-        player.moveSpeed += 5f;
-    }
-
-    private void ApplyHeartOfTheSingleToneBonus()
-    {
-        player.MaxHealth += 50f;
-    }
-
-    #endregion
 
     #region Prayers function
 

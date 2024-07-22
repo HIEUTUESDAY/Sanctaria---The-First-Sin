@@ -9,85 +9,100 @@ using UnityEngine.InputSystem;
 public class PrayerSlot : MonoBehaviour
 {
     [Header("Prayer data")]
-    public string itemName;
-    public Sprite itemSprite;
-    public string itemDescription;
-    public bool isItemEquipped;
-    public bool hasItem;
+    public string prayerName;
+    public Sprite prayerSprite;
+    public string prayerDescription;
     [Space(5)]
 
     [Header("Prayer Slot")]
-    [SerializeField] private Image itemSlotImage;
-    [SerializeField] private Sprite emptyItemSlotBGI;
-    [SerializeField] private Sprite fillItemSlotBGI;
-    [SerializeField] private Sprite selectedItemSlotBGI;
-    [SerializeField] private Sprite equippedItemSlotBGI;
-    [SerializeField] private Image itemImage;
-    [SerializeField] private Sprite emptyItemImage;
+    [SerializeField] private Image prayerSlotImage;
+    [SerializeField] private Sprite emptyPrayerSlotBGI;
+    [SerializeField] private Sprite fillPrayerSlotBGI;
+    [SerializeField] private Sprite selectedPrayerSlotBGI;
+    [SerializeField] private Sprite equippedPrayerSlotBGI;
+    [SerializeField] private Image prayerImage;
+    [SerializeField] private Sprite emptyPrayerImage;
+    public bool hasPrayer;
+    public bool isPrayerEquipped;
     [Space(5)]
 
     [Header("Prayer Description")]
-    public Image itemDesImage;
-    public TMP_Text itemDesNameText;
-    public TMP_Text itemDesText;
+    public Image prayerDesImage;
+    public TMP_Text prayerDesNameText;
+    public TMP_Text prayerDesText;
+    public GameObject equipSelection;
+    public GameObject removeSelection;
     [Space(5)]
 
     public Button button;
     public bool isSelected;
     public GameObject shaderAnimation;
 
-    public PrayerEquipment prayerEquipment;
-
     private void Update()
     {
         PrayerSlotSelect();
         UpdatePrayerSlot();
-        EquipPrayerSlot();
-        UnequipPrayerSlot();
+        PrayerSlotAction();
     }
 
     public void AddPrayerSlot(Prayer prayer)
     {
-        this.itemName = prayer.itemName;
-        this.itemDescription = prayer.itemDescription;
-        this.itemSprite = prayer.itemSprite;
-        this.isItemEquipped = prayer.isEquip;
-        hasItem = true;
+        prayerName = prayer.itemName;
+        prayerDescription = prayer.itemDescription;
+        prayerSprite = prayer.itemSprite;
+        hasPrayer = true;
 
-        itemImage.sprite = itemSprite;
+        prayerImage.sprite = prayerSprite;
     }
 
     public void ClearPrayerSlot()
     {
-        this.itemName = "";
-        this.itemDescription = "";
-        this.itemSprite = null;
-        this.isItemEquipped = false;
-        hasItem = false;
+        prayerName = "";
+        prayerDescription = "";
+        prayerSprite = null;
+        hasPrayer = false;
+        isPrayerEquipped = false;
 
-        itemImage.sprite = emptyItemImage;
+        prayerImage.sprite = emptyPrayerImage;
     }
 
     private void UpdatePrayerSlot()
     {
-        if (!hasItem)
+        if (hasPrayer)
         {
-            itemSlotImage.sprite = emptyItemSlotBGI;
-        }
+            if (!isSelected)
+            {
+                prayerSlotImage.sprite = fillPrayerSlotBGI;
+            }
+            else
+            {
+                prayerSlotImage.sprite = selectedPrayerSlotBGI;
 
-        if (hasItem && !isSelected)
-        {
-            itemSlotImage.sprite = fillItemSlotBGI;
-        }
-        
-        if (hasItem && isSelected)
-        {
-            itemSlotImage.sprite = selectedItemSlotBGI;
-        }
+                if (isPrayerEquipped)
+                {
+                    equipSelection.SetActive(false);
+                    removeSelection.SetActive(true);
+                }
+                else
+                {
+                    removeSelection.SetActive(false);
+                    equipSelection.SetActive(true);
+                }
+            }
 
-        if (hasItem && isItemEquipped)
+            if (isPrayerEquipped)
+            {
+                prayerSlotImage.sprite = equippedPrayerSlotBGI;
+            }
+        }
+        else if (!hasPrayer && isSelected)
         {
-            itemSlotImage.sprite = equippedItemSlotBGI;
+            removeSelection.SetActive(false);
+            equipSelection.SetActive(false);
+        }
+        else
+        {
+            prayerSlotImage.sprite = emptyPrayerSlotBGI;
         }
     }
 
@@ -98,14 +113,14 @@ public class PrayerSlot : MonoBehaviour
             isSelected = true;
             shaderAnimation.SetActive(true);
 
-            // Fill item description 
-            itemDesImage.sprite = itemSprite;
-            if (itemDesImage.sprite == null)
+            // Fill prayer description 
+            prayerDesImage.sprite = prayerSprite;
+            if (prayerDesImage.sprite == null)
             {
-                itemDesImage.sprite = emptyItemImage;
+                prayerDesImage.sprite = emptyPrayerImage;
             }
-            itemDesNameText.text = itemName;
-            itemDesText.text = itemDescription;
+            prayerDesNameText.text = prayerName;
+            prayerDesText.text = prayerDescription;
         }
         else
         {
@@ -114,33 +129,27 @@ public class PrayerSlot : MonoBehaviour
         }
     }
 
-    private void EquipPrayerSlot()
+    private void PrayerSlotAction()
     {
-        if (isSelected && Keyboard.current.kKey.wasPressedThisFrame)
+        if (hasPrayer && isSelected && Input.GetKeyDown(KeyCode.Return))
         {
-            if (hasItem && !isItemEquipped)
+            if (!isPrayerEquipped)
             {
-                InventoryManager.Instance.UnequipPrayers();
-                InventoryManager.Instance.EquipPrayer(new Prayer
+                isPrayerEquipped = true;
+                InventoryManager.Instance.EquipNewPrayer(new Prayer
                 {
-                    itemName = itemName,
-                    itemDescription = itemDescription,
-                    itemSprite = itemSprite,
-                    isEquip = true
+                    itemName = prayerName,
+                    itemDescription = prayerDescription,
+                    itemSprite = prayerSprite,
+                    isItemEquipped = isPrayerEquipped
                 });
-                isItemEquipped = true;
+            }
+            else
+            {
+                isPrayerEquipped = false;
+                InventoryManager.Instance.UnequipPrayer();
             }
         }
     }
 
-    private void UnequipPrayerSlot()
-    {
-        if (isSelected && Keyboard.current.jKey.wasPressedThisFrame)
-        {
-            if (hasItem && isItemEquipped)
-            {
-                InventoryManager.Instance.UnequipPrayers();
-            }
-        }
-    }
 }

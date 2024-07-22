@@ -16,4 +16,4 @@ MonoBehaviour:
     itemName: 
     itemSprite: {fileID: 0}
     itemDescription: 
-    isEquip: 0
+    isItemEquipped: 0

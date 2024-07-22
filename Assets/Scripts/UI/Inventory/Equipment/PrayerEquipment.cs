@@ -5,43 +5,36 @@ using UnityEngine.UI;
 
 public class PrayerEquipment : MonoBehaviour
 {
-    [Header("Prayer data")]
-    public string prayerName;
-    public Sprite prayerSprite;
-    public string prayerDescription;
-    [Space(5)]
+    public Prayer equippedPrayer;
 
-    [Header("Prayer Eqiipment")]
+    [Header("Prayer Display")]
     [SerializeField] private Image itemImage;
-    [SerializeField] private Sprite emptyItemImage;
+    [SerializeField] private Sprite emptyItemSprite;
 
     private void Update()
     {
-        if (prayerSprite != null)
+        UpdateEquippedPrayerDisplay();
+    }
+
+    public void UpdateEquippedPrayerDisplay()
+    {
+        equippedPrayer = InventoryManager.Instance.GetEquippedPrayer();
+
+        if (equippedPrayer != null)
         {
-            itemImage.sprite = prayerSprite;
+            if (equippedPrayer.itemSprite != null)
+            {
+                itemImage.sprite = equippedPrayer.itemSprite;
+            }
+            else
+            {
+                itemImage.sprite = emptyItemSprite;
+            }
         }
         else
         {
-            itemImage.sprite = emptyItemImage;
+            itemImage.sprite = emptyItemSprite;
         }
-    }
-
-    public void EquipPrayer(Prayer prayer)
-    {
-        this.prayerName = prayer.itemName;
-        this.prayerDescription = prayer.itemDescription;
-        this.prayerSprite = prayer.itemSprite;
-
-        itemImage.sprite = prayer.itemSprite;
-    }
-
-    public void UnequipPrayer()
-    {
-        this.prayerName = "";
-        this.prayerDescription = "";
-        this.prayerSprite = null;
-
-        itemImage.sprite = emptyItemImage;
+        
     }
 }
