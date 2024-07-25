@@ -87,19 +87,4 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void OpenInventoryMenu(InputAction.CallbackContext context)
-    {
-        if (context.started && !menuActivated)
-        {
-            Time.timeScale = 0;
-            inventoryMenu.SetActive(true);
-            menuActivated = true;
-        }
-        else if (context.started && menuActivated)
-        {
-            Time.timeScale = 1;
-            inventoryMenu.SetActive(false);
-            menuActivated = false;
-        }
-    }
 }

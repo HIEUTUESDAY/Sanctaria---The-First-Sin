@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class MeaCulpaHeart : Item
+public class MeaCulpaHeart : ItemBase
 {
     public bool isItemEquipped;
     public float damageModifier;

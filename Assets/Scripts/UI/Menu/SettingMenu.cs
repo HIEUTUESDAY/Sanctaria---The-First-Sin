@@ -1,18 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SettingMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public UnityEvent backToMainMenu;
+
+
+    private void Update()
     {
-        
+        BackToMainMenu();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void BackToMainMenu()
     {
-        
+        if (gameObject.activeSelf && Input.GetKeyDown(KeyCode.Escape))
+        {
+            backToMainMenu.Invoke();
+        }
     }
 }

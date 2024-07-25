@@ -55,8 +55,10 @@ public class WheelBroken : Enemy
         StateMachine.CurrentEnemyState.PhysicsUpdate();
     }
 
-    public void OnDead()
+    public override void OnDead()
     {
+        base.OnDead();
+
         // Fall down when is dead
         bodyHitCollider.enabled = false;
     }

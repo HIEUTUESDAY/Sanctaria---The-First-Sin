@@ -21,7 +21,7 @@ public class MeaCulpaHeartEquipment : MonoBehaviour
 
     public void UpdateEquippedMeaCulpaHeartDisplay()
     {
-        equippedMeaCulpaHeart = InventoryManager.Instance.GetEquippedMeaCulpaHeart();
+        equippedMeaCulpaHeart = InventoryManager.Instance.GetMeaCulpaHeartEquipment();
 
         if (equippedMeaCulpaHeart != null)
         {

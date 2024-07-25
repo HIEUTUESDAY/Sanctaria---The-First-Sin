@@ -16,7 +16,7 @@ public class SelectAnimation : MonoBehaviour
     private int indexSprite;
     private float timer;
 
-    public TMP_Text buttonTmpText;
+    public TMP_Text textTMP;
     public TMP_ColorGradient selectedColorGradient;
     public TMP_ColorGradient deselectedColorGradient;
 
@@ -30,12 +30,12 @@ public class SelectAnimation : MonoBehaviour
         if (EventSystem.current.currentSelectedGameObject == button.gameObject)
         {
             UpdateHighlight();
-            buttonTmpText.colorGradientPreset = selectedColorGradient;
+            textTMP.colorGradientPreset = selectedColorGradient;
         }
         else
         {
             shaderImage.sprite = emmptySprite;
-            buttonTmpText.colorGradientPreset = deselectedColorGradient;
+            textTMP.colorGradientPreset = deselectedColorGradient;
         }
     }
 

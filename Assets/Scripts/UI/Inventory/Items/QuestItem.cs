@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class QuestItem : Item
+public class QuestItem : ItemBase
 {
 
 }

@@ -1,6 +1,7 @@
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class WingedFace : Enemy
@@ -50,8 +51,10 @@ public class WingedFace : Enemy
         StateMachine.CurrentEnemyState.PhysicsUpdate();
     }
 
-    public void OnDead()
+    public override void OnDead()
     {
+        base.OnDead();
+
         // Fall down when is dead
         bodyHitCollider.enabled = false;
     }

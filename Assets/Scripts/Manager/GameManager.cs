@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    private GameData gameData;
+    public GameData gameData;
 
     private string savePath;
     private int currentSlotIndex;
@@ -42,9 +42,9 @@ public class GameManager : MonoBehaviour
 
     #region New, Load and Save game functions
 
-    public void SaveGame(Player player, Checkpoint checkpoint)
+    public void SaveGame(PlayerData playerData, PlayerCheckpointData playerCheckpointData, PlayerInventoryData playerInventoryData)
     {
-        SaveSystem.SaveGame(player, checkpoint, currentSlotIndex);
+        SaveSystem.SaveGame(playerData, playerCheckpointData, playerInventoryData, currentSlotIndex);
     }
 
     public void NewGame(int slotIndex)
@@ -75,7 +75,8 @@ public class GameManager : MonoBehaviour
     {
         if (player != null)
         {
-            player.transform.position = new Vector3(data.checkpoint.position[0], data.checkpoint.position[1], data.checkpoint.position[2]);
+            // Load player data
+            player.transform.position = new Vector3(data.playerCheckpointData.position[0], data.playerCheckpointData.position[1], data.playerCheckpointData.position[2]);
             player.CurrentHealth = data.playerData.health;
             player.CurrentStamina = data.playerData.stamina;
             player.CurrentHealthPotion = data.playerData.healthPotions;
@@ -98,7 +99,7 @@ public class GameManager : MonoBehaviour
     public void SetRespawnPlayerData(Player player)
     {
         player.IsAlive = true;
-        player.transform.position = new Vector3(gameData.checkpoint.position[0], gameData.checkpoint.position[1], gameData.checkpoint.position[2]);
+        player.transform.position = new Vector3(gameData.playerCheckpointData.position[0], gameData.playerCheckpointData.position[1], gameData.playerCheckpointData.position[2]);
         player.RestoreFullStats();
     }
 
@@ -130,7 +131,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator LoadGameCoroutine()
     {
         isLoadGame = true;
-        AsyncOperation asyncLoadGame = SceneManager.LoadSceneAsync(gameData.checkpoint.sceneName);
+        AsyncOperation asyncLoadGame = SceneManager.LoadSceneAsync(gameData.playerCheckpointData.sceneName);
 
         while (!asyncLoadGame.isDone)
         {
@@ -149,7 +150,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator RespawnPlayerCoroutine()
     {
         isRespawnPlayer = true;
-        AsyncOperation asyncLoadGame = SceneManager.LoadSceneAsync(gameData.checkpoint.sceneName);
+        AsyncOperation asyncLoadGame = SceneManager.LoadSceneAsync(gameData.playerCheckpointData.sceneName);
 
         while (!asyncLoadGame.isDone)
         {

@@ -18,7 +18,7 @@ public class PrayerEquipment : MonoBehaviour
 
     public void UpdateEquippedPrayerDisplay()
     {
-        equippedPrayer = InventoryManager.Instance.GetEquippedPrayer();
+        equippedPrayer = InventoryManager.Instance.GetPrayerEquipment();
 
         if (equippedPrayer != null)
         {

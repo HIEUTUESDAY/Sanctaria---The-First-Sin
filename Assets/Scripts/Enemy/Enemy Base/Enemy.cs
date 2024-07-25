@@ -15,6 +15,8 @@ public class Enemy : MonoBehaviour, IEnemyDamageable, IEnemyMoveable
     public CinemachineImpulseSource ImpulseSource { get; set; }
     [SerializeField] private float slowMotionDuration = 0.5f;
     [SerializeField] private float slowMotionFactor = 0.2f;
+    [SerializeField] private int minTearsDrop = 50;
+    [SerializeField] private int maxTearsDrop = 100;
 
     #endregion
 
@@ -176,6 +178,21 @@ public class Enemy : MonoBehaviour, IEnemyDamageable, IEnemyMoveable
             transform.rotation = Quaternion.Euler(rotator);
             IsFacingRight = !IsFacingRight;
         }
+    }
+
+    #endregion
+
+    #region Death function
+
+    public virtual void OnDead()
+    {
+        DropTearsOfAtonement();
+    }
+
+    private void DropTearsOfAtonement()
+    {
+        int tearsDroped = Random.Range(minTearsDrop, maxTearsDrop);
+        InventoryManager.Instance.tearsOfAtonement += tearsDroped;
     }
 
     #endregion

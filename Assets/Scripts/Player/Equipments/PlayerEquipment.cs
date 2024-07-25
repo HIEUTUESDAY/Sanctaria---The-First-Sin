@@ -21,24 +21,24 @@ public class PlayerEquipment : MonoBehaviour
 
     private void EquipmentInitialize()
     {
-        equippedMeaCulpaHeart = InventoryManager.Instance.GetEquippedMeaCulpaHeart();
+        equippedMeaCulpaHeart = InventoryManager.Instance.GetMeaCulpaHeartEquipment();
         AddMeaCulpaHeartBuffs(equippedMeaCulpaHeart);
 
-        equippedPrayer = InventoryManager.Instance.GetEquippedPrayer();
+        equippedPrayer = InventoryManager.Instance.GetPrayerEquipment();
 
     }
 
     public void UpdateEquippedMeaCulpaHeart()
     {
         RemoveMeaCulpaHeartBuffs();
-        var newEquippedMeaCulpaHeart = InventoryManager.Instance.GetEquippedMeaCulpaHeart();
+        var newEquippedMeaCulpaHeart = InventoryManager.Instance.GetMeaCulpaHeartEquipment();
         AddMeaCulpaHeartBuffs(newEquippedMeaCulpaHeart);
         equippedMeaCulpaHeart = newEquippedMeaCulpaHeart;
     }
 
     public void UpdateEquippedPrayer()
     {
-        var newEquippedPrayer = InventoryManager.Instance.GetEquippedPrayer();
+        var newEquippedPrayer = InventoryManager.Instance.GetPrayerEquipment();
     }
 
     public void AddMeaCulpaHeartBuffs( MeaCulpaHeart newEquippedMeaCulpaHeart)

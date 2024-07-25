@@ -897,6 +897,26 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         }
     }
 
+    public void OnOpenInventory(InputAction.CallbackContext context)
+    {
+        if (context.started && !UIManager.Instance.menuActivated)
+        {
+            Time.timeScale = 0;
+            UIManager.Instance.inventoryMenu.SetActive(true);
+            UIManager.Instance.menuActivated = true;
+        }
+    }
+
+    public void OnCloseInventory(InputAction.CallbackContext context)
+    {
+        if (context.started && UIManager.Instance.menuActivated)
+        {
+            Time.timeScale = 1;
+            UIManager.Instance.inventoryMenu.SetActive(false);
+            UIManager.Instance.menuActivated = false;
+        }
+    }
+
     #endregion
 
     #region Player Coroutines

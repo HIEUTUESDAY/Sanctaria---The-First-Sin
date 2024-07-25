@@ -53,8 +53,10 @@ public class EnragedPilgrim : Enemy
         StateMachine.CurrentEnemyState.PhysicsUpdate();
     }
 
-    public void OnDead()
+    public override void OnDead()
     {
+        base.OnDead();
+
         // Fall down when is dead
         attackCollider.enabled = false;
         bodyHitCollider.enabled = false;

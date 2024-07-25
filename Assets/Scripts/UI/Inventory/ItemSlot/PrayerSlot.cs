@@ -51,7 +51,7 @@ public class PrayerSlot : MonoBehaviour
         prayerDescription = prayer.itemDescription;
         prayerSprite = prayer.itemSprite;
         hasPrayer = true;
-
+        isPrayerEquipped = prayer.isItemEquipped;
         prayerImage.sprite = prayerSprite;
     }
 

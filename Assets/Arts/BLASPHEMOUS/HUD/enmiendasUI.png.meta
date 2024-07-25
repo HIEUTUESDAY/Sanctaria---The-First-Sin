@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4568bbb80b02e904f9ed1562c2b8ca14
+guid: e4bf0e6561ca6ab48b5bce98bda9ad59
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,55 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: enter_button
+      name: enmiendasUI_0
       rect:
         serializedVersion: 2
-        x: 78
-        y: 385
-        width: 29
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 22f362abe0417384fa7672244860ceb6
-      internalID: 1258244619
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: customize_button
-      rect:
-        serializedVersion: 2
-        x: 109
-        y: 385
-        width: 17
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fa2ddae0dba7ce24eaeee8c07197e7b1
-      internalID: -1658225185
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: escape_button
-      rect:
-        serializedVersion: 2
-        x: 3
-        y: 385
-        width: 20
-        height: 18
+        x: 7
+        y: 436
+        width: 83
+        height: 42
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,8 +137,155 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5bdf814ba4c61f84da903e69ee763040
-      internalID: 143723140
+      spriteID: cf98dd2609630f64cb9eb9213433518f
+      internalID: -1011012205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enmiendasUI_1
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 436
+        width: 83
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddb60b4dd0960314589aa07482260ab8
+      internalID: -1075394171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enmiendasUI_2
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 435
+        width: 83
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42ffd39482bbf4d498a7d5b13dd68d3c
+      internalID: 184606162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enmiendasUI_3
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 333
+        width: 83
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5057a444de7a9e44abf04672a8671e10
+      internalID: -642027196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enmiendasUI_4
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 331
+        width: 83
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd9c0534072c6e64e918bd66f137abea
+      internalID: -1944720491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enmiendasUI_5
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 331
+        width: 83
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 333d1eee405f333478e46cf3c556d4f6
+      internalID: 652673900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enmiendasUI_6
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 227
+        width: 83
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28d0ff7914787fa4fb7d13f66f704174
+      internalID: 1595715414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enmiendasUI_7
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 227
+        width: 83
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8eb083272684334788b321cff257623
+      internalID: 2145405265
       vertices: []
       indices: 
       edges: []
@@ -196,9 +301,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      customize_button: -1658225185
-      enter_button: 1258244619
-      escape_button: 143723140
+      enmiendasUI_0: -1011012205
+      enmiendasUI_1: -1075394171
+      enmiendasUI_2: 184606162
+      enmiendasUI_3: -642027196
+      enmiendasUI_4: -1944720491
+      enmiendasUI_5: 652673900
+      enmiendasUI_6: 1595715414
+      enmiendasUI_7: 2145405265
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Prayer : Item
+public class Prayer : ItemBase
 {
     public bool isItemEquipped;
 }

@@ -33,10 +33,21 @@ public class CheckPointManager : MonoBehaviour
     {
         GameManager gameManager = FindObjectOfType<GameManager>();
         Player player = FindObjectOfType<Player>();
-        if (player != null)
+        InventoryManager inventoryManager = FindObjectOfType<InventoryManager>();
+        if (gameManager != null && player != null && inventoryManager != null)
         {
-            Checkpoint checkpoint = new Checkpoint(SceneManager.GetActiveScene().name, transform.position);
-            gameManager.SaveGame(player, checkpoint);
+            PlayerData playerData = new PlayerData(player);
+            PlayerCheckpointData playerCheckpointData = new PlayerCheckpointData(SceneManager.GetActiveScene().name, transform.position);
+            PlayerInventoryData playerInventoryData = new PlayerInventoryData
+            (
+                inventoryManager.GetTearsAmount(),
+                inventoryManager.GetQuestItemsInventory(),
+                inventoryManager.GetMeaCulpaHeartsInventory(),
+                inventoryManager.GetPrayersInventory(),
+                inventoryManager.GetMeaCulpaHeartEquipment(),
+                inventoryManager.GetPrayerEquipment()
+            );
+            gameManager.SaveGame(playerData, playerCheckpointData, playerInventoryData);
         }
     }
 

@@ -523,6 +523,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slowMotionDuration: 0.15
   slowMotionFactor: 0.2
+  minTearsDrop: 15
+  maxTearsDrop: 30
   <DamageableHit>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
