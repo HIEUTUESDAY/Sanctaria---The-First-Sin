@@ -8,12 +8,15 @@ public class GhostTrail : MonoBehaviour
     [SerializeField] private float ghostLifeTime = 0.5f;
     [SerializeField] private Color ghostColor = new Color(1f, 1f, 1f, 0.5f);
 
-    Player player;
-    Coroutine ghostCoroutine;
+    private Player player;
+    private Coroutine ghostCoroutine;
+    private Transform VFXcanvas;
+
 
     private void Awake()
     {
         player = GetComponent<Player>();
+        VFXcanvas = FindObjectOfType<Canvas>().transform.Find("VFX");
     }
 
     public void StartGhostTrail()
@@ -38,7 +41,7 @@ public class GhostTrail : MonoBehaviour
     {
         while (player.IsDashing)
         {
-            GameObject ghost = Instantiate(ghostPrefab, transform.position, transform.rotation);
+            GameObject ghost = Instantiate(ghostPrefab, transform.position, transform.rotation, VFXcanvas);
             SpriteRenderer ghostSpriteRenderer = ghost.GetComponent<SpriteRenderer>();
             ghostSpriteRenderer.sprite = GetComponent<SpriteRenderer>().sprite;
             ghostSpriteRenderer.color = ghostColor;

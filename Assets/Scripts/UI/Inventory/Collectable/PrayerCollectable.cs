@@ -20,6 +20,8 @@ public class PrayerCollectable : Collectable
                 isItemEquipped = isItemEquipped
             });
             Destroy(gameObject);
+
+            CharacterEvent.collectMessage.Invoke(itemSprite, itemName);
         }
     }
 }

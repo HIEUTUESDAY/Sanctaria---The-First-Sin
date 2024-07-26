@@ -19,6 +19,8 @@ public class QuestItemCollectable : Collectable
                 itemSprite = itemSprite
             }); 
             Destroy(gameObject);
+
+            CharacterEvent.collectMessage.Invoke(itemSprite, itemName);
         }
     }
 }

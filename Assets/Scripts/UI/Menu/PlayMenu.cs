@@ -9,16 +9,6 @@ using UnityEngine.EventSystems;
 
 public class PlayMenu : MonoBehaviour
 {
-    [System.Serializable]
-    public class SaveSlot
-    {
-        public Button actionButton;
-        public GameObject newGameImage;
-        public GameObject loadGameImage;
-        public TMP_Text currentAreText;
-        public TMP_Text tearsOfAtonementText;
-    }
-
     public List<SaveSlot> saveSlots;
 
     private string savePath;
@@ -121,4 +111,14 @@ public class PlayMenu : MonoBehaviour
             backToMainMenu.Invoke();
         }
     }
+}
+
+[System.Serializable]
+public class SaveSlot
+{
+    public Button actionButton;
+    public GameObject newGameImage;
+    public GameObject loadGameImage;
+    public TMP_Text currentAreText;
+    public TMP_Text tearsOfAtonementText;
 }

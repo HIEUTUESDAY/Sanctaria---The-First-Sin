@@ -7,10 +7,12 @@ public static class SaveSystem
     {
         string path = Application.persistentDataPath + "/savefile" + slotIndex + ".json";
 
-        GameData data = new GameData();
-        data.playerData = playerData;
-        data.playerCheckpointData = playerCheckpointData;
-        data.playerInventoryData = playerInventoryData;
+        GameData data = new GameData
+        {
+            playerData = playerData,
+            playerCheckpointData = playerCheckpointData,
+            playerInventoryData = playerInventoryData
+        };
 
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(path, json);

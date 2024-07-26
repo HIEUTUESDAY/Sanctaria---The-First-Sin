@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: The Forsaken Hamlet
-  itemSprite: {fileID: -261049825, guid: d6713fbc4497dca4c95a277d2e14fc1a, type: 3}
+  itemSprite: {fileID: 1343711755, guid: be0afb0d99f9e9a4c903db736203e3e0, type: 3}
   itemDescription: Can perform a special ability when equip
   isOnFloor: 1
   canBeCollect: 0

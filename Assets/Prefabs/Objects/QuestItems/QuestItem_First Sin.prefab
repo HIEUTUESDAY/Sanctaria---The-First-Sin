@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: First Sin
-  itemSprite: {fileID: -189204550, guid: d6713fbc4497dca4c95a277d2e14fc1a, type: 3}
+  itemSprite: {fileID: 616663545, guid: e5b00212c0d16954a83a090f654ef611, type: 3}
   itemDescription: Collect this to open the true ending
   isOnFloor: 1
   canBeCollect: 0

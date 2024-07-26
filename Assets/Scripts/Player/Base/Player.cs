@@ -72,7 +72,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     [Header("Save Point")]
     [SerializeField] public bool isInSavePoint;
-    private CheckPointManager SavePointManager;
+    private CheckPointManager CheckPointManager;
     [Space(5)]
 
     [Header("One Way Platform Movement")]
@@ -599,11 +599,11 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     public void ActivateSavePoint()
     {
-        if (SavePointManager != null)
+        if (CheckPointManager != null)
         {
-            SavePointManager.ActivateCheckPoint();
-            SavePointManager.SaveCheckPoint();
-            SavePointManager.RespawnEnemiesAfterSpawn();
+            CheckPointManager.ActivateCheckPoint();
+            CheckPointManager.SaveCheckPoint();
+            CheckPointManager.RespawnEnemiesAfterSpawn();
         }
     }
 
@@ -1073,7 +1073,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         if (collision.CompareTag("SavePoint"))
         {
             isInSavePoint = true;
-            SavePointManager = collision.GetComponent<CheckPointManager>();
+            CheckPointManager = collision.GetComponent<CheckPointManager>();
         }
 
         if (collision.CompareTag("Item"))
@@ -1096,7 +1096,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         if (collision.CompareTag("SavePoint"))
         {
             isInSavePoint = false;
-            SavePointManager = null;
+            CheckPointManager = null;
         }
 
         if (collision.CompareTag("Item"))

@@ -37,9 +37,9 @@ public class MeaCulpaHeartSlot : MonoBehaviour
     [Space(5)]
 
     [Header("MeaCulpaHeart Description")]
-    public Image heartDescriptionImage;
-    public TMP_Text heartDescriptionNameText;
-    public TMP_Text heartDescriptionText;
+    public Image heartDesImage;
+    public TMP_Text heartDesNameText;
+    public TMP_Text heartDesText;
     public GameObject equipSelection;
     public GameObject removeSelection;
     [Space(5)]
@@ -143,13 +143,13 @@ public class MeaCulpaHeartSlot : MonoBehaviour
             shaderAnimation.SetActive(true);
 
             // Fill item description 
-            heartDescriptionImage.sprite = heartSprite;
-            if (heartDescriptionImage.sprite == null)
+            heartDesImage.sprite = heartSprite;
+            if (heartDesImage.sprite == null)
             {
-                heartDescriptionImage.sprite = emptyHeartImage;
+                heartDesImage.sprite = emptyHeartImage;
             }
-            heartDescriptionNameText.text = heartName;
-            heartDescriptionText.text = heartDescription;
+            heartDesNameText.text = heartName;
+            heartDesText.text = heartDescription;
         }
         else
         {

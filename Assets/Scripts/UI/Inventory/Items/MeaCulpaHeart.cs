@@ -16,4 +16,15 @@ public class MeaCulpaHeart : ItemBase
     public float jumpPowerModifier;
     public float wallJumpPowerModifier;
     public float dashPowerModifier;
+
+    public override void LoadSprite()
+    {
+        base.LoadSprite();
+
+        if (!string.IsNullOrEmpty(itemSpriteName))
+        {
+            Sprite[] sprites = Resources.LoadAll<Sprite>("Sprites/hearts");
+            itemSprite = System.Array.Find(sprites, sprite => sprite.name == itemSpriteName);
+        }
+    }
 }

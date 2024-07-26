@@ -1,5 +1,4 @@
 using System.Collections;
-using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,7 +13,6 @@ public class GameManager : MonoBehaviour
     public bool isRespawnPlayer = false;
     public bool isNewGame = false;
     public bool isLoadGame = false;
-
 
     private void Awake()
     {
@@ -68,7 +66,6 @@ public class GameManager : MonoBehaviour
                 StartCoroutine(LoadGameCoroutine());
             }
         }
-       
     }
 
     public void LoadGameData(Player player, GameData data)
@@ -80,6 +77,13 @@ public class GameManager : MonoBehaviour
             player.CurrentHealth = data.playerData.health;
             player.CurrentStamina = data.playerData.stamina;
             player.CurrentHealthPotion = data.playerData.healthPotions;
+
+            // Load inventory data
+            InventoryManager playerInventory = player.GetComponentInChildren<InventoryManager>();
+            if (playerInventory != null)
+            {
+                playerInventory.LoadInventoriesData(data);
+            }
         }
     }
 

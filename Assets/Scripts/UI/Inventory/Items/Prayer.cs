@@ -6,4 +6,15 @@ using UnityEngine;
 public class Prayer : ItemBase
 {
     public bool isItemEquipped;
+
+    public override void LoadSprite()
+    {
+        base.LoadSprite();
+
+        if (!string.IsNullOrEmpty(itemSpriteName))
+        {
+            Sprite[] sprites = Resources.LoadAll<Sprite>("Sprites/prayers");
+            itemSprite = System.Array.Find(sprites, sprite => sprite.name == itemSpriteName);
+        }
+    }
 }

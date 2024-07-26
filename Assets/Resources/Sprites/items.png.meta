@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d6713fbc4497dca4c95a277d2e14fc1a
+guid: e5b00212c0d16954a83a090f654ef611
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -207,6 +207,69 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
+      name: Item_The_First_Sin
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 79
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5cd485759986e5498d9123ec7d3c9e9
+      internalID: 1566242134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Item_The_Second_Sin
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 79
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bb1240896afc844e8d764c9c2a46b79
+      internalID: -899764519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Item_The_Third_Sin
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 79
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ca08133b9aadf545b39f2bedbedc8f4
+      internalID: -189204550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
       name: empty_itemImage
       rect:
         serializedVersion: 2
@@ -269,6 +332,9 @@ TextureImporter:
       Heart_of_TheSingleTone: -1789079542
       Heart_of_UnnamedMinstrel: -1900855997
       Heart_of_VirtuousPain: -1684499096
+      Item_The_First_Sin: 1566242134
+      Item_The_Second_Sin: -899764519
+      Item_The_Third_Sin: -189204550
       Prayer_DeblaLights: -2104527370
       Prayer_Lorquiana: 581664574
       "Prayer_Mirabr\xE1s": 2032263659
@@ -282,9 +348,6 @@ TextureImporter:
       itemSlot_fill: 1536165663
       itemSlot_fill_used: 303646139
       itemSlot_selected: -247391969
-      item_firstSin: -189204550
-      item_secondSin: -899764519
-      item_thirdSin: 1566242134
       items-icons-spritesheet_0: -184253757
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0

@@ -1,19 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.TextCore.Text;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; }
-    public Transform VFXcanvas;
     public GameObject damageTextPrefab;
     public GameObject healthTextPrefab;
     public GameObject[] playerHitSplashPrefab;
     public GameObject[] nonPlayerHitSplashPrefab;
+    public GameObject popUpMessagePrefab;
     public GameObject inventoryMenu;
     public bool menuActivated = false;
+    private Transform VFXcanvas;
 
     private void Awake()
     {
@@ -21,15 +25,16 @@ public class UIManager : MonoBehaviour
         {
             Instance = this;
         }
+
+        VFXcanvas = FindObjectOfType<Canvas>().transform.Find("VFX");
     }
 
     private void OnEnable()
     {
-        VFXcanvas = FindObjectOfType<Canvas>().transform.Find("VFX");
-
         CharacterEvent.characterDamaged += CharacterTookDamage;
         CharacterEvent.characterHealed += CharacterHealed;
         CharacterEvent.hitSplash += ShowHitSplash;
+        CharacterEvent.collectMessage += ShowCollectMessage;
     }
 
     private void OnDisable()
@@ -37,6 +42,7 @@ public class UIManager : MonoBehaviour
         CharacterEvent.characterDamaged -= CharacterTookDamage;
         CharacterEvent.characterHealed -= CharacterHealed;
         CharacterEvent.hitSplash -= ShowHitSplash;
+        CharacterEvent.collectMessage -= ShowCollectMessage;
     }
 
     public void CharacterTookDamage(GameObject character, float damageReceived)
@@ -86,5 +92,20 @@ public class UIManager : MonoBehaviour
             }
         }
     }
+
+    public void ShowCollectMessage(Sprite itemImage, string itemName)
+    {
+        RectTransform rectTransform = popUpMessagePrefab.GetComponent<RectTransform>();
+        Vector3 spawnPosition = rectTransform.anchoredPosition;
+
+        PopUpMessage popUpMessage = popUpMessagePrefab.GetComponent<PopUpMessage>();
+        popUpMessage.image.sprite = itemImage;
+        popUpMessage.message.text = itemName;
+
+        GameObject instantiatedMessage = Instantiate(popUpMessagePrefab, VFXcanvas);
+        RectTransform instantiatedRectTransform = instantiatedMessage.GetComponent<RectTransform>();
+        instantiatedRectTransform.anchoredPosition = spawnPosition;
+    }
+
 
 }

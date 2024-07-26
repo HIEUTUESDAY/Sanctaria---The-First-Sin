@@ -40,6 +40,8 @@ public class MeaCulpaHeartCollectable : Collectable
                 dashPowerModifier = dashPowerModifier
             });
             Destroy(gameObject);
+
+            CharacterEvent.collectMessage.Invoke(itemSprite, itemName);
         }
     }
 }

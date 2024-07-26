@@ -31,9 +31,9 @@ public class CheckPointManager : MonoBehaviour
 
     public void SaveCheckPoint()
     {
-        GameManager gameManager = FindObjectOfType<GameManager>();
-        Player player = FindObjectOfType<Player>();
-        InventoryManager inventoryManager = FindObjectOfType<InventoryManager>();
+        GameManager gameManager = GameManager.Instance;
+        Player player = Player.Instance;
+        InventoryManager inventoryManager = InventoryManager.Instance;
         if (gameManager != null && player != null && inventoryManager != null)
         {
             PlayerData playerData = new PlayerData(player);

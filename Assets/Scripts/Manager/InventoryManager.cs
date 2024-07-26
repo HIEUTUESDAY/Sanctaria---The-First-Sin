@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -28,14 +27,11 @@ public class InventoryManager : MonoBehaviour
         {
             Instance = this;
         }
-
-        LoadInventoriesGameData();
     }
 
     private void Start()
     {
         UpdateActiveInventoryUI();
-        LoadInventories();
     }
 
     private void Update()
@@ -51,8 +47,6 @@ public class InventoryManager : MonoBehaviour
                 NextInventory();
             }
         }
-
-        SaveInventories();
     }
 
     #region Change Inventories
@@ -81,18 +75,22 @@ public class InventoryManager : MonoBehaviour
 
     #endregion
 
-    #region Load/Save game data inventories
+    #region Load inventories data 
 
-    private void LoadInventoriesGameData()
+    public void LoadInventoriesData(GameData gameData)
     {
-        tearsOfAtonement = GameManager.Instance.gameData.playerInventoryData.tearsOfAtonement;
+        tearsOfAtonement = gameData.playerInventoryData.tearsOfAtonement;
 
-        questItemsInventory = GameManager.Instance.gameData.playerInventoryData.questItemsInventory;
-        meaCulpaHeartsInventory = GameManager.Instance.gameData.playerInventoryData.meaCulpaHeartsInventory;
-        prayersInventory = GameManager.Instance.gameData.playerInventoryData.prayersInventory;
+        questItemsInventory = gameData.playerInventoryData.questItemsInventory;
+        meaCulpaHeartsInventory = gameData.playerInventoryData.meaCulpaHeartsInventory;
+        prayersInventory = gameData.playerInventoryData.prayersInventory;
 
-        meaCulpaHeartsEquipment = GameManager.Instance.gameData.playerInventoryData.meaCulpaHeartEquipment;
-        prayersEquipment = GameManager.Instance.gameData.playerInventoryData.prayerEquipment;
+        meaCulpaHeartsEquipment = gameData.playerInventoryData.meaCulpaHeartEquipment;
+        prayersEquipment = gameData.playerInventoryData.prayerEquipment;
+
+        gameData.playerInventoryData.LoadSprites();
+
+        LoadInventories();
     }
 
     private void LoadInventories()
@@ -149,6 +147,10 @@ public class InventoryManager : MonoBehaviour
             }
         }
     }
+
+    #endregion
+
+    #region Save inventories data
 
     private void SaveInventories()
     {
@@ -265,6 +267,7 @@ public class InventoryManager : MonoBehaviour
         }
         meaCulpaHeartsEquipment = meaCulpaHeart;
         playerEquipment.UpdateEquippedMeaCulpaHeart();
+        SaveInventories();
     }
 
     public void EquipNewPrayer(Prayer prayer)
@@ -278,18 +281,24 @@ public class InventoryManager : MonoBehaviour
         }
         prayersEquipment = prayer;
         playerEquipment.UpdateEquippedPrayer();
+        SaveInventories();
+
     }
 
     public void UnequipMeaCulpaHeart()
     {
         meaCulpaHeartsEquipment = null;
         playerEquipment.UpdateEquippedMeaCulpaHeart();
+        SaveInventories();
+
     }
 
     public void UnequipPrayer()
     {
         prayersEquipment = null;
         playerEquipment.UpdateEquippedPrayer();
+        SaveInventories();
+
     }
 
     #endregion

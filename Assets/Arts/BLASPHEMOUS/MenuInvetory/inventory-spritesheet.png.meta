@@ -374,6 +374,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: inventory-tears
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 421
+        width: 84
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28b75f2af3e361746b512cccf330b0b0
+      internalID: -1064923692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -388,6 +409,7 @@ TextureImporter:
       background: -185362877
       description_big: 1219609988
       description_small: -909889507
+      inventory-tears: -1064923692
       inventory_nonseclect: -1573444701
       inventory_seclect: -740649972
       meaculpa_nonselected: -864764552

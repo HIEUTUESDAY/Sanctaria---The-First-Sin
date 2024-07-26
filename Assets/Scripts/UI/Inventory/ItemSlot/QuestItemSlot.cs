@@ -46,7 +46,6 @@ public class QuestItemSlot : MonoBehaviour
         this.itemDescription = questItem.itemDescription;
         this.itemSprite = questItem.itemSprite;
         hasItem = true;
-
         itemImage.sprite = itemSprite;
     }
 
@@ -56,7 +55,6 @@ public class QuestItemSlot : MonoBehaviour
         this.itemDescription = "";
         this.itemSprite = null;
         hasItem = false;
-
         itemImage.sprite = emptyItemImage;
     }
 

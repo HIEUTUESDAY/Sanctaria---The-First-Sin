@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Heart of Cerulean Incense
-  itemSprite: {fileID: -134038587, guid: d6713fbc4497dca4c95a277d2e14fc1a, type: 3}
+  itemSprite: {fileID: 637745243, guid: daf75a9be316b074da31fa6ad34f97bc, type: 3}
   itemDescription: Slighli increase wearer attack damage!
   isOnFloor: 1
   canBeCollect: 0

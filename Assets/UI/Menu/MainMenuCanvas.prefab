@@ -91,18 +91,18 @@ MonoBehaviour:
   - actionButton: {fileID: 2254546865424885342}
     newGameImage: {fileID: 2154449273416234135}
     loadGameImage: {fileID: 1870861070566169297}
-    currentAreText: {fileID: 0}
-    tearsOfAtonementText: {fileID: 0}
+    currentAreText: {fileID: 905801436774424937}
+    tearsOfAtonementText: {fileID: 2341515391492863609}
   - actionButton: {fileID: 415672553725763129}
     newGameImage: {fileID: 874370936503756736}
     loadGameImage: {fileID: 7503742053036152175}
-    currentAreText: {fileID: 0}
-    tearsOfAtonementText: {fileID: 0}
+    currentAreText: {fileID: 8555452512293887506}
+    tearsOfAtonementText: {fileID: 3403722658643260158}
   - actionButton: {fileID: 7560336491368633558}
     newGameImage: {fileID: 727972801120151220}
     loadGameImage: {fileID: 2832851934579712583}
-    currentAreText: {fileID: 0}
-    tearsOfAtonementText: {fileID: 0}
+    currentAreText: {fileID: 7579198540430434418}
+    tearsOfAtonementText: {fileID: 394947044695533294}
   newGameSelection: {fileID: 8885232589345024489}
   loadGameSelection: {fileID: 9119070633714086674}
   backToMainMenu:
@@ -1340,7 +1340,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0d876e9aeb47c04499981a45123ac82f, type: 2}
   m_sharedMaterial: {fileID: -2299358364990239218, guid: 0d876e9aeb47c04499981a45123ac82f, type: 2}
@@ -1704,7 +1704,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8452748322092447719
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5280,19 +5280,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 484707015705118544}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4814972045075917620}
-        m_TargetAssemblyTypeName: PlayMenu, Assembly-CSharp
-        m_MethodName: HandleSaveSlot
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &4149522310073911379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5759,19 +5747,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4936795964956118940}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4814972045075917620}
-        m_TargetAssemblyTypeName: PlayMenu, Assembly-CSharp
-        m_MethodName: HandleSaveSlot
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &7601391376449179048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6231,19 +6207,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 419102366490360533}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4814972045075917620}
-        m_TargetAssemblyTypeName: PlayMenu, Assembly-CSharp
-        m_MethodName: HandleSaveSlot
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &3074683359047154838
 MonoBehaviour:
   m_ObjectHideFlags: 0
