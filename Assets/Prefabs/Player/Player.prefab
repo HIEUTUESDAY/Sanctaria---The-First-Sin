@@ -1932,6 +1932,7 @@ Transform:
   - {fileID: 6872870863856728789}
   - {fileID: 4208661304211406804}
   - {fileID: 8842100895532229528}
+  - {fileID: 269034070936515239}
   - {fileID: 7755236091673017713}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2002,7 +2003,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 6
+  m_GravityScale: 5
   m_Material: {fileID: 6200000, guid: 9db87a4fe9ace3445bd27a24abfde6d5, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -2315,6 +2316,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: a8c34511-65c1-41fc-9622-ed456169f9cd
     m_ActionName: Player/CloseInventory[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1992624433011740763}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnPerformPrayer
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: fae5836d-d3ba-48c8-8583-9bd2daadce5d
+    m_ActionName: Player/PerformPrayer[/Keyboard/q]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -2336,39 +2353,26 @@ MonoBehaviour:
   groundSpeedAceleration: 75
   airSpeedAceleration: 100
   stopRate: 0.2
-  jumpPower: 25
-  coyoteTime: 0.15
-  jumpBufferTime: 0.15
+  jumpPower: 22
+  coyoteTime: 0.1
+  jumpBufferTime: 0.1
   maximumFallSpeed: -40
-  canDash: 1
-  dashPower: 25
-  dashTime: 0.5
+  dashPower: 20
   dashCooldown: 2
-  dashStopRate: 5
+  dashStaminaCost: 20
   climbSpeed: 5
-  centerLadderMoveSpeed: 10
-  isOnLadder: 0
-  LadderCenterPosition: {fileID: 0}
   wallSlideSpeed: 1
   wallSlideDuration: 0.5
-  wallJumpingTime: 1
-  wallJumpingDuration: 0.25
-  wallJumpingPower: {x: 10, y: 25}
-  timeSinceHit: 0
-  invincibleTime: 1
+  wallJumpingPower: {x: 5, y: 22}
+  wallHangStaminaCost: 10
+  wallJumpSpeedBoost: 5
+  wallJumpSpeedBoostDuration: 0.5
+  staminaRegenSpeed: 2
+  invincibleTime: 2
   hasItemInRange: 0
-  Item: {fileID: 0}
   isInSavePoint: 0
-  slowMotionDuration: 0.15
-  slowMotionFactor: 0.2
-  ScriptablePlayerData: {fileID: 11400000, guid: 28f9108de9b3d044a8770be3d227fd6a, type: 2}
-  Animator: {fileID: 0}
-  TouchingDirections: {fileID: 0}
-  CurrentOneWayPlatform: {fileID: 0}
-  CameraFollowObject: {fileID: 0}
-  GhostTrail: {fileID: 0}
-  HealthBar: {fileID: 0}
-  ImpulseSource: {fileID: 0}
+  slowMotionDuration: 0.2
+  slowMotionFactor: 0.15
   damageBuff: 0
   defenseBuff: 0
   healthBuff: 0
@@ -2434,6 +2438,10 @@ MonoBehaviour:
     itemSpriteName: 
     itemDescription: 
     isItemEquipped: 0
+  verdialesProjectilePrefab:
+  - {fileID: 5420880807478829953, guid: a865c3eb63321234db35ef50b6f837fc, type: 3}
+  - {fileID: 8672610236227230692, guid: a5e08ceac025db542bab30b174161bcb, type: 3}
+  spawnVerdialesPoint: {fileID: 269034070936515239}
 --- !u!114 &633768667947976263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6491,6 +6499,37 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &5731810976396512626
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 269034070936515239}
+  m_Layer: 3
+  m_Name: VerdialesSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &269034070936515239
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5731810976396512626}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9037234090898569942}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5888947827756430969
 GameObject:
   m_ObjectHideFlags: 0

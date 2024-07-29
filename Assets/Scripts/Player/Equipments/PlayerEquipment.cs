@@ -25,7 +25,7 @@ public class PlayerEquipment : MonoBehaviour
         AddMeaCulpaHeartBuffs(equippedMeaCulpaHeart);
 
         equippedPrayer = InventoryManager.Instance.GetPrayerEquipment();
-
+        AddMeaCulpaHeartBuffs(equippedMeaCulpaHeart);
     }
 
     public void UpdateEquippedMeaCulpaHeart()
@@ -38,10 +38,13 @@ public class PlayerEquipment : MonoBehaviour
 
     public void UpdateEquippedPrayer()
     {
+        RemovePrayer();
         var newEquippedPrayer = InventoryManager.Instance.GetPrayerEquipment();
+        AddPrayer(newEquippedPrayer);
+        equippedPrayer = newEquippedPrayer;
     }
 
-    public void AddMeaCulpaHeartBuffs( MeaCulpaHeart newEquippedMeaCulpaHeart)
+    public void AddMeaCulpaHeartBuffs(MeaCulpaHeart newEquippedMeaCulpaHeart)
     {
         if (newEquippedMeaCulpaHeart != null)
         {
@@ -75,25 +78,58 @@ public class PlayerEquipment : MonoBehaviour
         }
     }
 
+    public void AddPrayer(Prayer newPrayer)
+    {
+        if (newPrayer != null)
+        {
+            equippedPrayer.itemName = newPrayer.itemName;
+        }
+    }
+
+    private void RemovePrayer()
+    {
+        equippedPrayer.itemName = "";
+        equippedPrayer.itemSprite = null;
+        equippedPrayer.itemDescription = "";
+        equippedPrayer.isItemEquipped = false;
+    }
+
     public void PerformPrayer()
     {
         if (equippedPrayer == null) return;
 
         switch (equippedPrayer.itemName)
         {
-            case "Tanranto of My Sister":
-                Debug.Log("Using Tanranto of My Sister");
+            case "Verdiales of The Forsaken Hamlet":
+                CoroutineManager.Instance.StartCoroutineManager(VerdialesRoutine());
                 break;
 
             // Add more cases for other Prayers
             default:
+                Debug.Log("No Prayer Equipped");
                 break;
         }
     }
 
-    #region Prayers function
+    #region Prayers functions
 
-    // Add functions for Prayers here
+    #region Verdiales of The Forsaken Hamlet
+
+    [Header("Verdiales of The Forsaken Hamlet")]
+    public GameObject[] verdialesProjectilePrefab; // Reference to the projectile prefab
+    public Transform spawnVerdialesPoint;
+
+    private IEnumerator VerdialesRoutine()
+    {
+        // Spawn projectiles at intervals
+        for (int i = 0; i < verdialesProjectilePrefab.Length; i++)
+        {
+            Instantiate(verdialesProjectilePrefab[i], spawnVerdialesPoint.position, spawnVerdialesPoint.rotation);
+            yield return null;
+        }
+    }
+
+    #endregion
 
     #endregion
 }

@@ -8,6 +8,7 @@ internal class AnimationString
 {
     internal static string isAlive = "isAlive";
     internal static string isMoving = "isMoving";
+    internal static string isJumping = "isJumping";
     internal static string isOnWall = "isOnWall";
     internal static string isOnClimbWall = "isOnClimbWall";
     internal static string isOnCeiling = "isOnCeiling";

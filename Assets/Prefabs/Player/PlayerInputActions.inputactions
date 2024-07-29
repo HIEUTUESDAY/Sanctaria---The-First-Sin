@@ -112,6 +112,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "PerformPrayer",
+                    "type": "Button",
+                    "id": "fae5836d-d3ba-48c8-8583-9bd2daadce5d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -464,6 +473,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "CloseInventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eb7d5f99-aec7-46b5-9b40-483157f420a0",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PerformPrayer",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

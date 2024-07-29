@@ -13,65 +13,73 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     #region Player variables
 
     [Header("Moving")]
-    public float moveSpeed = 10f;
-    public float groundSpeedAceleration = 75f;
-    public float airSpeedAceleration = 100f;
-    public float stopRate = 0.2f;
+    [SerializeField] private float moveSpeed = 10f;
+    [SerializeField] private float groundSpeedAceleration = 75f;
+    [SerializeField] private float airSpeedAceleration = 100f;
+    [SerializeField] private float stopRate = 0.2f;
     [Space(5)]
 
     [Header("Jumping")]
-    public float jumpPower = 25f;
-    public float coyoteTime = 0.1f;
+    [SerializeField] private float jumpPower = 20f;
+    [SerializeField] private float coyoteTime = 0.1f;
     private float coyoteTimeCounter;
-    public float jumpBufferTime = 0.1f;
+    [SerializeField] private float jumpBufferTime = 0.1f;
     private float jumpBufferTimeCounter;
-    public float maximumFallSpeed = -40f;
+    [SerializeField] private float maximumFallSpeed = -40f;
     [Space(5)]
 
     [Header("Dashing")]
-    public bool canDash = true;
-    public float dashPower = 25f;
-    public float dashTime = 0.5f;
-    public float dashCooldown = 2f;
-    public float dashStopRate = 5f;
+    private bool canDash = true;
+    [SerializeField] private float dashPower = 20f;
+    private float dashTime = 0.5f;
+    [SerializeField] private float dashCooldown = 2f;
+    private float dashStopRate = 5f;
+    [SerializeField] private float dashStaminaCost = 30f;
     [Space(5)]
 
     [Header("Climbing")]
-    public float climbSpeed = 5f;
-    public float centerLadderMoveSpeed = 10f;
-    public bool isOnLadder;
-    public Transform LadderCenterPosition;
+    [SerializeField] private float climbSpeed = 5f;
+    private float centerLadderMoveSpeed = 10f;
+    private bool isOnLadder;
+    private Transform LadderCenterPosition;
     private Collider2D ladderCollider;
     [Space(5)]
 
     [Header("Wall Jumping")]
-    public float wallSlideSpeed = 1f;
-    public float wallSlideDuration = 0.5f;
+    [SerializeField] private float wallSlideSpeed = 1f;
+    [SerializeField] private float wallSlideDuration = 0.5f;
     private float wallJumpingDirection;
-    public float wallJumpingTime = 1f;
+    private float wallJumpingTime = 1f;
     private float wallJumpingCounter;
-    public float wallJumpingDuration = 0.2f;
-    public Vector2 wallJumpingPower = new Vector2(7f, 25f);
-    private float wallHangStaminaCost = 10f;
+    private float wallJumpingDuration = 0.2f;
+    [SerializeField] private Vector2 wallJumpingPower = new Vector2(5f, 22f);
+    [SerializeField] private float wallHangStaminaCost = 10f;    
+    [Space(5)]
+
+    [Header("Wall Jump Speed Boost")]
+    private float originalMoveSpeed;
+    [SerializeField] private float wallJumpSpeedBoost = 3f;
+    [SerializeField] private float wallJumpSpeedBoostDuration = 2f;
+    private bool isWallJumpSpeedBoostActive = false;
+    private Coroutine wallJumpSpeedBoostCoroutine;
     [Space(5)]
 
     [Header("Stamina Regen")]
-    private float staminaRegenSpeed = 5f;
-    private float dashStaminaCost = 30f;
+    [SerializeField] private float staminaRegenSpeed = 5f;
     [Space(5)]
 
     [Header("Ivincible")]
-    public float timeSinceHit = 0;
-    public float invincibleTime = 2f;
+    private float timeSinceHit = 0;
+    [SerializeField] private float invincibleTime = 2f;
     [Space(5)]
 
     [Header("Collect Item")]
-    public bool hasItemInRange;
-    public Collectable Item;
+    [SerializeField] private bool hasItemInRange;
+    private Collectable Item;
     [Space(5)]
 
     [Header("Save Point")]
-    [SerializeField] public bool isInSavePoint;
+    [SerializeField] private bool isInSavePoint;
     private CheckPointManager CheckPointManager;
     [Space(5)]
 
@@ -80,18 +88,18 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     [Space(5)]
 
     [Header("Camera Shake")]
-    public float slowMotionDuration = 0.5f;
-    public float slowMotionFactor = 0.2f;
+    [SerializeField] private float slowMotionDuration = 0.5f;
+    [SerializeField] private float slowMotionFactor = 0.2f;
     [Space(5)]
 
-    public ScriptablePlayerData ScriptablePlayerData;
-    public Animator Animator;
-    public TouchingDirections TouchingDirections;
-    public GameObject CurrentOneWayPlatform;
-    public CameraFollowObject CameraFollowObject;
-    public GhostTrail GhostTrail;
-    public HealthBar HealthBar;
-    public CinemachineImpulseSource ImpulseSource;
+    private Animator Animator;
+    private TouchingDirections TouchingDirections;
+    private GameObject CurrentOneWayPlatform;
+    private CameraFollowObject CameraFollowObject;
+    private GhostTrail GhostTrail;
+    private HealthBar HealthBar;
+    private CinemachineImpulseSource ImpulseSource;
+    private PlayerEquipment PlayerEquipment;
     private float FallSpeedYDampingChangeThreshold;
     private float OriginalGravityScale;
 
@@ -124,6 +132,18 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         set
         {
             Animator.SetBool(AnimationString.isMoving, value);
+        }
+    }
+
+    public bool IsJumping
+    {
+        get
+        {
+            return Animator.GetBool(AnimationString.isJumping);
+        }
+        set
+        {
+            Animator.SetBool(AnimationString.isJumping, value);
         }
     }
 
@@ -362,13 +382,14 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         TouchingDirections = GetComponent<TouchingDirections>();
         GhostTrail = GetComponent<GhostTrail>();
         HealthBar = GetComponent<HealthBar>();
-        OriginalGravityScale = RB.gravityScale;
         ImpulseSource = GetComponent<CinemachineImpulseSource>();
+        OriginalGravityScale = RB.gravityScale;
+        PlayerEquipment = GetComponent<PlayerEquipment>();
     }
 
     private void Start()
     {
-        LoadScriptablePlayerData();
+
     }
 
     private void Update()
@@ -383,13 +404,12 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         HealthAndStaminaRegeneration();
         UpdateHealthBar();
         BeInvisible();
-        SaveScriptablePlayerData();
     }
 
     private void FixedUpdate()
     {
         Move();
-        WallJump();
+        WallHang();
         LadderClimb();
     }
 
@@ -551,7 +571,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         }
     }
 
-    private void WallJump()
+    private void WallHang()
     {
         if (!UIManager.Instance.menuActivated)
         {
@@ -728,30 +748,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     #endregion
 
-    #region Load & Save player SO data
-
-    public void LoadScriptablePlayerData()
-    {
-        if (ScriptablePlayerData != null)
-        {
-            CurrentHealth = ScriptablePlayerData.health;
-            CurrentStamina = ScriptablePlayerData.stamina;
-            CurrentHealthPotion = ScriptablePlayerData.healthPotion;
-        }
-    }
-
-    public void SaveScriptablePlayerData()
-    {
-        if (ScriptablePlayerData != null)
-        {
-            ScriptablePlayerData.health = CurrentHealth;
-            ScriptablePlayerData.stamina = CurrentStamina;
-            ScriptablePlayerData.healthPotion = CurrentHealthPotion;
-        }
-    }
-
-    #endregion
-
     #region Player Input functions
 
     public void OnMove(InputAction.CallbackContext context)
@@ -804,6 +800,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
                 IsDashing = false;
                 RB.velocity = new Vector2(RB.velocity.x, jumpPower + jumpPowerBuff);
                 jumpBufferTimeCounter = 0f;
+                IsJumping = true;
             }
 
             if (context.canceled && RB.velocity.y > 0)
@@ -917,6 +914,14 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         }
     }
 
+    public void OnPerformPrayer(InputAction.CallbackContext context)
+    {
+        if (context.started && PlayerEquipment != null)
+        {
+            PlayerEquipment.PerformPrayer();
+        }
+    }
+
     #endregion
 
     #region Player Coroutines
@@ -1016,6 +1021,13 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             TurnPlayer();
         }
 
+        // Start or restart the speed boost coroutine
+        if (wallJumpSpeedBoostCoroutine != null)
+        {
+            CoroutineManager.Instance.StopCoroutineManager(wallJumpSpeedBoostCoroutine);
+        }
+        wallJumpSpeedBoostCoroutine = CoroutineManager.Instance.StartCoroutineManager(WallJumpSpeedBoost());
+
         yield return new WaitForSeconds(wallJumpingDuration);
         IsWallJumping = false;
     }
@@ -1056,6 +1068,38 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             RB.velocity = Vector2.zero;
             yield return null;
         }
+    }
+
+    private IEnumerator WallJumpSpeedBoost()
+    {
+        // Reset move speed to original if boost was already active
+        if (isWallJumpSpeedBoostActive)
+        {
+            moveSpeed = originalMoveSpeed;
+        }
+        else
+        {
+            originalMoveSpeed = moveSpeed;
+        }
+
+        moveSpeed += wallJumpSpeedBoost;
+        isWallJumpSpeedBoostActive = true;
+
+        yield return new WaitForSeconds(wallJumpSpeedBoostDuration); // Speed boost duration
+
+        float elapsedTime = 0f;
+        float decreaseDuration = 1f; // Duration to smoothly decrease the speed boost
+        float initialBoost = wallJumpSpeedBoost;
+
+        while (elapsedTime < decreaseDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            moveSpeed -= initialBoost * (Time.deltaTime / decreaseDuration);
+            yield return null;
+        }
+
+        moveSpeed = originalMoveSpeed; // Ensure the boost is completely removed
+        isWallJumpSpeedBoostActive = false;
     }
 
     #endregion
