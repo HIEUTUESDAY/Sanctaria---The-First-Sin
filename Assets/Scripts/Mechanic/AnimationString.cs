@@ -37,5 +37,6 @@ internal class AnimationString
     internal static string saveTrigger = "saveTrigger";
     internal static string collectFloorTrigger = "collectFloorTrigger";
     internal static string collectHalfTrigger = "collectHalfTrigger";
+    internal static string prayerTrigger = "prayerTrigger";
 
 }

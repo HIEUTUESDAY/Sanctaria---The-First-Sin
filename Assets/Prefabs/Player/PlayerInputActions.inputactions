@@ -105,7 +105,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "CloseInventory",
+                    "name": "CloseInventoryOrMap",
                     "type": "Button",
                     "id": "a8c34511-65c1-41fc-9622-ed456169f9cd",
                     "expectedControlType": "Button",
@@ -117,6 +117,15 @@
                     "name": "PerformPrayer",
                     "type": "Button",
                     "id": "fae5836d-d3ba-48c8-8583-9bd2daadce5d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "OpenMap",
+                    "type": "Button",
+                    "id": "bea1a248-58e3-4d7a-9c32-a87bf3751f36",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -472,7 +481,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CloseInventory",
+                    "action": "CloseInventoryOrMap",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -484,6 +493,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "PerformPrayer",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0c28aa1f-a375-4f35-a2ea-35ffc6c54005",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenMap",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

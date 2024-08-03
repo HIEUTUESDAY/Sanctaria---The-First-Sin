@@ -46,6 +46,7 @@ public class CameraManger : MonoBehaviour
                 //set the framing transposer
                 _framingTransposer = _currentCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
             }
+            _allVirtualCameras[i].Follow = FindObjectOfType<CameraFollowObject>().transform;
         }
 
         //set the default YDamping amount for everytime hit play

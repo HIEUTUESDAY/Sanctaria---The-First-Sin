@@ -4,9 +4,9 @@ using UnityEngine.EventSystems;
 
 public class VerdialesProjectileMovement : MonoBehaviour
 {
-    [SerializeField] private float speed = 5f;
+    [SerializeField] private float speed = 15f;
     [SerializeField] private float maxDistance = 50f;
-    [SerializeField] private bool moveForward;
+    public bool moveForward;
 
     [SerializeField] private Vector2 topBoxSize;
     [SerializeField] private Vector2 bottomBoxSize;
@@ -24,19 +24,29 @@ public class VerdialesProjectileMovement : MonoBehaviour
     [SerializeField] private Direction direction = Direction.None;
     [SerializeField] private Direction lastDirection = Direction.None;
 
-
     private Rigidbody2D RB;
     private Vector2 previousPosition;
     private float traveledDistance = 0f;
+    private SpriteRenderer SR;
 
     private void Awake()
     {
         RB = GetComponent<Rigidbody2D>();
+        SR = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void Start()
     {
         previousPosition = transform.position;
+
+        if(moveForward)
+        {
+            SR.flipX = false;
+        }
+        else
+        {
+            SR.flipX = true;
+        }
     }
 
     private void Update()

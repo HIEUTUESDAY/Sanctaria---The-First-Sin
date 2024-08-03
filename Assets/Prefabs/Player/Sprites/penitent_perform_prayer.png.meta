@@ -1,0 +1,1079 @@
+fileFormatVersion: 2
+guid: 78663f91a810ced489f00284172a991f
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: penitent_prayer_1
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 0
+        width: 67
+        height: 112
+      alignment: 9
+      pivot: {x: 0.7, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a1781ab15d8eb54180a2bc181218a65
+      internalID: -570897807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_2
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 0
+        width: 68
+        height: 112
+      alignment: 9
+      pivot: {x: 0.705, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 336730287bf8c8d4eb038909b389c4cb
+      internalID: -407963843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_3
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 0
+        width: 65
+        height: 112
+      alignment: 9
+      pivot: {x: 0.692, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7c554618956b8440baa4021755723a3
+      internalID: -1374418428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_4
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 0
+        width: 61
+        height: 112
+      alignment: 9
+      pivot: {x: 0.673, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5666b0bbde4ee7849b0caa081fb1b1d8
+      internalID: 1993257040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_12
+      rect:
+        serializedVersion: 2
+        x: 1103
+        y: 0
+        width: 41
+        height: 112
+      alignment: 9
+      pivot: {x: 0.485, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf19dbd627704d549a06504136efe29f
+      internalID: 9656096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_13
+      rect:
+        serializedVersion: 2
+        x: 1192
+        y: 0
+        width: 42
+        height: 112
+      alignment: 9
+      pivot: {x: 0.52, y: 0.408}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d74e46c2fc1bfae4db36210d241f4042
+      internalID: 179027077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_14
+      rect:
+        serializedVersion: 2
+        x: 1276
+        y: 0
+        width: 55
+        height: 112
+      alignment: 9
+      pivot: {x: 0.542, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6292bd9e06843434c97e8b2bfd15c35a
+      internalID: 841401981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_15
+      rect:
+        serializedVersion: 2
+        x: 1381
+        y: 0
+        width: 48
+        height: 112
+      alignment: 9
+      pivot: {x: 0.45, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f37b385d73285f4da8af8fedca8ebc7
+      internalID: -1504522183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_16
+      rect:
+        serializedVersion: 2
+        x: 1478
+        y: 0
+        width: 56
+        height: 112
+      alignment: 9
+      pivot: {x: 0.368, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c99c3a62616982246a3e3196cab2a706
+      internalID: 1854129320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_17
+      rect:
+        serializedVersion: 2
+        x: 1575
+        y: 0
+        width: 64
+        height: 112
+      alignment: 9
+      pivot: {x: 0.305, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8756e0f6e3ace494e8e933ee0efcc957
+      internalID: -189348352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_18
+      rect:
+        serializedVersion: 2
+        x: 1672
+        y: 0
+        width: 68
+        height: 112
+      alignment: 9
+      pivot: {x: 0.28, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09deaaf303f6a084c81ab00df8d49d0e
+      internalID: -1791930125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_19
+      rect:
+        serializedVersion: 2
+        x: 1772
+        y: 0
+        width: 69
+        height: 112
+      alignment: 9
+      pivot: {x: 0.275, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16ca54b22d446634fa31825fd0e3c3d6
+      internalID: 217185505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_27
+      rect:
+        serializedVersion: 2
+        x: 2580
+        y: 0
+        width: 78
+        height: 112
+      alignment: 9
+      pivot: {x: 0.18, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bfad9a9adc01bf40b9095ce809e529d
+      internalID: -804006870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_33
+      rect:
+        serializedVersion: 2
+        x: 3250
+        y: 0
+        width: 61
+        height: 112
+      alignment: 9
+      pivot: {x: 0.21, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 177a860e5f4285b4a8353eb1410c2ef8
+      internalID: 1271885358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_34
+      rect:
+        serializedVersion: 2
+        x: 3348
+        y: 0
+        width: 66
+        height: 112
+      alignment: 9
+      pivot: {x: 0.165, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2a1daf9739ece34a8617b9019fd584f
+      internalID: -2142721622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_40
+      rect:
+        serializedVersion: 2
+        x: 3931
+        y: 0
+        width: 51
+        height: 112
+      alignment: 9
+      pivot: {x: 0.35, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af7130d6a9045ef40807ca096fcb656c
+      internalID: -1600087522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_41
+      rect:
+        serializedVersion: 2
+        x: 4017
+        y: 0
+        width: 47
+        height: 112
+      alignment: 9
+      pivot: {x: 0.56, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a85d0b8e884f5eb48b88d76fd2c2c21a
+      internalID: -1735766689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_42
+      rect:
+        serializedVersion: 2
+        x: 4096
+        y: 0
+        width: 68
+        height: 112
+      alignment: 9
+      pivot: {x: 0.74, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7220f4d668dbe0b49a32c5e466bded1f
+      internalID: -387849386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_5
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 0
+        width: 63
+        height: 112
+      alignment: 9
+      pivot: {x: 0.681, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84f807fd8abd56a4ab72621bc044279a
+      internalID: -1696223618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_6
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 0
+        width: 60
+        height: 112
+      alignment: 9
+      pivot: {x: 0.665, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e82f4fe672f82f4428ea6e9d687e8acd
+      internalID: 1033077077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_7
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 0
+        width: 42
+        height: 112
+      alignment: 9
+      pivot: {x: 0.45, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a01046c1caefdce40a6de5e133a6d374
+      internalID: 1432142413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_8
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 0
+        width: 57
+        height: 112
+      alignment: 9
+      pivot: {x: 0.332, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f720e591ff7d9de4e98ae45b15d5cfe1
+      internalID: 530791243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_9
+      rect:
+        serializedVersion: 2
+        x: 815
+        y: 0
+        width: 57
+        height: 112
+      alignment: 9
+      pivot: {x: 0.333, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0db78e4a47b6f0c4d8b1f18859a888b8
+      internalID: -1192586160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_10
+      rect:
+        serializedVersion: 2
+        x: 911
+        y: 0
+        width: 46
+        height: 112
+      alignment: 9
+      pivot: {x: 0.412, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95d6a8149ee7bca44a64e4d0efcedf61
+      internalID: -882207610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_11
+      rect:
+        serializedVersion: 2
+        x: 1008
+        y: 0
+        width: 44
+        height: 112
+      alignment: 9
+      pivot: {x: 0.43, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86cf3daeeb79c9e48926c80d2d5bcb81
+      internalID: -256673668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_21
+      rect:
+        serializedVersion: 2
+        x: 1989
+        y: 0
+        width: 67
+        height: 112
+      alignment: 9
+      pivot: {x: 0.13, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf07a927165aad546a076626e4e42335
+      internalID: 597657581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_25
+      rect:
+        serializedVersion: 2
+        x: 2371
+        y: 0
+        width: 68
+        height: 112
+      alignment: 9
+      pivot: {x: 0.18, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a45e52a672d7bd34fad2cb148ec7c836
+      internalID: 979655902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_26
+      rect:
+        serializedVersion: 2
+        x: 2467
+        y: 0
+        width: 78
+        height: 112
+      alignment: 9
+      pivot: {x: 0.21, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 433348e388db515448333ec48f09a385
+      internalID: -173134176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_29
+      rect:
+        serializedVersion: 2
+        x: 2798
+        y: 0
+        width: 80
+        height: 112
+      alignment: 9
+      pivot: {x: 0.21, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b05b0abb367e6de43b31aaaf78bfa752
+      internalID: 1906826116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_36
+      rect:
+        serializedVersion: 2
+        x: 3543
+        y: 0
+        width: 50
+        height: 112
+      alignment: 9
+      pivot: {x: 0.185, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25ac4729ad7a674478e135c1d1541e3c
+      internalID: 524083926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_37
+      rect:
+        serializedVersion: 2
+        x: 3636
+        y: 0
+        width: 61
+        height: 112
+      alignment: 9
+      pivot: {x: 0.18, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aba77671968ac4b478b7bd7ee4acffd5
+      internalID: -1931189706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_38
+      rect:
+        serializedVersion: 2
+        x: 3730
+        y: 0
+        width: 68
+        height: 112
+      alignment: 9
+      pivot: {x: 0.175, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ea0355e64f23b849a0f3444c92fb987
+      internalID: 1668784263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_39
+      rect:
+        serializedVersion: 2
+        x: 3825
+        y: 0
+        width: 72
+        height: 112
+      alignment: 9
+      pivot: {x: 0.18, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f980874c4d69d3a43ba04796f4b0b411
+      internalID: 1896872903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_20
+      rect:
+        serializedVersion: 2
+        x: 1869
+        y: 1
+        width: 79
+        height: 111
+      alignment: 9
+      pivot: {x: 0.21, y: 0.412}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0991b42294a35442b124a9ba2a232e2
+      internalID: -2101329335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_22
+      rect:
+        serializedVersion: 2
+        x: 2085
+        y: 0
+        width: 52
+        height: 112
+      alignment: 9
+      pivot: {x: 0.168, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95c8475f3c90cd44497dbef8c1b853a6
+      internalID: -1841942322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_23
+      rect:
+        serializedVersion: 2
+        x: 2182
+        y: 0
+        width: 52
+        height: 112
+      alignment: 9
+      pivot: {x: 0.168, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85f6699744c1cf24f80acd0473b07664
+      internalID: 1573304336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_24
+      rect:
+        serializedVersion: 2
+        x: 2278
+        y: 0
+        width: 69
+        height: 112
+      alignment: 9
+      pivot: {x: 0.115, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39974e58448832241903a7c7babd3216
+      internalID: 1523626469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_28
+      rect:
+        serializedVersion: 2
+        x: 2690
+        y: 0
+        width: 75
+        height: 112
+      alignment: 9
+      pivot: {x: 0.17, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b2d22662d1fcc84ea6a06f8bb709d9c
+      internalID: -705656897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_30
+      rect:
+        serializedVersion: 2
+        x: 2915
+        y: 0
+        width: 87
+        height: 112
+      alignment: 9
+      pivot: {x: 0.137, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06d2f4043ed696041b8db7f862b41cd6
+      internalID: 296129848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_31
+      rect:
+        serializedVersion: 2
+        x: 3026
+        y: 0
+        width: 90
+        height: 112
+      alignment: 9
+      pivot: {x: 0.143, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3aa35efc56f2cc748b899d89eca8827a
+      internalID: -1028533420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_32
+      rect:
+        serializedVersion: 2
+        x: 3140
+        y: 0
+        width: 77
+        height: 112
+      alignment: 9
+      pivot: {x: 0.14, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 061f6e1f79c7e4446903b0dfdad4a4bf
+      internalID: -862722988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_prayer_35
+      rect:
+        serializedVersion: 2
+        x: 3445
+        y: 0
+        width: 54
+        height: 112
+      alignment: 9
+      pivot: {x: 0.183, y: 0.417}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 503ffd28cf845194ebcc349e8651fcba
+      internalID: -786646765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      penitent_perform_prayer_0: 346794474
+      penitent_perform_prayer_38: -1843637666
+      penitent_perform_prayer_40: 1754267926
+      penitent_perform_prayer_41: 1718312316
+      penitent_perform_prayer_53: 1258407304
+      penitent_perform_prayer_55: 1054069477
+      penitent_perform_prayer_57: -1569665241
+      penitent_perform_prayer_58: -780185729
+      penitent_perform_prayer_59: 1983600533
+      penitent_perform_prayer_60: -597153659
+      penitent_perform_prayer_61: 1773957982
+      penitent_perform_prayer_62: -1271542585
+      penitent_perform_prayer_63: 2006332330
+      penitent_perform_prayer_64: -1506189864
+      penitent_perform_prayer_65: 992900195
+      penitent_prayer_1: -570897807
+      penitent_prayer_10: -882207610
+      penitent_prayer_11: -256673668
+      penitent_prayer_12: 9656096
+      penitent_prayer_13: 179027077
+      penitent_prayer_14: 841401981
+      penitent_prayer_15: -1504522183
+      penitent_prayer_16: 1854129320
+      penitent_prayer_17: -189348352
+      penitent_prayer_18: -1791930125
+      penitent_prayer_19: 217185505
+      penitent_prayer_2: -407963843
+      penitent_prayer_20: -2101329335
+      penitent_prayer_21: 597657581
+      penitent_prayer_22: -1841942322
+      penitent_prayer_23: 1573304336
+      penitent_prayer_24: 1523626469
+      penitent_prayer_25: 979655902
+      penitent_prayer_26: -173134176
+      penitent_prayer_27: -804006870
+      penitent_prayer_28: -705656897
+      penitent_prayer_29: 1906826116
+      penitent_prayer_3: -1374418428
+      penitent_prayer_30: 296129848
+      penitent_prayer_31: -1028533420
+      penitent_prayer_32: -862722988
+      penitent_prayer_33: 1271885358
+      penitent_prayer_34: -2142721622
+      penitent_prayer_35: -786646765
+      penitent_prayer_36: 524083926
+      penitent_prayer_37: -1931189706
+      penitent_prayer_38: 1668784263
+      penitent_prayer_39: 1896872903
+      penitent_prayer_4: 1993257040
+      penitent_prayer_40: -1600087522
+      penitent_prayer_41: -1735766689
+      penitent_prayer_42: -387849386
+      penitent_prayer_5: -1696223618
+      penitent_prayer_6: 1033077077
+      penitent_prayer_7: 1432142413
+      penitent_prayer_8: 530791243
+      penitent_prayer_9: -1192586160
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

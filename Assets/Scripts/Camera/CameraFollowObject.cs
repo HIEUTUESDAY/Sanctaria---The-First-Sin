@@ -33,7 +33,7 @@ public class CameraFollowObject : MonoBehaviour
 
     public void CallTurn()
     {
-        _turnCoroutine = StartCoroutine(FlipYLerp());
+        _turnCoroutine = CoroutineManager.Instance.StartCoroutineManager(FlipYLerp());
     }
 
     private IEnumerator FlipYLerp()

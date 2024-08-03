@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 9074450934223928516}
   - component: {fileID: 6006712996099439164}
   - component: {fileID: 3077803002013520587}
-  - component: {fileID: 6985553236995985670}
   m_Layer: 15
   m_Name: Prayer_Verdiales of The Forsaken Hamlet
   m_TagString: Item
@@ -171,19 +170,3 @@ MonoBehaviour:
   itemDescription: Can perform a special ability when equip
   isOnFloor: 1
   canBeCollect: 0
---- !u!114 &6985553236995985670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 616999251492132105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 157c88331e5b3ac40bfe655881eb5955, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectilePrefab:
-  - {fileID: 5420880807478829953, guid: a865c3eb63321234db35ef50b6f837fc, type: 3}
-  - {fileID: 8672610236227230692, guid: a5e08ceac025db542bab30b174161bcb, type: 3}
-  spawnPoint: {fileID: 0}

@@ -6,8 +6,8 @@ using UnityEngine;
 public class PlayerEquipment : MonoBehaviour
 {
     private Player player;
-    [SerializeField] private MeaCulpaHeart equippedMeaCulpaHeart;
-    [SerializeField] private Prayer equippedPrayer;
+    public MeaCulpaHeart equippedMeaCulpaHeart;
+    public Prayer equippedPrayer;
 
     private void Awake()
     {
@@ -96,7 +96,7 @@ public class PlayerEquipment : MonoBehaviour
 
     public void PerformPrayer()
     {
-        if (equippedPrayer == null) return;
+        if (equippedPrayer.itemName == "") return;
 
         switch (equippedPrayer.itemName)
         {
@@ -116,18 +116,30 @@ public class PlayerEquipment : MonoBehaviour
     #region Verdiales of The Forsaken Hamlet
 
     [Header("Verdiales of The Forsaken Hamlet")]
-    public GameObject[] verdialesProjectilePrefab; // Reference to the projectile prefab
+    public GameObject verdialesProjectilePrefab; // Reference to the projectile prefab
     public Transform spawnVerdialesPoint;
 
     private IEnumerator VerdialesRoutine()
     {
-        // Spawn projectiles at intervals
-        for (int i = 0; i < verdialesProjectilePrefab.Length; i++)
-        {
-            Instantiate(verdialesProjectilePrefab[i], spawnVerdialesPoint.position, spawnVerdialesPoint.rotation);
-            yield return null;
-        }
+        // Determine the facing direction
+        bool isFacingRight = player.IsFacingRight; // Assuming IsFacingRight is a public property
+
+        // Calculate the spawn rotation based on the player's facing direction
+        Quaternion spawnRotation = isFacingRight ? spawnVerdialesPoint.rotation : Quaternion.Euler(spawnVerdialesPoint.rotation.eulerAngles + new Vector3(0, 180, 0));
+
+        // Instantiate the forward-moving projectile
+        GameObject forwardProjectile = Instantiate(verdialesProjectilePrefab, spawnVerdialesPoint.position, spawnRotation);
+        VerdialesProjectileMovement forwardMovement = forwardProjectile.GetComponent<VerdialesProjectileMovement>();
+        forwardMovement.moveForward = true;
+
+        // Instantiate the backward-moving projectile
+        GameObject backwardProjectile = Instantiate(verdialesProjectilePrefab, spawnVerdialesPoint.position, spawnRotation);
+        VerdialesProjectileMovement backwardMovement = backwardProjectile.GetComponent<VerdialesProjectileMovement>();
+        backwardMovement.moveForward = false;
+
+        yield return null;
     }
+
 
     #endregion
 

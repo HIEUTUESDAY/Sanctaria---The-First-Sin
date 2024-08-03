@@ -10,6 +10,7 @@ TagManager:
   - SavePoint
   - GroundDetectionZone
   - Item
+  - CameraBoundary
   layers:
   - Default
   - TransparentFX

@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Enemy" Collapsed="true">
+    <Position X="3.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQSADMgBCiAgCIAJAQACohQGgAggQAIEAAAAhESCAkA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\Enemy Base\Enemy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WheelBrokenAttackBasic" Collapsed="true">
+    <Position X="7.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAEAQQAACAIAABCAAAAACECAAIBgAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\Enemy Behavior Logic\Attack\WheelBrokenAttackBasic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyChaseSOBase" Collapsed="true">
+    <Position X="10.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAIAABAAAAEAAACAgIQgAAAAAI=</HashCode>
+      <FileName>Assets\Scripts\Enemy\Enemy Behavior Logic\Chase\EnemyChaseSOBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnragedPilgrimChaseGetCloseToPlayer" Collapsed="true">
+    <Position X="11.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAUyABAAABAQAAAAAIAIRCQAAAACECAAIAgAAABAA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\Enemy Behavior Logic\Chase\EnragedPilgrimChaseGetCloseToPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WheelBrokenChaseTorwardPlayer" Collapsed="true">
+    <Position X="9.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAUyABAAABAQEAAAAIAIRCQAAAACECAAIBgAAABAA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\Enemy Behavior Logic\Chase\WheelBrokenChaseTorwardPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnragedPilgrim" Collapsed="true">
+    <Position X="1.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAhAAAAAAAIAQAAgAACAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\Enemy Types\EnragedPilgrim.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WheelBroken" Collapsed="true">
+    <Position X="3.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEABAAAAAAAIAQAAgAACAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\Enemy Types\WheelBroken.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WingedFace" Collapsed="true">
+    <Position X="5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEABAAAAAAAIAQAAgAACAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\Enemy Types\WingedFace.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyAttackSOBase" Collapsed="true">
+    <Position X="7.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAIAABAAAAEAAACAgIQgAAAAAI=</HashCode>
+      <FileName>Assets\Scripts\Enemy\Enemy Behavior Logic\Attack\EnemyAttackSOBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyIdleSOBase" Collapsed="true">
+    <Position X="15.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAIAABAAAAEAAACAgIQgAAAAAI=</HashCode>
+      <FileName>Assets\Scripts\Enemy\Enemy Behavior Logic\Idle\EnemyIdleSOBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnragedPilgrimIdlePatrolAround" Collapsed="true">
+    <Position X="17.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>DAAAASARAIgBAQAEACwIAARAQAAAAAECAAIQgCAABAg=</HashCode>
+      <FileName>Assets\Scripts\Enemy\Enemy Behavior Logic\Idle\EnragedPilgrimPatrolAround.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WheelBrokenIdlePatrolAround" Collapsed="true">
+    <Position X="13.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>DAAAASARAIgFAQAEACwIAARCQAAAACECAAIRgCAABAg=</HashCode>
+      <FileName>Assets\Scripts\Enemy\Enemy Behavior Logic\Idle\WheelBrokenIdelPatrolAround.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WingedFaceIdelFlyToPoint" Collapsed="true">
+    <Position X="15.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEACAAAAAgAQAAAAAAAABAAAIBACAAAAIAiAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\Enemy Behavior Logic\Idle\WingedFaceIdelFlyToPoint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyState" Collapsed="true">
+    <Position X="3.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAEAAAAAAAAQAAAAAAAAAAIAAAACAAI=</HashCode>
+      <FileName>Assets\Scripts\Enemy\Enemy State Machine\EnemyState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyStateMachine" Collapsed="true">
+    <Position X="1.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\Enemy State Machine\EnemyStateMachine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyAttackState" Collapsed="true">
+    <Position X="3.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAAAAAAAQAAAAAAAAAAIAAAACAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\Enemy State Machine\ConcreteStates\EnemyAttackState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyChaseState" Collapsed="true">
+    <Position X="1.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAAAAAAAQAAAAAAAAAAIAAAACAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\Enemy State Machine\ConcreteStates\EnemyChaseState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyIdleState" Collapsed="true">
+    <Position X="5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAAAAAAAQAAAAAAAAAAIAAAACAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\Enemy State Machine\ConcreteStates\EnemyIdleState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="IEnemyDamageable" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\Enemy Interfaces\IEnemyDamageable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IEnemyMoveable" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAgAQAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemy\Enemy Interfaces\IEnemyMoveable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IDamageableBase" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAIAAEAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\InterfaceBase\IDamageableBase.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

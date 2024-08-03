@@ -15,11 +15,6 @@ public class CameraShakeManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Persist the instance across scenes
-        }
-        else
-        {
-            Destroy(gameObject); // Destroy duplicate instances
         }
     }
 

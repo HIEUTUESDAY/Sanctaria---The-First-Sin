@@ -29,7 +29,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     [Space(5)]
 
     [Header("Dashing")]
-    private bool canDash = true;
+    [SerializeField] private bool canDash = true;
     [SerializeField] private float dashPower = 20f;
     private float dashTime = 0.5f;
     [SerializeField] private float dashCooldown = 2f;
@@ -57,11 +57,11 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     [Space(5)]
 
     [Header("Wall Jump Speed Boost")]
-    private float originalMoveSpeed;
     [SerializeField] private float wallJumpSpeedBoost = 3f;
     [SerializeField] private float wallJumpSpeedBoostDuration = 2f;
     private bool isWallJumpSpeedBoostActive = false;
     private Coroutine wallJumpSpeedBoostCoroutine;
+    private float originalMoveSpeed;
     [Space(5)]
 
     [Header("Stamina Regen")]
@@ -69,8 +69,8 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     [Space(5)]
 
     [Header("Ivincible")]
-    private float timeSinceHit = 0;
     [SerializeField] private float invincibleTime = 2f;
+    private float timeSinceHit = 0;
     [Space(5)]
 
     [Header("Collect Item")]
@@ -84,7 +84,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     [Space(5)]
 
     [Header("One Way Platform Movement")]
-    private BoxCollider2D PlayerCollider;
+    private Collider2D PlayerCollider;
     [Space(5)]
 
     [Header("Camera Shake")]
@@ -107,7 +107,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     #region Player Equipment buffs
 
-    [Header("Equipment Buffs")]
+    [Header("Mea Culpa Heart Buffs")]
     public float damageBuff;
     public float defenseBuff;
     public float healthBuff;
@@ -118,6 +118,10 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     public float jumpPowerBuff;
     public float wallJumpPowerBuff;
     public float dashPowerBuff;
+    [Space(5)]
+
+    [Header("Mea Culpa Heart Buffs")]
+    public float prayerStaminaCost = 50f;
 
     #endregion
 
@@ -310,7 +314,17 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     public Vector2 VerticalInput { get; set; }
     public Rigidbody2D RB { get; set; }
     [field: SerializeField] public bool IsFacingRight { get; set; } = true;
-    public bool CanMove { get => Animator.GetBool(AnimationString.canMove);}
+    public bool CanMove 
+    {
+        get
+        {
+            return Animator.GetBool(AnimationString.canMove);
+        }
+        set
+        {
+            Animator.SetBool(AnimationString.canMove, value);
+        }
+    }
 
     [SerializeField] private float _currentSpeed;
     public float CurrentSpeed
@@ -348,7 +362,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     #endregion
 
-    #region Player events system
+    #region Player events
 
     [field: SerializeField] public UnityEvent<float, Vector2> DamageableHit { get; set; }
     [field: SerializeField] public UnityEvent DamageableDead { get; set; }
@@ -380,16 +394,17 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         RB = GetComponent<Rigidbody2D>();
         Animator = GetComponent<Animator>();
         TouchingDirections = GetComponent<TouchingDirections>();
+        PlayerCollider = GetComponent<Collider2D>();
         GhostTrail = GetComponent<GhostTrail>();
         HealthBar = GetComponent<HealthBar>();
         ImpulseSource = GetComponent<CinemachineImpulseSource>();
         OriginalGravityScale = RB.gravityScale;
         PlayerEquipment = GetComponent<PlayerEquipment>();
+        CameraFollowObject = GameObject.Find("CameraFollowObject").GetComponent<CameraFollowObject>();
     }
 
     private void Start()
     {
-
     }
 
     private void Update()
@@ -423,7 +438,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             CurrentHealth -= damageTaken;
             WasHit = true;
 
-            CoroutineManager.Instance.StartCoroutineManager(ApplySlowMotion());
+            StartCoroutine(ApplySlowMotion());
             CameraShakeManager.Instance.CameraShake(ImpulseSource);
             Animator.SetTrigger(AnimationString.hitTrigger);
 
@@ -460,8 +475,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     public void TurnPlayer()
     {
-        CameraFollowObject = GameObject.Find("CameraFollowObject").GetComponent<CameraFollowObject>();
-
         if (IsFacingRight)
         {
             Vector3 rotator = new Vector3(transform.rotation.x, 180f, transform.rotation.z);
@@ -640,13 +653,22 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         }
     }
 
+    public void PerformPrayer()
+    {
+        if(PlayerEquipment.equippedPrayer.itemName != null)
+        {
+            PlayerEquipment.PerformPrayer();
+            _currentStamina -= prayerStaminaCost;
+        }
+    }
+
     #endregion
 
     #region Player envent system functions
 
     public void OnHit(float damage, Vector2 knockback)
     {
-        CoroutineManager.Instance.StartCoroutineManager(Knockback(knockback));
+        StartCoroutine(Knockback(knockback));
     }
 
     public void OnDeath()
@@ -718,7 +740,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         {
             if (CurrentOneWayPlatform != null)
             {
-                CoroutineManager.Instance.StartCoroutineManager(DisableCollision());
+                StartCoroutine(DisableCollision());
             }
         }
     }
@@ -792,7 +814,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
             if (context.started && wallJumpingCounter > 0f && IsWallHanging)
             {
-                CoroutineManager.Instance.StartCoroutineManager(WallJumping());
+                StartCoroutine(WallJumping());
             }
 
             if (jumpBufferTimeCounter > 0f && coyoteTimeCounter > 0f && CanMove)
@@ -827,7 +849,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         {
             if (context.started && canDash && CanMove && TouchingDirections.IsGrounded && !IsDashing && !IsClimbing && CurrentStamina >= dashStaminaCost)
             {
-                CoroutineManager.Instance.StartCoroutineManager(Dashing());
+                StartCoroutine(Dashing());
             }
         }
     }
@@ -852,7 +874,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             if (context.started && CanMove && TouchingDirections.IsGrabWallDetected && !TouchingDirections.IsGrounded && !IsWallHanging && CurrentStamina >= wallHangStaminaCost)
             {
                 Animator.SetTrigger(AnimationString.wallHangTrigger);
-                CoroutineManager.Instance.StartCoroutineManager(WallHanging());
+                StartCoroutine(WallHanging());
             }
         }
     }
@@ -904,7 +926,17 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         }
     }
 
-    public void OnCloseInventory(InputAction.CallbackContext context)
+    public void OnOpenMap(InputAction.CallbackContext context)
+    {
+        if (context.started && !UIManager.Instance.mapActivated)
+        {
+            Time.timeScale = 0;
+            UIManager.Instance.mapMenu.SetActive(true);
+            UIManager.Instance.mapActivated = true;
+        }
+    }
+
+    public void OnCloseInventoryOrMap(InputAction.CallbackContext context)
     {
         if (context.started && UIManager.Instance.menuActivated)
         {
@@ -912,13 +944,22 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             UIManager.Instance.inventoryMenu.SetActive(false);
             UIManager.Instance.menuActivated = false;
         }
+        else if (context.started && UIManager.Instance.mapActivated)
+        {
+            Time.timeScale = 1;
+            UIManager.Instance.mapMenu.SetActive(false);
+            UIManager.Instance.mapActivated = false;
+        }
     }
 
     public void OnPerformPrayer(InputAction.CallbackContext context)
     {
-        if (context.started && PlayerEquipment != null)
+        if (!UIManager.Instance.menuActivated)
         {
-            PlayerEquipment.PerformPrayer();
+            if (context.started && IsAlive && CanMove && TouchingDirections.IsGrounded && PlayerEquipment.equippedPrayer.itemName != "" && CurrentStamina >= prayerStaminaCost)
+            {
+                Animator.SetTrigger(AnimationString.prayerTrigger);
+            }
         }
     }
 
@@ -1024,9 +1065,9 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         // Start or restart the speed boost coroutine
         if (wallJumpSpeedBoostCoroutine != null)
         {
-            CoroutineManager.Instance.StopCoroutineManager(wallJumpSpeedBoostCoroutine);
+            StopCoroutine(wallJumpSpeedBoostCoroutine);
         }
-        wallJumpSpeedBoostCoroutine = CoroutineManager.Instance.StartCoroutineManager(WallJumpSpeedBoost());
+        wallJumpSpeedBoostCoroutine = StartCoroutine(WallJumpSpeedBoost());
 
         yield return new WaitForSeconds(wallJumpingDuration);
         IsWallJumping = false;
@@ -1168,4 +1209,17 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     #endregion
 
+    #region Reset player animation
+
+    public void ResetPlayerAnimation()
+    {
+        IsJumping = false;
+        IsDashing = false;
+        IsDashed = false;
+        IsWallHanging = false;
+        IsWallJumping = false;
+        IsClimbing = false;
+    }
+
+    #endregion
 }
