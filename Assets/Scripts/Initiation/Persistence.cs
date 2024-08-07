@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Persistent : MonoBehaviour
+public class Persistence : MonoBehaviour
 {
-    public static Persistent Instance;
+    public static Persistence Instance;
 
     private void Awake()
     {

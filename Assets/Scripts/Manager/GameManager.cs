@@ -19,7 +19,13 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
+
             savePath = Application.persistentDataPath + "/";
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 

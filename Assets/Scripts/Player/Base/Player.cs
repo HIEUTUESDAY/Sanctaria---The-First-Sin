@@ -380,12 +380,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
             Initialize();
-        }
-        else
-        {
-            Destroy(gameObject);
         }
     }
 

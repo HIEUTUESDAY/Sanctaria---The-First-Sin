@@ -30,13 +30,13 @@ public class PlayerCheckpointData
     public string sceneName;
     public float[] position;
 
-    public PlayerCheckpointData(string sceneName, Vector3 position)
+    public PlayerCheckpointData(string checkpointScene, Vector3 checkpointPosition)
     {
-        this.sceneName = sceneName;
+        this.sceneName = checkpointScene;
         this.position = new float[3];
-        this.position[0] = position.x;
-        this.position[1] = position.y;
-        this.position[2] = position.z;
+        this.position[0] = checkpointPosition.x;
+        this.position[1] = checkpointPosition.y;
+        this.position[2] = checkpointPosition.z;
     }
 }
 
