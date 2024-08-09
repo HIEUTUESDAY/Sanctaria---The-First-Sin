@@ -43,7 +43,7 @@ public class PlayerCheckpointData
 [System.Serializable]
 public class PlayerInventoryData
 {
-    public int tearsOfAtonement;
+    public float tearsOfAtonement;
 
     public List<QuestItem> questItemsInventory;
     public List<MeaCulpaHeart> meaCulpaHeartsInventory;
@@ -52,7 +52,7 @@ public class PlayerInventoryData
     public MeaCulpaHeart meaCulpaHeartEquipment;
     public Prayer prayerEquipment;
 
-    public PlayerInventoryData(int tearsOfAtonement, List<QuestItem> questItemsInventory, List<MeaCulpaHeart> meaCulpaHeartsInventory, List<Prayer> prayersInventory, MeaCulpaHeart meaCulpaHeartEquipment, Prayer prayerEquipment)
+    public PlayerInventoryData(float tearsOfAtonement, List<QuestItem> questItemsInventory, List<MeaCulpaHeart> meaCulpaHeartsInventory, List<Prayer> prayersInventory, MeaCulpaHeart meaCulpaHeartEquipment, Prayer prayerEquipment)
     {
         this.tearsOfAtonement = tearsOfAtonement;
         this.questItemsInventory = questItemsInventory;

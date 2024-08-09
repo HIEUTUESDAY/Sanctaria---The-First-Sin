@@ -19,7 +19,7 @@ public class InventoryManager : MonoBehaviour
     public MeaCulpaHeart meaCulpaHeartsEquipment;
     public Prayer prayersEquipment;
 
-    public int tearsOfAtonement;
+    public float tearsOfAtonement;
 
     private void Awake()
     {
@@ -329,7 +329,7 @@ public class InventoryManager : MonoBehaviour
         return prayersEquipment;
     }
 
-    public int GetTearsAmount()
+    public float GetTearsAmount()
     {
         return tearsOfAtonement;
     }

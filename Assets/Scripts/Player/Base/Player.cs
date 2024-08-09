@@ -913,7 +913,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     public void OnOpenInventory(InputAction.CallbackContext context)
     {
-        if (context.started && !UIManager.Instance.menuActivated)
+        if (context.started && !UIManager.Instance.menuActivated && !UIManager.Instance.mapActivated)
         {
             Time.timeScale = 0;
             UIManager.Instance.inventoryMenu.SetActive(true);
@@ -923,7 +923,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     public void OnOpenMap(InputAction.CallbackContext context)
     {
-        if (context.started && !UIManager.Instance.mapActivated)
+        if (context.started && !UIManager.Instance.menuActivated && !UIManager.Instance.mapActivated)
         {
             Time.timeScale = 0;
             UIManager.Instance.mapMenu.SetActive(true);
