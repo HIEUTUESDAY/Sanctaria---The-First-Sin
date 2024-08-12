@@ -34,7 +34,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     private float dashTime = 0.5f;
     [SerializeField] private float dashCooldown = 2f;
     private float dashStopRate = 5f;
-    [SerializeField] private float dashStaminaCost = 30f;
     [Space(5)]
 
     [Header("Climbing")]
@@ -53,7 +52,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     private float wallJumpingCounter;
     private float wallJumpingDuration = 0.2f;
     [SerializeField] private Vector2 wallJumpingPower = new Vector2(5f, 22f);
-    [SerializeField] private float wallHangStaminaCost = 10f;    
     [Space(5)]
 
     [Header("Wall Jump Speed Boost")]
@@ -65,7 +63,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     [Space(5)]
 
     [Header("Stamina Regen")]
-    [SerializeField] private float staminaRegenSpeed = 5f;
+    [SerializeField] public float staminaRegen = 0.5f;
     [Space(5)]
 
     [Header("Ivincible")]
@@ -92,14 +90,14 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     [SerializeField] private float slowMotionFactor = 0.2f;
     [Space(5)]
 
-    private Animator Animator;
-    private TouchingDirections TouchingDirections;
-    private GameObject CurrentOneWayPlatform;
-    private CameraFollowObject CameraFollowObject;
-    private GhostTrail GhostTrail;
-    private HealthBar HealthBar;
-    private CinemachineImpulseSource ImpulseSource;
-    private PlayerEquipment PlayerEquipment;
+    public Animator Animator;
+    public TouchingDirections TouchingDirections;
+    public GameObject CurrentOneWayPlatform;
+    public CameraFollowObject CameraFollowObject;
+    public GhostTrail GhostTrail;
+    public HealthBarManager HealthBar;
+    public CinemachineImpulseSource ImpulseSource;
+    public PlayerEquipment PlayerEquipment;
     private float FallSpeedYDampingChangeThreshold;
     private float OriginalGravityScale;
 
@@ -121,7 +119,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     [Space(5)]
 
     [Header("Mea Culpa Heart Buffs")]
-    public float prayerStaminaCost = 50f;
+    public float prayerStaminaCost = 5f;
 
     #endregion
 
@@ -391,11 +389,9 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         TouchingDirections = GetComponent<TouchingDirections>();
         PlayerCollider = GetComponent<Collider2D>();
         GhostTrail = GetComponent<GhostTrail>();
-        HealthBar = GetComponent<HealthBar>();
         ImpulseSource = GetComponent<CinemachineImpulseSource>();
         OriginalGravityScale = RB.gravityScale;
         PlayerEquipment = GetComponent<PlayerEquipment>();
-        CameraFollowObject = GameObject.Find("CameraFollowObject").GetComponent<CameraFollowObject>();
     }
 
     private void Start()
@@ -411,7 +407,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         OneWayCheck();
         YDampingCheck();
         WallHangCheck();
-        HealthAndStaminaRegeneration();
+        SetMaxHealthAndStamina();
         UpdateHealthBar();
         BeInvisible();
     }
@@ -510,7 +506,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     #region UI health bar functions
 
-    public void HealthAndStaminaRegeneration()
+    public void SetMaxHealthAndStamina()
     {
         if (CurrentHealth > MaxHealth)
         {
@@ -521,16 +517,12 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         {
             CurrentStamina = MaxStamina;
         }
-
-        if (CurrentStamina < MaxStamina)    
-        {
-            CurrentStamina += ((staminaRegenSpeed + staminaBuff) * Time.deltaTime);
-            CurrentStamina = Mathf.Min(CurrentStamina, MaxStamina);
-        }
     }
 
     public void UpdateHealthBar()
     {
+        HealthBar = FindObjectOfType<HealthBarManager>();
+
         HealthBar.healthSlider.maxValue = MaxHealth;
         HealthBar.staminaSlider.maxValue = MaxStamina;
         HealthBar.SetHealth(CurrentHealth);
@@ -540,7 +532,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     #endregion
 
-    #region Movement functions
+    #region Player Movement functions
 
     private void Move()
     {
@@ -608,7 +600,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             float maxHeal = Mathf.Max(MaxHealth - CurrentHealth, 0);
             float actualHeal = Mathf.Min(maxHeal, HealthRestore + healthRegenBuff);
             CurrentHealth += actualHeal;
-            CurrentStamina = MaxStamina;
             CurrentHealthPotion -= 1;
             CharacterEvent.characterHealed(gameObject, actualHeal);
         }
@@ -618,10 +609,9 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         }
     }
 
-    public void RestoreFullStats()
+    public void RestoreHealthAndPotion()
     {
         CurrentHealth = MaxHealth;
-        CurrentStamina = MaxStamina;
         CurrentHealthPotion = MaxHealthPotion;
     }
 
@@ -677,6 +667,8 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     public void SetFacingCheck()
     {
+        CameraFollowObject = FindObjectOfType<CameraFollowObject>();
+
         if (IsMoving && CanMove)
         {
             SetFacing(HorizontalInput);
@@ -842,7 +834,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     {
         if (!UIManager.Instance.menuActivated)
         {
-            if (context.started && canDash && CanMove && TouchingDirections.IsGrounded && !IsDashing && !IsClimbing && CurrentStamina >= dashStaminaCost)
+            if (context.started && canDash && CanMove && TouchingDirections.IsGrounded && !IsDashing && !IsClimbing)
             {
                 StartCoroutine(Dashing());
             }
@@ -866,7 +858,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     {
         if (!UIManager.Instance.menuActivated)
         {
-            if (context.started && CanMove && TouchingDirections.IsGrabWallDetected && !TouchingDirections.IsGrounded && !IsWallHanging && CurrentStamina >= wallHangStaminaCost)
+            if (context.started && CanMove && TouchingDirections.IsGrabWallDetected && !TouchingDirections.IsGrounded && !IsWallHanging)
             {
                 Animator.SetTrigger(AnimationString.wallHangTrigger);
                 StartCoroutine(WallHanging());
@@ -928,6 +920,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             Time.timeScale = 0;
             UIManager.Instance.mapMenu.SetActive(true);
             UIManager.Instance.mapActivated = true;
+            MapCenterPoint.Instance.SetCenterToPlayerPoint();
         }
     }
 
@@ -940,7 +933,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             UIManager.Instance.menuActivated = false;
         }
         else if (context.started && UIManager.Instance.mapActivated)
-        {
+        {    
             Time.timeScale = 1;
             UIManager.Instance.mapMenu.SetActive(false);
             UIManager.Instance.mapActivated = false;
@@ -988,7 +981,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     private IEnumerator Dashing()
     {
-        _currentStamina -= dashStaminaCost;
         IsInvincible = true;
         IsDashing = true;
         canDash = false;
@@ -1070,7 +1062,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     private IEnumerator WallHanging()
     {
-        _currentStamina -= wallHangStaminaCost;
         IsWallHanging = true;
         RB.gravityScale = 0;
 

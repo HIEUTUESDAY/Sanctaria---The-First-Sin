@@ -7,7 +7,7 @@ public class MapRoomManager : MonoBehaviour
 {
     public static MapRoomManager Instance;
 
-    [SerializeField] private MapContainerData[] rooms;
+    public MapContainerData[] rooms;
 
     private void Awake()
     {
@@ -31,5 +31,19 @@ public class MapRoomManager : MonoBehaviour
                 return;
             }
         }
+    }
+    public MapContainerData GetCurrentRevealedRoom()
+    {
+        string currentScene = SceneManager.GetActiveScene().name;
+
+        for (int i = 0; i < rooms.Length; i++)
+        {
+            if (rooms[i].RoomScene.SceneName == currentScene && rooms[i].HasRoomRevealed)
+            {
+                return rooms[i];
+            }
+        }
+
+        return null;
     }
 }

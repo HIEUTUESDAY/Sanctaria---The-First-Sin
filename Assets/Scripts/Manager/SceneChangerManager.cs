@@ -7,7 +7,7 @@ public class SceneChangerManager : MonoBehaviour
 {
     public static SceneChangerManager Instance;
 
-    private static bool loadFromDoor;
+    private static bool loadFromDoor = false;
 
     private SceneChanger.DoorToSpawnAt doorToSpawnTo;
 

@@ -14,12 +14,12 @@ public class PlayerEquipment : MonoBehaviour
         player = GetComponent<Player>();
     }
 
-    private void Start()
+    private void Update()
     {
-        EquipmentInitialize();
+        SetCurrentEquipment();
     }
 
-    private void EquipmentInitialize()
+    private void SetCurrentEquipment()
     {
         equippedMeaCulpaHeart = InventoryManager.Instance.GetMeaCulpaHeartEquipment();
         AddMeaCulpaHeartBuffs(equippedMeaCulpaHeart);

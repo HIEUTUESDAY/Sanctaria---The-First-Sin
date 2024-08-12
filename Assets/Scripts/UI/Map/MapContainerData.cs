@@ -6,23 +6,23 @@ using UnityEngine.SceneManagement;
 public class MapContainerData : MonoBehaviour
 {
     public SceneField RoomScene;
-    public GameObject CenterPoint;
+    public GameObject PlayerIcon;
     [field: SerializeField] public bool HasRoomRevealed { get; set; }
 
     private void Start()
     {
-        CenterPoint.SetActive(false);
+        PlayerIcon.SetActive(false);
     }
 
     private void Update()
     {
         if(SceneManager.GetActiveScene().name == RoomScene && HasRoomRevealed == true)
         {
-            CenterPoint.SetActive(true);
+            PlayerIcon.SetActive(true);
         }
         else
         {
-            CenterPoint.SetActive(false);
+            PlayerIcon.SetActive(false);
         }
     }
 }

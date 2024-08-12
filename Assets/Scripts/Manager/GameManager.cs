@@ -73,6 +73,8 @@ public class GameManager : MonoBehaviour
     {
         if (player != null)
         {
+            player.Animator.SetTrigger(AnimationString.spawnTrigger);
+
             // Load player data
             player.transform.position = new Vector3(data.playerCheckpointData.position[0], data.playerCheckpointData.position[1], data.playerCheckpointData.position[2]);
             player.CurrentHealth = data.playerData.health;
@@ -104,8 +106,9 @@ public class GameManager : MonoBehaviour
     public void SetRespawnPlayerData(Player player)
     {
         player.IsAlive = true;
+        player.Animator.SetTrigger(AnimationString.spawnTrigger);
         player.transform.position = new Vector3(gameData.playerCheckpointData.position[0], gameData.playerCheckpointData.position[1], gameData.playerCheckpointData.position[2]);
-        player.RestoreFullStats();
+        player.RestoreHealthAndPotion();
     }
 
     #endregion
@@ -129,6 +132,9 @@ public class GameManager : MonoBehaviour
         if (player != null && newGamePosition != null)
         {
             player.transform.position = newGamePosition.position;
+            player.CurrentHealth = player.MaxHealth;
+            player.CurrentHealthPotion = 1;
+            player.Animator.SetTrigger(AnimationString.spawnTrigger);
             isLoadGame = false;
         }
     }

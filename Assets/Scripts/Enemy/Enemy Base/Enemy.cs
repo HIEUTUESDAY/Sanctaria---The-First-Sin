@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
 using static UnityEngine.Rendering.DebugUI;
 
 public class Enemy : MonoBehaviour, IEnemyDamageable, IEnemyMoveable
@@ -13,8 +14,12 @@ public class Enemy : MonoBehaviour, IEnemyDamageable, IEnemyMoveable
     public TouchingDirections TouchingDirections { get; set; }
     public Animator Animator { get; set; }
     public CinemachineImpulseSource ImpulseSource { get; set; }
+
+    [Header("Hit slow motion")]
     [SerializeField] private float slowMotionDuration = 0.5f;
     [SerializeField] private float slowMotionFactor = 0.2f;
+
+    [Header("Drop tears")]
     [SerializeField] private float minTearsDrop = 5f;
     [SerializeField] private float maxTearsDrop = 10f;
 
@@ -145,6 +150,8 @@ public class Enemy : MonoBehaviour, IEnemyDamageable, IEnemyMoveable
             DamageableHit?.Invoke(damage, knockback);
             CharacterEvent.characterDamaged.Invoke(gameObject, damage);
             CharacterEvent.hitSplash.Invoke(gameObject, hitDirection, attackType);
+
+            DropStamina();
         }
     }
 
@@ -153,6 +160,11 @@ public class Enemy : MonoBehaviour, IEnemyDamageable, IEnemyMoveable
         Time.timeScale = slowMotionFactor;
         yield return new WaitForSecondsRealtime(slowMotionDuration);
         Time.timeScale = 1f;
+    }
+
+    private void DropStamina()
+    {
+        Player.Instance.CurrentStamina += Player.Instance.staminaRegen;
     }
 
     #endregion
