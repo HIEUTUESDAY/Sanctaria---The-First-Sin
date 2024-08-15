@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeaCulpaHeartCollectable : Collectable
+public class MeaCulpaHeartCollectable : ItemCollectable
 {
     private bool isItemEquipped = false;
     public float damageModifier;
@@ -39,7 +39,7 @@ public class MeaCulpaHeartCollectable : Collectable
                 wallJumpPowerModifier = wallJumpPowerModifier,
                 dashPowerModifier = dashPowerModifier
             });
-            Destroy(gameObject);
+            gameObject.SetActive(false);
 
             CharacterEvent.collectMessage.Invoke(itemSprite, itemName);
         }

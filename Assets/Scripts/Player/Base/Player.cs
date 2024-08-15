@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using static UnityEngine.Rendering.DebugUI;
 
@@ -73,7 +74,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     [Header("Collect Item")]
     [SerializeField] private bool hasItemInRange;
-    private Collectable Item;
+    private ItemCollectable Item;
     [Space(5)]
 
     [Header("Save Point")]
@@ -378,7 +379,13 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
+
             Initialize();
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 
@@ -392,10 +399,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         ImpulseSource = GetComponent<CinemachineImpulseSource>();
         OriginalGravityScale = RB.gravityScale;
         PlayerEquipment = GetComponent<PlayerEquipment>();
-    }
-
-    private void Start()
-    {
     }
 
     private void Update()
@@ -761,21 +764,13 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (!UIManager.Instance.menuActivated)
+        HorizontalInput = context.ReadValue<Vector2>();
+        if (IsAlive && !UIManager.Instance.menuActivated)
         {
-            HorizontalInput = context.ReadValue<Vector2>();
-            if (IsAlive)
-            {
-                IsMoving = HorizontalInput != Vector2.zero;
-            }
-            else
-            {
-                IsMoving = false;
-            }
+            IsMoving = HorizontalInput != Vector2.zero;
         }
         else
         {
-            HorizontalInput = Vector2.zero;
             IsMoving = false;
         }
     }
@@ -843,7 +838,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     public void OnClimb(InputAction.CallbackContext context)
     {
-        if (!UIManager.Instance.menuActivated)
+        if (!UIManager.Instance.menuActivated || !SceneChangerManager.Instance.loadFromDoor)
         {
             VerticalInput = context.ReadValue<Vector2>();
             Animator.SetBool(AnimationString.upInput, VerticalInput.y > 0);
@@ -903,9 +898,9 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         }
     }
 
-    public void OnOpenInventory(InputAction.CallbackContext context)
+    public void OnOpenInventoryMenu(InputAction.CallbackContext context)
     {
-        if (context.started && !UIManager.Instance.menuActivated && !UIManager.Instance.mapActivated)
+        if (context.started && !UIManager.Instance.menuActivated && !UIManager.Instance.inventoryMenu.activeSelf)
         {
             Time.timeScale = 0;
             UIManager.Instance.inventoryMenu.SetActive(true);
@@ -913,32 +908,52 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         }
     }
 
-    public void OnOpenMap(InputAction.CallbackContext context)
+    public void OnOpenMapMenu(InputAction.CallbackContext context)
     {
-        if (context.started && !UIManager.Instance.menuActivated && !UIManager.Instance.mapActivated)
+        if (context.started && !UIManager.Instance.menuActivated && !UIManager.Instance.mapMenu.activeSelf)
         {
             Time.timeScale = 0;
             UIManager.Instance.mapMenu.SetActive(true);
-            UIManager.Instance.mapActivated = true;
-            MapCenterPoint.Instance.SetCenterToPlayerPoint();
+            UIManager.Instance.menuActivated = true;
+            MapCenterPoint.Instance.SetCenterPoint();
         }
     }
 
-    public void OnCloseInventoryOrMap(InputAction.CallbackContext context)
+    public void OnOpenOptionsMenu(InputAction.CallbackContext context)
     {
-        if (context.started && UIManager.Instance.menuActivated)
+        if (context.started && UIManager.Instance.menuActivated && UIManager.Instance.mapMenu.activeSelf)
+        {
+            Time.timeScale = 0;
+            UIManager.Instance.mapMenu.SetActive(false);
+            UIManager.Instance.optionsMenu.SetActive(true);
+            UIManager.Instance.menuActivated = true;
+        }
+    }
+
+
+    public void OnCloseMenus(InputAction.CallbackContext context)
+    {
+        if (context.started && UIManager.Instance.menuActivated && UIManager.Instance.inventoryMenu.activeSelf)
         {
             Time.timeScale = 1;
             UIManager.Instance.inventoryMenu.SetActive(false);
             UIManager.Instance.menuActivated = false;
         }
-        else if (context.started && UIManager.Instance.mapActivated)
+        else if (context.started && UIManager.Instance.menuActivated && UIManager.Instance.mapMenu.activeSelf)
         {    
             Time.timeScale = 1;
             UIManager.Instance.mapMenu.SetActive(false);
-            UIManager.Instance.mapActivated = false;
+            UIManager.Instance.menuActivated = false;
+        }
+        else if (context.started && UIManager.Instance.menuActivated && UIManager.Instance.optionsMenu.activeSelf)
+        {
+            Time.timeScale = 0;
+            UIManager.Instance.optionsMenu.SetActive(false);
+            UIManager.Instance.mapMenu.SetActive(true);
+            UIManager.Instance.menuActivated = true;
         }
     }
+
 
     public void OnPerformPrayer(InputAction.CallbackContext context)
     {
@@ -1150,7 +1165,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         if (collision.CompareTag("Item"))
         {
             hasItemInRange = true;
-            Item = collision.GetComponent<Collectable>();
+            Item = collision.GetComponent<ItemCollectable>();
         }
     }
 
@@ -1205,6 +1220,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         IsWallHanging = false;
         IsWallJumping = false;
         IsClimbing = false;
+        CanMove = false;
     }
 
     #endregion

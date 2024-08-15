@@ -6,23 +6,23 @@ using UnityEngine.SceneManagement;
 public class MapContainerData : MonoBehaviour
 {
     public SceneField RoomScene;
-    public GameObject PlayerIcon;
+    public GameObject CurrentRoom;
     [field: SerializeField] public bool HasRoomRevealed { get; set; }
 
     private void Start()
     {
-        PlayerIcon.SetActive(false);
+        CurrentRoom.SetActive(false);
     }
 
     private void Update()
     {
         if(SceneManager.GetActiveScene().name == RoomScene && HasRoomRevealed == true)
         {
-            PlayerIcon.SetActive(true);
+            CurrentRoom.SetActive(true);
         }
         else
         {
-            PlayerIcon.SetActive(false);
+            CurrentRoom.SetActive(false);
         }
     }
 }

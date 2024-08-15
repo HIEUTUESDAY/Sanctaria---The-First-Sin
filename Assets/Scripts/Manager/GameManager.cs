@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,26 +8,24 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public GameData gameData;
 
+    public SceneField newGameScene;
+
     private string savePath;
     private int currentSlotIndex;
 
-    public bool isRespawnPlayer = false;
     public bool isNewGame = false;
     public bool isLoadGame = false;
+    public bool isRespawn = false;
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
 
-            savePath = Application.persistentDataPath + "/";
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+
+        savePath = Application.persistentDataPath + "/";
     }
 
     #region Load menus data
@@ -41,17 +40,18 @@ public class GameManager : MonoBehaviour
 
     #region New, Load and Save game functions
 
-    public void SaveGame(PlayerData playerData, PlayerCheckpointData playerCheckpointData, PlayerInventoryData playerInventoryData)
+    public void SaveGame(PlayerData playerData, PlayerCheckpointData playerCheckpointData, PlayerInventoryData playerInventoryData, PlayerMapData playerMapData, PlayerSceneData playerSceneData)
     {
-        SaveSystem.SaveGame(playerData, playerCheckpointData, playerInventoryData, currentSlotIndex);
+        SaveSystem.SaveGame(playerData, playerCheckpointData, playerInventoryData, playerMapData, playerSceneData, currentSlotIndex);
     }
 
     public void NewGame(int slotIndex)
     {
-        if (!isNewGame)
+        if(!isNewGame)
         {
+            isNewGame = true;
             currentSlotIndex = slotIndex;
-            StartCoroutine(NewGameCoroutine());
+            SceneChangerManager.Instance.ChangeSceneFromNewGameFile(newGameScene);
         }
     }
 
@@ -59,40 +59,20 @@ public class GameManager : MonoBehaviour
     {
         if (!isLoadGame)
         {
+            isLoadGame = true;
             currentSlotIndex = slotIndex;
             gameData = SaveSystem.LoadGame(currentSlotIndex);
 
             if (gameData != null)
             {
-                StartCoroutine(LoadGameCoroutine());
-            }
-        }
-    }
-
-    public void LoadGameData(Player player, GameData data)
-    {
-        if (player != null)
-        {
-            player.Animator.SetTrigger(AnimationString.spawnTrigger);
-
-            // Load player data
-            player.transform.position = new Vector3(data.playerCheckpointData.position[0], data.playerCheckpointData.position[1], data.playerCheckpointData.position[2]);
-            player.CurrentHealth = data.playerData.health;
-            player.CurrentStamina = data.playerData.stamina;
-            player.CurrentHealthPotion = data.playerData.healthPotions;
-
-            // Load inventory data
-            InventoryManager playerInventory = player.GetComponentInChildren<InventoryManager>();
-            if (playerInventory != null)
-            {
-                playerInventory.LoadInventoriesData(data);
+                SceneChangerManager.Instance.ChangeSceneFromeSaveFile(gameData);
             }
         }
     }
 
     public void RespawnPlayer()
     {
-        if (!isRespawnPlayer)
+        if (!isRespawn)
         {
             gameData = SaveSystem.LoadGame(currentSlotIndex);
 
@@ -115,52 +95,9 @@ public class GameManager : MonoBehaviour
 
     #region GameManager coroutines
 
-    private IEnumerator NewGameCoroutine()
-    {
-        isNewGame = true;
-        AsyncOperation asyncNewGame = SceneManager.LoadSceneAsync("Level1.1");
-
-        while (!asyncNewGame.isDone)
-        {
-            yield return null;
-        }
-
-        Player player = FindObjectOfType<Player>();
-
-        Transform newGamePosition = GameObject.Find("NewGamePosition").GetComponent<Transform>();
-
-        if (player != null && newGamePosition != null)
-        {
-            player.transform.position = newGamePosition.position;
-            player.CurrentHealth = player.MaxHealth;
-            player.CurrentHealthPotion = 1;
-            player.Animator.SetTrigger(AnimationString.spawnTrigger);
-            isLoadGame = false;
-        }
-    }
-
-    private IEnumerator LoadGameCoroutine()
-    {
-        isLoadGame = true;
-        AsyncOperation asyncLoadGame = SceneManager.LoadSceneAsync(gameData.playerCheckpointData.sceneName);
-
-        while (!asyncLoadGame.isDone)
-        {
-            yield return null;
-        }
-
-        Player player = FindObjectOfType<Player>();
-
-        if (player != null && gameData != null)
-        {
-            LoadGameData(player, gameData);
-            isLoadGame = false;
-        }
-    }
-
     private IEnumerator RespawnPlayerCoroutine()
     {
-        isRespawnPlayer = true;
+        isRespawn = true;
         AsyncOperation asyncLoadGame = SceneManager.LoadSceneAsync(gameData.playerCheckpointData.sceneName);
 
         while (!asyncLoadGame.isDone)
@@ -173,7 +110,7 @@ public class GameManager : MonoBehaviour
         if (player != null && gameData != null)
         {
             SetRespawnPlayerData(player);
-            isRespawnPlayer = false;
+            isRespawn = false;
         }
     }
 

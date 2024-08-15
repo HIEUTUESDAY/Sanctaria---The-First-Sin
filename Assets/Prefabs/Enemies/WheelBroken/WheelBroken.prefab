@@ -547,9 +547,9 @@ MonoBehaviour:
   _currentHealth: 0
   _isAlive: 1
   <IsFacingRight>k__BackingField: 1
-  <EnemyIdleBase>k__BackingField: {fileID: 0}
-  <EnemyChaseBase>k__BackingField: {fileID: 0}
-  <EnemyAttackBase>k__BackingField: {fileID: 0}
+  <EnemyIdleBase>k__BackingField: {fileID: 11400000, guid: 7a9b5bc61a19a9249aa78bb624d2afcc, type: 2}
+  <EnemyChaseBase>k__BackingField: {fileID: 11400000, guid: 49a61bd6ee956c64ca7cde0d20b05a62, type: 2}
+  <EnemyAttackBase>k__BackingField: {fileID: 11400000, guid: e247ce4310eee5f4a8d3b7d4766c7bd8, type: 2}
   bodyHitCollider: {fileID: 3591786836798738503}
 --- !u!114 &3972146953887047303
 MonoBehaviour:

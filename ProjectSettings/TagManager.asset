@@ -11,6 +11,7 @@ TagManager:
   - GroundDetectionZone
   - Item
   - CameraBoundary
+  - Persistence
   layers:
   - Default
   - TransparentFX

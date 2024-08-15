@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MapCenterPoint : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class MapCenterPoint : MonoBehaviour
 
     public RectTransform roomCanvas; // The canvas or parent containing the rooms
     public float moveSpeed = 500f;
+
+    private MapContainerData currentRoom;
 
     // Define the boundaries for the movement zone
     public RectTransform movementZone;
@@ -22,17 +25,12 @@ public class MapCenterPoint : MonoBehaviour
 
     private void Start()
     {
-        SetCenterToPlayerPoint();
+        SetCenterPoint();
     }
 
     private void Update()
     {
         MoveCenterPoint();
-
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            SetCenterToPlayerPoint();
-        }
     }
 
     private void MoveCenterPoint()
@@ -55,6 +53,10 @@ public class MapCenterPoint : MonoBehaviour
         {
             moveDirection.x += 1;
         }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            SetCenterPoint();
+        }
 
         // Move the roomCanvas in the opposite direction to keep the centerPoint stationary
         Vector2 newPosition = roomCanvas.anchoredPosition - moveDirection * moveSpeed * Time.unscaledDeltaTime;
@@ -69,24 +71,21 @@ public class MapCenterPoint : MonoBehaviour
         // Check if the C key is pressed to center on the PlayerPoint
     }
 
-    public void SetCenterToPlayerPoint()
+    public void SetCenterPoint()
     {
-        // Find the MapRoomData with the active PlayerIcon
-        MapContainerData targetRoom = null;
-
         foreach (var room in MapRoomManager.Instance.rooms)
         {
-            if (room.PlayerIcon != null && room.PlayerIcon.activeSelf)
+            if (room.CurrentRoom.activeSelf)
             {
-                targetRoom = room;
+                currentRoom = room;
                 break;
             }
         }
 
-        if (targetRoom != null)
+        if (currentRoom != null)
         {
             // Calculate the target position to center the roomCanvas on the targetRoom
-            Vector2 targetPosition = -targetRoom.GetComponent<RectTransform>().anchoredPosition;
+            Vector2 targetPosition = -currentRoom.GetComponent<RectTransform>().anchoredPosition;
 
             // Clamp the target position within the movement zone
             targetPosition.x = Mathf.Clamp(targetPosition.x, movementZone.rect.xMin, movementZone.rect.xMax);

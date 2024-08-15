@@ -36,7 +36,7 @@ public class InventoryManager : MonoBehaviour
 
     private void Update()
     {
-        if (UIManager.Instance.menuActivated)
+        if (UIManager.Instance.menuActivated && UIManager.Instance.inventoryMenu.activeSelf)
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
@@ -77,7 +77,7 @@ public class InventoryManager : MonoBehaviour
 
     #region Load inventories data 
 
-    public void LoadInventoriesData(GameData gameData)
+    public void LoadSaveFileInventoriesData(GameData gameData)
     {
         tearsOfAtonement = gameData.playerInventoryData.tearsOfAtonement;
 
@@ -332,6 +332,33 @@ public class InventoryManager : MonoBehaviour
     public float GetTearsAmount()
     {
         return tearsOfAtonement;
+    }
+
+    public string GetInventoryItemByName(string itemName)
+    {
+        // Check in QuestItem inventory
+        var questItem = questItemsInventory.Find(item => item.itemName == itemName);
+        if (questItem != null)
+        {
+            return questItem.itemName;
+        }
+
+        // Check in MeaCulpaHeart inventory
+        var meaCulpaHeart = meaCulpaHeartsInventory.Find(item => item.itemName == itemName);
+        if (meaCulpaHeart != null)
+        {
+            return meaCulpaHeart.itemName;
+        }
+
+        // Check in Prayer inventory
+        var prayer = prayersInventory.Find(item => item.itemName == itemName);
+        if (prayer != null)
+        {
+            return prayer.itemName;
+        }
+
+        // Return a message if item not found in any inventory
+        return "Item not found";
     }
 
     #endregion

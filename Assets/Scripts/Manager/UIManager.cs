@@ -16,9 +16,9 @@ public class UIManager : MonoBehaviour
     public GameObject[] nonPlayerHitSplashPrefab;
     public GameObject popUpMessagePrefab;
     public GameObject inventoryMenu;
-    public bool menuActivated = false;
     public GameObject mapMenu;
-    public bool mapActivated = false;
+    public GameObject optionsMenu;
+    public bool menuActivated = false;
     private Transform VFXcanvas;
 
     private void Awake()

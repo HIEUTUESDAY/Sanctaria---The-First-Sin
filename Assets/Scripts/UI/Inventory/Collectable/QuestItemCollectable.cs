@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class QuestItemCollectable : Collectable
+public class QuestItemCollectable : ItemCollectable
 {
     
     public override void CollectItem()
@@ -17,8 +17,8 @@ public class QuestItemCollectable : Collectable
                 itemName = itemName,
                 itemDescription = itemDescription,
                 itemSprite = itemSprite
-            }); 
-            Destroy(gameObject);
+            });
+            gameObject.SetActive(false);
 
             CharacterEvent.collectMessage.Invoke(itemSprite, itemName);
         }

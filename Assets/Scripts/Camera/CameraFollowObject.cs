@@ -12,23 +12,18 @@ public class CameraFollowObject : MonoBehaviour
 
     private Coroutine _turnCoroutine;
 
-    private Player _player;
-
     private bool _isFacingRight;
-
-    private void Start()
-    {
-        _playerTranform = GameObject.Find("Player").GetComponent<Transform>();
-
-        _player = _playerTranform.gameObject.GetComponent<Player>();
-
-        _isFacingRight = _player.IsFacingRight;
-    }
 
     private void Update()
     {
+        Player _player = FindObjectOfType<Player>();
+
+        _playerTranform = _player.transform;
+
+        _isFacingRight = _player.IsFacingRight;
+
         //make camera follow the player position
-        transform.position = _player.transform.position;
+        transform.position = _playerTranform.position;
     }
 
     public void CallTurn()

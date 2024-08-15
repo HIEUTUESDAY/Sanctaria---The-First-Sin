@@ -18,6 +18,7 @@ public class TearsBar : MonoBehaviour
     private void Start()
     {
         currentTearsOfAtonement = InventoryManager.Instance.tearsOfAtonement;
+        tearsText.text = ((int)currentTearsOfAtonement).ToString();
     }
 
     private void Update()

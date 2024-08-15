@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PrayerCollectable : Collectable
+public class PrayerCollectable : ItemCollectable
 {
     private bool isItemEquipped = false;
 
@@ -19,7 +19,7 @@ public class PrayerCollectable : Collectable
                 itemSprite = itemSprite,
                 isItemEquipped = isItemEquipped
             });
-            Destroy(gameObject);
+            gameObject.SetActive(false);
 
             CharacterEvent.collectMessage.Invoke(itemSprite, itemName);
         }

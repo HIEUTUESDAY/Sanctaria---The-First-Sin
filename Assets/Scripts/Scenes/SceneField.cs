@@ -15,6 +15,7 @@ public class SceneField
     public string SceneName
     {
         get { return _sceneName; }
+        set { _sceneName = value; }
     }
 
     // make it work with the existing Unity methods (LoadLevel/LoadScene)

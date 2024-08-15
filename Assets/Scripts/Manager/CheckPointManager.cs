@@ -34,8 +34,12 @@ public class CheckPointManager : MonoBehaviour
         GameManager gameManager = GameManager.Instance;
         Player player = Player.Instance;
         InventoryManager inventoryManager = InventoryManager.Instance;
-        if (gameManager != null && player != null && inventoryManager != null)
+        MapRoomManager mapRoomManager = MapRoomManager.Instance;
+        SceneDataManager sceneDataManager = SceneDataManager.Instance;
+
+        if (gameManager != null && player != null && inventoryManager != null && mapRoomManager != null && sceneDataManager != null)
         {
+            // Gather all player data
             PlayerData playerData = new PlayerData(player);
             PlayerCheckpointData playerCheckpointData = new PlayerCheckpointData(SceneManager.GetActiveScene().name, transform.position);
             PlayerInventoryData playerInventoryData = new PlayerInventoryData
@@ -47,18 +51,24 @@ public class CheckPointManager : MonoBehaviour
                 inventoryManager.GetMeaCulpaHeartEquipment(),
                 inventoryManager.GetPrayerEquipment()
             );
-            gameManager.SaveGame(playerData, playerCheckpointData, playerInventoryData);
+            PlayerMapData playerMapData = new PlayerMapData(mapRoomManager.GetMaps());
+
+            // Gather scene data
+            PlayerSceneData playerSceneData = new PlayerSceneData(sceneDataManager.GetSceneDataList()); 
+
+            // Save the game including scene data
+            gameManager.SaveGame(playerData, playerCheckpointData, playerInventoryData, playerMapData, playerSceneData);
         }
     }
 
     public void RespawnEnemiesAfterSpawn()
     {
-        enemyManager.RespawnAllEnemies();
+        
     }
 
     public void ActivateCheckPoint()
     {
-        if (IsActivate == false)
+        if (!IsActivate)
         {
             IsActivate = true;
         }

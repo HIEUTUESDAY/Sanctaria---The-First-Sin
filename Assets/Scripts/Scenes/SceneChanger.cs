@@ -1,4 +1,3 @@
-using UnityEditor.MemoryProfiler;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -24,7 +23,7 @@ public class SceneChanger : MonoBehaviour
 
     public void ChangeScene()
     {
-        SceneChangerManager.ChangeSceneFromDoorUse(sceneToLoad, DoorToSpawnTo);
+        SceneChangerManager.Instance.ChangeSceneFromDoor(sceneToLoad, DoorToSpawnTo);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

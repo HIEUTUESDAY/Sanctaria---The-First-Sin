@@ -3,7 +3,7 @@ using UnityEngine;
 
 public static class SaveSystem
 {
-    public static void SaveGame(PlayerData playerData, PlayerCheckpointData playerCheckpointData, PlayerInventoryData playerInventoryData, int slotIndex)
+    public static void SaveGame(PlayerData playerData, PlayerCheckpointData playerCheckpointData, PlayerInventoryData playerInventoryData, PlayerMapData playerMapData, PlayerSceneData playerSceneData, int slotIndex)
     {
         string path = Application.persistentDataPath + "/savefile" + slotIndex + ".json";
 
@@ -11,7 +11,9 @@ public static class SaveSystem
         {
             playerData = playerData,
             playerCheckpointData = playerCheckpointData,
-            playerInventoryData = playerInventoryData
+            playerInventoryData = playerInventoryData,
+            playerMapData = playerMapData,
+            playerSceneData = playerSceneData
         };
 
         string json = JsonUtility.ToJson(data, true);

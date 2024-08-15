@@ -130,6 +130,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "OpenGameOptions",
+                    "type": "Button",
+                    "id": "693d4448-c478-4bca-8cf2-fd94d03ab397",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -504,6 +513,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "OpenMap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8619de51-343f-41ce-b2bf-35e7fcf1d091",
+                    "path": "<Keyboard>/o",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenGameOptions",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
