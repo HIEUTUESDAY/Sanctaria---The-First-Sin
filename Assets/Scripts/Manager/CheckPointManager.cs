@@ -29,7 +29,7 @@ public class CheckPointManager : MonoBehaviour
         }
     }
 
-    public void SaveCheckPoint()
+    public void SaveGameInCheckPoint()
     {
         GameManager gameManager = GameManager.Instance;
         Player player = Player.Instance;
@@ -54,16 +54,15 @@ public class CheckPointManager : MonoBehaviour
             PlayerMapData playerMapData = new PlayerMapData(mapRoomManager.GetMaps());
 
             // Gather scene data
-            PlayerSceneData playerSceneData = new PlayerSceneData(sceneDataManager.GetSceneDataList()); 
+            PlayerSceneData playerSceneData = new PlayerSceneData(sceneDataManager.GetSceneDataList());
+
+            // Respawn enemies in all scenes
+            sceneDataManager.RespawnEnemiesInAllScenes();
 
             // Save the game including scene data
             gameManager.SaveGame(playerData, playerCheckpointData, playerInventoryData, playerMapData, playerSceneData);
         }
-    }
 
-    public void RespawnEnemiesAfterSpawn()
-    {
-        
     }
 
     public void ActivateCheckPoint()

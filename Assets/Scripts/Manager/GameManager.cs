@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
         {
             isNewGame = true;
             currentSlotIndex = slotIndex;
+            gameData = new GameData();
             SceneChangerManager.Instance.ChangeSceneFromNewGameFile(newGameScene);
         }
     }

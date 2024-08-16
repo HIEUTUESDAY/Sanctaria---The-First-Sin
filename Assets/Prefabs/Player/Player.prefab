@@ -24024,11 +24024,9 @@ MonoBehaviour:
   - {fileID: 3743834501123866132, guid: 3e2e229d1ca250f408c119a22c16a268, type: 3}
   popUpMessagePrefab: {fileID: 7567619860141534309, guid: 82acf555e89ca9744874e3b5f82956ea, type: 3}
   inventoryMenu: {fileID: 4956936946838453907}
-  inventoryActivated: 0
   mapMenu: {fileID: 3971328147564726017}
-  mapActivated: 0
   optionsMenu: {fileID: 193196187627844635}
-  optionsActivated: 0
+  menuActivated: 0
 --- !u!114 &4917533712771356701
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,6 +1,8 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,9 +10,9 @@ public class SceneChangerManager : MonoBehaviour
 {
     public static SceneChangerManager Instance;
 
-    public bool loadFromMainMenu = false;
+    public bool loadToGamePlay = false;
     public bool loadFromDoor = false;
-    public bool loadFromGameOptions = false;
+    public bool loadToMainMenu = false;
 
     private SceneChanger.DoorToSpawnAt doorToSpawnTo;
 
@@ -44,27 +46,26 @@ public class SceneChangerManager : MonoBehaviour
 
     public void ChangeSceneToMainMenu(SceneField mainMenuScene)
     {
-        loadFromGameOptions = true;
+        loadToMainMenu = true;
         Instance.StartCoroutine(Instance.ChangeToMainMenuCoroutine(mainMenuScene));
     }
 
     public void ChangeSceneFromeSaveFile(GameData gameData)
     {
-        loadFromMainMenu = true;
+        loadToGamePlay = true;
         Instance.StartCoroutine(Instance.ChangeSceneFromSaveFileCoroutine(gameData.playerCheckpointData.sceneName));
     }
 
     public void ChangeSceneFromNewGameFile(SceneField newGameScene)
     {
-        loadFromMainMenu = true;
+        loadToGamePlay = true;
         Instance.StartCoroutine(Instance.ChangeSceneFromNewGameFileCoroutine(newGameScene));
     }
 
     private IEnumerator ChangeSceneFromDoorCoroutine(SceneField myScene, SceneChanger.DoorToSpawnAt doorToSpawnAt = SceneChanger.DoorToSpawnAt.None)
     {
-        // run load scene
-        Player.Instance.ResetPlayerAnimation();
         SceneLoadManager.Instance.StartFadeOut();
+
         // keep loading
         while (SceneLoadManager.Instance.IsFadingOut)
         {
@@ -105,8 +106,6 @@ public class SceneChangerManager : MonoBehaviour
 
     private IEnumerator ChangeSceneFromNewGameFileCoroutine(SceneField newGameScene)
     {
-        GameManager.Instance.isLoadGame = true;
-
         // run load scene
         SceneLoadManager.Instance.StartFadeOut();
 
@@ -121,117 +120,197 @@ public class SceneChangerManager : MonoBehaviour
 
     private IEnumerator ActivatePlayerControl()
     {
+        Player.Instance.CanMove = false;
+        Player.Instance.IsMoving = false;
+
         while (SceneLoadManager.Instance.IsFadingIn)
         {
-            Player.Instance.CanMove = false;
-            Player.Instance.IsMoving = false;
             yield return null;
         }
 
         Player.Instance.CanMove = true;
-        Player.Instance.IsMoving = true;
+        Player.Instance.IsMoving = Player.Instance.HorizontalInput != Vector2.zero;
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    private IEnumerator LoadNewScene(UnityEngine.SceneManagement.Scene scene)
     {
-        SceneLoadManager.Instance.StartFadeIn();
+        SceneLoadManager.Instance.StartLoading(2f);
 
-        if (loadFromGameOptions)
+        FindDoor(doorToSpawnTo);
+
+        Player player = Player.Instance;
+
+        if (player != null)
         {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            if (player != null)
-            {
-                Destroy(player);
-            }
-            loadFromGameOptions = false;
+            // load player position
+            player.ResetPlayerAnimation();
+            player.transform.position = doorSpawnPosition.position;
         }
 
-        if (!scene.name.Equals("MainMenu"))
-        {
-            SceneDataManager.Instance.LoadSceneData(scene.name);
+        SceneDataManager sceneDataManager = FindObjectOfType<SceneDataManager>();
 
-            if (loadFromDoor)
+        if (sceneDataManager != null)
+        {
+            sceneDataManager.LoadSceneData(scene.name);
+        }
+
+        MapRoomManager.Instance.RevealRoom();
+        loadFromDoor = false;
+
+        while (SceneLoadManager.Instance.IsLoading)
+        {
+            yield return null;
+        }
+
+        SceneLoadManager.Instance.StartFadeIn();
+        StartCoroutine(ActivatePlayerControl());
+    }
+    
+    private IEnumerator LoadNewGameCoroutine()
+    {
+        SceneLoadManager.Instance.StartLoading(2f);
+
+        Player player = FindObjectOfType<Player>();
+
+        if (player != null)
+        {
+            player.ResetPlayerAnimation();
+            player.CurrentHealth = player.MaxHealth * 0.5f;
+            player.CurrentStamina = player.MaxStamina * 0.25f;
+            player.CurrentHealthPotion = 1;
+
+            Transform newGamePosition = GameObject.Find("NewGamePosition").GetComponent<Transform>();
+
+            if (newGamePosition != null)
             {
-                StartCoroutine(ActivatePlayerControl());
-                FindDoor(doorToSpawnTo);
-                Player.Instance.transform.position = doorSpawnPosition.position;
-                loadFromDoor = false;
+                player.transform.position = newGamePosition.position;
+            }
+        }
+
+        MapRoomManager.Instance.RevealRoom();
+        GameManager.Instance.isNewGame = false;
+        loadToGamePlay = false;
+
+        while (SceneLoadManager.Instance.IsLoading)
+        {
+            yield return null;
+        }
+
+        SceneLoadManager.Instance.StartFadeIn();
+        player.Animator.SetTrigger(AnimationString.spawnTrigger);
+    }
+
+    private IEnumerator LoadSaveGameCoroutine()
+    {
+        SceneLoadManager.Instance.StartLoading(2f);
+
+        // Load game data
+        GameData gameData = GameManager.Instance.gameData;
+
+        // Load player data
+        Player player = FindObjectOfType<Player>();
+
+        if (player != null)
+        {
+            // Load player data
+            player.ResetPlayerAnimation();
+            player.transform.position = new Vector3(gameData.playerCheckpointData.position[0], gameData.playerCheckpointData.position[1], gameData.playerCheckpointData.position[2]);
+            player.CurrentHealth = gameData.playerData.health;
+            player.CurrentStamina = gameData.playerData.stamina;
+            player.CurrentHealthPotion = gameData.playerData.healthPotions;
+
+            // Load inventory data
+            InventoryManager inventoryManager = player.GetComponentInChildren<InventoryManager>();
+            if (inventoryManager != null)
+            {
+                inventoryManager.LoadSaveFileInventoriesData(gameData);
             }
 
-            if (loadFromMainMenu)
+            // Load map data
+            MapRoomManager mapRoomManager = player.GetComponentInChildren<MapRoomManager>();
+            if (mapRoomManager != null)
+            {
+                mapRoomManager.LoadSaveFileMapRoomsData(gameData);
+            }
+        }
+
+        // Load save file scene data
+        SceneDataManager sceneDataManager = FindObjectOfType<SceneDataManager>();
+
+        if (sceneDataManager != null)
+        {
+            sceneDataManager.RespawnEnemiesInAllScenes();
+            sceneDataManager.LoadSaveFileSceneData(gameData);
+        }
+
+        MapRoomManager.Instance.RevealRoom();
+        GameManager.Instance.isLoadGame = false;
+        loadToGamePlay = false;
+
+        while (SceneLoadManager.Instance.IsLoading)
+        {
+            yield return null;
+        }
+
+        SceneLoadManager.Instance.StartFadeIn();
+        player.Animator.SetTrigger(AnimationString.spawnTrigger);
+    }
+
+
+    private IEnumerator LoadMainMenuCoroutine()
+    {
+        SceneLoadManager.Instance.StartLoading(2f);
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+        if (player != null)
+        {
+            Destroy(player);
+        }
+
+        while (SceneLoadManager.Instance.IsLoading)
+        {
+            yield return null;
+        }
+
+        SceneLoadManager.Instance.StartFadeIn();
+    }
+
+    private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode)
+    {
+        if (!scene.name.Equals("MainMenu"))
+        {
+            if (loadFromDoor)
+            {
+                StartCoroutine(LoadNewScene(scene));
+            }
+
+            if (loadToGamePlay)
             {
                 if (GameManager.Instance.isNewGame)
                 {
-                    Player player = FindObjectOfType<Player>();
-
-                    Transform newGamePosition = GameObject.Find("NewGamePosition").GetComponent<Transform>();
-
-                    if (player != null && newGamePosition != null)
-                    {
-                        player.transform.position = newGamePosition.position;
-                        player.CurrentHealth = player.MaxHealth * 0.5f;
-                        player.CurrentStamina = player.MaxStamina * 0.25f;
-                        player.CurrentHealthPotion = 1;
-                        player.Animator.SetTrigger(AnimationString.spawnTrigger);
-                    }
-
-                    GameManager.Instance.isNewGame = false;
-                    loadFromMainMenu = false;
+                    StartCoroutine(LoadNewGameCoroutine());
                 }
                 else if (GameManager.Instance.isLoadGame)
                 {
-                    // Load game data
-                    GameData gameData = GameManager.Instance.gameData;
-
-                    // Load player data
-                    Player player = FindObjectOfType<Player>();
-
-                    if (player != null)
-                    {
-                        player.Animator.SetTrigger(AnimationString.spawnTrigger);
-
-                        // Load player data
-                        player.transform.position = new Vector3(gameData.playerCheckpointData.position[0], gameData.playerCheckpointData.position[1], gameData.playerCheckpointData.position[2]);
-                        player.CurrentHealth = gameData.playerData.health;
-                        player.CurrentStamina = gameData.playerData.stamina;
-                        player.CurrentHealthPotion = gameData.playerData.healthPotions;
-
-                        // Load inventory data
-                        InventoryManager playerInventory = player.GetComponentInChildren<InventoryManager>();
-                        if (playerInventory != null)
-                        {
-                            playerInventory.LoadSaveFileInventoriesData(gameData);
-                        }
-
-                        // Load map data
-                        MapRoomManager playerMapData = player.GetComponentInChildren<MapRoomManager>();
-                        if (playerMapData != null)
-                        {
-                            playerMapData.LoadSaveFileMapRoomsData(gameData);
-                        }
-
-                        GameManager.Instance.isLoadGame = false;
-                        loadFromMainMenu = false;
-                    }
-
-                    // Load save file scene data
-                    SceneDataManager playerSceneData = FindObjectOfType<SceneDataManager>();
-
-                    if (playerSceneData != null)
-                    {
-                        playerSceneData.LoadSaveFileSceneData(gameData);
-                    }
+                    StartCoroutine(LoadSaveGameCoroutine());
                 }
-                
             }
 
-            MapRoomManager.Instance.RevealRoom();
         }
     }
 
-    private void OnSceneUnloaded(Scene scene)
+    private void OnSceneUnloaded(UnityEngine.SceneManagement.Scene scene)
     {
-        SceneDataManager.Instance.SaveSceneData(scene.name);
+        if (!scene.name.Equals("MainMenu"))
+        {
+            SceneDataManager.Instance.SaveSceneData(scene.name);
+        }
+
+        if (loadToMainMenu)
+        {
+            StartCoroutine(LoadMainMenuCoroutine());
+        }
     }
 
     private void FindDoor(SceneChanger.DoorToSpawnAt doorSpawnNumber)

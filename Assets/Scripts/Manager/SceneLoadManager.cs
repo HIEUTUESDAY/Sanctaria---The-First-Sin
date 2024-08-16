@@ -13,8 +13,8 @@ public class SceneLoadManager : MonoBehaviour
     [SerializeField] private Color fadeOutStartColor;
 
     public bool IsFadingOut { get; private set; }
+    public bool IsLoading { get; private set; }
     public bool IsFadingIn { get; private set; }
-
 
     private void Awake()
     {
@@ -55,19 +55,30 @@ public class SceneLoadManager : MonoBehaviour
         }
     }
 
+    private IEnumerator WaitBeforeFadeIn(float loadTime)
+    {
+        IsLoading = true;
+        yield return new WaitForSeconds(loadTime);
+        IsLoading = false;
+    }
+
     public void StartFadeOut()
     {
         fadeOutImage.color = fadeOutStartColor;
         IsFadingOut = true;
     }
 
+    public void StartLoading(float loadTime)
+    {
+        StartCoroutine(WaitBeforeFadeIn(loadTime));
+    }
+
     public void StartFadeIn()
     {
-        if(fadeOutImage.color.a >= 1f)
+        if (fadeOutImage.color.a >= 1f)
         {
             fadeOutImage.color = fadeOutStartColor;
             IsFadingIn = true;
         }
     }
-
 }

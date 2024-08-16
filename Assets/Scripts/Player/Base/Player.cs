@@ -578,7 +578,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     {
         if (!UIManager.Instance.menuActivated)
         {
-            if (IsWallHanging)
+            if (CanMove && IsWallHanging)
             {
                 IsWallJumping = false;
                 float jumpDirection = IsFacingRight ? 1f : -1f;
@@ -623,8 +623,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         if (CheckPointManager != null)
         {
             CheckPointManager.ActivateCheckPoint();
-            CheckPointManager.SaveCheckPoint();
-            CheckPointManager.RespawnEnemiesAfterSpawn();
+            CheckPointManager.SaveGameInCheckPoint();
         }
     }
 

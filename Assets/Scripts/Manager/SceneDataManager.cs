@@ -31,8 +31,6 @@ public class SceneDataManager : MonoBehaviour
 
             enemyDataList = enemyManager.SaveEnemies();
             itemDataList = itemManager.SaveItems();
-
-            SaveSceneData(SceneManager.GetActiveScene().name);
         }
     }
 
@@ -90,7 +88,19 @@ public class SceneDataManager : MonoBehaviour
 
     public void LoadSaveFileSceneData(GameData gameData)
     {
-        sceneDataList = gameData.playerSceneData.scenesDataList;
+        sceneDataList = GameManager.Instance.gameData.playerSceneData.scenesDataList;
         LoadSceneData(gameData.playerCheckpointData.sceneName);
+    }
+
+    public void RespawnEnemiesInAllScenes()
+    {
+        // Respawn enemies in other scenes
+        foreach (SceneData sceneData in sceneDataList)
+        {
+            foreach (EnemyData enemy in sceneData.enemies)
+            {
+                enemy.isAlive = true;
+            }
+        }
     }
 }

@@ -18,6 +18,7 @@ public class GameOptionsManager : MonoBehaviour
 
     public void SaveAndLoadMainMenu()
     {
+        Time.timeScale = 1;
         SceneChangerManager.Instance.ChangeSceneToMainMenu(mainMenuScene);
     }
 
