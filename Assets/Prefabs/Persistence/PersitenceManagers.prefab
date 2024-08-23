@@ -244,7 +244,6 @@ MonoBehaviour:
   fadeOutSpeed: 2
   fadeInSpeed: 5
   fadeOutStartColor: {r: 0, g: 0, b: 0, a: 0}
-  waitTimeAfterFadeOut: 1
 --- !u!1 &985414710364920456
 GameObject:
   m_ObjectHideFlags: 0
@@ -578,8 +577,8 @@ MonoBehaviour:
     playerSceneData:
       scenesDataList: []
   newGameScene:
-    _sceneAsset: {fileID: 102900000, guid: 48328808e271bd841ad0ba2e7ead391b, type: 3}
-    _sceneName: Level1.1
+    _sceneAsset: {fileID: 102900000, guid: 9c457bd183014cc41aefab63e8fdabd2, type: 3}
+    _sceneName: Begining
   isNewGame: 0
   isLoadGame: 0
   isRespawn: 0

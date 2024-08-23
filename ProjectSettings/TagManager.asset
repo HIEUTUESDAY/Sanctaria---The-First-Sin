@@ -47,19 +47,10 @@ TagManager:
   - 
   m_SortingLayers:
   - name: Background
-    uniqueID: 2550009245
+    uniqueID: 3035730983
     locked: 0
-  - name: TilesetBehindOfGround
-    uniqueID: 1983845359
-    locked: 0
-  - name: TilesetGround
-    uniqueID: 1410917019
-    locked: 0
-  - name: NonCollusion
-    uniqueID: 3005454943
-    locked: 0
-  - name: OneWayPlatform
-    uniqueID: 2991611167
+  - name: BehindDefault
+    uniqueID: 178275449
     locked: 0
   - name: Default
     uniqueID: 0
@@ -67,6 +58,6 @@ TagManager:
   - name: Effect
     uniqueID: 751310211
     locked: 0
-  - name: TilesetFrontOfGround
-    uniqueID: 3993673651
+  - name: FrontOfDefault
+    uniqueID: 512750635
     locked: 0

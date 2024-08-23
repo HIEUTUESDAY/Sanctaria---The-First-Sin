@@ -296,7 +296,7 @@ MonoBehaviour:
   _currentHealth: 0
   _isAlive: 1
   <IsFacingRight>k__BackingField: 1
-  <EnemyIdleBase>k__BackingField: {fileID: 0}
+  <EnemyIdleBase>k__BackingField: {fileID: 11400000, guid: 72543aa4f6785c744be875b18c2c4ac6, type: 2}
   <EnemyChaseBase>k__BackingField: {fileID: 0}
   <EnemyAttackBase>k__BackingField: {fileID: 0}
   bodyHitCollider: {fileID: 3222287337882847074}

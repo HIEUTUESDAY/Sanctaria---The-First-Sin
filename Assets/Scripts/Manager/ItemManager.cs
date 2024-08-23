@@ -1,11 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class ItemManager : MonoBehaviour
 {
     [Header("This scene DATA")]
-    [SerializeField] private SceneField thisScene;
     [SerializeField] private SceneData thisSceneData;
     [Space(5)]
 
@@ -52,7 +50,6 @@ public class ItemManager : MonoBehaviour
         {
             if (currentScene.Equals(sceneData.sceneName))
             {
-                thisScene.SceneName = currentScene;
                 thisSceneData = sceneData;
                 SetActiveItems();
                 return;

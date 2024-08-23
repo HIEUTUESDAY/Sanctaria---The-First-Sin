@@ -10,9 +10,11 @@ public class SceneDataManager : MonoBehaviour
     public static SceneDataManager Instance;
     private EnemyManager enemyManager;
     private ItemManager itemManager;
+    private CheckPointManager checkPointManager;
     public List<SceneData> sceneDataList;
     private List<EnemyData> enemyDataList;
     private List<ItemData> itemDataList;
+    [SerializeField] private CheckPointData checkPointData;
 
     void Awake()
     {
@@ -24,13 +26,40 @@ public class SceneDataManager : MonoBehaviour
 
     private void Update()
     {
-        if (!SceneManager.GetActiveScene().name.Equals("MainMenu")) 
+        if (!SceneManager.GetActiveScene().name.Equals("MainMenu"))
         {
             enemyManager = FindObjectOfType<EnemyManager>();
             itemManager = FindObjectOfType<ItemManager>();
+            checkPointManager = FindObjectOfType<CheckPointManager>();
 
-            enemyDataList = enemyManager.SaveEnemies();
-            itemDataList = itemManager.SaveItems();
+            if (enemyManager != null)
+            {
+                enemyDataList = enemyManager.SaveEnemies();
+            }
+            else
+            {
+                enemyDataList = null;
+            }
+
+            if (itemManager != null)
+            {
+                itemDataList = itemManager.SaveItems();
+            }
+            else
+            {
+                itemDataList = null;
+            }
+
+            if (checkPointManager != null)
+            {
+                checkPointData = checkPointManager.SaveCheckPoint();
+            }
+            else
+            {
+                checkPointData = null;
+            }
+
+            SaveSceneData(SceneManager.GetActiveScene().name);
         }
     }
 
@@ -46,6 +75,7 @@ public class SceneDataManager : MonoBehaviour
                     sceneData.sceneName = currentScene;
                     sceneData.enemies = enemyDataList;
                     sceneData.items = itemDataList;
+                    sceneData.checkPoint = checkPointData;
                     return;
                 }
             }
@@ -54,7 +84,8 @@ public class SceneDataManager : MonoBehaviour
             (
                 currentScene,
                 enemyDataList,
-                itemDataList
+                itemDataList,
+                checkPointData
             );
 
             sceneDataList.Add(newSceneData);
@@ -65,20 +96,36 @@ public class SceneDataManager : MonoBehaviour
             (
                 currentScene,
                 enemyDataList,
-                itemDataList
+                itemDataList,
+                checkPointData
             );
 
             sceneDataList.Add(firstSceneData);
         }
+
+        LoadSceneData(currentScene);
     }
 
     public void LoadSceneData(string currentScene)
     {
         enemyManager = FindObjectOfType<EnemyManager>();
         itemManager = FindObjectOfType<ItemManager>();
+        checkPointManager = FindObjectOfType<CheckPointManager>();
 
-        enemyManager.LoadEnemies(currentScene);
-        itemManager.LoadItems(currentScene);
+        if (enemyManager != null)
+        {
+            enemyManager.LoadEnemies(currentScene);
+        }
+
+        if (itemManager != null)
+        {
+            itemManager.LoadItems(currentScene);
+        }
+
+        if (checkPointManager != null)
+        {
+            checkPointManager.LoadCheckpoint(currentScene);
+        }
     }
 
     public List<SceneData> GetSceneDataList()
@@ -86,20 +133,17 @@ public class SceneDataManager : MonoBehaviour
         return sceneDataList;
     }
 
-    public void LoadSaveFileSceneData(GameData gameData)
-    {
-        sceneDataList = GameManager.Instance.gameData.playerSceneData.scenesDataList;
-        LoadSceneData(gameData.playerCheckpointData.sceneName);
-    }
-
     public void RespawnEnemiesInAllScenes()
     {
         // Respawn enemies in other scenes
         foreach (SceneData sceneData in sceneDataList)
         {
-            foreach (EnemyData enemy in sceneData.enemies)
+            if (sceneData.enemies != null)
             {
-                enemy.isAlive = true;
+                foreach (EnemyData enemy in sceneData.enemies)
+                {
+                    enemy.isAlive = true;
+                }
             }
         }
     }

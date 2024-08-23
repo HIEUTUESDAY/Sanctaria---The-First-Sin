@@ -5,37 +5,79 @@ using UnityEngine.SceneManagement;
 
 public class CheckPointManager : MonoBehaviour
 {
-    private Animator animator;
-    private EnemyManager enemyManager;
+    [Header("This scene DATA")]
+    [SerializeField] private SceneData thisSceneData;
+    [Space(5)]
 
-    private void Start()
+    private Animator animator;
+    [SerializeField] private bool isActivated;
+
+    private void Awake()
     {
         animator = GetComponent<Animator>();
-        enemyManager = FindObjectOfType<EnemyManager>();
     }
 
-    private bool isActivate = false;
-
-    public bool IsActivate
+    private void Update()
     {
-        get { return isActivate; }
-        set
+        animator.SetBool(AnimationString.isActivated, isActivated);
+    }
+
+    public void ActiveCheckPointThenSaveGame()
+    {
+        isActivated = true;
+        StartCoroutine(SaveGameInCheckPoint());
+    }
+
+    public CheckPointData SaveCheckPoint()
+    {
+        CheckPointData checkPointData = new CheckPointData();
+
+        checkPointData.isActived = isActivated;
+        checkPointData.position = new float[] { gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z };
+
+        return checkPointData;
+    }
+
+    public void LoadCheckpoint(string currentScene)
+    {
+        List<SceneData> sceneDataList = SceneDataManager.Instance.sceneDataList;
+
+        foreach (SceneData sceneData in sceneDataList)
         {
-            isActivate = value;
-            if (isActivate)
+            if (currentScene.Equals(sceneData.sceneName))
             {
-                animator.SetBool(AnimationString.isActivated, true);
+                thisSceneData = sceneData;
+                SetActiveCheckPoint();
+                return;
             }
         }
     }
 
-    public void SaveGameInCheckPoint()
+    private void SetActiveCheckPoint()
     {
+        if (thisSceneData != null)
+        {
+            isActivated = thisSceneData.checkPoint.isActived;
+        }
+        else
+        {
+            isActivated = false;
+        }
+    }
+
+    private IEnumerator SaveGameInCheckPoint()
+    {
+        while (!thisSceneData.checkPoint.isActived)
+        {
+            yield return null;
+        }
+
         GameManager gameManager = GameManager.Instance;
         Player player = Player.Instance;
         InventoryManager inventoryManager = InventoryManager.Instance;
         MapRoomManager mapRoomManager = MapRoomManager.Instance;
         SceneDataManager sceneDataManager = SceneDataManager.Instance;
+        sceneDataManager.SaveSceneData(SceneManager.GetActiveScene().name);
 
         if (gameManager != null && player != null && inventoryManager != null && mapRoomManager != null && sceneDataManager != null)
         {
@@ -62,14 +104,6 @@ public class CheckPointManager : MonoBehaviour
             // Save the game including scene data
             gameManager.SaveGame(playerData, playerCheckpointData, playerInventoryData, playerMapData, playerSceneData);
         }
-
-    }
-
-    public void ActivateCheckPoint()
-    {
-        if (!IsActivate)
-        {
-            IsActivate = true;
-        }
     }
 }
+

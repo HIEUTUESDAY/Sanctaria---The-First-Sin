@@ -1,5 +1,4 @@
 using System.Collections;
-using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -67,6 +66,7 @@ public class GameManager : MonoBehaviour
             if (gameData != null)
             {
                 SceneChangerManager.Instance.ChangeSceneFromeSaveFile(gameData);
+                SceneDataManager.Instance.sceneDataList = gameData.playerSceneData.scenesDataList;
             }
         }
     }
@@ -75,43 +75,13 @@ public class GameManager : MonoBehaviour
     {
         if (!isRespawn)
         {
+            isRespawn = true;
             gameData = SaveSystem.LoadGame(currentSlotIndex);
 
             if (gameData != null)
             {
-                StartCoroutine(RespawnPlayerCoroutine());
+                SceneChangerManager.Instance.ChangeSceneFromeSaveFile(gameData);
             }
-        }
-    }
-
-    public void SetRespawnPlayerData(Player player)
-    {
-        player.IsAlive = true;
-        player.Animator.SetTrigger(AnimationString.spawnTrigger);
-        player.transform.position = new Vector3(gameData.playerCheckpointData.position[0], gameData.playerCheckpointData.position[1], gameData.playerCheckpointData.position[2]);
-        player.RestoreHealthAndPotion();
-    }
-
-    #endregion
-
-    #region GameManager coroutines
-
-    private IEnumerator RespawnPlayerCoroutine()
-    {
-        isRespawn = true;
-        AsyncOperation asyncLoadGame = SceneManager.LoadSceneAsync(gameData.playerCheckpointData.sceneName);
-
-        while (!asyncLoadGame.isDone)
-        {
-            yield return null;
-        }
-
-        Player player = FindObjectOfType<Player>();
-
-        if (player != null && gameData != null)
-        {
-            SetRespawnPlayerData(player);
-            isRespawn = false;
         }
     }
 

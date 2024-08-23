@@ -2,7 +2,6 @@ using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -38,29 +37,49 @@ public class SceneChangerManager : MonoBehaviour
         SceneManager.sceneUnloaded -= OnSceneUnloaded;
     }
 
+    #region Change scenes functions
+
     public void ChangeSceneFromDoor(SceneField myScene, SceneChanger.DoorToSpawnAt doorToSpawnAt)
     {
         loadFromDoor = true;
-        Instance.StartCoroutine(Instance.ChangeSceneFromDoorCoroutine(myScene, doorToSpawnAt));
+        StartCoroutine(ChangeSceneFromDoorCoroutine(myScene, doorToSpawnAt));
     }
 
     public void ChangeSceneToMainMenu(SceneField mainMenuScene)
     {
         loadToMainMenu = true;
-        Instance.StartCoroutine(Instance.ChangeToMainMenuCoroutine(mainMenuScene));
+        StartCoroutine(ChangeToMainMenuCoroutine(mainMenuScene));
     }
 
     public void ChangeSceneFromeSaveFile(GameData gameData)
     {
         loadToGamePlay = true;
-        Instance.StartCoroutine(Instance.ChangeSceneFromSaveFileCoroutine(gameData.playerCheckpointData.sceneName));
+        StartCoroutine(ChangeSceneFromSaveFileCoroutine(gameData.playerCheckpointData.sceneName));
     }
 
     public void ChangeSceneFromNewGameFile(SceneField newGameScene)
     {
         loadToGamePlay = true;
-        Instance.StartCoroutine(Instance.ChangeSceneFromNewGameFileCoroutine(newGameScene));
+        StartCoroutine(ChangeSceneFromNewGameFileCoroutine(newGameScene));
     }
+
+    private void FindDoor(SceneChanger.DoorToSpawnAt doorSpawnNumber)
+    {
+        SceneChanger[] doors = FindObjectsOfType<SceneChanger>();
+
+        for (int i = 0; i < doors.Length; i++)
+        {
+            if (doors[i].CurrentDoor == doorSpawnNumber)
+            {
+                doorSpawnPosition = doors[i].spawnPosition.transform;
+                return;
+            }
+        }
+    }
+
+    #endregion
+
+    #region Coroutine to change scenes
 
     private IEnumerator ChangeSceneFromDoorCoroutine(SceneField myScene, SceneChanger.DoorToSpawnAt doorToSpawnAt = SceneChanger.DoorToSpawnAt.None)
     {
@@ -118,6 +137,10 @@ public class SceneChangerManager : MonoBehaviour
         SceneManager.LoadScene(newGameScene);
     }
 
+    #endregion
+
+    #region Coroutines after loaded scenes
+
     private IEnumerator ActivatePlayerControl()
     {
         Player.Instance.CanMove = false;
@@ -142,9 +165,10 @@ public class SceneChangerManager : MonoBehaviour
 
         if (player != null)
         {
-            // load player position
-            player.ResetPlayerAnimation();
+            // load player data
             player.transform.position = doorSpawnPosition.position;
+
+            player.ResetPlayerAnimation();
         }
 
         SceneDataManager sceneDataManager = FindObjectOfType<SceneDataManager>();
@@ -174,7 +198,7 @@ public class SceneChangerManager : MonoBehaviour
 
         if (player != null)
         {
-            player.ResetPlayerAnimation();
+            // Load player data
             player.CurrentHealth = player.MaxHealth * 0.5f;
             player.CurrentStamina = player.MaxStamina * 0.25f;
             player.CurrentHealthPotion = 1;
@@ -185,6 +209,15 @@ public class SceneChangerManager : MonoBehaviour
             {
                 player.transform.position = newGamePosition.position;
             }
+
+            player.ResetPlayerAnimation();
+        }
+
+        SceneDataManager sceneDataManager = FindObjectOfType<SceneDataManager>();
+
+        if (sceneDataManager != null)
+        {
+            sceneDataManager.LoadSceneData(SceneManager.GetActiveScene().name);
         }
 
         MapRoomManager.Instance.RevealRoom();
@@ -213,11 +246,12 @@ public class SceneChangerManager : MonoBehaviour
         if (player != null)
         {
             // Load player data
-            player.ResetPlayerAnimation();
             player.transform.position = new Vector3(gameData.playerCheckpointData.position[0], gameData.playerCheckpointData.position[1], gameData.playerCheckpointData.position[2]);
             player.CurrentHealth = gameData.playerData.health;
             player.CurrentStamina = gameData.playerData.stamina;
             player.CurrentHealthPotion = gameData.playerData.healthPotions;
+
+            player.ResetPlayerAnimation();
 
             // Load inventory data
             InventoryManager inventoryManager = player.GetComponentInChildren<InventoryManager>();
@@ -239,8 +273,8 @@ public class SceneChangerManager : MonoBehaviour
 
         if (sceneDataManager != null)
         {
+            sceneDataManager.LoadSceneData(SceneManager.GetActiveScene().name);
             sceneDataManager.RespawnEnemiesInAllScenes();
-            sceneDataManager.LoadSaveFileSceneData(gameData);
         }
 
         MapRoomManager.Instance.RevealRoom();
@@ -256,6 +290,57 @@ public class SceneChangerManager : MonoBehaviour
         player.Animator.SetTrigger(AnimationString.spawnTrigger);
     }
 
+    private IEnumerator RespawnPlayerCoroutine()
+    {
+        SceneLoadManager.Instance.StartLoading(2f);
+
+        // Load game data
+        GameData gameData = GameManager.Instance.gameData;
+
+        // Load player data
+        Player player = Player.Instance;
+
+        if (player != null)
+        {
+            // Reset death title
+            FadeInAnimation deathFadeIn = player.playerDeathTitle.GetComponent<FadeInAnimation>();
+
+            if (deathFadeIn != null)
+            {
+                deathFadeIn.SetInitialAlphaValues();
+            }
+
+            // Load player data
+            player.IsAlive = true;
+            player.transform.position = new Vector3(gameData.playerCheckpointData.position[0], gameData.playerCheckpointData.position[1], gameData.playerCheckpointData.position[2]);
+            player.CurrentHealth = player.MaxHealth;
+            player.CurrentStamina = player.CurrentStamina;
+            player.CurrentHealthPotion = player.MaxHealthPotion;
+
+            player.ResetPlayerAnimation();
+        }
+
+        // Load save file scene data
+        SceneDataManager sceneDataManager = FindObjectOfType<SceneDataManager>();
+
+        if (sceneDataManager != null)
+        {
+            sceneDataManager.LoadSceneData(SceneManager.GetActiveScene().name);
+            sceneDataManager.RespawnEnemiesInAllScenes();
+        }
+
+        MapRoomManager.Instance.RevealRoom();
+        GameManager.Instance.isRespawn = false;
+        loadToGamePlay = false;
+
+        while (SceneLoadManager.Instance.IsLoading)
+        {
+            yield return null;
+        }
+
+        SceneLoadManager.Instance.StartFadeIn();
+        player.Animator.SetTrigger(AnimationString.spawnTrigger);
+    }
 
     private IEnumerator LoadMainMenuCoroutine()
     {
@@ -276,6 +361,8 @@ public class SceneChangerManager : MonoBehaviour
         SceneLoadManager.Instance.StartFadeIn();
     }
 
+    #endregion
+
     private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode)
     {
         if (!scene.name.Equals("MainMenu"))
@@ -295,6 +382,10 @@ public class SceneChangerManager : MonoBehaviour
                 {
                     StartCoroutine(LoadSaveGameCoroutine());
                 }
+                else if (GameManager.Instance.isRespawn)
+                {
+                    StartCoroutine(RespawnPlayerCoroutine());
+                }
             }
 
         }
@@ -302,29 +393,10 @@ public class SceneChangerManager : MonoBehaviour
 
     private void OnSceneUnloaded(UnityEngine.SceneManagement.Scene scene)
     {
-        if (!scene.name.Equals("MainMenu"))
-        {
-            SceneDataManager.Instance.SaveSceneData(scene.name);
-        }
-
         if (loadToMainMenu)
         {
             StartCoroutine(LoadMainMenuCoroutine());
         }
     }
 
-    private void FindDoor(SceneChanger.DoorToSpawnAt doorSpawnNumber)
-    {
-        SceneChanger[] doors = FindObjectsOfType<SceneChanger>();
-
-        for (int i = 0; i < doors.Length; i++)
-        {
-            if (doors[i].CurrentDoor == doorSpawnNumber)
-            {
-                doorSpawnPosition = doors[i].spawnPosition.transform;
-                return;
-            }
-        }
-    }
 }
-

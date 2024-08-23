@@ -6,7 +6,6 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
     [Header("This scene DATA")]
-    [SerializeField] private SceneField thisScene;
     [SerializeField] private SceneData thisSceneData;
     [Space(5)]
 
@@ -45,7 +44,6 @@ public class EnemyManager : MonoBehaviour
         {
             if (currentScene.Equals(sceneData.sceneName))
             {
-                thisScene.SceneName = currentScene;
                 thisSceneData = sceneData;
                 SetActiveEnemies();
                 return;
