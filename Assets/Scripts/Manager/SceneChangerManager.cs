@@ -198,11 +198,6 @@ public class SceneChangerManager : MonoBehaviour
 
         if (player != null)
         {
-            // Load player data
-            player.CurrentHealth = player.MaxHealth * 0.5f;
-            player.CurrentStamina = player.MaxStamina * 0.25f;
-            player.CurrentHealthPotion = 1;
-
             Transform newGamePosition = GameObject.Find("NewGamePosition").GetComponent<Transform>();
 
             if (newGamePosition != null)
@@ -230,7 +225,22 @@ public class SceneChangerManager : MonoBehaviour
         }
 
         SceneLoadManager.Instance.StartFadeIn();
-        player.Animator.SetTrigger(AnimationString.spawnTrigger);
+        StartCoroutine(WaitForEnterCoroutine(player));
+    }
+
+    private IEnumerator WaitForEnterCoroutine(Player player)
+    {
+        player.Animator.SetBool(AnimationString.isWaitForEnter, true);
+
+        while (player.IsWaitForEnter)
+        {
+            yield return null;
+        }
+
+        // Load player data
+        player.CurrentHealth = player.MaxHealth * 0.5f;
+        player.CurrentStamina = player.MaxStamina * 0.25f;
+        player.CurrentHealthPotion = 2;
     }
 
     private IEnumerator LoadSaveGameCoroutine()

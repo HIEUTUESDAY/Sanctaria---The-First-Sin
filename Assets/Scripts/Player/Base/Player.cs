@@ -1,13 +1,8 @@
 using Cinemachine;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
-using UnityEngine.SceneManagement;
-using static UnityEngine.Rendering.DebugUI;
 
 public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 {
@@ -145,6 +140,18 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     #endregion
 
     #region Player animation properties
+
+    public bool IsWaitForEnter
+    {
+        get
+        {
+            return Animator.GetBool(AnimationString.isWaitForEnter);
+        }
+        set
+        {
+            Animator.SetBool(AnimationString.isWaitForEnter, value);
+        }
+    }
 
     public bool IsMoving
     {
@@ -985,7 +992,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         }
     }
 
-    public void OnCollectItem(InputAction.CallbackContext context)
+    public void OnInteract(InputAction.CallbackContext context)
     {
         if (!UIManager.Instance.menuActivated)
         {
@@ -996,6 +1003,11 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             else if (context.started && hasItemInRange && !Item.IsOnFloor)
             {
                 Animator.SetTrigger(AnimationString.collectHalfTrigger);
+            }
+            else if (context.started && IsWaitForEnter)
+            {
+                IsWaitForEnter = false;
+                Animator.SetTrigger(AnimationString.risingTrigger);
             }
         }
     }
@@ -1074,7 +1086,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     private IEnumerator DisableCollision()
     {
-        CompositeCollider2D PlatformCollider = CurrentOneWayPlatform.GetComponent<CompositeCollider2D>();
+        Collider2D PlatformCollider = CurrentOneWayPlatform.GetComponent<Collider2D>();
         Physics2D.IgnoreCollision(PlayerCollider, PlatformCollider);
         yield return new WaitForSeconds(0.5f);
         Physics2D.IgnoreCollision(PlayerCollider, PlatformCollider, false);

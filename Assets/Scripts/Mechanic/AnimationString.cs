@@ -22,6 +22,7 @@ internal class AnimationString
     internal static string isClimbing = "isClimbing";
     internal static string isActivated = "isActivated";
     internal static string isInvincible = "isInvincible";
+    internal static string isWaitForEnter = "isWaitForEnter";
     internal static string yVelocity = "yVelocity";
     internal static string canMove = "canMove";
     internal static string hasTarget = "hasTarget";
@@ -39,6 +40,6 @@ internal class AnimationString
     internal static string collectHalfTrigger = "collectHalfTrigger";
     internal static string prayerTrigger = "prayerTrigger";
     internal static string spawnTrigger = "spawnTrigger";
-
+    internal static string risingTrigger = "risingTrigger";
 
 }

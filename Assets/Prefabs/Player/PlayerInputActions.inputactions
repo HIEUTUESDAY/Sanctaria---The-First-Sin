@@ -87,7 +87,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Collect",
+                    "name": "Interact",
                     "type": "Button",
                     "id": "3472b1aa-1069-4b62-8928-5a9c4b03f4e3",
                     "expectedControlType": "Button",
@@ -479,7 +479,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Collect",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

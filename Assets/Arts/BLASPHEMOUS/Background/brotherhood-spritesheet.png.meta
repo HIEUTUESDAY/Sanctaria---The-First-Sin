@@ -1,0 +1,327 @@
+fileFormatVersion: 2
+guid: 49e515986e311354992df6dd1c6549b8
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: brotherhood-spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 944
+        width: 245
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d899692dcfc67fe4a979cc00cf4c9580
+      internalID: 902371763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brotherhood-spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 868
+        width: 74
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94099af05d6c98341af0c8a1cbf841cd
+      internalID: 1949966321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brotherhood-spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 868
+        width: 74
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ee5ca4afe5e1424d92397f1522412dc
+      internalID: 2058780811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brotherhood-spritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 773
+        width: 242
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f35c097e5d5fb84789124e8b9c3b558
+      internalID: -180259872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brotherhood-spritesheet_19
+      rect:
+        serializedVersion: 2
+        x: 834
+        y: 813
+        width: 185
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: baf80fdabff621447a31ba7874cb3534
+      internalID: 1932179904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brotherhood-spritesheet_29
+      rect:
+        serializedVersion: 2
+        x: 835
+        y: 700
+        width: 185
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba8c0622a27091d4e922a360e1651619
+      internalID: -736323507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      brotherhood-spritesheet_0: 317682579
+      brotherhood-spritesheet_1: -414728768
+      brotherhood-spritesheet_10: 2058780811
+      brotherhood-spritesheet_11: -575997368
+      brotherhood-spritesheet_12: 758458966
+      brotherhood-spritesheet_13: -1760568217
+      brotherhood-spritesheet_14: 896522446
+      brotherhood-spritesheet_15: 1344685374
+      brotherhood-spritesheet_16: 20200199
+      brotherhood-spritesheet_17: -180259872
+      brotherhood-spritesheet_18: 227546236
+      brotherhood-spritesheet_19: 1932179904
+      brotherhood-spritesheet_2: 1817305890
+      brotherhood-spritesheet_20: -1218868851
+      brotherhood-spritesheet_21: 279196840
+      brotherhood-spritesheet_22: 445150353
+      brotherhood-spritesheet_23: -301205606
+      brotherhood-spritesheet_24: -224806687
+      brotherhood-spritesheet_25: 365830796
+      brotherhood-spritesheet_26: 2092836919
+      brotherhood-spritesheet_27: -1390615826
+      brotherhood-spritesheet_28: -2087182901
+      brotherhood-spritesheet_29: -736323507
+      brotherhood-spritesheet_3: 902371763
+      brotherhood-spritesheet_30: -552466122
+      brotherhood-spritesheet_31: -2113812434
+      brotherhood-spritesheet_32: 637551433
+      brotherhood-spritesheet_33: -1490170705
+      brotherhood-spritesheet_34: 693678745
+      brotherhood-spritesheet_35: -1587171212
+      brotherhood-spritesheet_36: 43969423
+      brotherhood-spritesheet_37: 1305993385
+      brotherhood-spritesheet_38: 1246454294
+      brotherhood-spritesheet_39: 1194534649
+      brotherhood-spritesheet_4: 207000046
+      brotherhood-spritesheet_40: 926744857
+      brotherhood-spritesheet_41: 1504326714
+      brotherhood-spritesheet_42: 460527911
+      brotherhood-spritesheet_43: 2094497178
+      brotherhood-spritesheet_44: -339476003
+      brotherhood-spritesheet_45: 643367642
+      brotherhood-spritesheet_46: -349842236
+      brotherhood-spritesheet_47: -1757503430
+      brotherhood-spritesheet_48: -465255800
+      brotherhood-spritesheet_49: 31124987
+      brotherhood-spritesheet_5: 678381490
+      brotherhood-spritesheet_50: -656206363
+      brotherhood-spritesheet_51: -647909176
+      brotherhood-spritesheet_52: 1776437863
+      brotherhood-spritesheet_53: 764465233
+      brotherhood-spritesheet_54: 1117864604
+      brotherhood-spritesheet_55: -2083360873
+      brotherhood-spritesheet_56: -406326481
+      brotherhood-spritesheet_57: 1386188312
+      brotherhood-spritesheet_58: 1365377385
+      brotherhood-spritesheet_59: 2126584847
+      brotherhood-spritesheet_6: -875156096
+      brotherhood-spritesheet_60: -1108117148
+      brotherhood-spritesheet_7: -939595189
+      brotherhood-spritesheet_8: 339003665
+      brotherhood-spritesheet_9: 1949966321
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
