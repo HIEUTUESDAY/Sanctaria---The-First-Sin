@@ -18391,8 +18391,10 @@ MonoBehaviour:
   maximumFallSpeed: -40
   canDash: 1
   dashPower: 20
-  dashCooldown: 2
+  dashCooldown: 1
   climbSpeed: 5
+  isOnLadder: 0
+  LadderPlatform: {fileID: 0}
   wallSlideSpeed: 1
   wallSlideDuration: 0.5
   wallJumpingPower: {x: 5, y: 22}
@@ -18415,7 +18417,6 @@ MonoBehaviour:
   fullFriction: {fileID: 6200000, guid: ce6bc805228ceff4c97b3485941b0772, type: 2}
   Animator: {fileID: 0}
   TouchingDirections: {fileID: 0}
-  CurrentOneWayPlatform: {fileID: 0}
   CameraFollowObject: {fileID: 0}
   GhostTrail: {fileID: 0}
   HealthBar: {fileID: 0}
@@ -18501,20 +18502,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c365358ef1687844a4ed49054964e0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundBoxSize: {x: 0.1, y: 0.4}
-  wallBoxSize: {x: 0.4, y: 1.5}
-  ceilingBoxSize: {x: 0.1, y: 0.4}
-  grabWallBoxSize: {x: 1.8, y: 0.1}
+  groundBoxSize: {x: 0.2, y: 0.3}
+  wallBoxSize: {x: 0.2, y: 1.5}
+  ceilingBoxSize: {x: 0.2, y: 0.3}
+  grabWallBoxSize: {x: 2, y: 0.1}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 4224
+    m_Bits: 128
   jumpWallLayer:
     serializedVersion: 2
     m_Bits: 4096
-  groundCastDistance: 2.1
-  wallCastDistance: -0.85
-  ceilingCastDistance: -1.6
-  grabWallCastDistance: -1.55
+  groundCastDistance: 2.05
+  wallCastDistance: -0.75
+  ceilingCastDistance: -1.55
+  grabWallCastDistance: -1.65
   _isGrounded: 0
   _isOnWall: 0
   _isGrabWallDetected: 0
@@ -18588,6 +18589,7 @@ MonoBehaviour:
   ghostSpawnInterval: 0.1
   ghostLifeTime: 0.3
   ghostColor: {r: 0.56891155, g: 0, b: 1, a: 0.6862745}
+  VFXcanvas: {fileID: 1343122722582895813}
 --- !u!1 &5477442328143899745
 GameObject:
   m_ObjectHideFlags: 0

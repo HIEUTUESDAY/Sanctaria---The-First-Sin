@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
@@ -32,6 +33,8 @@ public class SceneChanger : MonoBehaviour
 
         if (player != null)
         {
+            PlayerInput playerInput = player.GetComponent<PlayerInput>();
+            playerInput.enabled = false;
             ChangeScene();
         }
     }

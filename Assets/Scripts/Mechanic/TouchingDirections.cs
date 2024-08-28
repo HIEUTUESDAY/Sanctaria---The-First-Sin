@@ -25,8 +25,8 @@ public class TouchingDirections : MonoBehaviour
         get 
         {
             return _isGrounded;
-        } 
-        private set
+        }
+        set
         {
             _isGrounded = value;
             animator.SetBool(AnimationString.isGrounded, value);
@@ -42,7 +42,7 @@ public class TouchingDirections : MonoBehaviour
         {
             return _isOnWall;
         }
-        private set
+        set
         {
             _isOnWall = value;
             animator.SetBool(AnimationString.isOnWall, value);
@@ -58,7 +58,7 @@ public class TouchingDirections : MonoBehaviour
         {
             return _isGrabWallDetected;
         }
-        private set
+        set
         {
             _isGrabWallDetected = value;
             animator.SetBool(AnimationString.isHangWallDetected, value);
@@ -74,7 +74,7 @@ public class TouchingDirections : MonoBehaviour
         {
             return _isOnCeiling;
         }
-        private set
+        set
         {
             _isOnCeiling = value;
             animator.SetBool(AnimationString.isOnCeiling, value);
@@ -86,7 +86,7 @@ public class TouchingDirections : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         IsGrounded = Physics2D.BoxCast(transform.position, groundBoxSize, 0, -transform.up, groundCastDistance, groundLayer);
         IsOnWall = Physics2D.BoxCast(transform.position, wallBoxSize, 0, -transform.right, wallCastDistance, groundLayer);

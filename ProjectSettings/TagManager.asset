@@ -12,6 +12,9 @@ TagManager:
   - Item
   - CameraBoundary
   - Persistence
+  - Ground
+  - JumpWall
+  - LadderPlatform
   layers:
   - Default
   - TransparentFX
@@ -29,7 +32,7 @@ TagManager:
   - EnemyAttackZone
   - EnemySpotZone
   - Item
-  - 
+  - Ladder
   - 
   - 
   - 

@@ -10,13 +10,12 @@ public class GhostTrail : MonoBehaviour
 
     private Player player;
     private Coroutine ghostCoroutine;
-    private Transform VFXcanvas;
+    [SerializeField] private Transform VFXcanvas;
 
 
-    private void Awake()
+    private void Start()
     {
         player = GetComponent<Player>();
-        VFXcanvas = FindObjectOfType<Canvas>().transform.Find("VFX");
     }
 
     public void StartGhostTrail()

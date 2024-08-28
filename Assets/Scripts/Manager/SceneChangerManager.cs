@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class SceneChangerManager : MonoBehaviour
@@ -151,6 +152,9 @@ public class SceneChangerManager : MonoBehaviour
             yield return null;
         }
 
+        // enable player input
+        PlayerInput playerInput = Player.Instance.GetComponent<PlayerInput>();
+        playerInput.enabled = true;
         Player.Instance.CanMove = true;
         Player.Instance.IsMoving = Player.Instance.HorizontalInput != Vector2.zero;
     }
@@ -363,6 +367,8 @@ public class SceneChangerManager : MonoBehaviour
             Destroy(player);
         }
 
+        loadToMainMenu = false;
+
         while (SceneLoadManager.Instance.IsLoading)
         {
             yield return null;
@@ -373,7 +379,7 @@ public class SceneChangerManager : MonoBehaviour
 
     #endregion
 
-    private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode)
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (!scene.name.Equals("MainMenu"))
         {
@@ -397,11 +403,10 @@ public class SceneChangerManager : MonoBehaviour
                     StartCoroutine(RespawnPlayerCoroutine());
                 }
             }
-
         }
     }
 
-    private void OnSceneUnloaded(UnityEngine.SceneManagement.Scene scene)
+    private void OnSceneUnloaded(Scene scene)
     {
         if (loadToMainMenu)
         {

@@ -210,9 +210,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d80beb361d7e69499008811bc307184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisScene:
-    _sceneAsset: {fileID: 102900000, guid: 48328808e271bd841ad0ba2e7ead391b, type: 3}
-    _sceneName: Level1.1
+  thisSceneData:
+    sceneName: 
+    enemies: []
+    items: []
+    checkPoint:
+      isActived: 0
+      position: []
   itemsObjects:
   - {fileID: 0}
   - {fileID: 0}
@@ -1483,9 +1487,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a17694276d619d340a0133ab14c83b19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisScene:
-    _sceneAsset: {fileID: 102900000, guid: 48328808e271bd841ad0ba2e7ead391b, type: 3}
-    _sceneName: Level1.1
+  thisSceneData:
+    sceneName: 
+    enemies: []
+    items: []
+    checkPoint:
+      isActived: 0
+      position: []
   enemyObjects:
   - {fileID: 0}
   - {fileID: 0}

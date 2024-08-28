@@ -32,12 +32,13 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     private float dashStopRate = 5f;
     [Space(5)]
 
-    [Header("Climbing")]
+    [Header("Ladder Climbing")]
     [SerializeField] private float climbSpeed = 5f;
     private float centerLadderMoveSpeed = 10f;
-    private bool isOnLadder;
+    [SerializeField] private bool isOnLadder;
     private Transform LadderCenterPosition;
-    private Collider2D ladderCollider;
+    private Collider2D LadderCollider;
+    [SerializeField] private Collider2D LadderPlatformCollider;
     [Space(5)]
 
     [Header("Wall Jumping")]
@@ -108,7 +109,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     public Animator Animator;
     public TouchingDirections TouchingDirections;
-    public GameObject CurrentOneWayPlatform;
     public CameraFollowObject CameraFollowObject;
     public GhostTrail GhostTrail;
     public HealthBarManager HealthBar;
@@ -440,7 +440,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         SlopeCheck();
         FallCheck();
         LadderClimbCheck();
-        OneWayCheck();
+        EnterLadderCheck();
         YDampingCheck();
         WallHangCheck();
         SetMaxHealthAndStamina();
@@ -576,21 +576,25 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         {
             if (!LockVelocity && !IsWallJumping && !IsWallHanging && !IsClimbing)
             {
-                if (HorizontalInput.x == 0 && !IsDashing)
+                if (!IsMoving && !IsDashing)
                 {
                     RB.velocity = new Vector2(Mathf.Lerp(RB.velocity.x, 0, stopRate), RB.velocity.y);
                     _currentSpeed = 0;
                 }
-                else if (HorizontalInput.x != 0 && !IsDashing)
+                else if (IsMoving && !IsDashing)
                 {
-                    if (!isOnSlope)
+                    if (TouchingDirections.IsGrounded && !IsJumping && !isOnSlope)
                     {
-                        RB.velocity = new Vector2(HorizontalInput.x * CurrentSpeed, RB.velocity.y);
+                        RB.velocity = new Vector2(HorizontalInput.x * CurrentSpeed, 0f);
                     }
-                    else if (isOnSlope && canWalkOnSlope)
+                    else if (TouchingDirections.IsGrounded && !IsJumping && isOnSlope && canWalkOnSlope)
                     {
                         Vector2 slopeMovement = new Vector2(-HorizontalInput.x * CurrentSpeed * slopeNormalPerp.x, -HorizontalInput.x * CurrentSpeed * slopeNormalPerp.y);
                         RB.velocity = new Vector2(slopeMovement.x, RB.velocity.y);
+                    }
+                    else if (!TouchingDirections.IsGrounded)
+                    {
+                        RB.velocity = new Vector2(HorizontalInput.x * CurrentSpeed, RB.velocity.y);
                     }
                 }
             }
@@ -607,9 +611,9 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
                 RB.gravityScale = 0f;
                 RB.velocity = new Vector2(0f, VerticalInput.y * climbSpeed);
 
-                if (ladderCollider != null)
+                if (LadderCollider != null)
                 {
-                    Vector3 targetPosition = new Vector3(ladderCollider.bounds.center.x, transform.position.y, transform.position.z);
+                    Vector3 targetPosition = new Vector3(LadderCollider.bounds.center.x, transform.position.y, transform.position.z);
                     transform.position = Vector3.Lerp(transform.position, targetPosition, centerLadderMoveSpeed * Time.deltaTime);
                 }
             }
@@ -728,12 +732,10 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         if (TouchingDirections.IsGrounded)
         {
             coyoteTimeCounter = coyoteTime;
-            Animator.SetFloat(AnimationString.yVelocity, 0);
         }
         else
         {
             coyoteTimeCounter -= Time.deltaTime;
-            Animator.SetFloat(AnimationString.yVelocity, RB.velocity.y);
         }
     }
 
@@ -744,18 +746,52 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             FallSpeedYDampingChangeThreshold = CameraManger.Instance._fallSpeedYDampingChangeThreshold;
             RB.velocity = new Vector2(RB.velocity.x, maximumFallSpeed);
         }
+
+        if (IsJumping && !TouchingDirections.IsGrounded && RB.velocity.y < 0f)
+        {
+            IsJumping = false;
+        }
     }
 
     private void LadderClimbCheck()
     {
-        if (isOnLadder && !LockVelocity && VerticalInput.y != 0 && RB.velocity.y <= 1)
+        if (isOnLadder && !IsJumping && !LockVelocity && VerticalInput.y != 0f && RB.velocity.y <= 0f)
         {
             IsClimbing = true;
-            RB.velocity = new Vector2(0f, RB.velocity.y);
         }
+
+        if (IsClimbing && LadderPlatformCollider != null)
+        {
+            StartCoroutine(DisableLadderPlatformCollision());
+        }
+
+        if (IsClimbing && isOnLadder && VerticalInput.y == 0f)
+        {
+            Animator.speed = 0f;
+        }else if(IsClimbing && isOnLadder && VerticalInput.y != 0f)
+        {
+            Animator.speed = 1f;
+        }
+        else
+        {
+            Animator.speed = 1f;
+        }
+        
         if (!isOnLadder)
         {
             IsClimbing = false;
+        }
+    }
+
+    private void EnterLadderCheck()
+    {
+        if (!isOnLadder && LadderPlatformCollider != null && VerticalInput.y < 0f)
+        {
+            StartCoroutine(DisableLadderPlatformCollision());
+            Vector3 targetPosition = new Vector3(LadderCollider.bounds.center.x, LadderCollider.bounds.max.y, transform.position.z);
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, centerLadderMoveSpeed * Time.deltaTime);
+            IsClimbing = true;
+            isOnLadder = true;
         }
     }
 
@@ -768,20 +804,10 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         }
     }
 
-
-    private void OneWayCheck()
-    {
-        if (VerticalInput.y < 0)
-        {
-            if (CurrentOneWayPlatform != null)
-            {
-                StartCoroutine(DisableCollision());
-            }
-        }
-    }
-
     private void YDampingCheck()
     {
+        Animator.SetFloat(AnimationString.yVelocity, RB.velocity.y);
+
         //if player falling past the certain speed threshold
         if (RB.velocity.y < FallSpeedYDampingChangeThreshold && !CameraManger.Instance.IsLerpingYDamping && !CameraManger.Instance.LerpedFromPlayerFalling)
         {
@@ -888,13 +914,14 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     {
         if (!UIManager.Instance.menuActivated)
         {
-            if (context.started && IsClimbing)
+           if (context.started && IsClimbing && !IsJumping)
             {
                 IsClimbing = false;
+                IsJumping = true;
                 RB.gravityScale = OriginalGravityScale;
                 RB.velocity = new Vector2(RB.velocity.x, jumpPower + jumpPowerBuff);
             }
-            else if (context.started)
+            else if (context.started && !IsClimbing && !IsJumping)
             {
                 jumpBufferTimeCounter = jumpBufferTime;
             }
@@ -911,6 +938,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             if (jumpBufferTimeCounter > 0f && coyoteTimeCounter > 0f && CanMove && slopeDownAngle <= maxSlopeAngle)
             {
                 IsDashing = false;
+                IsJumping = true;
                 RB.velocity = new Vector2(RB.velocity.x, jumpPower + jumpPowerBuff);
                 jumpBufferTimeCounter = 0f;
             }
@@ -1084,11 +1112,16 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     #region Player Coroutines
 
-    private IEnumerator DisableCollision()
+    private IEnumerator DisableLadderPlatformCollision()
     {
-        Collider2D PlatformCollider = CurrentOneWayPlatform.GetComponent<Collider2D>();
+        Collider2D PlatformCollider = LadderPlatformCollider.GetComponent<Collider2D>();
         Physics2D.IgnoreCollision(PlayerCollider, PlatformCollider);
-        yield return new WaitForSeconds(0.5f);
+
+        while (IsClimbing && isOnLadder)
+        {
+            yield return null;
+        }
+
         Physics2D.IgnoreCollision(PlayerCollider, PlatformCollider, false);
     }
 
@@ -1267,7 +1300,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         if (collision.CompareTag("Ladder"))
         {
             isOnLadder = true;
-            ladderCollider = collision;
+            LadderCollider = collision;
         }
 
         if (collision.CompareTag("SavePoint"))
@@ -1290,7 +1323,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             isOnLadder = false;
             IsClimbing = false;
             RB.gravityScale = OriginalGravityScale;
-            ladderCollider = null;
+            LadderCollider = null;
         }
 
         if (collision.CompareTag("SavePoint"))
@@ -1305,20 +1338,26 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             Item = null;
         }
     }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("OneWayPlatform"))
+        if (collision.gameObject.CompareTag("LadderPlatform"))
         {
-            CurrentOneWayPlatform = collision.gameObject;
+            LadderPlatformCollider = collision.collider;
+
+            Transform ladderTransform = LadderPlatformCollider.transform.parent;
+            if (ladderTransform != null)
+            {
+                LadderCollider = ladderTransform.GetComponentInChildren<Collider2D>();
+            }
         }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("OneWayPlatform"))
+        if (collision.gameObject.CompareTag("LadderPlatform"))
         {
-            CurrentOneWayPlatform = null;
+            LadderPlatformCollider = null;
+            LadderCollider = null;
         }
     }
 
