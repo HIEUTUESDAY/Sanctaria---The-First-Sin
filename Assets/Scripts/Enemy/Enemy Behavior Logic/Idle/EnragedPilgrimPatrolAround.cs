@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EnragedPilgrim Idle - Patrol Around", menuName = "Enemy Logic/Idle Logic/EnragedPilgrim - Patrol Around")]
 public class EnragedPilgrimIdlePatrolAround : EnemyIdleSOBase
 {
+    private EnragedPilgrim enragedPilgrim;
     [SerializeField] private float patrolSpeed = 1f;
     [SerializeField] private float minStopTime = 2f;
     [SerializeField] private float maxStopTime = 4f;
@@ -42,6 +43,7 @@ public class EnragedPilgrimIdlePatrolAround : EnemyIdleSOBase
     {
         base.Initialize(gameObject, enemy);
 
+        enragedPilgrim = gameObject.GetComponent<EnragedPilgrim>();
         GroundZone = transform.Find("Ground Detection Zone").GetComponent<DetectionZone>();
         FacingSpotPoint = transform.Find("Facing Spot Point").GetComponent<Transform>();
         BehindSpotPoint = transform.Find("Behind Spot Point").GetComponent<Transform>();
@@ -56,8 +58,8 @@ public class EnragedPilgrimIdlePatrolAround : EnemyIdleSOBase
     {
         base.DoExitLogic();
 
-        CoroutineManager.Instance.StopCoroutineManager(WallHitFlipCoroutine());
-        CoroutineManager.Instance.StopCoroutineManager(NoGroundFlipCoroutine());
+        enragedPilgrim.StopCoroutine(WallHitFlipCoroutine());
+        enragedPilgrim.StopCoroutine(NoGroundFlipCoroutine());
     }
 
     public override void DoFrameUpdateLogic()
@@ -105,7 +107,7 @@ public class EnragedPilgrimIdlePatrolAround : EnemyIdleSOBase
     {
         if (enemy.TouchingDirections.IsGrounded && enemy.TouchingDirections.IsOnWall && !isFlipping)
         {
-            CoroutineManager.Instance.StartCoroutineManager(WallHitFlipCoroutine());
+            enragedPilgrim.StartCoroutine(WallHitFlipCoroutine());
         }
     }
 
@@ -113,7 +115,7 @@ public class EnragedPilgrimIdlePatrolAround : EnemyIdleSOBase
     {
         if (enemy.TouchingDirections.IsGrounded && GroundZone.detectedCols.Count <= 0 && !isFlipping)
         {
-            CoroutineManager.Instance.StartCoroutineManager(NoGroundFlipCoroutine());
+            enragedPilgrim.StartCoroutine(NoGroundFlipCoroutine());
         }
     }
 

@@ -8,6 +8,7 @@ using static UnityEngine.Rendering.DebugUI;
 [CreateAssetMenu(fileName = "WheelBroken Idle - Patrol Around", menuName = "Enemy Logic/Idle Logic/WheelBroken - Patrol Around")]
 public class WheelBrokenIdlePatrolAround : EnemyIdleSOBase
 {
+    private WheelBroken wheelBroken;
     [SerializeField] private float patrolSpeed = 2f;
     [SerializeField] private float minStopTime = 2f;
     [SerializeField] private float maxStopTime = 6f;
@@ -54,6 +55,8 @@ public class WheelBrokenIdlePatrolAround : EnemyIdleSOBase
     public override void Initialize(GameObject gameObject, Enemy enemy)
     {
         base.Initialize(gameObject, enemy);
+
+        wheelBroken = gameObject.GetComponent<WheelBroken>();
         GroundZone = transform.Find("Ground Detection Zone").GetComponent<DetectionZone>();
         AttackZone = transform.Find("Attack Detection Zone").GetComponent<DetectionZone>();
         FacingSpotPoint = transform.Find("Facing Spot Point").GetComponent<Transform>();
@@ -69,8 +72,8 @@ public class WheelBrokenIdlePatrolAround : EnemyIdleSOBase
     {
         base.DoExitLogic();
 
-        CoroutineManager.Instance.StopCoroutineManager(WallHitFlipCoroutine());
-        CoroutineManager.Instance.StopCoroutineManager(NoGroundFlipCoroutine());
+        wheelBroken.StopCoroutine(WallHitFlipCoroutine());
+        wheelBroken.StopCoroutine(NoGroundFlipCoroutine());
     }
 
     public override void DoFrameUpdateLogic()
@@ -120,7 +123,7 @@ public class WheelBrokenIdlePatrolAround : EnemyIdleSOBase
     {
         if (enemy.TouchingDirections.IsGrounded && enemy.TouchingDirections.IsOnWall && !isFlipping)
         {
-            CoroutineManager.Instance.StartCoroutineManager(WallHitFlipCoroutine());
+            wheelBroken.StartCoroutine(WallHitFlipCoroutine());
         }
     }
 
@@ -128,7 +131,7 @@ public class WheelBrokenIdlePatrolAround : EnemyIdleSOBase
     {
         if (enemy.TouchingDirections.IsGrounded && GroundZone.detectedCols.Count <= 0 && !isFlipping)
         {
-            CoroutineManager.Instance.StartCoroutineManager(NoGroundFlipCoroutine());
+            wheelBroken.StartCoroutine(NoGroundFlipCoroutine());
         }
     }
 

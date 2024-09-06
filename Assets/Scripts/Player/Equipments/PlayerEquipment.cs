@@ -101,7 +101,7 @@ public class PlayerEquipment : MonoBehaviour
         switch (equippedPrayer.itemName)
         {
             case "Verdiales of The Forsaken Hamlet":
-                CoroutineManager.Instance.StartCoroutineManager(VerdialesRoutine());
+                StartCoroutine(SpawnVerdialesProjectiles());
                 break;
 
             // Add more cases for other Prayers
@@ -119,7 +119,7 @@ public class PlayerEquipment : MonoBehaviour
     public GameObject verdialesProjectilePrefab; // Reference to the projectile prefab
     public Transform spawnVerdialesPoint;
 
-    private IEnumerator VerdialesRoutine()
+    private IEnumerator SpawnVerdialesProjectiles()
     {
         // Determine the facing direction
         bool isFacingRight = player.IsFacingRight; // Assuming IsFacingRight is a public property

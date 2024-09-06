@@ -1,5 +1,6 @@
 using Cinemachine;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -9,14 +10,14 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     #region Player variables
 
     [Header("Moving")]
-    [SerializeField] private float moveSpeed = 10f;
+    [SerializeField] public float moveSpeed = 10f;
     [SerializeField] private float groundSpeedAceleration = 75f;
     [SerializeField] private float airSpeedAceleration = 100f;
     [SerializeField] private float stopRate = 0.2f;
     [Space(5)]
 
     [Header("Jumping")]
-    [SerializeField] private float jumpPower = 20f;
+    [SerializeField] public float jumpPower = 20f;
     [SerializeField] private float coyoteTime = 0.1f;
     private float coyoteTimeCounter;
     [SerializeField] private float jumpBufferTime = 0.1f;
@@ -34,7 +35,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     [Header("Ladder Climbing")]
     [SerializeField] private float climbSpeed = 5f;
-    private float centerLadderMoveSpeed = 10f;
     [SerializeField] private bool isOnLadder;
     private Transform LadderCenterPosition;
     private Collider2D LadderCollider;
@@ -114,8 +114,8 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     public HealthBarManager HealthBar;
     public CinemachineImpulseSource ImpulseSource;
     public PlayerEquipment PlayerEquipment;
-    private float FallSpeedYDampingChangeThreshold;
-    private float OriginalGravityScale;
+    private float fallSpeedYDampingChangeThreshold;
+    private float originalGravityScale;
 
     #endregion
 
@@ -234,6 +234,18 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         set
         {
             Animator.SetBool(AnimationString.isClimbing, value);
+        }
+    }
+
+    public bool IsKilledBySpikes
+    {
+        get
+        {
+            return Animator.GetBool(AnimationString.isKilledBySpikes);
+        }
+        set
+        {
+            Animator.SetBool(AnimationString.isKilledBySpikes, value);
         }
     }
 
@@ -424,12 +436,13 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         PlayerCollider = GetComponent<CapsuleCollider2D>();
         GhostTrail = GetComponent<GhostTrail>();
         ImpulseSource = GetComponent<CinemachineImpulseSource>();
-        OriginalGravityScale = RB.gravityScale;
         PlayerEquipment = GetComponent<PlayerEquipment>();
+
     }
 
     private void Start()
     {
+        originalGravityScale = RB.gravityScale;
         colliderSize = PlayerCollider.size;
     }
 
@@ -440,7 +453,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         SlopeCheck();
         FallCheck();
         LadderClimbCheck();
-        EnterLadderCheck();
         YDampingCheck();
         WallHangCheck();
         SetMaxHealthAndStamina();
@@ -453,6 +465,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         Move();
         WallHang();
         LadderClimb();
+        EnterLadder();
     }
 
     #region IPlayerDamageable functions
@@ -589,8 +602,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
                     }
                     else if (TouchingDirections.IsGrounded && !IsJumping && isOnSlope && canWalkOnSlope)
                     {
-                        Vector2 slopeMovement = new Vector2(-HorizontalInput.x * CurrentSpeed * slopeNormalPerp.x, -HorizontalInput.x * CurrentSpeed * slopeNormalPerp.y);
-                        RB.velocity = new Vector2(slopeMovement.x, RB.velocity.y);
+                        RB.velocity = new Vector2(-HorizontalInput.x * CurrentSpeed * slopeNormalPerp.x, -HorizontalInput.x * CurrentSpeed * slopeNormalPerp.y);
                     }
                     else if (!TouchingDirections.IsGrounded)
                     {
@@ -600,7 +612,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             }
         }
     }
-
 
     private void LadderClimb()
     {
@@ -614,7 +625,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
                 if (LadderCollider != null)
                 {
                     Vector3 targetPosition = new Vector3(LadderCollider.bounds.center.x, transform.position.y, transform.position.z);
-                    transform.position = Vector3.Lerp(transform.position, targetPosition, centerLadderMoveSpeed * Time.deltaTime);
+                    transform.position = Vector3.MoveTowards(transform.position, targetPosition, 10f * Time.deltaTime);
                 }
             }
         }
@@ -699,6 +710,23 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         }
     }
 
+    public void EnterLadderFromGround()
+    {
+        if (LadderPlatformCollider != null)
+        {
+            Transform ladderTransform = LadderPlatformCollider.transform.parent;
+            if (ladderTransform != null)
+            {
+                isOnLadder = true;
+                IsClimbing = true;
+                Animator.SetBool(AnimationString.enterLadderTrigger, false);
+                LadderCollider = ladderTransform.GetComponentInChildren<Collider2D>();
+                Vector3 targetPosition = new Vector3(LadderCollider.bounds.center.x, LadderPlatformCollider.bounds.min.y - (PlayerCollider.size.y / 4), transform.position.z);
+                transform.position = targetPosition;
+            }
+        }
+    }
+
     #endregion
 
     #region Player envent system functions
@@ -743,7 +771,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     {
         if (!TouchingDirections.IsGrounded && RB.velocity.y < maximumFallSpeed)
         {
-            FallSpeedYDampingChangeThreshold = CameraManger.Instance._fallSpeedYDampingChangeThreshold;
+            fallSpeedYDampingChangeThreshold = CameraManger.Instance._fallSpeedYDampingChangeThreshold;
             RB.velocity = new Vector2(RB.velocity.x, maximumFallSpeed);
         }
 
@@ -760,7 +788,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             IsClimbing = true;
         }
 
-        if (IsClimbing && LadderPlatformCollider != null)
+        if (IsClimbing && isOnLadder && LadderPlatformCollider != null)
         {
             StartCoroutine(DisableLadderPlatformCollision());
         }
@@ -768,7 +796,8 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         if (IsClimbing && isOnLadder && VerticalInput.y == 0f)
         {
             Animator.speed = 0f;
-        }else if(IsClimbing && isOnLadder && VerticalInput.y != 0f)
+        }
+        else if (IsClimbing && isOnLadder && VerticalInput.y != 0f)
         {
             Animator.speed = 1f;
         }
@@ -783,15 +812,17 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         }
     }
 
-    private void EnterLadderCheck()
+    private void EnterLadder()
     {
-        if (!isOnLadder && LadderPlatformCollider != null && VerticalInput.y < 0f)
+        if (TouchingDirections.IsGrounded && !IsClimbing && !isOnLadder && LadderPlatformCollider != null && VerticalInput.y < 0f)
         {
-            StartCoroutine(DisableLadderPlatformCollision());
-            Vector3 targetPosition = new Vector3(LadderCollider.bounds.center.x, LadderCollider.bounds.max.y, transform.position.z);
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, centerLadderMoveSpeed * Time.deltaTime);
-            IsClimbing = true;
-            isOnLadder = true;
+            Transform ladderTransform = LadderPlatformCollider.transform.parent;
+            if (ladderTransform != null)
+            {
+                LadderCollider = ladderTransform.GetComponentInChildren<Collider2D>();
+                transform.position = new Vector3(LadderCollider.bounds.center.x, transform.position.y, transform.position.z);
+                Animator.SetTrigger(AnimationString.enterLadderTrigger);
+            }
         }
     }
 
@@ -800,7 +831,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         if (!TouchingDirections.IsGrabWallDetected || IsWallJumping || Animator.GetBool(AnimationString.hitTrigger))
         {
             IsWallHanging = false;
-            RB.gravityScale = OriginalGravityScale;
+            RB.gravityScale = originalGravityScale;
         }
     }
 
@@ -809,7 +840,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         Animator.SetFloat(AnimationString.yVelocity, RB.velocity.y);
 
         //if player falling past the certain speed threshold
-        if (RB.velocity.y < FallSpeedYDampingChangeThreshold && !CameraManger.Instance.IsLerpingYDamping && !CameraManger.Instance.LerpedFromPlayerFalling)
+        if (RB.velocity.y < fallSpeedYDampingChangeThreshold && !CameraManger.Instance.IsLerpingYDamping && !CameraManger.Instance.LerpedFromPlayerFalling)
         {
             CameraManger.Instance.LerpYDamping(true);
         }
@@ -834,18 +865,18 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     private void SlopeCheckHorizontal(Vector2 checkPosition)
     {
-        RaycastHit2D slopeHitFront = Physics2D.Raycast(checkPosition, Vector2.right, slopeCheckDistance, groundLayer);
-        RaycastHit2D slopeHitBack = Physics2D.Raycast(checkPosition, Vector2.left, slopeCheckDistance, groundLayer);
+        RaycastHit2D slopeHitFront = Physics2D.Raycast(checkPosition, transform.right, slopeCheckDistance, groundLayer);
+        RaycastHit2D slopeHitBack = Physics2D.Raycast(checkPosition, -transform.right, slopeCheckDistance, groundLayer);
 
         if (slopeHitFront)
         {
             isOnSlope = true;
-            slopeSideAngle = Vector2.Angle(slopeHitFront.normal, Vector2.up);
+            slopeSideAngle = Vector2.Angle(slopeHitFront.normal, transform.up);
         }
         else if (slopeHitBack)
         {
             isOnSlope = true;
-            slopeSideAngle = Vector2.Angle(slopeHitBack.normal, Vector2.up);
+            slopeSideAngle = Vector2.Angle(slopeHitBack.normal, transform.up);
         }
         else
         {
@@ -856,12 +887,12 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     private void SlopeCheckVertical(Vector2 checkPosition)
     {
-        RaycastHit2D hit = Physics2D.Raycast(checkPosition, Vector2.down, slopeCheckDistance, groundLayer);
+        RaycastHit2D hit = Physics2D.Raycast(checkPosition, -transform.up, slopeCheckDistance, groundLayer);
 
         if (hit)
         {
             slopeNormalPerp = Vector2.Perpendicular(hit.normal).normalized;
-            slopeDownAngle = Vector2.Angle(hit.normal, Vector2.up);
+            slopeDownAngle = Vector2.Angle(hit.normal, transform.up);
 
             if (slopeDownAngle != slopeDownAngleOld)
             {
@@ -918,7 +949,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             {
                 IsClimbing = false;
                 IsJumping = true;
-                RB.gravityScale = OriginalGravityScale;
+                RB.gravityScale = originalGravityScale;
                 RB.velocity = new Vector2(RB.velocity.x, jumpPower + jumpPowerBuff);
             }
             else if (context.started && !IsClimbing && !IsJumping)
@@ -975,7 +1006,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     public void OnClimb(InputAction.CallbackContext context)
     {
-        if (!UIManager.Instance.menuActivated || !SceneChangerManager.Instance.loadFromDoor)
+        if (!UIManager.Instance.menuActivated)
         {
             VerticalInput = context.ReadValue<Vector2>();
             Animator.SetBool(AnimationString.upInput, VerticalInput.y > 0);
@@ -1042,7 +1073,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     public void OnOpenInventoryMenu(InputAction.CallbackContext context)
     {
-        if (context.started && !UIManager.Instance.menuActivated && !UIManager.Instance.inventoryMenu.activeSelf)
+        if (context.started && !UIManager.Instance.menuActivated && !UIManager.Instance.inventoryMenu.activeSelf && !IsWaitForEnter)
         {
             Time.timeScale = 0;
             UIManager.Instance.inventoryMenu.SetActive(true);
@@ -1052,7 +1083,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     public void OnOpenMapMenu(InputAction.CallbackContext context)
     {
-        if (context.started && !UIManager.Instance.menuActivated && !UIManager.Instance.mapMenu.activeSelf)
+        if (context.started && !UIManager.Instance.menuActivated && !UIManager.Instance.mapMenu.activeSelf && !IsWaitForEnter)
         {
             Time.timeScale = 0;
             UIManager.Instance.mapMenu.SetActive(true);
@@ -1063,7 +1094,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     public void OnOpenOptionsMenu(InputAction.CallbackContext context)
     {
-        if (context.started && UIManager.Instance.menuActivated && UIManager.Instance.mapMenu.activeSelf)
+        if (context.started && UIManager.Instance.menuActivated && UIManager.Instance.mapMenu.activeSelf && !IsWaitForEnter)
         {
             Time.timeScale = 0;
             UIManager.Instance.mapMenu.SetActive(false);
@@ -1115,7 +1146,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     private IEnumerator DisableLadderPlatformCollision()
     {
         Collider2D PlatformCollider = LadderPlatformCollider.GetComponent<Collider2D>();
-        Physics2D.IgnoreCollision(PlayerCollider, PlatformCollider);
+        Physics2D.IgnoreCollision(PlayerCollider, PlatformCollider, true);
 
         while (IsClimbing && isOnLadder)
         {
@@ -1322,7 +1353,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         {
             isOnLadder = false;
             IsClimbing = false;
-            RB.gravityScale = OriginalGravityScale;
+            RB.gravityScale = originalGravityScale;
             LadderCollider = null;
         }
 
@@ -1343,12 +1374,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         if (collision.gameObject.CompareTag("LadderPlatform"))
         {
             LadderPlatformCollider = collision.collider;
-
-            Transform ladderTransform = LadderPlatformCollider.transform.parent;
-            if (ladderTransform != null)
-            {
-                LadderCollider = ladderTransform.GetComponentInChildren<Collider2D>();
-            }
         }
     }
 
@@ -1357,7 +1382,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         if (collision.gameObject.CompareTag("LadderPlatform"))
         {
             LadderPlatformCollider = null;
-            LadderCollider = null;
         }
     }
 
@@ -1373,6 +1397,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         IsWallHanging = false;
         IsWallJumping = false;
         IsClimbing = false;
+        IsKilledBySpikes = false;
         CanMove = false;
     }
 

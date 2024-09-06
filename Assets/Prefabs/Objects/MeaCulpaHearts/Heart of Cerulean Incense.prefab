@@ -170,8 +170,8 @@ MonoBehaviour:
   itemDescription: Slighli increase wearer attack damage!
   isOnFloor: 1
   canBeCollect: 0
-  damageModifier: 10
-  defenseModifier: 0
+  damageModifier: 7
+  defenseModifier: 3
   healthModifier: 0
   healthRegenModifier: 0
   staminaModifier: 0

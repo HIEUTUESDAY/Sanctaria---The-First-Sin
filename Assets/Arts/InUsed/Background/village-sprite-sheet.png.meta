@@ -131,7 +131,7 @@ TextureImporter:
         width: 374
         height: 125
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -152,7 +152,7 @@ TextureImporter:
         width: 374
         height: 124
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -173,7 +173,7 @@ TextureImporter:
         width: 820
         height: 230
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -194,7 +194,7 @@ TextureImporter:
         width: 640
         height: 53
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -215,7 +215,7 @@ TextureImporter:
         width: 576
         height: 269
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -223,6 +223,90 @@ TextureImporter:
       bones: []
       spriteID: 0a4fd6cb3b8edb34f86cfdc69c7dfea0
       internalID: 1619644625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: village-sprite-sheet_5
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 724
+        width: 125
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 628904583b1640a4986640a9747e427b
+      internalID: -1696589129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: village-sprite-sheet_6
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 725
+        width: 122
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cea5bfcc7394ed149a91597b5f355354
+      internalID: -1815521061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: village-sprite-sheet_7
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 725
+        width: 79
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1747f5ae4f407e847a7690d113a0ed1f
+      internalID: 146790107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: village-sprite-sheet_8
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 723
+        width: 181
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56ac3738e4094224a8534f96eda1a94f
+      internalID: -429366709
       vertices: []
       indices: 
       edges: []
@@ -243,6 +327,10 @@ TextureImporter:
       village-sprite-sheet_2: -659490279
       village-sprite-sheet_3: -953037879
       village-sprite-sheet_4: 1619644625
+      village-sprite-sheet_5: -1696589129
+      village-sprite-sheet_6: -1815521061
+      village-sprite-sheet_7: 146790107
+      village-sprite-sheet_8: -429366709
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

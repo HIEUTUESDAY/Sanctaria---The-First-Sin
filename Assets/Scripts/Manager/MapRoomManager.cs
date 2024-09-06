@@ -17,6 +17,15 @@ public class MapRoomManager : MonoBehaviour
         }
     }
 
+    public void LockAllRoom()
+    {
+        foreach (MapContainerData room in rooms)
+        {
+            room.HasRoomRevealed = false;
+            room.gameObject.SetActive(false);
+        }
+    }
+
     public void RevealRoom()
     {
         string newLoadedScene = SceneManager.GetActiveScene().name;
@@ -25,9 +34,8 @@ public class MapRoomManager : MonoBehaviour
         {
             if (room.RoomScene.SceneName == newLoadedScene && !room.HasRoomRevealed)
             {
-                room.gameObject.SetActive(true);
                 room.HasRoomRevealed = true;
-
+                room.gameObject.SetActive(true);
                 return;
             }
         }

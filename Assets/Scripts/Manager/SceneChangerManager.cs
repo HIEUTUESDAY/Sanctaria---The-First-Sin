@@ -219,6 +219,7 @@ public class SceneChangerManager : MonoBehaviour
             sceneDataManager.LoadSceneData(SceneManager.GetActiveScene().name);
         }
 
+        MapRoomManager.Instance.LockAllRoom();
         MapRoomManager.Instance.RevealRoom();
         GameManager.Instance.isNewGame = false;
         loadToGamePlay = false;

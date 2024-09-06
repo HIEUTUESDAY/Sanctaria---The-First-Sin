@@ -142,7 +142,7 @@ public class Enemy : MonoBehaviour, IEnemyDamageable, IEnemyMoveable
             // Beable to hit
             CurrentHealth -= damage;
 
-            CoroutineManager.Instance.StartCoroutineManager(ApplySlowMotion());
+            StartCoroutine(ApplySlowMotion());
             CameraShakeManager.Instance.CameraShake(ImpulseSource);
             Animator.SetTrigger(AnimationString.hitTrigger);
 

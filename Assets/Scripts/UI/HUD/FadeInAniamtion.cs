@@ -14,15 +14,10 @@ public class FadeInAnimation : MonoBehaviour
     private bool isFadingInText = false;
     private bool waitingForInput = false;
 
-    private Player player;
-
     private void Start()
     {
         // Set initial alpha values to 0
         SetInitialAlphaValues();
-
-        // Find the player object in the scene
-        player = FindObjectOfType<Player>();
     }
 
     private void Update()

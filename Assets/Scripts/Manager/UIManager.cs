@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour
     public GameObject mapMenu;
     public GameObject optionsMenu;
     public bool menuActivated = false;
-    private Transform VFXcanvas;
+    [SerializeField] private Transform VFXcanvas;
 
     private void Awake()
     {
@@ -27,8 +27,6 @@ public class UIManager : MonoBehaviour
         {
             Instance = this;
         }
-
-        VFXcanvas = FindObjectOfType<Canvas>().transform.Find("VFX");
     }
 
     private void OnEnable()
@@ -108,6 +106,4 @@ public class UIManager : MonoBehaviour
         RectTransform instantiatedRectTransform = instantiatedMessage.GetComponent<RectTransform>();
         instantiatedRectTransform.anchoredPosition = spawnPosition;
     }
-
-
 }
