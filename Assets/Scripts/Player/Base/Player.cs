@@ -59,8 +59,8 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     private float originalMoveSpeed;
     [Space(5)]
 
-    [Header("Stamina Regen")]
-    [SerializeField] public float staminaRegen = 0.5f;
+    [Header("Mana Regen")]
+    [SerializeField] public float manaRegen = 0.5f;
     [Space(5)]
 
     [Header("Ivincible")]
@@ -107,6 +107,10 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     [SerializeField] private PhysicsMaterial2D fullFriction;
     [Space(5)]
 
+    [Header("Boss Fight")]
+    [SerializeField] public bool isLookAtBoss = false;
+    [Space(5)]
+
     public Animator Animator;
     public TouchingDirections TouchingDirections;
     public CameraFollowObject CameraFollowObject;
@@ -126,8 +130,8 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     public float defenseBuff;
     public float healthBuff;
     public float healthRegenBuff;
-    public float staminaBuff;
-    public float staminaRegenBuff;
+    public float manaBuff;
+    public float manaRegenBuff;
     public float moveSpeedBuff;
     public float jumpPowerBuff;
     public float wallJumpPowerBuff;
@@ -135,7 +139,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     [Space(5)]
 
     [Header("Mea Culpa Heart Buffs")]
-    public float prayerStaminaCost = 5f;
+    public float prayerManaCost = 5f;
 
     #endregion
 
@@ -278,23 +282,23 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         }
     }
 
-    private float _maxStamina = 100f;
-    public float MaxStamina 
+    private float _maxMana = 100f;
+    public float MaxMana 
     {
-        get => _maxStamina + staminaBuff;
+        get => _maxMana + manaBuff;
         set
         {
-            _maxStamina = value;
+            _maxMana = value;
         }
     }
 
-    private float _currentStamina;
-    public float CurrentStamina
+    private float _currentMana;
+    public float CurrentMana
     {
-        get => _currentStamina;
+        get => _currentMana;
         set
         {
-            _currentStamina = value;
+            _currentMana = value;
         }
     }
 
@@ -455,7 +459,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         LadderClimbCheck();
         YDampingCheck();
         WallHangCheck();
-        SetMaxHealthAndStamina();
+        SetMaxHealthAndMana();
         UpdateHealthBar();
         BeInvisible();
     }
@@ -555,27 +559,25 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     #region UI health bar functions
 
-    public void SetMaxHealthAndStamina()
+    public void SetMaxHealthAndMana()
     {
         if (CurrentHealth > MaxHealth)
         {
             CurrentHealth = MaxHealth;
         }
 
-        if (CurrentStamina > MaxStamina)
+        if (CurrentMana > MaxMana)
         {
-            CurrentStamina = MaxStamina;
+            CurrentMana = MaxMana;
         }
     }
 
     public void UpdateHealthBar()
     {
-        HealthBar = FindObjectOfType<HealthBarManager>();
-
         HealthBar.healthSlider.maxValue = MaxHealth;
-        HealthBar.staminaSlider.maxValue = MaxStamina;
+        HealthBar.manaSlider.maxValue = MaxMana;
         HealthBar.SetHealth(CurrentHealth);
-        HealthBar.SetStamina(CurrentStamina);
+        HealthBar.SetMana(CurrentMana);
         HealthBar.SetHealthPotions(CurrentHealthPotion);
     }
 
@@ -706,7 +708,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         if(PlayerEquipment.equippedPrayer.itemName != null)
         {
             PlayerEquipment.PerformPrayer();
-            _currentStamina -= prayerStaminaCost;
+            _currentMana -= prayerManaCost;
         }
     }
 
@@ -1132,7 +1134,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     {
         if (!UIManager.Instance.menuActivated)
         {
-            if (context.started && IsAlive && CanMove && TouchingDirections.IsGrounded && PlayerEquipment.equippedPrayer.itemName != "" && CurrentStamina >= prayerStaminaCost)
+            if (context.started && IsAlive && CanMove && TouchingDirections.IsGrounded && PlayerEquipment.equippedPrayer.itemName != "" && CurrentMana >= prayerManaCost)
             {
                 Animator.SetTrigger(AnimationString.prayerTrigger);
             }

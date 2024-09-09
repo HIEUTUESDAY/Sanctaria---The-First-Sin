@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class HealthBarManager : MonoBehaviour
 {
     public Slider healthSlider;
-    public Slider staminaSlider;
+    public Slider manaSlider;
 
     public Slider[] healthPotionsSlider;
 
@@ -22,13 +22,13 @@ public class HealthBarManager : MonoBehaviour
 
     public void SetMaxStamina(float stamina)
     {
-        staminaSlider.maxValue = stamina;
-        staminaSlider.value = stamina;
+        manaSlider.maxValue = stamina;
+        manaSlider.value = stamina;
     }
 
-    public void SetStamina(float stamina)
+    public void SetMana(float stamina)
     {
-        staminaSlider.value = stamina;
+        manaSlider.value = stamina;
     }
 
     public void SetMaxHealthPotions(int maxPotions)

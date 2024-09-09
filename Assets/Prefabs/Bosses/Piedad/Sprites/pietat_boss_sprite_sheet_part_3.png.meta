@@ -1,0 +1,289 @@
+fileFormatVersion: 2
+guid: 2ae75227ebb8ada42a6f99dbc2e5a982
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_3_0
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 0
+        width: 409
+        height: 304
+      alignment: 9
+      pivot: {x: 0.2555, y: 0.4095}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87813370697d83045a1ae8bb19946022
+      internalID: -1319860634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_3_3
+      rect:
+        serializedVersion: 2
+        x: 499
+        y: 0
+        width: 420
+        height: 304
+      alignment: 9
+      pivot: {x: 0.249, y: 0.4095}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ba79c0c581a28440bf75d11694a8a6d
+      internalID: -1119195371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_3_6
+      rect:
+        serializedVersion: 2
+        x: 974
+        y: 0
+        width: 426
+        height: 304
+      alignment: 9
+      pivot: {x: 0.2478, y: 0.4095}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3dc66ab0fe3c18c4f8a01dd282a45d48
+      internalID: -1172937053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_3_7
+      rect:
+        serializedVersion: 2
+        x: 1475
+        y: 0
+        width: 429
+        height: 304
+      alignment: 9
+      pivot: {x: 0.2437, y: 0.4095}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a499e366dce33b6488f7676e359f04ac
+      internalID: -799741796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_3_9
+      rect:
+        serializedVersion: 2
+        x: 1934
+        y: 0
+        width: 249
+        height: 304
+      alignment: 9
+      pivot: {x: 0.432, y: 0.4095}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64c9290fc1d187b45971662cb8c4325b
+      internalID: -526146568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_3_11
+      rect:
+        serializedVersion: 2
+        x: 2231
+        y: 0
+        width: 251
+        height: 304
+      alignment: 9
+      pivot: {x: 0.4365, y: 0.4095}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb5563ba2b605354a90297112534cb18
+      internalID: -949029755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      pietat_boss_sprite_sheet_part_3_0: -1319860634
+      pietat_boss_sprite_sheet_part_3_1: -2140846885
+      pietat_boss_sprite_sheet_part_3_10: -379805509
+      pietat_boss_sprite_sheet_part_3_11: -949029755
+      pietat_boss_sprite_sheet_part_3_12: 1203374057
+      pietat_boss_sprite_sheet_part_3_13: -317187438
+      pietat_boss_sprite_sheet_part_3_14: -536890091
+      pietat_boss_sprite_sheet_part_3_15: -762944734
+      pietat_boss_sprite_sheet_part_3_16: -854095050
+      pietat_boss_sprite_sheet_part_3_17: 528024628
+      pietat_boss_sprite_sheet_part_3_18: 1625219669
+      pietat_boss_sprite_sheet_part_3_19: 293691986
+      pietat_boss_sprite_sheet_part_3_2: 1405984868
+      pietat_boss_sprite_sheet_part_3_20: 836903424
+      pietat_boss_sprite_sheet_part_3_21: -670497946
+      pietat_boss_sprite_sheet_part_3_22: -82383120
+      pietat_boss_sprite_sheet_part_3_3: -1119195371
+      pietat_boss_sprite_sheet_part_3_4: -710851864
+      pietat_boss_sprite_sheet_part_3_5: -1437077392
+      pietat_boss_sprite_sheet_part_3_6: -1172937053
+      pietat_boss_sprite_sheet_part_3_7: -799741796
+      pietat_boss_sprite_sheet_part_3_8: 790011468
+      pietat_boss_sprite_sheet_part_3_9: -526146568
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

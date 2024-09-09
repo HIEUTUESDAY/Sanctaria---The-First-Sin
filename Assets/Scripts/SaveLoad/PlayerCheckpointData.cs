@@ -5,11 +5,13 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerCheckpointData
 {
+    public string areaName;
     public string sceneName;
     public float[] position;
 
-    public PlayerCheckpointData(string checkpointScene, Vector3 checkpointPosition)
+    public PlayerCheckpointData(string areaName, string checkpointScene, Vector3 checkpointPosition)
     {
+        this.areaName = areaName;
         this.sceneName = checkpointScene;
         this.position = new float[3];
         this.position[0] = checkpointPosition.x;

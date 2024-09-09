@@ -1,0 +1,918 @@
+fileFormatVersion: 2
+guid: 9b6f1dfc837a90b4aa28a0658e0cdc3a
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: pietat_death_0
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 143
+        height: 240
+      alignment: 9
+      pivot: {x: 0.45, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e3bd883de2b1994084b9ed0e8c4f361
+      internalID: -1112806603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_death_1
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 145
+        height: 240
+      alignment: 9
+      pivot: {x: 0.445, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0e90ef08c69ae741b58914b42efbca7
+      internalID: 1417779458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_death_2
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 0
+        width: 149
+        height: 240
+      alignment: 9
+      pivot: {x: 0.43, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35bec820046cd4749ae4fe63c0fb4e8b
+      internalID: -1800326602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_death_3
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 0
+        width: 158
+        height: 240
+      alignment: 9
+      pivot: {x: 0.5, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 957e55e34f019d94f8f363aadc80e9ec
+      internalID: -655132089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_death_4
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 0
+        width: 155
+        height: 240
+      alignment: 9
+      pivot: {x: 0.5, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 321e5606cf4724544b18a06a6b41b393
+      internalID: -128316935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_death_5
+      rect:
+        serializedVersion: 2
+        x: 894
+        y: 0
+        width: 161
+        height: 240
+      alignment: 9
+      pivot: {x: 0.51, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f92db42f1821b5b499dcd4bfe0eef788
+      internalID: 24941657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_death_6
+      rect:
+        serializedVersion: 2
+        x: 1088
+        y: 0
+        width: 160
+        height: 240
+      alignment: 9
+      pivot: {x: 0.4, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25e883ec880f9554aafdaa603dbc7321
+      internalID: 1019932035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_death_7
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 150
+        height: 240
+      alignment: 9
+      pivot: {x: 0.42, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be8c9d28a9db94d4e97784afe92e9fc5
+      internalID: -785676867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_death_8
+      rect:
+        serializedVersion: 2
+        x: 1456
+        y: 0
+        width: 148
+        height: 240
+      alignment: 9
+      pivot: {x: 0.425, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4b19026fa71ead41a697196264afcec
+      internalID: 1752470575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_death_19
+      rect:
+        serializedVersion: 2
+        x: 3296
+        y: 0
+        width: 125
+        height: 240
+      alignment: 9
+      pivot: {x: 0.37, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95cd0bd698a2c8c45a56b609fc43cfba
+      internalID: 2141784618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_death_24
+      rect:
+        serializedVersion: 2
+        x: 4096
+        y: 0
+        width: 124
+        height: 240
+      alignment: 9
+      pivot: {x: 0.37, y: 0.53}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16d28154d7ac63f4ea0252c6e0b70223
+      internalID: -1366244504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_death_9
+      rect:
+        serializedVersion: 2
+        x: 1633
+        y: 0
+        width: 137
+        height: 240
+      alignment: 9
+      pivot: {x: 0.43, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72179d825ec16c84abfe5dd75690e683
+      internalID: 1529397737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_death_18
+      rect:
+        serializedVersion: 2
+        x: 3136
+        y: 0
+        width: 125
+        height: 240
+      alignment: 9
+      pivot: {x: 0.37, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2f2c2d74fc95c74cbe1e5ea5323be21
+      internalID: 1830123771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_death_20
+      rect:
+        serializedVersion: 2
+        x: 3456
+        y: 0
+        width: 127
+        height: 240
+      alignment: 9
+      pivot: {x: 0.38, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 845d2c7eb681bc94ea5961fb5960eccf
+      internalID: -587610080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_death_22
+      rect:
+        serializedVersion: 2
+        x: 3778
+        y: 0
+        width: 124
+        height: 240
+      alignment: 9
+      pivot: {x: 0.355, y: 0.54}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c14fdd6a9d7e9644585274410749a73e
+      internalID: -541538860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_death_10
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 0
+        width: 137
+        height: 240
+      alignment: 9
+      pivot: {x: 0.43, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6bf721d3a53da74cab70f5ad6cfe359
+      internalID: 1007479003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_death_11
+      rect:
+        serializedVersion: 2
+        x: 1952
+        y: 0
+        width: 144
+        height: 240
+      alignment: 9
+      pivot: {x: 0.41, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a23095ee4bb612449695962bd1749df
+      internalID: -1683996309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_death_12
+      rect:
+        serializedVersion: 2
+        x: 2112
+        y: 0
+        width: 146
+        height: 240
+      alignment: 9
+      pivot: {x: 0.405, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bf0a2486ba9831429f2b10a1422df55
+      internalID: 589086834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_death_14
+      rect:
+        serializedVersion: 2
+        x: 2464
+        y: 0
+        width: 151
+        height: 240
+      alignment: 9
+      pivot: {x: 0.39, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba28bbc14e2abc247a18c8a6fc36edbf
+      internalID: -345813881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_death_15
+      rect:
+        serializedVersion: 2
+        x: 2640
+        y: 0
+        width: 139
+        height: 240
+      alignment: 9
+      pivot: {x: 0.365, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f278f1a6be695f54c85d2e9562da1c32
+      internalID: -2028763982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_death_16
+      rect:
+        serializedVersion: 2
+        x: 2816
+        y: 0
+        width: 129
+        height: 240
+      alignment: 9
+      pivot: {x: 0.385, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74b6dfe6b24c4754086f836d2f7d15e0
+      internalID: -1721708862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_death_17
+      rect:
+        serializedVersion: 2
+        x: 2976
+        y: 0
+        width: 126
+        height: 240
+      alignment: 9
+      pivot: {x: 0.37, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4479d33a1303aaa45ae7ab269b20c784
+      internalID: -826455571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_death_21
+      rect:
+        serializedVersion: 2
+        x: 3616
+        y: 0
+        width: 124
+        height: 240
+      alignment: 9
+      pivot: {x: 0.37, y: 0.54}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b67220bcabd4c04a93ac22cf2d418b1
+      internalID: -365607349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_death_23
+      rect:
+        serializedVersion: 2
+        x: 3936
+        y: 0
+        width: 124
+        height: 240
+      alignment: 9
+      pivot: {x: 0.37, y: 0.535}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aefe28d68cd1cc24180b660dc7a11747
+      internalID: 1316664251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_death_25
+      rect:
+        serializedVersion: 2
+        x: 4256
+        y: 0
+        width: 132
+        height: 240
+      alignment: 9
+      pivot: {x: 0.335, y: 0.527}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b83c1f1ac1f1e7e439afeda57d2dd715
+      internalID: -1328107581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_death_13
+      rect:
+        serializedVersion: 2
+        x: 2288
+        y: 0
+        width: 149
+        height: 240
+      alignment: 9
+      pivot: {x: 0.395, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 727df5dcce0a0ba4680b3ed9af59d1df
+      internalID: -1064048461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_death_26
+      rect:
+        serializedVersion: 2
+        x: 4416
+        y: 0
+        width: 137
+        height: 240
+      alignment: 9
+      pivot: {x: 0.28, y: 0.527}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f516c97f84609fc409c7f8e008a6ec09
+      internalID: 737927939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_death_27
+      rect:
+        serializedVersion: 2
+        x: 4592
+        y: 0
+        width: 151
+        height: 240
+      alignment: 9
+      pivot: {x: 0.25, y: 0.527}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f10f33d187de2f48a3ed963176a9595
+      internalID: -633706720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_death_28
+      rect:
+        serializedVersion: 2
+        x: 4784
+        y: 0
+        width: 156
+        height: 240
+      alignment: 9
+      pivot: {x: 0.235, y: 0.522}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e23a3d7a79e74c843bde97dc2a98ba93
+      internalID: -1057239484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_death_29
+      rect:
+        serializedVersion: 2
+        x: 4976
+        y: 0
+        width: 184
+        height: 240
+      alignment: 9
+      pivot: {x: 0.205, y: 0.522}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07fe277080942ea45a56edf4ae047534
+      internalID: 1961993139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_death_30
+      rect:
+        serializedVersion: 2
+        x: 5200
+        y: 0
+        width: 193
+        height: 240
+      alignment: 9
+      pivot: {x: 0.185, y: 0.522}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90f7ace389696dc4a8a1e8873866550c
+      internalID: 942432932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_death_31
+      rect:
+        serializedVersion: 2
+        x: 5424
+        y: 0
+        width: 222
+        height: 240
+      alignment: 9
+      pivot: {x: 0.16, y: 0.522}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20ec8995a0147da47b5042488cf82127
+      internalID: 422846323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_death_32
+      rect:
+        serializedVersion: 2
+        x: 5680
+        y: 0
+        width: 231
+        height: 240
+      alignment: 9
+      pivot: {x: 0.155, y: 0.522}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c4e793529e48f14bb49c28cb954b452
+      internalID: -2140078266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_death_33
+      rect:
+        serializedVersion: 2
+        x: 5936
+        y: 0
+        width: 231
+        height: 240
+      alignment: 9
+      pivot: {x: 0.155, y: 0.522}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4a050300c166be4d869bba23c639c06
+      internalID: 770066485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_death_34
+      rect:
+        serializedVersion: 2
+        x: 6192
+        y: 0
+        width: 231
+        height: 240
+      alignment: 9
+      pivot: {x: 0.155, y: 0.522}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f11cc11e5624574fb94180aacbe547f
+      internalID: -395749240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      pietat_death_0: -1112806603
+      pietat_death_1: 1417779458
+      pietat_death_10: 1007479003
+      pietat_death_11: -1683996309
+      pietat_death_12: 589086834
+      pietat_death_13: -1064048461
+      pietat_death_14: -345813881
+      pietat_death_15: -2028763982
+      pietat_death_16: -1721708862
+      pietat_death_17: -826455571
+      pietat_death_18: 1830123771
+      pietat_death_19: 2141784618
+      pietat_death_2: -1800326602
+      pietat_death_20: -587610080
+      pietat_death_21: -365607349
+      pietat_death_22: -541538860
+      pietat_death_23: 1316664251
+      pietat_death_24: -1366244504
+      pietat_death_25: -1328107581
+      pietat_death_26: 737927939
+      pietat_death_27: -633706720
+      pietat_death_28: -1057239484
+      pietat_death_29: 1961993139
+      pietat_death_3: -655132089
+      pietat_death_30: 942432932
+      pietat_death_31: 422846323
+      pietat_death_32: -2140078266
+      pietat_death_33: 770066485
+      pietat_death_34: -395749240
+      pietat_death_4: -128316935
+      pietat_death_5: 24941657
+      pietat_death_6: 1019932035
+      pietat_death_7: -785676867
+      pietat_death_8: 1752470575
+      pietat_death_9: 1529397737
+      pietat_death_anim_10: 1495563518
+      pietat_death_anim_11: 1124360592
+      pietat_death_anim_12: 1332453787
+      pietat_death_anim_17: -1002757117
+      pietat_death_anim_18: -764111168
+      pietat_death_anim_19: 183930134
+      pietat_death_anim_21: 353131547
+      pietat_death_anim_30: -346445179
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

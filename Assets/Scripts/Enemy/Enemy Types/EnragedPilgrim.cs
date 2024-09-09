@@ -57,7 +57,6 @@ public class EnragedPilgrim : Enemy
     {
         base.OnDead();
 
-        // Fall down when is dead
         attackCollider.enabled = false;
         bodyHitCollider.enabled = false;
     }

@@ -12,7 +12,7 @@ public class PlayerData
     public PlayerData(Player player)
     {
         this.health = player.CurrentHealth;
-        this.stamina = player.CurrentStamina;
+        this.stamina = player.CurrentMana;
         this.healthPotions = player.CurrentHealthPotion;
     }
 }

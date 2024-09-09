@@ -6,8 +6,8 @@ public interface IPlayerDamageable : IDamageableBase
 {
     float MaxHealth { get; set; }
     float CurrentHealth { get; set; }
-    float MaxStamina { get; set; }
-    float CurrentStamina { get; set; }
+    float MaxMana { get; set; }
+    float CurrentMana { get; set; }
     int MaxHealthPotion { get; set; }
     int CurrentHealthPotion { get; set; }
     float HealthRestore {  get; set; }

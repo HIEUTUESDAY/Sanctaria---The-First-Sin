@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour, IEnemyDamageable, IEnemyMoveable
     public CinemachineImpulseSource ImpulseSource { get; set; }
 
     [Header("Hit slow motion")]
-    [SerializeField] private float slowMotionDuration = 0.5f;
+    [SerializeField] private float slowMotionDuration = 0.15f;
     [SerializeField] private float slowMotionFactor = 0.2f;
 
     [Header("Drop tears")]
@@ -164,7 +164,7 @@ public class Enemy : MonoBehaviour, IEnemyDamageable, IEnemyMoveable
 
     private void DropStamina()
     {
-        Player.Instance.CurrentStamina += Player.Instance.staminaRegen;
+        Player.Instance.CurrentMana += Player.Instance.manaRegen;
     }
 
     #endregion

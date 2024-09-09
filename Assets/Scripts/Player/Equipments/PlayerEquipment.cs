@@ -52,8 +52,8 @@ public class PlayerEquipment : MonoBehaviour
             player.defenseBuff = newEquippedMeaCulpaHeart.defenseModifier;
             player.healthBuff = newEquippedMeaCulpaHeart.healthModifier;
             player.healthRegenBuff = newEquippedMeaCulpaHeart.healthRegenModifier;
-            player.staminaBuff = newEquippedMeaCulpaHeart.staminaModifier;
-            player.staminaRegenBuff = newEquippedMeaCulpaHeart.staminaRegenModifier;
+            player.manaBuff = newEquippedMeaCulpaHeart.staminaModifier;
+            player.manaRegenBuff = newEquippedMeaCulpaHeart.staminaRegenModifier;
             player.moveSpeedBuff = newEquippedMeaCulpaHeart.moveSpeedModifier;
             player.jumpPowerBuff = newEquippedMeaCulpaHeart.jumpPowerModifier;
             player.wallJumpPowerBuff = newEquippedMeaCulpaHeart.wallJumpPowerModifier;
@@ -69,8 +69,8 @@ public class PlayerEquipment : MonoBehaviour
             player.defenseBuff = 0f;
             player.healthBuff = 0f;
             player.healthRegenBuff = 0f;
-            player.staminaBuff = 0f;
-            player.staminaRegenBuff = 0f;
+            player.manaBuff = 0f;
+            player.manaRegenBuff = 0f;
             player.moveSpeedBuff = 0f;
             player.jumpPowerBuff = 0f;
             player.wallJumpPowerBuff = 0f;

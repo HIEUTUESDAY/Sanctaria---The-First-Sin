@@ -1,0 +1,1196 @@
+fileFormatVersion: 2
+guid: 75a387276d960c5468598168809eec56
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1430
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42ef1db844d8c284f84336eef1520163
+      internalID: 47652300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_1
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 1430
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3f3cd6f0a2e3a64291257b800a29340
+      internalID: -1359479380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_2
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 1430
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c37946ff8f39ce429c32363469bb1cc
+      internalID: -723473487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_3
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 1430
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70676caeddadaac4e84f2d1ee4875d27
+      internalID: -1523303282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_4
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 1430
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4ba80baff24d0f4b9f07fa1b58627b5
+      internalID: -755323785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_5
+      rect:
+        serializedVersion: 2
+        x: 1300
+        y: 1430
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ce19828e4089d34fa37cf3f6ad34c8c
+      internalID: -1186499357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_6
+      rect:
+        serializedVersion: 2
+        x: 1560
+        y: 1430
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d86e5fc4bc05d7841b8f2fe20303b09c
+      internalID: -2141204609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_7
+      rect:
+        serializedVersion: 2
+        x: 1820
+        y: 1430
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf03d0042b6d5764d80af252aee0e54c
+      internalID: -1843274363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1144
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 877b03c5fb3acd64984db6bb69250ceb
+      internalID: 890820188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_9
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 1144
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f40c3daac5bdb34e9d2e6c78fc0a142
+      internalID: 772657173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_10
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 1144
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 353202bc74c7af24ba15b739b0e4517f
+      internalID: 589096020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_11
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 1144
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 010204ed4ccf45941b00c8b8f734bda0
+      internalID: 1571310798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_12
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 1144
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8aa66369863034041adc5b1e99f0cb0a
+      internalID: 747186132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_13
+      rect:
+        serializedVersion: 2
+        x: 1300
+        y: 1144
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: baece4bf6f9ce0d47912f74d4f4f3d65
+      internalID: -1409775074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_14
+      rect:
+        serializedVersion: 2
+        x: 1560
+        y: 1144
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55379db595e67ac49ac4281b94fa8b5d
+      internalID: 1224309124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_15
+      rect:
+        serializedVersion: 2
+        x: 1820
+        y: 1144
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8160f014c96479f489d78b5d35748dcd
+      internalID: -2103828209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 858
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 080ec4d90b07f824b91a7460e1011a20
+      internalID: -1055166095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_17
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 858
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5831c398fba3c9341899d382008b3194
+      internalID: -1596229445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_18
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 858
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37724006eee13844d9c7f00d72701d0e
+      internalID: -1269569473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_19
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 858
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e23bd0a8bce8d5e4cb79ce6a8bb120fc
+      internalID: 44871225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_20
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 858
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 504b76d02055fc44691e9ec3ee457580
+      internalID: 1823322707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_21
+      rect:
+        serializedVersion: 2
+        x: 1300
+        y: 858
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0178478df4b2df48840cad424012db2
+      internalID: 181217021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_22
+      rect:
+        serializedVersion: 2
+        x: 1560
+        y: 858
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0a0acf12ffd6d248aa3d66da3f362cd
+      internalID: 1117010710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_23
+      rect:
+        serializedVersion: 2
+        x: 1820
+        y: 858
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f0627f93e388064e91b4c1113a11e1c
+      internalID: 190052309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 572
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0561f93b5914d5244a3372185d73c4b1
+      internalID: -27386124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_25
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 572
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 324bc9c2773f6b94d98afeb923f81fca
+      internalID: 420083131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_26
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 572
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cda2abba7dfd18499aa117d387ede46
+      internalID: 2092566374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_27
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 572
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8def9c69a9c6add4d88dcf12f5af6d73
+      internalID: 1402984916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_28
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 572
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c626e501d5061b441aa0ea62adff45ae
+      internalID: 1524769990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_29
+      rect:
+        serializedVersion: 2
+        x: 1300
+        y: 572
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 999f0551e6d924947bd78c24c1c56664
+      internalID: 246898980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_30
+      rect:
+        serializedVersion: 2
+        x: 1560
+        y: 572
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0176aaec82737474894522657ecd3440
+      internalID: 1293524199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_31
+      rect:
+        serializedVersion: 2
+        x: 1820
+        y: 572
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c85839fcd53068479239f0466d4fa20
+      internalID: 2095533744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 286
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8180240b93cf4a40a98ffa22d3aba6d
+      internalID: 1123119402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_33
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 286
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f0c87f69dfc53942a0d5d55d9865bfc
+      internalID: -2101393566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_34
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 286
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bf17e0b4ad7d0e47ab1b0d3d7a23dd6
+      internalID: 1460195017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_35
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 286
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c7bbdd8b03f1e941bb672724a28660e
+      internalID: -405820478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_36
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 286
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92b6f1cff7c471b4aa12bbabd25b03ff
+      internalID: 790611333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_37
+      rect:
+        serializedVersion: 2
+        x: 1300
+        y: 286
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c50cb57e44da9b4aab361c7fa17d29f
+      internalID: 203483326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_38
+      rect:
+        serializedVersion: 2
+        x: 1560
+        y: 286
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45d56dd42dc7af5499c48daceb409521
+      internalID: -772339355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_39
+      rect:
+        serializedVersion: 2
+        x: 1820
+        y: 286
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c3858c0e65f178478e2836af5ecbca9
+      internalID: 348382616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b59c1ef150c4d0e44b0449ff849c1d32
+      internalID: -1464163354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_41
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 0
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a8c4eeddae979b4a9c254396f9ec0d0
+      internalID: -1722836114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_42
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 0
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3497b0dadacf5ad44918c74dd34a98a9
+      internalID: 1153263715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_43
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 0
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b85797f904133dd4ebb995009d2c9220
+      internalID: 271727808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_44
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 0
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 662208e84deff894d9c06c2af38ea5fc
+      internalID: -1421325860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_45
+      rect:
+        serializedVersion: 2
+        x: 1300
+        y: 0
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80c9a7367c05da34683e1e09f497c2df
+      internalID: -1393869202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_46
+      rect:
+        serializedVersion: 2
+        x: 1560
+        y: 0
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ff2d361b0325ac4b85223cc720da8ad
+      internalID: -962233636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pietat_boss_sprite_sheet_part_1_47
+      rect:
+        serializedVersion: 2
+        x: 1820
+        y: 0
+        width: 260
+        height: 286
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7baf7c5862c7fd4880fe9ca4a12fcc0
+      internalID: -1570740273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      pietat_boss_sprite_sheet_part_1_0: 47652300
+      pietat_boss_sprite_sheet_part_1_1: -1359479380
+      pietat_boss_sprite_sheet_part_1_10: 589096020
+      pietat_boss_sprite_sheet_part_1_11: 1571310798
+      pietat_boss_sprite_sheet_part_1_12: 747186132
+      pietat_boss_sprite_sheet_part_1_13: -1409775074
+      pietat_boss_sprite_sheet_part_1_14: 1224309124
+      pietat_boss_sprite_sheet_part_1_15: -2103828209
+      pietat_boss_sprite_sheet_part_1_16: -1055166095
+      pietat_boss_sprite_sheet_part_1_17: -1596229445
+      pietat_boss_sprite_sheet_part_1_18: -1269569473
+      pietat_boss_sprite_sheet_part_1_19: 44871225
+      pietat_boss_sprite_sheet_part_1_2: -723473487
+      pietat_boss_sprite_sheet_part_1_20: 1823322707
+      pietat_boss_sprite_sheet_part_1_21: 181217021
+      pietat_boss_sprite_sheet_part_1_22: 1117010710
+      pietat_boss_sprite_sheet_part_1_23: 190052309
+      pietat_boss_sprite_sheet_part_1_24: -27386124
+      pietat_boss_sprite_sheet_part_1_25: 420083131
+      pietat_boss_sprite_sheet_part_1_26: 2092566374
+      pietat_boss_sprite_sheet_part_1_27: 1402984916
+      pietat_boss_sprite_sheet_part_1_28: 1524769990
+      pietat_boss_sprite_sheet_part_1_29: 246898980
+      pietat_boss_sprite_sheet_part_1_3: -1523303282
+      pietat_boss_sprite_sheet_part_1_30: 1293524199
+      pietat_boss_sprite_sheet_part_1_31: 2095533744
+      pietat_boss_sprite_sheet_part_1_32: 1123119402
+      pietat_boss_sprite_sheet_part_1_33: -2101393566
+      pietat_boss_sprite_sheet_part_1_34: 1460195017
+      pietat_boss_sprite_sheet_part_1_35: -405820478
+      pietat_boss_sprite_sheet_part_1_36: 790611333
+      pietat_boss_sprite_sheet_part_1_37: 203483326
+      pietat_boss_sprite_sheet_part_1_38: -772339355
+      pietat_boss_sprite_sheet_part_1_39: 348382616
+      pietat_boss_sprite_sheet_part_1_4: -755323785
+      pietat_boss_sprite_sheet_part_1_40: -1464163354
+      pietat_boss_sprite_sheet_part_1_41: -1722836114
+      pietat_boss_sprite_sheet_part_1_42: 1153263715
+      pietat_boss_sprite_sheet_part_1_43: 271727808
+      pietat_boss_sprite_sheet_part_1_44: -1421325860
+      pietat_boss_sprite_sheet_part_1_45: -1393869202
+      pietat_boss_sprite_sheet_part_1_46: -962233636
+      pietat_boss_sprite_sheet_part_1_47: -1570740273
+      pietat_boss_sprite_sheet_part_1_5: -1186499357
+      pietat_boss_sprite_sheet_part_1_6: -2141204609
+      pietat_boss_sprite_sheet_part_1_7: -1843274363
+      pietat_boss_sprite_sheet_part_1_8: 890820188
+      pietat_boss_sprite_sheet_part_1_9: 772657173
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

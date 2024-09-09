@@ -1,0 +1,1042 @@
+fileFormatVersion: 2
+guid: af7da5df752626b48b5a3544aa49b360
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: piedad_hand_attack_0
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 0
+        width: 148
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db00e7640b6b7b842ade52a0cf0e31f6
+      internalID: -123401417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_1
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 0
+        width: 146
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1419ed8a587db647ac2d7b2710abbed
+      internalID: -2143802092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_2
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 0
+        width: 160
+        height: 256
+      alignment: 9
+      pivot: {x: 0.45, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3afea2a9216d3bf4a9a9ca53ca96aff4
+      internalID: 792343139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_3
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 0
+        width: 170
+        height: 256
+      alignment: 9
+      pivot: {x: 0.48, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c69b65ab9b38c3c44a30b4a88ddfa2b6
+      internalID: 1134836153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_4
+      rect:
+        serializedVersion: 2
+        x: 766
+        y: 0
+        width: 160
+        height: 256
+      alignment: 9
+      pivot: {x: 0.45, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f3b3a981a0172b4498ec0da739ad98f
+      internalID: 32621961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_5
+      rect:
+        serializedVersion: 2
+        x: 934
+        y: 0
+        width: 168
+        height: 256
+      alignment: 9
+      pivot: {x: 0.47, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9109366855cfe61408b349bd260dab5a
+      internalID: 139429106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_6
+      rect:
+        serializedVersion: 2
+        x: 1104
+        y: 0
+        width: 190
+        height: 256
+      alignment: 9
+      pivot: {x: 0.53, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66ac8373351fdf04f8926d4ff4e8e644
+      internalID: 2093768209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_7
+      rect:
+        serializedVersion: 2
+        x: 1310
+        y: 0
+        width: 208
+        height: 256
+      alignment: 9
+      pivot: {x: 0.57, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12ca88645367eae4997611fecbfb5840
+      internalID: 1333304593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_8
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 222
+        height: 256
+      alignment: 9
+      pivot: {x: 0.6, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c50446e25b86fdb45903b6730ad25476
+      internalID: -130155088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_9
+      rect:
+        serializedVersion: 2
+        x: 1774
+        y: 0
+        width: 240
+        height: 256
+      alignment: 9
+      pivot: {x: 0.63, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6cf03ad13bd488a4ea135005439d61e7
+      internalID: 928314879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_10
+      rect:
+        serializedVersion: 2
+        x: 2030
+        y: 0
+        width: 224
+        height: 256
+      alignment: 9
+      pivot: {x: 0.605, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cade94190029d40429489bad7615bffd
+      internalID: -1118010399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_11
+      rect:
+        serializedVersion: 2
+        x: 2276
+        y: 0
+        width: 218
+        height: 256
+      alignment: 9
+      pivot: {x: 0.6, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ace67be45ddb54a4898be64c7fb426ee
+      internalID: 1189345888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_12
+      rect:
+        serializedVersion: 2
+        x: 2526
+        y: 0
+        width: 156
+        height: 256
+      alignment: 9
+      pivot: {x: 0.45, y: 0.495}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15adef7e00262564a87b13d85faa9220
+      internalID: -345314014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_13
+      rect:
+        serializedVersion: 2
+        x: 2702
+        y: 0
+        width: 262
+        height: 256
+      alignment: 9
+      pivot: {x: 0.265, y: 0.495}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e66e42e3179ad714aa57f72bcabe95d5
+      internalID: 492033393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_14
+      rect:
+        serializedVersion: 2
+        x: 2990
+        y: 0
+        width: 262
+        height: 256
+      alignment: 9
+      pivot: {x: 0.265, y: 0.495}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e14e34151d806b945bc005636adcebfb
+      internalID: -334673824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_15
+      rect:
+        serializedVersion: 2
+        x: 3278
+        y: 0
+        width: 250
+        height: 256
+      alignment: 9
+      pivot: {x: 0.275, y: 0.495}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06de6cfaa7844ce4cbe28c7c51dd5bb0
+      internalID: 1353865859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_16
+      rect:
+        serializedVersion: 2
+        x: 3550
+        y: 0
+        width: 232
+        height: 256
+      alignment: 9
+      pivot: {x: 0.3, y: 0.495}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecce5a9e3d89a424595f50b0105cbcd1
+      internalID: 2094665701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_17
+      rect:
+        serializedVersion: 2
+        x: 3806
+        y: 0
+        width: 214
+        height: 256
+      alignment: 9
+      pivot: {x: 0.33, y: 0.495}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa3a757749cf68a4982572fa3b063f9f
+      internalID: 539064568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_18
+      rect:
+        serializedVersion: 2
+        x: 4047
+        y: 0
+        width: 194
+        height: 256
+      alignment: 9
+      pivot: {x: 0.365, y: 0.495}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72554a3c367642444bcad94e271a728c
+      internalID: -1209325202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_19
+      rect:
+        serializedVersion: 2
+        x: 4270
+        y: 0
+        width: 178
+        height: 256
+      alignment: 9
+      pivot: {x: 0.395, y: 0.495}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b63d6d9d4f817f4cb11860a60d87d22
+      internalID: -1551003949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_20
+      rect:
+        serializedVersion: 2
+        x: 4478
+        y: 0
+        width: 174
+        height: 256
+      alignment: 9
+      pivot: {x: 0.4, y: 0.495}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd1f995564115674bbfd5ba16fcdc8f3
+      internalID: -1827338125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_21
+      rect:
+        serializedVersion: 2
+        x: 4670
+        y: 0
+        width: 174
+        height: 256
+      alignment: 9
+      pivot: {x: 0.4, y: 0.495}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4dbfc2db2a5e28e4c9912eb0bf4b8b52
+      internalID: 386110961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_22
+      rect:
+        serializedVersion: 2
+        x: 4862
+        y: 0
+        width: 170
+        height: 256
+      alignment: 9
+      pivot: {x: 0.41, y: 0.495}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a305a3512889f744cb253734f228cd89
+      internalID: 162162867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_23
+      rect:
+        serializedVersion: 2
+        x: 5054
+        y: 0
+        width: 166
+        height: 256
+      alignment: 9
+      pivot: {x: 0.42, y: 0.495}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05b20b6edff835142a40a76b4301fae7
+      internalID: -1799696997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_24
+      rect:
+        serializedVersion: 2
+        x: 5246
+        y: 0
+        width: 168
+        height: 256
+      alignment: 9
+      pivot: {x: 0.415, y: 0.495}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fc3d6255885fdb48a6db2daceb59a34
+      internalID: -315681555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_25
+      rect:
+        serializedVersion: 2
+        x: 5422
+        y: 0
+        width: 160
+        height: 256
+      alignment: 9
+      pivot: {x: 0.44, y: 0.495}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4220df77e65bf24ba55d6a811e0af83
+      internalID: -1919162846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_26
+      rect:
+        serializedVersion: 2
+        x: 5598
+        y: 0
+        width: 156
+        height: 256
+      alignment: 9
+      pivot: {x: 0.45, y: 0.495}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74e0652c27712a649bffe0b1bd486085
+      internalID: -525160025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_27
+      rect:
+        serializedVersion: 2
+        x: 5774
+        y: 0
+        width: 156
+        height: 256
+      alignment: 9
+      pivot: {x: 0.45, y: 0.495}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ed9f90d7b02b64479fa08002eb588e6
+      internalID: 82455129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_28
+      rect:
+        serializedVersion: 2
+        x: 5952
+        y: 0
+        width: 150
+        height: 256
+      alignment: 9
+      pivot: {x: 0.45, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe67baf94bdf94f42ac1cbc7464da0e2
+      internalID: 1456753041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_29
+      rect:
+        serializedVersion: 2
+        x: 6126
+        y: 0
+        width: 154
+        height: 256
+      alignment: 9
+      pivot: {x: 0.45, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd3df94372c12044bb33a25d3a5e3cf4
+      internalID: 2079979450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_30
+      rect:
+        serializedVersion: 2
+        x: 6302
+        y: 0
+        width: 152
+        height: 256
+      alignment: 9
+      pivot: {x: 0.455, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f609214755e57ba4ab738adfd8a46d8b
+      internalID: 1329352441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_31
+      rect:
+        serializedVersion: 2
+        x: 6478
+        y: 0
+        width: 146
+        height: 256
+      alignment: 9
+      pivot: {x: 0.475, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a71b37622460b84da2e305e202493dd
+      internalID: 1123350849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_32
+      rect:
+        serializedVersion: 2
+        x: 6654
+        y: 0
+        width: 148
+        height: 256
+      alignment: 9
+      pivot: {x: 0.47, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e702868da1ba40e4680cdb11f18038dd
+      internalID: -2064692899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_33
+      rect:
+        serializedVersion: 2
+        x: 6830
+        y: 0
+        width: 148
+        height: 256
+      alignment: 9
+      pivot: {x: 0.47, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34996f8e2f5e4224786bb315f337e698
+      internalID: 1007508001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_34
+      rect:
+        serializedVersion: 2
+        x: 7006
+        y: 0
+        width: 148
+        height: 256
+      alignment: 9
+      pivot: {x: 0.475, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 811ed024165873f46ab242559786c411
+      internalID: 126970558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_35
+      rect:
+        serializedVersion: 2
+        x: 7182
+        y: 0
+        width: 148
+        height: 256
+      alignment: 9
+      pivot: {x: 0.47, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: facfd7d9ccf39134aa31dd5a86d3c40a
+      internalID: 1147673309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_36
+      rect:
+        serializedVersion: 2
+        x: 7358
+        y: 0
+        width: 148
+        height: 256
+      alignment: 9
+      pivot: {x: 0.47, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdbca6af4a940054aa2f27df42ed7279
+      internalID: -2015419010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_37
+      rect:
+        serializedVersion: 2
+        x: 7532
+        y: 0
+        width: 150
+        height: 256
+      alignment: 9
+      pivot: {x: 0.475, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acf7453a23216a448a2986cefaec5d91
+      internalID: 1688026263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_38
+      rect:
+        serializedVersion: 2
+        x: 7702
+        y: 0
+        width: 156
+        height: 256
+      alignment: 9
+      pivot: {x: 0.495, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 618eb68aff07a1a468ba021648619601
+      internalID: 2091118699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_39
+      rect:
+        serializedVersion: 2
+        x: 7870
+        y: 0
+        width: 148
+        height: 256
+      alignment: 9
+      pivot: {x: 0.47, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 100262b9c67f932459d49396094023e9
+      internalID: -1797602936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: piedad_hand_attack_40
+      rect:
+        serializedVersion: 2
+        x: 8030
+        y: 0
+        width: 148
+        height: 256
+      alignment: 9
+      pivot: {x: 0.47, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa07fa4580264044eb934da605cc6df0
+      internalID: -1283787571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      piedad_hand_attack_0: -123401417
+      piedad_hand_attack_1: -2143802092
+      piedad_hand_attack_10: -1118010399
+      piedad_hand_attack_11: 1189345888
+      piedad_hand_attack_12: -345314014
+      piedad_hand_attack_13: 492033393
+      piedad_hand_attack_14: -334673824
+      piedad_hand_attack_15: 1353865859
+      piedad_hand_attack_16: 2094665701
+      piedad_hand_attack_17: 539064568
+      piedad_hand_attack_18: -1209325202
+      piedad_hand_attack_19: -1551003949
+      piedad_hand_attack_2: 792343139
+      piedad_hand_attack_20: -1827338125
+      piedad_hand_attack_21: 386110961
+      piedad_hand_attack_22: 162162867
+      piedad_hand_attack_23: -1799696997
+      piedad_hand_attack_24: -315681555
+      piedad_hand_attack_25: -1919162846
+      piedad_hand_attack_26: -525160025
+      piedad_hand_attack_27: 82455129
+      piedad_hand_attack_28: 1456753041
+      piedad_hand_attack_29: 2079979450
+      piedad_hand_attack_3: 1134836153
+      piedad_hand_attack_30: 1329352441
+      piedad_hand_attack_31: 1123350849
+      piedad_hand_attack_32: -2064692899
+      piedad_hand_attack_33: 1007508001
+      piedad_hand_attack_34: 126970558
+      piedad_hand_attack_35: 1147673309
+      piedad_hand_attack_36: -2015419010
+      piedad_hand_attack_37: 1688026263
+      piedad_hand_attack_38: 2091118699
+      piedad_hand_attack_39: -1797602936
+      piedad_hand_attack_4: 32621961
+      piedad_hand_attack_40: -1283787571
+      piedad_hand_attack_5: 139429106
+      piedad_hand_attack_6: 2093768209
+      piedad_hand_attack_7: 1333304593
+      piedad_hand_attack_8: -130155088
+      piedad_hand_attack_9: 928314879
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

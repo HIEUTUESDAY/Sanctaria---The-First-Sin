@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7632366795359036495}
   m_Layer: 14
-  m_Name: Facing Spot Point
+  m_Name: FacingSpotPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 3591786836798738503}
   - component: {fileID: 387634613884232746}
   m_Layer: 9
-  m_Name: Body Hit Zone
+  m_Name: BodyHitZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -125,7 +125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7734315809381474489}
   m_Layer: 14
-  m_Name: Behind Spot Point
+  m_Name: BehindSpotPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 5715564397959698036}
   - component: {fileID: 5698285565815043300}
   m_Layer: 9
-  m_Name: Mele Attack Zone
+  m_Name: MeleAttackZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -241,7 +241,7 @@ GameObject:
   - component: {fileID: 3631261267087280674}
   - component: {fileID: 1402920181648630236}
   m_Layer: 13
-  m_Name: Attack Detection Zone
+  m_Name: AttackDetectionZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -646,7 +646,7 @@ GameObject:
   - component: {fileID: 1531948334888425386}
   - component: {fileID: 1914993935195824689}
   m_Layer: 10
-  m_Name: Ground Detection Zone
+  m_Name: GroundDetectionZone
   m_TagString: GroundDetectionZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

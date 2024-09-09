@@ -44,4 +44,14 @@ internal class AnimationString
     internal static string risingTrigger = "risingTrigger";
     internal static string enterLadderTrigger = "enterLadderTrigger";
 
+    #region TenPiedad Boss
+
+    internal static string isOnAttack = "isOnAttack";
+    internal static string isWaking = "isWaking";
+    internal static string activeBossTrigger = "activeBossTrigger";
+    internal static string footAttackTrigger = "footAttackTrigger";
+    internal static string handAttackTrigger = "handAttackTrigger";
+
+    #endregion
+
 }

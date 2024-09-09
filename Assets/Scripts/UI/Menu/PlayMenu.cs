@@ -41,7 +41,7 @@ public class PlayMenu : MonoBehaviour
             {
                 saveSlots[i].newGameImage.SetActive(false);
                 saveSlots[i].loadGameImage.SetActive(true);
-                saveSlots[i].currentAreText.text = GameManager.Instance.LoadSaveSlotData(slotIndex).playerCheckpointData.sceneName;
+                saveSlots[i].currentAreText.text = GameManager.Instance.LoadSaveSlotData(slotIndex).playerCheckpointData.areaName;
                 saveSlots[i].tearsOfAtonementText.text = ((int)GameManager.Instance.LoadSaveSlotData(slotIndex).playerInventoryData.tearsOfAtonement).ToString();
             }
             else

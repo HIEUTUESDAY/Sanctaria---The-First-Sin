@@ -17,6 +17,9 @@ TagManager:
   - LadderPlatform
   - Spikes
   - Swamp
+  - BossCameraBoundary
+  - Boss
+  - BossGround
   layers:
   - Default
   - TransparentFX
@@ -35,7 +38,7 @@ TagManager:
   - EnemySpotZone
   - Item
   - Ladder
-  - 
+  - Boss
   - 
   - 
   - 

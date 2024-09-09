@@ -9,9 +9,22 @@ public class CheckPointManager : MonoBehaviour
     [SerializeField] private SceneData thisSceneData;
     [Space(5)]
 
+    [Header("This checkpoint Area")]
+    [SerializeField] private CheckPointArea checkPointArea;
+
+    public enum CheckPointArea
+    {
+        Forest,
+        Castle,
+        Dungeon,
+        Village,
+        Mountain
+    }
+
     private Animator animator;
     [SerializeField] private bool isActivated;
 
+    
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -83,7 +96,7 @@ public class CheckPointManager : MonoBehaviour
         {
             // Gather all player data
             PlayerData playerData = new PlayerData(player);
-            PlayerCheckpointData playerCheckpointData = new PlayerCheckpointData(SceneManager.GetActiveScene().name, transform.position);
+            PlayerCheckpointData playerCheckpointData = new PlayerCheckpointData( checkPointArea.ToString(), SceneManager.GetActiveScene().name, transform.position);
             PlayerInventoryData playerInventoryData = new PlayerInventoryData
             (
                 inventoryManager.GetTearsAmount(),

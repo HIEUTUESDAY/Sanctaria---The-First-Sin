@@ -59,7 +59,6 @@ public class WheelBroken : Enemy
     {
         base.OnDead();
 
-        // Fall down when is dead
         bodyHitCollider.enabled = false;
     }
 

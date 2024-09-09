@@ -243,8 +243,8 @@ public class SceneChangerManager : MonoBehaviour
         }
 
         // Load player data
-        player.CurrentHealth = player.MaxHealth * 0.5f;
-        player.CurrentStamina = player.MaxStamina * 0.25f;
+        player.CurrentHealth = player.MaxHealth * 0.25f;
+        player.CurrentMana = player.MaxMana * 0.25f;
         player.CurrentHealthPotion = 2;
     }
 
@@ -263,7 +263,7 @@ public class SceneChangerManager : MonoBehaviour
             // Load player data
             player.transform.position = new Vector3(gameData.playerCheckpointData.position[0], gameData.playerCheckpointData.position[1], gameData.playerCheckpointData.position[2]);
             player.CurrentHealth = gameData.playerData.health;
-            player.CurrentStamina = gameData.playerData.stamina;
+            player.CurrentMana = gameData.playerData.stamina;
             player.CurrentHealthPotion = gameData.playerData.healthPotions;
 
             player.ResetPlayerAnimation();
@@ -329,7 +329,7 @@ public class SceneChangerManager : MonoBehaviour
             player.IsAlive = true;
             player.transform.position = new Vector3(gameData.playerCheckpointData.position[0], gameData.playerCheckpointData.position[1], gameData.playerCheckpointData.position[2]);
             player.CurrentHealth = player.MaxHealth;
-            player.CurrentStamina = player.CurrentStamina;
+            player.CurrentMana = player.CurrentMana;
             player.CurrentHealthPotion = player.MaxHealthPotion;
 
             player.ResetPlayerAnimation();
