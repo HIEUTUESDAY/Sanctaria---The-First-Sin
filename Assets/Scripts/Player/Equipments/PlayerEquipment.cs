@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +8,9 @@ public class PlayerEquipment : MonoBehaviour
     public MeaCulpaHeart equippedMeaCulpaHeart;
     public Prayer equippedPrayer;
 
+    [SerializeField] private float prayerCooldownTime = 5f;
+    public float prayerCooldown = 0f;
+
     private void Awake()
     {
         player = GetComponent<Player>();
@@ -17,6 +19,7 @@ public class PlayerEquipment : MonoBehaviour
     private void Update()
     {
         SetCurrentEquipment();
+        UpdatePrayerCooldown();
     }
 
     private void SetCurrentEquipment()
@@ -25,7 +28,36 @@ public class PlayerEquipment : MonoBehaviour
         AddMeaCulpaHeartBuffs(equippedMeaCulpaHeart);
 
         equippedPrayer = InventoryManager.Instance.GetPrayerEquipment();
-        AddMeaCulpaHeartBuffs(equippedMeaCulpaHeart);
+        AddPrayer(equippedPrayer);
+    }
+
+    private void UpdatePrayerCooldown()
+    {
+        if (prayerCooldown > 0)
+        {
+            prayerCooldown -= Time.deltaTime;
+        }
+    }
+
+    public void PerformPrayer()
+    {
+        if (prayerCooldown > 0 || equippedPrayer.itemName.Equals(null))
+        {
+            return;
+        }
+
+        switch (equippedPrayer.itemName)
+        {
+            case "Verdiales of The Forsaken Hamlet":
+                SpawnVerdialesProjectiles();
+                break;
+
+            default:
+                Debug.Log("No Prayer Equipped");
+                break;
+        }
+
+        prayerCooldown = prayerCooldownTime;
     }
 
     public void UpdateEquippedMeaCulpaHeart()
@@ -52,8 +84,8 @@ public class PlayerEquipment : MonoBehaviour
             player.defenseBuff = newEquippedMeaCulpaHeart.defenseModifier;
             player.healthBuff = newEquippedMeaCulpaHeart.healthModifier;
             player.healthRegenBuff = newEquippedMeaCulpaHeart.healthRegenModifier;
-            player.manaBuff = newEquippedMeaCulpaHeart.staminaModifier;
-            player.manaRegenBuff = newEquippedMeaCulpaHeart.staminaRegenModifier;
+            player.manaBuff = newEquippedMeaCulpaHeart.manaModifier;
+            player.manaRegenBuff = newEquippedMeaCulpaHeart.manaRegenModifier;
             player.moveSpeedBuff = newEquippedMeaCulpaHeart.moveSpeedModifier;
             player.jumpPowerBuff = newEquippedMeaCulpaHeart.jumpPowerModifier;
             player.wallJumpPowerBuff = newEquippedMeaCulpaHeart.wallJumpPowerModifier;
@@ -63,7 +95,7 @@ public class PlayerEquipment : MonoBehaviour
 
     private void RemoveMeaCulpaHeartBuffs()
     {
-        if(player != null)
+        if (player != null)
         {
             player.damageBuff = 0f;
             player.defenseBuff = 0f;
@@ -82,32 +114,15 @@ public class PlayerEquipment : MonoBehaviour
     {
         if (newPrayer != null)
         {
-            equippedPrayer.itemName = newPrayer.itemName;
+            player.prayerManaCost = newPrayer.manaCost;
         }
     }
 
     private void RemovePrayer()
     {
-        equippedPrayer.itemName = "";
-        equippedPrayer.itemSprite = null;
-        equippedPrayer.itemDescription = "";
-        equippedPrayer.isItemEquipped = false;
-    }
-
-    public void PerformPrayer()
-    {
-        if (equippedPrayer.itemName == "") return;
-
-        switch (equippedPrayer.itemName)
+        if (player != null)
         {
-            case "Verdiales of The Forsaken Hamlet":
-                StartCoroutine(SpawnVerdialesProjectiles());
-                break;
-
-            // Add more cases for other Prayers
-            default:
-                Debug.Log("No Prayer Equipped");
-                break;
+            player.prayerManaCost = 0f;
         }
     }
 
@@ -116,30 +131,23 @@ public class PlayerEquipment : MonoBehaviour
     #region Verdiales of The Forsaken Hamlet
 
     [Header("Verdiales of The Forsaken Hamlet")]
-    public GameObject verdialesProjectilePrefab; // Reference to the projectile prefab
+    public GameObject verdialesProjectilePrefab;
     public Transform spawnVerdialesPoint;
 
-    private IEnumerator SpawnVerdialesProjectiles()
+    private void SpawnVerdialesProjectiles()
     {
-        // Determine the facing direction
-        bool isFacingRight = player.IsFacingRight; // Assuming IsFacingRight is a public property
+        bool isFacingRight = player.IsFacingRight;
 
-        // Calculate the spawn rotation based on the player's facing direction
         Quaternion spawnRotation = isFacingRight ? spawnVerdialesPoint.rotation : Quaternion.Euler(spawnVerdialesPoint.rotation.eulerAngles + new Vector3(0, 180, 0));
 
-        // Instantiate the forward-moving projectile
         GameObject forwardProjectile = Instantiate(verdialesProjectilePrefab, spawnVerdialesPoint.position, spawnRotation);
         VerdialesProjectileMovement forwardMovement = forwardProjectile.GetComponent<VerdialesProjectileMovement>();
         forwardMovement.moveForward = true;
 
-        // Instantiate the backward-moving projectile
         GameObject backwardProjectile = Instantiate(verdialesProjectilePrefab, spawnVerdialesPoint.position, spawnRotation);
         VerdialesProjectileMovement backwardMovement = backwardProjectile.GetComponent<VerdialesProjectileMovement>();
         backwardMovement.moveForward = false;
-
-        yield return null;
     }
-
 
     #endregion
 

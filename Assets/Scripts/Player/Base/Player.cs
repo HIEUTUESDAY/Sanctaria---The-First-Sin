@@ -1,6 +1,5 @@
 using Cinemachine;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -27,7 +26,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     [Header("Dashing")]
     [SerializeField] private bool canDash = true;
-    [SerializeField] private float dashPower = 20f;
+    [SerializeField] public float dashPower = 20f;
     private float dashTime = 0.5f;
     [SerializeField] private float dashCooldown = 2f;
     private float dashStopRate = 5f;
@@ -41,7 +40,8 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     [SerializeField] private Collider2D LadderPlatformCollider;
     [Space(5)]
 
-    [Header("Wall Jumping")]
+    [Header("Wall Hanging And Jumping")]
+    [SerializeField] private bool canWallHang = true;
     [SerializeField] private float wallSlideSpeed = 1f;
     [SerializeField] private float wallSlideDuration = 0.5f;
     private float wallJumpingDirection;
@@ -75,7 +75,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     [Header("Save Point")]
     [SerializeField] private bool isInSavePoint;
-    private CheckPointManager CheckPointManager;
+    private CheckPointManager CheckPoint;
     [Space(5)]
 
     [Header("One Way Platform Movement")]
@@ -108,14 +108,15 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     [Space(5)]
 
     [Header("Boss Fight")]
-    [SerializeField] public bool isLookAtBoss = false;
+    [SerializeField] public bool isDefeatedBoss = false;
     [Space(5)]
 
     public Animator Animator;
+    public PlayerInput PlayerInput;
     public TouchingDirections TouchingDirections;
     public CameraFollowObject CameraFollowObject;
     public GhostTrail GhostTrail;
-    public HealthBarManager HealthBar;
+    public PlayerHealthBarManager HealthBar;
     public CinemachineImpulseSource ImpulseSource;
     public PlayerEquipment PlayerEquipment;
     private float fallSpeedYDampingChangeThreshold;
@@ -126,20 +127,20 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     #region Player Equipment buffs
 
     [Header("Mea Culpa Heart Buffs")]
-    public float damageBuff;
-    public float defenseBuff;
-    public float healthBuff;
-    public float healthRegenBuff;
-    public float manaBuff;
-    public float manaRegenBuff;
-    public float moveSpeedBuff;
-    public float jumpPowerBuff;
-    public float wallJumpPowerBuff;
-    public float dashPowerBuff;
+    public float damageBuff = 0f;
+    public float defenseBuff = 0f;
+    public float healthBuff = 0f;
+    public float healthRegenBuff = 0f;
+    public float manaBuff = 0f;
+    public float manaRegenBuff = 0f;
+    public float moveSpeedBuff = 0f;
+    public float jumpPowerBuff = 0f;
+    public float wallJumpPowerBuff = 0f;
+    public float dashPowerBuff = 0f;
     [Space(5)]
 
-    [Header("Mea Culpa Heart Buffs")]
-    public float prayerManaCost = 5f;
+    [Header("Prayer Mana Cost")]
+    public float prayerManaCost = 0f;
 
     #endregion
 
@@ -436,6 +437,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     {
         RB = GetComponent<Rigidbody2D>();
         Animator = GetComponent<Animator>();
+        PlayerInput = GetComponent<PlayerInput>();
         TouchingDirections = GetComponent<TouchingDirections>();
         PlayerCollider = GetComponent<CapsuleCollider2D>();
         GhostTrail = GetComponent<GhostTrail>();
@@ -546,11 +548,14 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             if (moveInput.x > 0 && !IsFacingRight)
             {
                 TurnPlayer();
+                StartCoroutine(DisableWallHang());
 
             }
             else if (moveInput.x < 0 && IsFacingRight)
             {
                 TurnPlayer();
+                StartCoroutine(DisableWallHang());
+
             }
         }
     }
@@ -679,15 +684,15 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     public void ActivateSavePoint()
     {
-        if (CheckPointManager != null)
+        if (CheckPoint != null)
         {
-            CheckPointManager.ActiveCheckPointThenSaveGame();
+            CheckPoint.ActiveCheckPointThenSaveGame();
         }
     }
 
     public void ShowDeathTitle()
     {
-        FadeInAnimation deathFadeIn = playerDeathTitle.GetComponent<FadeInAnimation>();
+        DeathFadeInTitle deathFadeIn = playerDeathTitle.GetComponent<DeathFadeInTitle>();
 
         if (deathFadeIn != null)
         {
@@ -726,6 +731,17 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
                 Vector3 targetPosition = new Vector3(LadderCollider.bounds.center.x, LadderPlatformCollider.bounds.min.y - (PlayerCollider.size.y / 4), transform.position.z);
                 transform.position = targetPosition;
             }
+        }
+    }
+
+    public void OpenTeleportMenu()
+    {
+        if (!UIManager.Instance.menuActivated && !UIManager.Instance.teleportMenu.activeSelf)
+        {
+            Time.timeScale = 0;
+            UIManager.Instance.teleportMenu.SetActive(true);
+            UIManager.Instance.menuActivated = true;
+            TeleportMapManager.Instance.SetCurrentRoomSelected();
         }
     }
 
@@ -983,7 +999,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         }
     }
 
-
     public void OnAttack(InputAction.CallbackContext context)
     {
         if (!UIManager.Instance.menuActivated)
@@ -1025,8 +1040,11 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         {
             if (context.started && CanMove && TouchingDirections.IsGrabWallDetected && !TouchingDirections.IsGrounded && !IsWallHanging)
             {
-                Animator.SetTrigger(AnimationString.wallHangTrigger);
-                StartCoroutine(WallHanging());
+                if (canWallHang)
+                {
+                    Animator.SetTrigger(AnimationString.wallHangTrigger);
+                    StartCoroutine(WallHanging());
+                }
             }
         }
     }
@@ -1035,7 +1053,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     {
         if (!UIManager.Instance.menuActivated)
         {
-            if (context.started && IsAlive && CanMove && TouchingDirections.IsGrounded && CurrentHealthPotion > 0)
+            if (context.started && IsAlive && CanMove && !IsDashing && TouchingDirections.IsGrounded && CurrentHealthPotion > 0)
             {
                 Animator.SetTrigger(AnimationString.healTrigger);
             }
@@ -1048,6 +1066,14 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         {
             if (context.started && IsAlive && CanMove && TouchingDirections.IsGrounded && isInSavePoint)
             {
+                if (IsFacingRight)
+                {
+                    transform.position = new Vector3(CheckPoint.transform.position.x - 1f, transform.position.y, transform.position.z);
+                }
+                else
+                {
+                    transform.position = new Vector3(CheckPoint.transform.position.x + 1f, transform.position.y, transform.position.z);
+                }
                 Animator.SetTrigger(AnimationString.saveTrigger);
             }
         }
@@ -1059,6 +1085,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         {
             if (context.started && hasItemInRange && Item.IsOnFloor)
             {
+                transform.position = new Vector3(Item.transform.position.x, transform.position.y, transform.position.z);
                 Animator.SetTrigger(AnimationString.collectFloorTrigger);
             }
             else if (context.started && hasItemInRange && !Item.IsOnFloor)
@@ -1105,7 +1132,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         }
     }
 
-
     public void OnCloseMenus(InputAction.CallbackContext context)
     {
         if (context.started && UIManager.Instance.menuActivated && UIManager.Instance.inventoryMenu.activeSelf)
@@ -1127,8 +1153,13 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             UIManager.Instance.mapMenu.SetActive(true);
             UIManager.Instance.menuActivated = true;
         }
+        else if (context.started && UIManager.Instance.menuActivated && UIManager.Instance.teleportMenu.activeSelf)
+        {
+            Time.timeScale = 1;
+            UIManager.Instance.teleportMenu.SetActive(false);
+            UIManager.Instance.menuActivated = false;
+        }
     }
-
 
     public void OnPerformPrayer(InputAction.CallbackContext context)
     {
@@ -1136,7 +1167,10 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         {
             if (context.started && IsAlive && CanMove && TouchingDirections.IsGrounded && PlayerEquipment.equippedPrayer.itemName != "" && CurrentMana >= prayerManaCost)
             {
-                Animator.SetTrigger(AnimationString.prayerTrigger);
+                if(PlayerEquipment.prayerCooldown <= 0)
+                {
+                    Animator.SetTrigger(AnimationString.prayerTrigger);
+                }
             }
         }
     }
@@ -1148,14 +1182,36 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     private IEnumerator DisableLadderPlatformCollision()
     {
         Collider2D PlatformCollider = LadderPlatformCollider.GetComponent<Collider2D>();
-        Physics2D.IgnoreCollision(PlayerCollider, PlatformCollider, true);
+
+        if (PlatformCollider != null)
+        {
+            Physics2D.IgnoreCollision(PlayerCollider, PlatformCollider, true);
+        }
+        else
+        {
+            yield break;
+        }
 
         while (IsClimbing && isOnLadder)
         {
             yield return null;
         }
 
-        Physics2D.IgnoreCollision(PlayerCollider, PlatformCollider, false);
+        if (PlatformCollider != null)
+        {
+            Physics2D.IgnoreCollision(PlayerCollider, PlatformCollider, false);
+        }
+        else
+        {
+            yield break;
+        }
+    }
+
+    private IEnumerator DisableWallHang()
+    {
+        canWallHang = false;
+        yield return new WaitForSeconds(0.1f);
+        canWallHang = true;
     }
 
     private IEnumerator Knockback(Vector2 knockback)
@@ -1294,7 +1350,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     private IEnumerator WallJumpSpeedBoost()
     {
-        // Reset move speed to original if boost was already active
         if (isWallJumpSpeedBoostActive)
         {
             moveSpeed = originalMoveSpeed;
@@ -1307,10 +1362,10 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         moveSpeed += wallJumpSpeedBoost;
         isWallJumpSpeedBoostActive = true;
 
-        yield return new WaitForSeconds(wallJumpSpeedBoostDuration); // Speed boost duration
+        yield return new WaitForSeconds(wallJumpSpeedBoostDuration);
 
         float elapsedTime = 0f;
-        float decreaseDuration = 1f; // Duration to smoothly decrease the speed boost
+        float decreaseDuration = 1f;
         float initialBoost = wallJumpSpeedBoost;
 
         while (elapsedTime < decreaseDuration)
@@ -1320,7 +1375,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             yield return null;
         }
 
-        moveSpeed = originalMoveSpeed; // Ensure the boost is completely removed
+        moveSpeed = originalMoveSpeed;
         isWallJumpSpeedBoostActive = false;
     }
 
@@ -1339,7 +1394,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         if (collision.CompareTag("SavePoint"))
         {
             isInSavePoint = true;
-            CheckPointManager = collision.GetComponent<CheckPointManager>();
+            CheckPoint = collision.GetComponent<CheckPointManager>();
         }
 
         if (collision.CompareTag("Item"))
@@ -1362,7 +1417,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         if (collision.CompareTag("SavePoint"))
         {
             isInSavePoint = false;
-            CheckPointManager = null;
+            CheckPoint = null;
         }
 
         if (collision.CompareTag("Item"))

@@ -6,6 +6,7 @@ using UnityEngine;
 public class Prayer : ItemBase
 {
     public bool isItemEquipped;
+    public float manaCost;
 
     public override void LoadSprite()
     {

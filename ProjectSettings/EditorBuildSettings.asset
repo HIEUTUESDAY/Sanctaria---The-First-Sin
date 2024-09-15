@@ -30,8 +30,11 @@ EditorBuildSettings:
     path: Assets/Settings/Scenes/VillageEntrance.unity
     guid: aedee90cc7bb5b14cbef87d36ed8cf01
   - enabled: 1
-    path: Assets/Settings/Scenes/VillageHouse.unity
+    path: Assets/Settings/Scenes/VillageHouseFloor.unity
     guid: 9c4c7d2531726db41b3aa751dbed4ade
+  - enabled: 1
+    path: Assets/Settings/Scenes/VillageHouseBasement.unity
+    guid: fd1c0a1a174524d41b76c0edbd76e46a
   - enabled: 1
     path: Assets/Settings/Scenes/BossTenPiedad.unity
     guid: b6951bfc2b7cc27498fa5fe8ca48097e

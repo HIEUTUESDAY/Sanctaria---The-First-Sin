@@ -73,7 +73,6 @@ public class WheelBrokenChaseTorwardPlayer : EnemyChaseSOBase
     {
         base.DoExitLogic();
 
-        enemy.StopAllCoroutines();
     }
 
     public override void DoFrameUpdateLogic()

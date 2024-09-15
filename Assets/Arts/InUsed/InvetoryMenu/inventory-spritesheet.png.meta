@@ -383,7 +383,7 @@ TextureImporter:
         width: 84
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -391,6 +391,27 @@ TextureImporter:
       bones: []
       spriteID: 28b75f2af3e361746b512cccf330b0b0
       internalID: -1064923692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss-health-bar
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 0
+        width: 346
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa5d8fe2b65bff140a9f21de6d6c4247
+      internalID: 242699518
       vertices: []
       indices: 
       edges: []
@@ -407,6 +428,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       background: -185362877
+      boss-health-bar: 242699518
       description_big: 1219609988
       description_small: -909889507
       inventory-tears: -1064923692

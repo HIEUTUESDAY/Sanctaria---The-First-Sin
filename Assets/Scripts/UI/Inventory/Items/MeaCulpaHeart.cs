@@ -10,8 +10,8 @@ public class MeaCulpaHeart : ItemBase
     public float defenseModifier;
     public float healthModifier;
     public float healthRegenModifier;
-    public float staminaModifier;
-    public float staminaRegenModifier;
+    public float manaModifier;
+    public float manaRegenModifier;
     public float moveSpeedModifier;
     public float jumpPowerModifier;
     public float wallJumpPowerModifier;

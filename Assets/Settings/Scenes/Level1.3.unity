@@ -408,6 +408,10 @@ MonoBehaviour:
     sceneName: 
     enemies: []
     items: []
+    boss:
+      bossName: 
+      isAlive: 0
+      position: []
     checkPoint:
       isActived: 0
       position: []
@@ -18071,6 +18075,10 @@ MonoBehaviour:
     sceneName: 
     enemies: []
     items: []
+    boss:
+      bossName: 
+      isAlive: 0
+      position: []
     checkPoint:
       isActived: 0
       position: []

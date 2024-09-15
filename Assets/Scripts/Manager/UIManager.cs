@@ -18,8 +18,11 @@ public class UIManager : MonoBehaviour
     public GameObject inventoryMenu;
     public GameObject mapMenu;
     public GameObject optionsMenu;
+    public GameObject teleportMenu;
     public bool menuActivated = false;
     [SerializeField] private Transform VFXcanvas;
+
+    public GameObject tenPiedadHealthBar; 
 
     private void Awake()
     {

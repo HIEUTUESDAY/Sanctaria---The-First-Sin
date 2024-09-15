@@ -13,9 +13,9 @@ public class SwampArea : MonoBehaviour
                 Player player = collision.GetComponent<Player>();
                 if (player != null)
                 {
-                    player.moveSpeed = player.moveSpeed - 5f;
-                    player.jumpPower = player.jumpPower - 5f;
-                    player.Animator.speed = 0.5f;
+                    player.moveSpeed -= 5f;
+                    player.jumpPower -= 5f;
+                    player.dashPower -= 10f;
                 }
             }
         }
@@ -30,9 +30,9 @@ public class SwampArea : MonoBehaviour
                 Player player = collision.GetComponent<Player>();
                 if (player != null)
                 {
-                    player.moveSpeed = player.moveSpeed + 5f;
-                    player.jumpPower = player.jumpPower + 5f;
-                    player.Animator.speed = 1f;
+                    player.moveSpeed += 5f;
+                    player.jumpPower += 5f;
+                    player.dashPower += 10f;
                 }
             }
         }

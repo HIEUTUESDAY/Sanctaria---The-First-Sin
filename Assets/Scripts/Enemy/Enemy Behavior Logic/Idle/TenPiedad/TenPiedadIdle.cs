@@ -24,6 +24,7 @@ public class TenPiedadIdle : EnemyIdleSOBase
     {
         base.DoExitLogic();
 
+        UIManager.Instance.tenPiedadHealthBar.SetActive(true);
     }
 
     public override void DoFrameUpdateLogic()
@@ -50,11 +51,13 @@ public class TenPiedadIdle : EnemyIdleSOBase
     {
         if (hasTarget)
         {
+            Player.Instance.PlayerInput.enabled = false;
             enemy.Animator.SetTrigger(AnimationString.activeBossTrigger);
 
             if (CanMove)
             {
                 enemy.StateMachine.ChangeState(enemy.ChaseState);
+                Player.Instance.PlayerInput.enabled = true;
             }
         }
         else

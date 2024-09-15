@@ -13,6 +13,7 @@ public class SceneChangerManager : MonoBehaviour
     public bool loadToGamePlay = false;
     public bool loadFromDoor = false;
     public bool loadToMainMenu = false;
+    public bool loadFromCheckpoint = false;
 
     private SceneChanger.DoorToSpawnAt doorToSpawnTo;
 
@@ -62,6 +63,12 @@ public class SceneChangerManager : MonoBehaviour
     {
         loadToGamePlay = true;
         StartCoroutine(ChangeSceneFromNewGameFileCoroutine(newGameScene));
+    }
+
+    public void ChangeSceneFromCheckpoint(SceneField checkpointScene)
+    {
+        loadFromCheckpoint = true;
+        StartCoroutine(ChangeSceneFromCheckpointCoroutine(checkpointScene));
     }
 
     private void FindDoor(SceneChanger.DoorToSpawnAt doorSpawnNumber)
@@ -138,6 +145,22 @@ public class SceneChangerManager : MonoBehaviour
         SceneManager.LoadScene(newGameScene);
     }
 
+    private IEnumerator ChangeSceneFromCheckpointCoroutine(SceneField checkpointScene)
+    {
+        // run load scene
+        SceneLoadManager.Instance.StartFadeOut();
+
+        // keep loading
+        while (SceneLoadManager.Instance.IsFadingOut)
+        {
+            yield return null;
+        }
+
+        UIManager.Instance.teleportMenu.SetActive(false);
+        UIManager.Instance.menuActivated = false;
+        SceneManager.LoadScene(checkpointScene);
+    }
+
     #endregion
 
     #region Coroutines after loaded scenes
@@ -183,6 +206,9 @@ public class SceneChangerManager : MonoBehaviour
         }
 
         MapRoomManager.Instance.RevealRoom();
+
+        TeleportMapManager.Instance.RevealRoom();
+
         loadFromDoor = false;
 
         while (SceneLoadManager.Instance.IsLoading)
@@ -220,7 +246,11 @@ public class SceneChangerManager : MonoBehaviour
         }
 
         MapRoomManager.Instance.LockAllRoom();
+        TeleportMapManager.Instance.LockAllRoom();
+
         MapRoomManager.Instance.RevealRoom();
+        TeleportMapManager.Instance.RevealRoom();
+
         GameManager.Instance.isNewGame = false;
         loadToGamePlay = false;
 
@@ -281,6 +311,14 @@ public class SceneChangerManager : MonoBehaviour
             {
                 mapRoomManager.LoadSaveFileMapRoomsData(gameData);
             }
+
+            // Load teleport map data
+
+            TeleportMapManager teleportMapManager = player.GetComponentInChildren<TeleportMapManager>();
+            if (teleportMapManager != null)
+            {
+                teleportMapManager.LoadSaveFileMapRoomsData(gameData);
+            }
         }
 
         // Load save file scene data
@@ -293,6 +331,7 @@ public class SceneChangerManager : MonoBehaviour
         }
 
         MapRoomManager.Instance.RevealRoom();
+        TeleportMapManager.Instance.RevealRoom();
         GameManager.Instance.isLoadGame = false;
         loadToGamePlay = false;
 
@@ -318,7 +357,7 @@ public class SceneChangerManager : MonoBehaviour
         if (player != null)
         {
             // Reset death title
-            FadeInAnimation deathFadeIn = player.playerDeathTitle.GetComponent<FadeInAnimation>();
+            DeathFadeInTitle deathFadeIn = player.playerDeathTitle.GetComponent<DeathFadeInTitle>();
 
             if (deathFadeIn != null)
             {
@@ -345,6 +384,7 @@ public class SceneChangerManager : MonoBehaviour
         }
 
         MapRoomManager.Instance.RevealRoom();
+        TeleportMapManager.Instance.RevealRoom();
         GameManager.Instance.isRespawn = false;
         loadToGamePlay = false;
 
@@ -378,6 +418,42 @@ public class SceneChangerManager : MonoBehaviour
         SceneLoadManager.Instance.StartFadeIn();
     }
 
+    private IEnumerator LoadCheckpointScene(UnityEngine.SceneManagement.Scene scene)
+    {
+        SceneLoadManager.Instance.StartLoading(2f);
+
+        CheckPointManager checkPoint = FindObjectOfType<CheckPointManager>();
+
+        Player player = Player.Instance;
+
+        if (player != null)
+        {
+            // load player data
+            player.transform.position = checkPoint.transform.position;
+
+            player.ResetPlayerAnimation();
+        }
+
+        SceneDataManager sceneDataManager = FindObjectOfType<SceneDataManager>();
+
+        if (sceneDataManager != null)
+        {
+            sceneDataManager.LoadSceneData(scene.name);
+        }
+
+        MapRoomManager.Instance.RevealRoom();
+        TeleportMapManager.Instance.RevealRoom();
+        loadFromCheckpoint = false;
+
+        while (SceneLoadManager.Instance.IsLoading)
+        {
+            yield return null;
+        }
+
+        SceneLoadManager.Instance.StartFadeIn();
+        player.Animator.SetTrigger(AnimationString.spawnTrigger);
+    }
+
     #endregion
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -387,6 +463,10 @@ public class SceneChangerManager : MonoBehaviour
             if (loadFromDoor)
             {
                 StartCoroutine(LoadNewScene(scene));
+            }
+            else if (loadFromCheckpoint)
+            {
+                StartCoroutine(LoadCheckpointScene(scene));
             }
 
             if (loadToGamePlay)

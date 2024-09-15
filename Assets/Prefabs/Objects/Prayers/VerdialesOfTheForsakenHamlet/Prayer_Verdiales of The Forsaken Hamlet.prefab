@@ -170,3 +170,4 @@ MonoBehaviour:
   itemDescription: Can perform a special ability when equip
   isOnFloor: 1
   canBeCollect: 0
+  manaCost: 25

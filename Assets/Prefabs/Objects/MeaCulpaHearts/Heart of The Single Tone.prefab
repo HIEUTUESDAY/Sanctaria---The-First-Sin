@@ -170,13 +170,13 @@ MonoBehaviour:
   itemDescription: Slighly increase wearer defense and move speed!
   isOnFloor: 1
   canBeCollect: 0
-  damageModifier: 0
-  defenseModifier: 10
-  healthModifier: 0
-  healthRegenModifier: 0
+  damageModifier: 15
+  defenseModifier: 15
+  healthModifier: 20
+  healthRegenModifier: 20
   staminaModifier: 0
   staminaRegenModifier: 0
-  moveSpeedModifier: 1
+  moveSpeedModifier: 0
   jumpPowerModifier: 0
   wallJumpPowerModifier: 0
   dashPowerModifier: 0

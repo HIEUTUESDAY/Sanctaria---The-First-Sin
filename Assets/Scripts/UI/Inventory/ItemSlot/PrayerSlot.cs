@@ -12,6 +12,7 @@ public class PrayerSlot : MonoBehaviour
     public string prayerName;
     public Sprite prayerSprite;
     public string prayerDescription;
+    public float prayerManaCost;
     [Space(5)]
 
     [Header("Prayer Slot")]
@@ -49,6 +50,7 @@ public class PrayerSlot : MonoBehaviour
     {
         prayerName = prayer.itemName;
         prayerDescription = prayer.itemDescription;
+        prayerManaCost = prayer.manaCost;
         prayerSprite = prayer.itemSprite;
         hasPrayer = true;
         isPrayerEquipped = prayer.isItemEquipped;
@@ -59,6 +61,7 @@ public class PrayerSlot : MonoBehaviour
     {
         prayerName = "";
         prayerDescription = "";
+        prayerManaCost = 0;
         prayerSprite = null;
         hasPrayer = false;
         isPrayerEquipped = false;
@@ -140,6 +143,7 @@ public class PrayerSlot : MonoBehaviour
                 {
                     itemName = prayerName,
                     itemDescription = prayerDescription,
+                    manaCost = prayerManaCost,
                     itemSprite = prayerSprite,
                     isItemEquipped = isPrayerEquipped
                 });

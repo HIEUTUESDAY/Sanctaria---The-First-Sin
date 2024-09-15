@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FadeInAnimation : MonoBehaviour
+public class DeathFadeInTitle : MonoBehaviour
 {
     public Image backGroundImage;
     public Image titleImage;
@@ -45,6 +45,11 @@ public class FadeInAnimation : MonoBehaviour
         backGroundImage.color = SetAlpha(backGroundImage.color, 0f);
         titleImage.color = SetAlpha(titleImage.color, 0f);
         continueText.color = SetAlpha(continueText.color, 0f);
+
+        if (UIManager.Instance.tenPiedadHealthBar.activeSelf)
+        {
+            UIManager.Instance.tenPiedadHealthBar.SetActive(false);
+        }
     }
 
     private Color SetAlpha(Color color, float alpha)

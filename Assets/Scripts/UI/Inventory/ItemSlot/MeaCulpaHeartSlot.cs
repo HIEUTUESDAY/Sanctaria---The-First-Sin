@@ -64,8 +64,8 @@ public class MeaCulpaHeartSlot : MonoBehaviour
         heartDefenseModifier = meaCulpaHeart.defenseModifier;
         heartHealthModifier = meaCulpaHeart.healthModifier;
         heartHealthRegenModifier = meaCulpaHeart.healthRegenModifier;
-        heartStaminaModifier = meaCulpaHeart.staminaModifier;
-        heartStaminaRegenModifier = meaCulpaHeart.staminaRegenModifier;
+        heartStaminaModifier = meaCulpaHeart.manaModifier;
+        heartStaminaRegenModifier = meaCulpaHeart.manaRegenModifier;
         heartMoveSpeedModifier = meaCulpaHeart.moveSpeedModifier;
         heartJumpPowerModifier = meaCulpaHeart.jumpPowerModifier;
         heartWallJumpPowerModifier = meaCulpaHeart.wallJumpPowerModifier;
@@ -175,8 +175,8 @@ public class MeaCulpaHeartSlot : MonoBehaviour
                     defenseModifier = heartDefenseModifier,
                     healthModifier = heartHealthModifier,
                     healthRegenModifier = heartHealthRegenModifier,
-                    staminaModifier = heartStaminaModifier,
-                    staminaRegenModifier = heartStaminaRegenModifier,
+                    manaModifier = heartStaminaModifier,
+                    manaRegenModifier = heartStaminaRegenModifier,
                     moveSpeedModifier = heartMoveSpeedModifier,
                     jumpPowerModifier = heartJumpPowerModifier,
                     wallJumpPowerModifier = heartWallJumpPowerModifier,

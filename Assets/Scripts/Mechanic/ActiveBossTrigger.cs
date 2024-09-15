@@ -34,8 +34,6 @@ public class ActiveBossTrigger : MonoBehaviour
                             confiner.m_BoundingShape2D = bossCameraBoundary;
                         }
                     }
-
-                    Destroy(gameObject);
                 }
             }
         }

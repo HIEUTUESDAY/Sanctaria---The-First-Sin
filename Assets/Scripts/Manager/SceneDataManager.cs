@@ -10,10 +10,12 @@ public class SceneDataManager : MonoBehaviour
     public static SceneDataManager Instance;
     private EnemyManager enemyManager;
     private ItemManager itemManager;
+    private BossManager bossManager;
     private CheckPointManager checkPointManager;
     public List<SceneData> sceneDataList;
     private List<EnemyData> enemyDataList;
     private List<ItemData> itemDataList;
+    private BossData bossData;
     [SerializeField] private CheckPointData checkPointData;
 
     void Awake()
@@ -30,6 +32,7 @@ public class SceneDataManager : MonoBehaviour
         {
             enemyManager = FindObjectOfType<EnemyManager>();
             itemManager = FindObjectOfType<ItemManager>();
+            bossManager = FindObjectOfType<BossManager>();
             checkPointManager = FindObjectOfType<CheckPointManager>();
 
             if (enemyManager != null)
@@ -48,6 +51,15 @@ public class SceneDataManager : MonoBehaviour
             else
             {
                 itemDataList = null;
+            }
+
+            if (bossManager != null)
+            {
+                bossData = bossManager.SaveBoss();
+            }
+            else
+            {
+                bossData = null;
             }
 
             if (checkPointManager != null)
@@ -75,6 +87,7 @@ public class SceneDataManager : MonoBehaviour
                     sceneData.sceneName = currentScene;
                     sceneData.enemies = enemyDataList;
                     sceneData.items = itemDataList;
+                    sceneData.boss = bossData;
                     sceneData.checkPoint = checkPointData;
                     return;
                 }
@@ -85,6 +98,7 @@ public class SceneDataManager : MonoBehaviour
                 currentScene,
                 enemyDataList,
                 itemDataList,
+                bossData,
                 checkPointData
             );
 
@@ -97,6 +111,7 @@ public class SceneDataManager : MonoBehaviour
                 currentScene,
                 enemyDataList,
                 itemDataList,
+                bossData,
                 checkPointData
             );
 
@@ -110,6 +125,7 @@ public class SceneDataManager : MonoBehaviour
     {
         enemyManager = FindObjectOfType<EnemyManager>();
         itemManager = FindObjectOfType<ItemManager>();
+        bossManager = FindObjectOfType<BossManager>();
         checkPointManager = FindObjectOfType<CheckPointManager>();
 
         if (enemyManager != null)
@@ -120,6 +136,11 @@ public class SceneDataManager : MonoBehaviour
         if (itemManager != null)
         {
             itemManager.LoadItems(currentScene);
+        }
+
+        if (bossManager != null)
+        {
+            bossManager.LoadBoss(currentScene);
         }
 
         if (checkPointManager != null)

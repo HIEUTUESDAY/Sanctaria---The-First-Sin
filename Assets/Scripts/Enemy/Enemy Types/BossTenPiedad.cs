@@ -1,12 +1,12 @@
 using Cinemachine;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Search;
 using UnityEngine;
 
 public class BossTenPiedad : Enemy
 {
     [SerializeField] private Collider2D bodyHitCollider;
+
+    private BossHealthBarManager BossHealthBarManager;
 
     protected override void AwakeSetup()
     {
@@ -22,6 +22,7 @@ public class BossTenPiedad : Enemy
         ChaseState = new EnemyChaseState(this, StateMachine);
         AttackState = new EnemyAttackState(this, StateMachine);
     }
+
     protected override void StartSetup()
     {
         base.StartSetup();
@@ -33,12 +34,15 @@ public class BossTenPiedad : Enemy
         Animator = GetComponent<Animator>();
         ImpulseSource = GetComponent<CinemachineImpulseSource>();
         SR = RB.GetComponent<SpriteRenderer>();
+        BossHealthBarManager = GetComponent<BossHealthBarManager>();
 
         EnemyIdleBaseInstance.Initialize(gameObject, this);
         EnemyChaseBaseInstance.Initialize(gameObject, this);
         EnemyAttackBaseInstance.Initialize(gameObject, this);
 
         StateMachine.Initialize(IdleState);
+
+        SetBossMaxHealthBar();
     }
 
     protected override void UpdateSetup()
@@ -46,7 +50,10 @@ public class BossTenPiedad : Enemy
         base.UpdateSetup();
 
         StateMachine.CurrentEnemyState.FrameUpdate();
+
+        SetBossCurrentHealthBar();
     }
+
     protected override void FixedUpdateSetup()
     {
         base.FixedUpdateSetup();
@@ -59,5 +66,17 @@ public class BossTenPiedad : Enemy
         base.OnDead();
 
         bodyHitCollider.enabled = false;
+
+        Player.Instance.PlayerInput.enabled = false;
+    }
+
+    private void SetBossMaxHealthBar()
+    {
+        BossHealthBarManager.SetMaxHealth(MaxHealth);
+    }
+
+    private void SetBossCurrentHealthBar()
+    {
+        BossHealthBarManager.SetHealth(CurrentHealth);
     }
 }

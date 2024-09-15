@@ -2751,8 +2751,8 @@ TextureImporter:
       name: map-110
       rect:
         serializedVersion: 2
-        x: 496
-        y: 303
+        x: 484
+        y: 275
         width: 16
         height: 16
       alignment: 0
@@ -2810,6 +2810,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: map-112
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 365
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dca7c9e5f762fd148b4fb556db6a4e6e
+      internalID: -1222301357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -2836,6 +2857,7 @@ TextureImporter:
       map-11: -435299127
       map-110: 1179750490
       map-111: 777020872
+      map-112: -1222301357
       map-12: -812525942
       map-13: -1851222817
       map-14: -65205248

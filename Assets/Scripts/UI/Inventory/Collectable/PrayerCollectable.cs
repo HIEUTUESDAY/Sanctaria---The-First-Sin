@@ -5,6 +5,7 @@ using UnityEngine;
 public class PrayerCollectable : ItemCollectable
 {
     private bool isItemEquipped = false;
+    public float manaCost;
 
     public override void CollectItem()
     {
@@ -17,7 +18,8 @@ public class PrayerCollectable : ItemCollectable
                 itemName = itemName,
                 itemDescription = itemDescription,
                 itemSprite = itemSprite,
-                isItemEquipped = isItemEquipped
+                isItemEquipped = isItemEquipped,
+                manaCost = manaCost
             });
             gameObject.SetActive(false);
 
