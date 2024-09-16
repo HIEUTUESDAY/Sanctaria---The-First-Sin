@@ -1,11 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.TextCore.Text;
-using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -19,6 +15,7 @@ public class UIManager : MonoBehaviour
     public GameObject mapMenu;
     public GameObject optionsMenu;
     public GameObject teleportMenu;
+    public GameObject checkpointMenu;
     public bool menuActivated = false;
     [SerializeField] private Transform VFXcanvas;
 

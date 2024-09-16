@@ -422,7 +422,7 @@ public class SceneChangerManager : MonoBehaviour
     {
         SceneLoadManager.Instance.StartLoading(2f);
 
-        CheckPointManager checkPoint = FindObjectOfType<CheckPointManager>();
+        CheckpointManager checkPoint = FindObjectOfType<CheckpointManager>();
 
         Player player = Player.Instance;
 

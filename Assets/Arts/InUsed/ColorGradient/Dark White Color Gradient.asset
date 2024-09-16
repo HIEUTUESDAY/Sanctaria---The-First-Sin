@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dark White Color Gradient
   m_EditorClassIdentifier: 
   colorMode: 3
-  topLeft: {r: 1, g: 1, b: 1, a: 1}
-  topRight: {r: 1, g: 1, b: 1, a: 1}
-  bottomLeft: {r: 0.78113204, g: 0.78113204, b: 0.78113204, a: 1}
+  topLeft: {r: 0.97735846, g: 0.97735846, b: 0.97735846, a: 1}
+  topRight: {r: 0.78113204, g: 0.78113204, b: 0.78113204, a: 1}
+  bottomLeft: {r: 0.3886792, g: 0.3886792, b: 0.3886792, a: 1}
   bottomRight: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}

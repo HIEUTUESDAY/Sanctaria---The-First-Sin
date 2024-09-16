@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class CheckPointManager : MonoBehaviour
+public class CheckpointManager : MonoBehaviour
 {
     [Header("This scene DATA")]
     [SerializeField] private SceneData thisSceneData;
     [Space(5)]
 
     [Header("This checkpoint Area")]
-    [SerializeField] private CheckPointArea checkPointArea;
+    [SerializeField] private CheckpointArea checkpointArea;
 
-    public enum CheckPointArea
+    public enum CheckpointArea
     {
         Forest,
         Castle,
@@ -35,13 +35,13 @@ public class CheckPointManager : MonoBehaviour
         animator.SetBool(AnimationString.isActivated, isActivated);
     }
 
-    public void ActiveCheckPointThenSaveGame()
+    public void ActiveCheckpointThenSaveGame()
     {
         isActivated = true;
-        StartCoroutine(SaveGameInCheckPoint());
+        StartCoroutine(SaveGameInCheckpoint());
     }
 
-    public CheckPointData SaveCheckPoint()
+    public CheckPointData SaveCheckpoint()
     {
         CheckPointData checkPointData = new CheckPointData();
 
@@ -60,13 +60,13 @@ public class CheckPointManager : MonoBehaviour
             if (currentScene.Equals(sceneData.sceneName))
             {
                 thisSceneData = sceneData;
-                SetActiveCheckPoint();
+                SetActiveCheckpoint();
                 return;
             }
         }
     }
 
-    private void SetActiveCheckPoint()
+    private void SetActiveCheckpoint()
     {
         if (thisSceneData != null)
         {
@@ -78,7 +78,7 @@ public class CheckPointManager : MonoBehaviour
         }
     }
 
-    private IEnumerator SaveGameInCheckPoint()
+    private IEnumerator SaveGameInCheckpoint()
     {
         while (!thisSceneData.checkPoint.isActived)
         {
@@ -96,7 +96,7 @@ public class CheckPointManager : MonoBehaviour
         {
             // Gather all player data
             PlayerData playerData = new PlayerData(player);
-            PlayerCheckpointData playerCheckpointData = new PlayerCheckpointData( checkPointArea.ToString(), SceneManager.GetActiveScene().name, transform.position);
+            PlayerCheckpointData playerCheckpointData = new PlayerCheckpointData( checkpointArea.ToString(), SceneManager.GetActiveScene().name, transform.position);
             PlayerInventoryData playerInventoryData = new PlayerInventoryData
             (
                 inventoryManager.GetTearsAmount(),

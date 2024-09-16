@@ -164,6 +164,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: checkpoint-options-bg
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 41
+        width: 235
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b992c49545c9014fb08aad336cc66a7
+      internalID: 1168380373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -175,6 +196,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      checkpoint-options-bg: 1168380373
       used_item_meaculpa_heart: 1091735071
       used_item_prayer: -777812212
   mipmapLimitGroupName: 

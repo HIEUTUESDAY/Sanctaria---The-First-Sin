@@ -11,7 +11,7 @@ public class SceneDataManager : MonoBehaviour
     private EnemyManager enemyManager;
     private ItemManager itemManager;
     private BossManager bossManager;
-    private CheckPointManager checkPointManager;
+    private CheckpointManager checkPointManager;
     public List<SceneData> sceneDataList;
     private List<EnemyData> enemyDataList;
     private List<ItemData> itemDataList;
@@ -33,7 +33,7 @@ public class SceneDataManager : MonoBehaviour
             enemyManager = FindObjectOfType<EnemyManager>();
             itemManager = FindObjectOfType<ItemManager>();
             bossManager = FindObjectOfType<BossManager>();
-            checkPointManager = FindObjectOfType<CheckPointManager>();
+            checkPointManager = FindObjectOfType<CheckpointManager>();
 
             if (enemyManager != null)
             {
@@ -64,7 +64,7 @@ public class SceneDataManager : MonoBehaviour
 
             if (checkPointManager != null)
             {
-                checkPointData = checkPointManager.SaveCheckPoint();
+                checkPointData = checkPointManager.SaveCheckpoint();
             }
             else
             {
@@ -126,7 +126,7 @@ public class SceneDataManager : MonoBehaviour
         enemyManager = FindObjectOfType<EnemyManager>();
         itemManager = FindObjectOfType<ItemManager>();
         bossManager = FindObjectOfType<BossManager>();
-        checkPointManager = FindObjectOfType<CheckPointManager>();
+        checkPointManager = FindObjectOfType<CheckpointManager>();
 
         if (enemyManager != null)
         {

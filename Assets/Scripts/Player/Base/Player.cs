@@ -73,9 +73,10 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     private ItemCollectable Item;
     [Space(5)]
 
-    [Header("Save Point")]
-    [SerializeField] private bool isInSavePoint;
-    private CheckPointManager CheckPoint;
+    [Header("CheckPoint Point")]
+    [SerializeField] private bool isInCheckpoint;
+    [SerializeField] public bool isKneelInCheckpoint;
+    private CheckpointManager Checkpoint;
     [Space(5)]
 
     [Header("One Way Platform Movement")]
@@ -684,9 +685,9 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     public void ActivateSavePoint()
     {
-        if (CheckPoint != null)
+        if (Checkpoint != null)
         {
-            CheckPoint.ActiveCheckPointThenSaveGame();
+            Checkpoint.ActiveCheckpointThenSaveGame();
         }
     }
 
@@ -734,14 +735,13 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         }
     }
 
-    public void OpenTeleportMenu()
+    public void OpenCheckpointMenu()
     {
-        if (!UIManager.Instance.menuActivated && !UIManager.Instance.teleportMenu.activeSelf)
+        if (!UIManager.Instance.menuActivated && !UIManager.Instance.checkpointMenu.activeSelf)
         {
             Time.timeScale = 0;
-            UIManager.Instance.teleportMenu.SetActive(true);
+            UIManager.Instance.checkpointMenu.SetActive(true);
             UIManager.Instance.menuActivated = true;
-            TeleportMapManager.Instance.SetCurrentRoomSelected();
         }
     }
 
@@ -1060,35 +1060,16 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         }
     }
 
-    public void OnSavePoint(InputAction.CallbackContext context)
-    {
-        if (!UIManager.Instance.menuActivated)
-        {
-            if (context.started && IsAlive && CanMove && TouchingDirections.IsGrounded && isInSavePoint)
-            {
-                if (IsFacingRight)
-                {
-                    transform.position = new Vector3(CheckPoint.transform.position.x - 1f, transform.position.y, transform.position.z);
-                }
-                else
-                {
-                    transform.position = new Vector3(CheckPoint.transform.position.x + 1f, transform.position.y, transform.position.z);
-                }
-                Animator.SetTrigger(AnimationString.saveTrigger);
-            }
-        }
-    }
-
     public void OnInteract(InputAction.CallbackContext context)
     {
         if (!UIManager.Instance.menuActivated)
         {
-            if (context.started && hasItemInRange && Item.IsOnFloor)
+            if (context.started && hasItemInRange && Item.IsOnFloor && TouchingDirections.IsGrounded)
             {
                 transform.position = new Vector3(Item.transform.position.x, transform.position.y, transform.position.z);
                 Animator.SetTrigger(AnimationString.collectFloorTrigger);
             }
-            else if (context.started && hasItemInRange && !Item.IsOnFloor)
+            else if (context.started && hasItemInRange && !Item.IsOnFloor && TouchingDirections.IsGrounded)
             {
                 Animator.SetTrigger(AnimationString.collectHalfTrigger);
             }
@@ -1096,6 +1077,19 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             {
                 IsWaitForEnter = false;
                 Animator.SetTrigger(AnimationString.risingTrigger);
+            }
+            else if (context.started && isInCheckpoint && TouchingDirections.IsGrounded)
+            {
+                if (IsFacingRight)
+                {
+                    transform.position = new Vector3(Checkpoint.transform.position.x - 1f, transform.position.y, transform.position.z);
+                }
+                else
+                {
+                    transform.position = new Vector3(Checkpoint.transform.position.x + 1f, transform.position.y, transform.position.z);
+                }
+
+                Animator.SetTrigger(AnimationString.saveTrigger);
             }
         }
     }
@@ -1108,6 +1102,12 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             UIManager.Instance.inventoryMenu.SetActive(true);
             UIManager.Instance.menuActivated = true;
         }
+        else if (context.started && UIManager.Instance.menuActivated && !UIManager.Instance.inventoryMenu.activeSelf && UIManager.Instance.checkpointMenu.activeSelf)
+        {
+            isKneelInCheckpoint = true;
+            UIManager.Instance.checkpointMenu.SetActive(false);
+            UIManager.Instance.inventoryMenu.SetActive(true);
+        }
     }
 
     public void OnOpenMapMenu(InputAction.CallbackContext context)
@@ -1118,6 +1118,11 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             UIManager.Instance.mapMenu.SetActive(true);
             UIManager.Instance.menuActivated = true;
             MapCenterPoint.Instance.SetCenterPoint();
+        }else if (context.started && UIManager.Instance.menuActivated && !UIManager.Instance.teleportMenu.activeSelf && UIManager.Instance.checkpointMenu.activeSelf)
+        {
+            UIManager.Instance.checkpointMenu.SetActive(false);
+            UIManager.Instance.teleportMenu.SetActive(true);
+            TeleportMapManager.Instance.SetCurrentRoomSelected();
         }
     }
 
@@ -1136,6 +1141,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     {
         if (context.started && UIManager.Instance.menuActivated && UIManager.Instance.inventoryMenu.activeSelf)
         {
+            isKneelInCheckpoint = false;
             Time.timeScale = 1;
             UIManager.Instance.inventoryMenu.SetActive(false);
             UIManager.Instance.menuActivated = false;
@@ -1157,6 +1163,12 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         {
             Time.timeScale = 1;
             UIManager.Instance.teleportMenu.SetActive(false);
+            UIManager.Instance.menuActivated = false;
+        }
+        else if (context.started && UIManager.Instance.menuActivated && UIManager.Instance.checkpointMenu.activeSelf)
+        {
+            Time.timeScale = 1;
+            UIManager.Instance.checkpointMenu.SetActive(false);
             UIManager.Instance.menuActivated = false;
         }
     }
@@ -1393,8 +1405,8 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
         if (collision.CompareTag("SavePoint"))
         {
-            isInSavePoint = true;
-            CheckPoint = collision.GetComponent<CheckPointManager>();
+            isInCheckpoint = true;
+            Checkpoint = collision.GetComponent<CheckpointManager>();
         }
 
         if (collision.CompareTag("Item"))
@@ -1416,8 +1428,8 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
         if (collision.CompareTag("SavePoint"))
         {
-            isInSavePoint = false;
-            CheckPoint = null;
+            isInCheckpoint = false;
+            Checkpoint = null;
         }
 
         if (collision.CompareTag("Item"))
