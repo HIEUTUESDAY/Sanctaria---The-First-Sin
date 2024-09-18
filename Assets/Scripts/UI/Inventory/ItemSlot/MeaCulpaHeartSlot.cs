@@ -40,7 +40,6 @@ public class MeaCulpaHeartSlot : MonoBehaviour
     public Image heartDesImage;
     public TMP_Text heartDesNameText;
     public TMP_Text heartDesText;
-    public GameObject hintToUse;
     public GameObject equipSelection;
     public GameObject removeSelection;
     [Space(5)]
@@ -108,15 +107,23 @@ public class MeaCulpaHeartSlot : MonoBehaviour
             {
                 heartSlotImage.sprite = selectedHeartSlotBGI;
 
-                if (isHeartEquipped && Player.Instance.isKneelInCheckpoint)
+                if (Player.Instance.isKneelInCheckpoint)
                 {
-                    removeSelection.SetActive(true);
-                    equipSelection.SetActive(false);
+                    if (isHeartEquipped)
+                    {
+                        removeSelection.SetActive(true);
+                        equipSelection.SetActive(false);
+                    }
+                    else
+                    {
+                        removeSelection.SetActive(false);
+                        equipSelection.SetActive(true);
+                    }
                 }
-                else if (!isHeartEquipped && Player.Instance.isKneelInCheckpoint)
+                else
                 {
                     removeSelection.SetActive(false);
-                    equipSelection.SetActive(true);
+                    equipSelection.SetActive(false);
                 }
             }
 
@@ -133,15 +140,6 @@ public class MeaCulpaHeartSlot : MonoBehaviour
         else
         {
             heartSlotImage.sprite = emptyHeartSlotBGI;
-        }
-
-        if (Player.Instance.isKneelInCheckpoint)
-        {
-            hintToUse.SetActive(false);
-        }
-        else
-        {
-            hintToUse.SetActive(true);
         }
     }
 

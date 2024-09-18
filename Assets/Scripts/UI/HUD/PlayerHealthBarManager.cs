@@ -7,8 +7,14 @@ public class PlayerHealthBarManager : MonoBehaviour
 {
     public Slider healthSlider;
     public Slider manaSlider;
-
     public Slider[] healthPotionsSlider;
+    public GameObject activatedPrayerBorder;
+    public Image PrayerCooldownImg;
+
+    private void Update()
+    {
+        PrayerCooldownCheck();
+    }
 
     public void SetMaxHealth(float health)
     {
@@ -45,6 +51,26 @@ public class PlayerHealthBarManager : MonoBehaviour
         for (int i = 0; i < healthPotionsSlider.Length; i++)
         {
             healthPotionsSlider[i].value = i < currentPotions ? 1 : 0;
+        }
+    }
+
+    private void PrayerCooldownCheck()
+    {
+        if (Player.Instance.prayerCooldown > 0)
+        {
+            activatedPrayerBorder.SetActive(true);
+
+            float fillAmount = Player.Instance.prayerCooldown / Player.Instance.prayerCooldownTime;
+            PrayerCooldownImg.fillAmount = fillAmount;
+
+            // Decrease the cooldown over time
+            Player.Instance.prayerCooldown -= Time.deltaTime;
+        }
+        else if (Player.Instance.prayerCooldown <= 0)
+        {
+            activatedPrayerBorder.SetActive(false);
+            Player.Instance.prayerCooldown = 0;
+            PrayerCooldownImg.fillAmount = 0;
         }
     }
 }

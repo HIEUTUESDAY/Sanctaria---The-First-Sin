@@ -16,7 +16,7 @@ public class SceneDataManager : MonoBehaviour
     private List<EnemyData> enemyDataList;
     private List<ItemData> itemDataList;
     private BossData bossData;
-    [SerializeField] private CheckPointData checkPointData;
+    private CheckPointData checkPointData;
 
     void Awake()
     {

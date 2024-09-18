@@ -15,8 +15,11 @@ public class TeleportSlot : MonoBehaviour
 
     private void Update()
     {
-        TeleportSlotSelect();
-        PerformTeleport();
+        if (Player.Instance.isKneelInCheckpoint)
+        {
+            TeleportSlotSelect();
+            PerformTeleport();
+        }
     }
 
     private void TeleportSlotSelect()

@@ -76,6 +76,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     [Header("CheckPoint Point")]
     [SerializeField] private bool isInCheckpoint;
     [SerializeField] public bool isKneelInCheckpoint;
+    [SerializeField] private GameObject MeaCulpaHeartsInventory;
     private CheckpointManager Checkpoint;
     [Space(5)]
 
@@ -142,6 +143,8 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     [Header("Prayer Mana Cost")]
     public float prayerManaCost = 0f;
+    public float prayerCooldownTime = 5f;
+    public float prayerCooldown = 0f;
 
     #endregion
 
@@ -464,6 +467,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         WallHangCheck();
         SetMaxHealthAndMana();
         UpdateHealthBar();
+        UpdatePrayerCooldown();
         BeInvisible();
     }
 
@@ -585,6 +589,18 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         HealthBar.SetHealth(CurrentHealth);
         HealthBar.SetMana(CurrentMana);
         HealthBar.SetHealthPotions(CurrentHealthPotion);
+    }
+
+    private void UpdatePrayerCooldown()
+    {
+        if (prayerCooldown > 0)
+        {
+            prayerCooldown -= Time.deltaTime;
+        }
+        else if (prayerCooldown <= 0)
+        {
+            prayerCooldown = 0;
+        }
     }
 
     #endregion
@@ -1107,6 +1123,19 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             isKneelInCheckpoint = true;
             UIManager.Instance.checkpointMenu.SetActive(false);
             UIManager.Instance.inventoryMenu.SetActive(true);
+
+            for (int i = 0; i < InventoryManager.Instance.Inventories.Length; i++)
+            {
+                if (InventoryManager.Instance.Inventories[i].name == "MeaCulpaHearts")
+                {
+                    InventoryManager.Instance.Inventories[i].SetActive(true);
+                    InventoryManager.Instance.currentInventoryIndex = i;
+                }
+                else
+                {
+                    InventoryManager.Instance.Inventories[i].SetActive(false);
+                }
+            }
         }
     }
 
@@ -1117,12 +1146,21 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             Time.timeScale = 0;
             UIManager.Instance.mapMenu.SetActive(true);
             UIManager.Instance.menuActivated = true;
+            MapMenuControlHUD.Instance.selectTeleportSlot.SetActive(false);
+            MapMenuControlHUD.Instance.teleportHUD.SetActive(false);
+            MapMenuControlHUD.Instance.mapCenterPoint.SetActive(true);
+            MapMenuControlHUD.Instance.mapHUD.SetActive(true);
             MapCenterPoint.Instance.SetCenterPoint();
-        }else if (context.started && UIManager.Instance.menuActivated && !UIManager.Instance.teleportMenu.activeSelf && UIManager.Instance.checkpointMenu.activeSelf)
+        }
+        else if (context.started && UIManager.Instance.menuActivated && !UIManager.Instance.mapMenu.activeSelf && UIManager.Instance.checkpointMenu.activeSelf)
         {
             UIManager.Instance.checkpointMenu.SetActive(false);
-            UIManager.Instance.teleportMenu.SetActive(true);
-            TeleportMapManager.Instance.SetCurrentRoomSelected();
+            UIManager.Instance.mapMenu.SetActive(true);
+            MapMenuControlHUD.Instance.mapCenterPoint.SetActive(false);
+            MapMenuControlHUD.Instance.mapHUD.SetActive(false);
+            MapMenuControlHUD.Instance.selectTeleportSlot.SetActive(true);
+            MapMenuControlHUD.Instance.teleportHUD.SetActive(true);
+            SelectTeleportSlot.Instance.SetCurrentRoomSelected();
         }
     }
 
@@ -1147,7 +1185,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             UIManager.Instance.menuActivated = false;
         }
         else if (context.started && UIManager.Instance.menuActivated && UIManager.Instance.mapMenu.activeSelf)
-        {    
+        {
             Time.timeScale = 1;
             UIManager.Instance.mapMenu.SetActive(false);
             UIManager.Instance.menuActivated = false;
@@ -1158,12 +1196,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             UIManager.Instance.optionsMenu.SetActive(false);
             UIManager.Instance.mapMenu.SetActive(true);
             UIManager.Instance.menuActivated = true;
-        }
-        else if (context.started && UIManager.Instance.menuActivated && UIManager.Instance.teleportMenu.activeSelf)
-        {
-            Time.timeScale = 1;
-            UIManager.Instance.teleportMenu.SetActive(false);
-            UIManager.Instance.menuActivated = false;
         }
         else if (context.started && UIManager.Instance.menuActivated && UIManager.Instance.checkpointMenu.activeSelf)
         {
@@ -1179,7 +1211,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         {
             if (context.started && IsAlive && CanMove && TouchingDirections.IsGrounded && PlayerEquipment.equippedPrayer.itemName != "" && CurrentMana >= prayerManaCost)
             {
-                if(PlayerEquipment.prayerCooldown <= 0)
+                if(prayerCooldown <= 0)
                 {
                     Animator.SetTrigger(AnimationString.prayerTrigger);
                 }

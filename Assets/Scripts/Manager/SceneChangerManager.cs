@@ -156,7 +156,7 @@ public class SceneChangerManager : MonoBehaviour
             yield return null;
         }
 
-        UIManager.Instance.teleportMenu.SetActive(false);
+        UIManager.Instance.mapMenu.SetActive(false);
         UIManager.Instance.menuActivated = false;
         SceneManager.LoadScene(checkpointScene);
     }
@@ -198,7 +198,7 @@ public class SceneChangerManager : MonoBehaviour
             player.ResetPlayerAnimation();
         }
 
-        SceneDataManager sceneDataManager = FindObjectOfType<SceneDataManager>();
+        SceneDataManager sceneDataManager = SceneDataManager.Instance;
 
         if (sceneDataManager != null)
         {
@@ -206,9 +206,6 @@ public class SceneChangerManager : MonoBehaviour
         }
 
         MapRoomManager.Instance.RevealRoom();
-
-        TeleportMapManager.Instance.RevealRoom();
-
         loadFromDoor = false;
 
         while (SceneLoadManager.Instance.IsLoading)
@@ -238,7 +235,7 @@ public class SceneChangerManager : MonoBehaviour
             player.ResetPlayerAnimation();
         }
 
-        SceneDataManager sceneDataManager = FindObjectOfType<SceneDataManager>();
+        SceneDataManager sceneDataManager = SceneDataManager.Instance;
 
         if (sceneDataManager != null)
         {
@@ -246,11 +243,7 @@ public class SceneChangerManager : MonoBehaviour
         }
 
         MapRoomManager.Instance.LockAllRoom();
-        TeleportMapManager.Instance.LockAllRoom();
-
         MapRoomManager.Instance.RevealRoom();
-        TeleportMapManager.Instance.RevealRoom();
-
         GameManager.Instance.isNewGame = false;
         loadToGamePlay = false;
 
@@ -311,18 +304,10 @@ public class SceneChangerManager : MonoBehaviour
             {
                 mapRoomManager.LoadSaveFileMapRoomsData(gameData);
             }
-
-            // Load teleport map data
-
-            TeleportMapManager teleportMapManager = player.GetComponentInChildren<TeleportMapManager>();
-            if (teleportMapManager != null)
-            {
-                teleportMapManager.LoadSaveFileMapRoomsData(gameData);
-            }
         }
 
         // Load save file scene data
-        SceneDataManager sceneDataManager = FindObjectOfType<SceneDataManager>();
+        SceneDataManager sceneDataManager = SceneDataManager.Instance;
 
         if (sceneDataManager != null)
         {
@@ -331,7 +316,6 @@ public class SceneChangerManager : MonoBehaviour
         }
 
         MapRoomManager.Instance.RevealRoom();
-        TeleportMapManager.Instance.RevealRoom();
         GameManager.Instance.isLoadGame = false;
         loadToGamePlay = false;
 
@@ -375,7 +359,7 @@ public class SceneChangerManager : MonoBehaviour
         }
 
         // Load save file scene data
-        SceneDataManager sceneDataManager = FindObjectOfType<SceneDataManager>();
+        SceneDataManager sceneDataManager = SceneDataManager.Instance;
 
         if (sceneDataManager != null)
         {
@@ -384,7 +368,6 @@ public class SceneChangerManager : MonoBehaviour
         }
 
         MapRoomManager.Instance.RevealRoom();
-        TeleportMapManager.Instance.RevealRoom();
         GameManager.Instance.isRespawn = false;
         loadToGamePlay = false;
 
@@ -401,7 +384,9 @@ public class SceneChangerManager : MonoBehaviour
     {
         SceneLoadManager.Instance.StartLoading(2f);
 
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        SceneDataManager.Instance.sceneDataList.Clear();
+
+        GameObject player = Player.Instance.gameObject;
 
         if (player != null)
         {
@@ -434,7 +419,7 @@ public class SceneChangerManager : MonoBehaviour
             player.ResetPlayerAnimation();
         }
 
-        SceneDataManager sceneDataManager = FindObjectOfType<SceneDataManager>();
+        SceneDataManager sceneDataManager = SceneDataManager.Instance;
 
         if (sceneDataManager != null)
         {
@@ -442,7 +427,6 @@ public class SceneChangerManager : MonoBehaviour
         }
 
         MapRoomManager.Instance.RevealRoom();
-        TeleportMapManager.Instance.RevealRoom();
         loadFromCheckpoint = false;
 
         while (SceneLoadManager.Instance.IsLoading)

@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26d632e2f0ece81489bc9bdc23adea36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 50
+  damage: 30
   damageInterval: 0.1
   knockback: {x: 0, y: 0}
   attackType: 0
@@ -294,4 +294,3 @@ MonoBehaviour:
     m_Bits: 128
   direction: 0
   lastDirection: 0
-  SR: {fileID: 3260645014422823007}

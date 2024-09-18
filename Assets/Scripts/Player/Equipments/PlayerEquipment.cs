@@ -8,9 +8,6 @@ public class PlayerEquipment : MonoBehaviour
     public MeaCulpaHeart equippedMeaCulpaHeart;
     public Prayer equippedPrayer;
 
-    [SerializeField] private float prayerCooldownTime = 5f;
-    public float prayerCooldown = 0f;
-
     private void Awake()
     {
         player = GetComponent<Player>();
@@ -19,7 +16,6 @@ public class PlayerEquipment : MonoBehaviour
     private void Update()
     {
         SetCurrentEquipment();
-        UpdatePrayerCooldown();
     }
 
     private void SetCurrentEquipment()
@@ -31,17 +27,9 @@ public class PlayerEquipment : MonoBehaviour
         AddPrayer(equippedPrayer);
     }
 
-    private void UpdatePrayerCooldown()
-    {
-        if (prayerCooldown > 0)
-        {
-            prayerCooldown -= Time.deltaTime;
-        }
-    }
-
     public void PerformPrayer()
     {
-        if (prayerCooldown > 0 || equippedPrayer.itemName.Equals(null))
+        if (player.prayerCooldown > 0 || equippedPrayer.itemName.Equals(null))
         {
             return;
         }
@@ -57,7 +45,7 @@ public class PlayerEquipment : MonoBehaviour
                 break;
         }
 
-        prayerCooldown = prayerCooldownTime;
+        player.prayerCooldown = player.prayerCooldownTime;
     }
 
     public void UpdateEquippedMeaCulpaHeart()

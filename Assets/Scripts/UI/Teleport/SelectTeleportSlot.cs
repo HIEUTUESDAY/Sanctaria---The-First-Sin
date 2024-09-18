@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SelectTeleportSlot : MonoBehaviour
@@ -22,6 +24,11 @@ public class SelectTeleportSlot : MonoBehaviour
         {
             Instance = this;
         }
+    }
+
+    private void Start()
+    {
+        SetCurrentRoomSelected();
     }
 
     private void Update()
@@ -53,6 +60,18 @@ public class SelectTeleportSlot : MonoBehaviour
 
             // Move the roomCanvas towards the target position smoothly
             roomCanvas.anchoredPosition = Vector2.Lerp(roomCanvas.anchoredPosition, targetPosition, moveSpeed * Time.unscaledDeltaTime);
+        }
+    }
+
+    public void SetCurrentRoomSelected()
+    {
+        foreach (var room in MapRoomManager.Instance.rooms)
+        {
+            if (room.RoomScene == SceneManager.GetActiveScene().name)
+            {
+                EventSystem.current.SetSelectedGameObject(room.gameObject);
+                return;
+            }
         }
     }
 }
