@@ -1045,7 +1045,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     {
         if (!UIManager.Instance.menuActivated)
         {
-            if (context.started && canDash && CanMove && TouchingDirections.IsGrounded && !IsDashing && !IsClimbing)
+            if (context.started && canDash && CanMove && TouchingDirections.IsGrounded && !IsDashing && !IsClimbing && !IsJumping)
             {
                 StartCoroutine(Dashing());
             }
@@ -1322,15 +1322,15 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         // Check for ground while dashing
         while (Time.time < dashEndTime)
         {
-            if (!TouchingDirections.IsGrounded)
+            if (!TouchingDirections.IsGrounded || IsJumping)
             {
                 GhostTrail.StopGhostTrail();
                 IsDashing = false;
+                IsInvincible = false;
                 RB.gravityScale = originalGravity;
                 IsDashed = true;
 
                 yield return new WaitForSeconds(afterDashTime);
-                IsInvincible = false;
                 IsDashed = false;
 
                 yield return new WaitForSeconds(dashCooldown);
