@@ -7,8 +7,8 @@ public class DeathFadeInTitle : MonoBehaviour
     public Image backGroundImage;
     public Image titleImage;
     public TMP_Text continueText;
-    [Range(0.1f, 10f), SerializeField] private float imageFadeInSpeed = 1f;
-    [Range(0.1f, 10f), SerializeField] private float textFadeInSpeed = 0.5f;
+    [Range(0.1f, 10f), SerializeField] private float imageFadeInSpeed = 0.75f;
+    [Range(0.1f, 10f), SerializeField] private float textFadeInSpeed = 0.1f;
 
     private bool isFadingInImages = false;
     private bool isFadingInText = false;

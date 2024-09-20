@@ -2,6 +2,7 @@ using Cinemachine;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
@@ -113,6 +114,15 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     [SerializeField] public bool isDefeatedBoss = false;
     [Space(5)]
 
+    [Header("Hit Flash Material")]
+    [SerializeField] private Material hitFlashMaterial;
+    private SpriteRenderer SR;
+    private Material originalMaterial;
+    private Coroutine hitFlashCoroutine;
+    [Space(5)]
+
+    [SerializeField] private float fallSpeedYDampingChangeThreshold;
+    [SerializeField] private float originalGravityScale;
     public Animator Animator;
     public PlayerInput PlayerInput;
     public TouchingDirections TouchingDirections;
@@ -121,8 +131,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     public PlayerHealthBarManager HealthBar;
     public CinemachineImpulseSource ImpulseSource;
     public PlayerEquipment PlayerEquipment;
-    private float fallSpeedYDampingChangeThreshold;
-    private float originalGravityScale;
 
     #endregion
 
@@ -440,6 +448,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     private void Initialize()
     {
         RB = GetComponent<Rigidbody2D>();
+        SR = GetComponent<SpriteRenderer>();
         Animator = GetComponent<Animator>();
         PlayerInput = GetComponent<PlayerInput>();
         TouchingDirections = GetComponent<TouchingDirections>();
@@ -447,11 +456,11 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         GhostTrail = GetComponent<GhostTrail>();
         ImpulseSource = GetComponent<CinemachineImpulseSource>();
         PlayerEquipment = GetComponent<PlayerEquipment>();
-
     }
 
     private void Start()
     {
+        originalMaterial = SR.material;
         originalGravityScale = RB.gravityScale;
         colliderSize = PlayerCollider.size;
     }
@@ -488,6 +497,12 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             float damageTaken = damage - defenseBuff;
             CurrentHealth -= damageTaken;
             WasHit = true;
+
+            if(hitFlashCoroutine != null)
+            {
+                StopCoroutine(hitFlashCoroutine);
+            }
+            hitFlashCoroutine = StartCoroutine(HitFlash());
 
             StartCoroutine(ApplySlowMotion());
             CameraShakeManager.Instance.CameraShake(ImpulseSource);
@@ -1146,20 +1161,21 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             Time.timeScale = 0;
             UIManager.Instance.mapMenu.SetActive(true);
             UIManager.Instance.menuActivated = true;
-            MapMenuControlHUD.Instance.selectTeleportSlot.SetActive(false);
-            MapMenuControlHUD.Instance.teleportHUD.SetActive(false);
-            MapMenuControlHUD.Instance.mapCenterPoint.SetActive(true);
-            MapMenuControlHUD.Instance.mapHUD.SetActive(true);
+            MapRoomManager.Instance.selectTeleportSlot.SetActive(false);
+            MapRoomManager.Instance.teleportHUD.SetActive(false);
+            MapRoomManager.Instance.mapCenterPoint.SetActive(true);
+            MapRoomManager.Instance.mapHUD.SetActive(true);
             MapCenterPoint.Instance.SetCenterPoint();
         }
         else if (context.started && UIManager.Instance.menuActivated && !UIManager.Instance.mapMenu.activeSelf && UIManager.Instance.checkpointMenu.activeSelf)
         {
+            isKneelInCheckpoint = true;
             UIManager.Instance.checkpointMenu.SetActive(false);
             UIManager.Instance.mapMenu.SetActive(true);
-            MapMenuControlHUD.Instance.mapCenterPoint.SetActive(false);
-            MapMenuControlHUD.Instance.mapHUD.SetActive(false);
-            MapMenuControlHUD.Instance.selectTeleportSlot.SetActive(true);
-            MapMenuControlHUD.Instance.teleportHUD.SetActive(true);
+            MapRoomManager.Instance.mapCenterPoint.SetActive(false);
+            MapRoomManager.Instance.mapHUD.SetActive(false);
+            MapRoomManager.Instance.selectTeleportSlot.SetActive(true);
+            MapRoomManager.Instance.teleportHUD.SetActive(true);
             SelectTeleportSlot.Instance.SetCurrentRoomSelected();
         }
     }
@@ -1186,6 +1202,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         }
         else if (context.started && UIManager.Instance.menuActivated && UIManager.Instance.mapMenu.activeSelf)
         {
+            isKneelInCheckpoint = false;
             Time.timeScale = 1;
             UIManager.Instance.mapMenu.SetActive(false);
             UIManager.Instance.menuActivated = false;
@@ -1222,6 +1239,17 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     #endregion
 
     #region Player Coroutines
+
+    private IEnumerator HitFlash()
+    {
+        SR.material = hitFlashMaterial;
+
+        yield return new WaitForSeconds(0.03f);
+
+        SR.material = originalMaterial;
+
+        hitFlashCoroutine = null;
+    }
 
     private IEnumerator DisableLadderPlatformCollision()
     {

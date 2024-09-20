@@ -28910,6 +28910,10 @@ PrefabInstance:
       propertyPath: checkPointArea
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8802819478962753142, guid: 1982e26c80284cf44a1e9a9c31f34dcc, type: 3}
+      propertyPath: checkpointArea
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

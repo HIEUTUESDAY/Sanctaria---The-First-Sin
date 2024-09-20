@@ -193,6 +193,8 @@ MonoBehaviour:
   slowMotionFactor: 0.2
   minTearsDrop: 1001
   maxTearsDrop: 1001
+  hitFlashMaterial: {fileID: 2100000, guid: c17f7905cd6733542a86ecae504c5d30, type: 2}
+  hitFlashDuration: 0.05
   <DamageableHit>k__BackingField:
     m_PersistentCalls:
       m_Calls: []
@@ -283,7 +285,7 @@ MonoBehaviour:
     m_DissipationMode: 2
     m_DissipationDistance: 100
     m_PropagationSpeed: 343
-  m_DefaultVelocity: {x: 0.25, y: -0.25, z: 0}
+  m_DefaultVelocity: {x: 0.5, y: 0.5, z: 0.5}
 --- !u!1 &3240668649203543597
 GameObject:
   m_ObjectHideFlags: 0

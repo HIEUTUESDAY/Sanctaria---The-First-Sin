@@ -9642,8 +9642,8 @@ MonoBehaviour:
   backGroundImage: {fileID: 6570471175909983648}
   titleImage: {fileID: 57548821472755444}
   continueText: {fileID: 6516932051024814524}
-  imageFadeInSpeed: 1
-  textFadeInSpeed: 0.5
+  imageFadeInSpeed: 0.7
+  textFadeInSpeed: 0.3
 --- !u!1 &2279717980505969490
 GameObject:
   m_ObjectHideFlags: 0
@@ -10757,7 +10757,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 3886728742737011660}
+  m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!114 &1367730830255954509
@@ -21913,6 +21913,7 @@ MonoBehaviour:
   hasItemInRange: 0
   isInCheckpoint: 0
   isKneelInCheckpoint: 0
+  MeaCulpaHeartsInventory: {fileID: 0}
   slowMotionDuration: 0.2
   slowMotionFactor: 0.15
   playerDeathTitle: {fileID: 2261937842170196195}
@@ -21925,6 +21926,9 @@ MonoBehaviour:
   nonFriction: {fileID: 6200000, guid: 9db87a4fe9ace3445bd27a24abfde6d5, type: 2}
   fullFriction: {fileID: 6200000, guid: ce6bc805228ceff4c97b3485941b0772, type: 2}
   isDefeatedBoss: 0
+  hitFlashMaterial: {fileID: 2100000, guid: c17f7905cd6733542a86ecae504c5d30, type: 2}
+  fallSpeedYDampingChangeThreshold: 0
+  originalGravityScale: 0
   Animator: {fileID: 0}
   PlayerInput: {fileID: 0}
   TouchingDirections: {fileID: 0}
@@ -29544,6 +29548,10 @@ MonoBehaviour:
   - {fileID: 3839754728295237700}
   - {fileID: 3087644431651014048}
   - {fileID: 4592624689308774915}
+  mapCenterPoint: {fileID: 7518231548139078330}
+  selectTeleportSlot: {fileID: 6881947331332798279}
+  mapHUD: {fileID: 157517749851412804}
+  teleportHUD: {fileID: 7236853783652098269}
 --- !u!114 &5575374988183289071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33561,7 +33569,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4551920695887758230}
-  - component: {fileID: 1565329663150395210}
   m_Layer: 5
   m_Name: MapMenu
   m_TagString: Untagged
@@ -33593,22 +33600,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.000061035156, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1565329663150395210
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8531276771310278057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87b9b710e61460d4fad2ef0197ec87a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mapCenterPoint: {fileID: 7518231548139078330}
-  selectTeleportSlot: {fileID: 6881947331332798279}
-  mapHUD: {fileID: 157517749851412804}
-  teleportHUD: {fileID: 7236853783652098269}
 --- !u!1 &8568585203966879472
 GameObject:
   m_ObjectHideFlags: 0

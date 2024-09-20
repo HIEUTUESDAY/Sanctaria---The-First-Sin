@@ -9,6 +9,12 @@ public class MapRoomManager : MonoBehaviour
 
     public List<MapContainerData> rooms;
 
+    [Header("Map Menu HUD Update")]
+    public GameObject mapCenterPoint;
+    public GameObject selectTeleportSlot;
+    public GameObject mapHUD;
+    public GameObject teleportHUD;
+
     private void Awake()
     {
         if (Instance == null)

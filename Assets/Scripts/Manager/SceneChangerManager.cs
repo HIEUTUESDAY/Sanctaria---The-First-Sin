@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
@@ -156,6 +157,7 @@ public class SceneChangerManager : MonoBehaviour
             yield return null;
         }
 
+        Player.Instance.isKneelInCheckpoint = false;
         UIManager.Instance.mapMenu.SetActive(false);
         UIManager.Instance.menuActivated = false;
         SceneManager.LoadScene(checkpointScene);

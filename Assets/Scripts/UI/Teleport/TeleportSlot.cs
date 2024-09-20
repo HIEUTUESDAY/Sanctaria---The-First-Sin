@@ -20,6 +20,10 @@ public class TeleportSlot : MonoBehaviour
             TeleportSlotSelect();
             PerformTeleport();
         }
+        else
+        {
+            shaderAnimation.SetActive(false);
+        }
     }
 
     private void TeleportSlotSelect()
@@ -38,7 +42,6 @@ public class TeleportSlot : MonoBehaviour
             else
             {
                 selection.SetActive(true);
-
             }
         }
         else

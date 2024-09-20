@@ -79,4 +79,9 @@ public class BossTenPiedad : Enemy
     {
         BossHealthBarManager.SetHealth(CurrentHealth);
     }
+
+    private void ShakeCamera()
+    {
+        CameraShakeManager.Instance.CameraShake(ImpulseSource);
+    }
 }
