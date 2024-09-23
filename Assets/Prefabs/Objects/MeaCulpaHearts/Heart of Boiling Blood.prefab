@@ -171,12 +171,12 @@ MonoBehaviour:
     on the wearer!
   isOnFloor: 1
   canBeCollect: 0
-  damageModifier: 0
-  defenseModifier: 0
-  healthModifier: 20
-  healthRegenModifier: 20
-  staminaModifier: 0
-  staminaRegenModifier: 0
+  damageModifier: 1.5
+  defenseModifier: 1.5
+  healthModifier: 15
+  healthRegenModifier: 15
+  staminaModifier: 15
+  staminaRegenModifier: 0.5
   moveSpeedModifier: 0
   jumpPowerModifier: 0
   wallJumpPowerModifier: 0

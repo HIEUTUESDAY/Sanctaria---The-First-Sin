@@ -61,7 +61,7 @@ public class PrayerSlot : MonoBehaviour
     {
         prayerName = "";
         prayerDescription = "";
-        prayerManaCost = 0;
+        prayerManaCost = 0f;
         prayerSprite = null;
         hasPrayer = false;
         isPrayerEquipped = false;

@@ -416,7 +416,7 @@ MonoBehaviour:
       isActived: 0
       position: []
   itemsObjects:
-  - {fileID: 896879863}
+  - {fileID: 1251237931}
 --- !u!4 &155677708
 Transform:
   m_ObjectHideFlags: 0
@@ -430,7 +430,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 896879864}
+  - {fileID: 1251237932}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &214460428
@@ -17473,73 +17473,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc82b182d98439046a3bffe5bca83a60, type: 3}
---- !u!1001 &896879862
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 155677708}
-    m_Modifications:
-    - target: {fileID: 402876511156770573, guid: bdbdec28e42f36442bc159b28cb4f2a7, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 22.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 402876511156770573, guid: bdbdec28e42f36442bc159b28cb4f2a7, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 11.53
-      objectReference: {fileID: 0}
-    - target: {fileID: 402876511156770573, guid: bdbdec28e42f36442bc159b28cb4f2a7, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 402876511156770573, guid: bdbdec28e42f36442bc159b28cb4f2a7, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 402876511156770573, guid: bdbdec28e42f36442bc159b28cb4f2a7, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 402876511156770573, guid: bdbdec28e42f36442bc159b28cb4f2a7, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 402876511156770573, guid: bdbdec28e42f36442bc159b28cb4f2a7, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 402876511156770573, guid: bdbdec28e42f36442bc159b28cb4f2a7, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 402876511156770573, guid: bdbdec28e42f36442bc159b28cb4f2a7, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 402876511156770573, guid: bdbdec28e42f36442bc159b28cb4f2a7, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 616999251492132105, guid: bdbdec28e42f36442bc159b28cb4f2a7, type: 3}
-      propertyPath: m_Name
-      value: Prayer_Verdiales of The Forsaken Hamlet
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: bdbdec28e42f36442bc159b28cb4f2a7, type: 3}
---- !u!1 &896879863 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 616999251492132105, guid: bdbdec28e42f36442bc159b28cb4f2a7, type: 3}
-  m_PrefabInstance: {fileID: 896879862}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &896879864 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 402876511156770573, guid: bdbdec28e42f36442bc159b28cb4f2a7, type: 3}
-  m_PrefabInstance: {fileID: 896879862}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &911368431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23648,6 +23581,73 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1001 &1251237930
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 155677708}
+    m_Modifications:
+    - target: {fileID: 8921674465315347469, guid: 9c20c2dc2eef4004e9df787c62cdc40b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921674465315347469, guid: 9c20c2dc2eef4004e9df787c62cdc40b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 11.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921674465315347469, guid: 9c20c2dc2eef4004e9df787c62cdc40b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921674465315347469, guid: 9c20c2dc2eef4004e9df787c62cdc40b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921674465315347469, guid: 9c20c2dc2eef4004e9df787c62cdc40b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921674465315347469, guid: 9c20c2dc2eef4004e9df787c62cdc40b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921674465315347469, guid: 9c20c2dc2eef4004e9df787c62cdc40b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921674465315347469, guid: 9c20c2dc2eef4004e9df787c62cdc40b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921674465315347469, guid: 9c20c2dc2eef4004e9df787c62cdc40b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921674465315347469, guid: 9c20c2dc2eef4004e9df787c62cdc40b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9155188897610560502, guid: 9c20c2dc2eef4004e9df787c62cdc40b, type: 3}
+      propertyPath: m_Name
+      value: Heart of Boiling Blood
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9c20c2dc2eef4004e9df787c62cdc40b, type: 3}
+--- !u!1 &1251237931 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9155188897610560502, guid: 9c20c2dc2eef4004e9df787c62cdc40b, type: 3}
+  m_PrefabInstance: {fileID: 1251237930}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1251237932 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8921674465315347469, guid: 9c20c2dc2eef4004e9df787c62cdc40b, type: 3}
+  m_PrefabInstance: {fileID: 1251237930}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1265859467
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -21,10 +21,24 @@ public class PlayerEquipment : MonoBehaviour
     private void SetCurrentEquipment()
     {
         equippedMeaCulpaHeart = InventoryManager.Instance.GetMeaCulpaHeartEquipment();
-        AddMeaCulpaHeartBuffs(equippedMeaCulpaHeart);
+        if(equippedMeaCulpaHeart != null)
+        {
+            AddMeaCulpaHeartBuffs(equippedMeaCulpaHeart);
+        }
+        else
+        {
+            RemoveMeaCulpaHeartBuffs();
+        }
 
         equippedPrayer = InventoryManager.Instance.GetPrayerEquipment();
-        AddPrayer(equippedPrayer);
+        if (equippedPrayer != null)
+        {
+            AddPrayer(equippedPrayer);
+        }
+        else
+        {
+            RemovePrayer();
+        }
     }
 
     public void PerformPrayer()
@@ -46,22 +60,6 @@ public class PlayerEquipment : MonoBehaviour
         }
 
         player.prayerCooldown = player.prayerCooldownTime;
-    }
-
-    public void UpdateEquippedMeaCulpaHeart()
-    {
-        RemoveMeaCulpaHeartBuffs();
-        var newEquippedMeaCulpaHeart = InventoryManager.Instance.GetMeaCulpaHeartEquipment();
-        AddMeaCulpaHeartBuffs(newEquippedMeaCulpaHeart);
-        equippedMeaCulpaHeart = newEquippedMeaCulpaHeart;
-    }
-
-    public void UpdateEquippedPrayer()
-    {
-        RemovePrayer();
-        var newEquippedPrayer = InventoryManager.Instance.GetPrayerEquipment();
-        AddPrayer(newEquippedPrayer);
-        equippedPrayer = newEquippedPrayer;
     }
 
     public void AddMeaCulpaHeartBuffs(MeaCulpaHeart newEquippedMeaCulpaHeart)

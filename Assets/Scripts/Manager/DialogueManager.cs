@@ -19,7 +19,7 @@ public class DialogueManager : MonoBehaviour
     private Coroutine TypingMessageCoroutine;
 
     private const string TYPING_ALPHA = "<color=#00000000>";
-    private const float MAX_TYPING_TIME = 0.1f;
+    private const float TYPING_TIME = 0.1f;
 
     public void DisplayNextMessage(DialogueTextSO dialogueText)
     {
@@ -34,6 +34,7 @@ public class DialogueManager : MonoBehaviour
             else if (conversationEnded && !isTyping)
             {
                 EndConversation();
+                conversationEnded = false;
                 Player.Instance.PlayerInput.enabled = true;
                 return;
             }
@@ -109,7 +110,7 @@ public class DialogueManager : MonoBehaviour
             displayedMessage = NPCMessageText.text.Insert(alphaIndex, TYPING_ALPHA);
             NPCMessageText.text = displayedMessage;
 
-            yield return new WaitForSeconds(MAX_TYPING_TIME / typingSpeed);
+            yield return new WaitForSeconds(TYPING_TIME / typingSpeed);
         }
 
         isTyping = false;

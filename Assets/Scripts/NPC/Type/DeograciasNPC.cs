@@ -5,22 +5,32 @@ using UnityEngine.InputSystem;
 
 public class DeograciasNPC : NPC, ITalkable
 {
-    [SerializeField] private DialogueTextSO dialogueText;
-
+    [SerializeField] private DialogueTextSO normalDialogueText;
+    [SerializeField] private DialogueTextSO hintDialogueText;
     private DialogueManager dialogueManager;
-
-    private void Awake()
-    {
-        dialogueManager = FindObjectOfType<DialogueManager>();
-    }
+    [SerializeField] private bool talkSecondTime = false;
 
     public override void Interact()
     {
-        Talk(dialogueText);
+        if (!talkSecondTime)
+        {
+            Talk(normalDialogueText);
+            talkSecondTime = true;
+        }
+        else
+        {
+            Talk(hintDialogueText);
+        }
     }
 
     public void Talk(DialogueTextSO dialogueText)
     {
-        dialogueManager.DisplayNextMessage(dialogueText);
+        dialogueManager = FindObjectOfType<DialogueManager>();
+
+        if (dialogueManager != null)
+        {
+            dialogueManager.DisplayNextMessage(dialogueText);
+
+        }
     }
 }

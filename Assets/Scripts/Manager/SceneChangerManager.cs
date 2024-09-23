@@ -291,6 +291,12 @@ public class SceneChangerManager : MonoBehaviour
             player.CurrentMana = gameData.playerData.stamina;
             player.CurrentHealthPotion = gameData.playerData.healthPotions;
 
+            if (!player.IsAlive)
+            {
+                player.IsAlive = true;
+                player.CurrentHealth = player.MaxHealth;
+            }
+
             player.ResetPlayerAnimation();
 
             // Load inventory data
@@ -410,6 +416,11 @@ public class SceneChangerManager : MonoBehaviour
         SceneLoadManager.Instance.StartLoading(2f);
 
         CheckpointManager checkPoint = FindObjectOfType<CheckpointManager>();
+
+        if (checkPoint != null)
+        {
+            checkPoint.ActiveCheckpoint();
+        }
 
         Player player = Player.Instance;
 

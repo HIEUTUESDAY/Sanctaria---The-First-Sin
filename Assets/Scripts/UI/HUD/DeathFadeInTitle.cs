@@ -46,9 +46,9 @@ public class DeathFadeInTitle : MonoBehaviour
         titleImage.color = SetAlpha(titleImage.color, 0f);
         continueText.color = SetAlpha(continueText.color, 0f);
 
-        if (UIManager.Instance.tenPiedadHealthBar.activeSelf)
+        if (UIManager.Instance.bossHealthBar.activeSelf)
         {
-            UIManager.Instance.tenPiedadHealthBar.SetActive(false);
+            UIManager.Instance.bossHealthBar.SetActive(false);
         }
     }
 

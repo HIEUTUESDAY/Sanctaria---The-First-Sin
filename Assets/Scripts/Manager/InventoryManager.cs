@@ -203,6 +203,7 @@ public class InventoryManager : MonoBehaviour
                     itemName = slot.prayerName,
                     itemDescription = slot.prayerDescription,
                     itemSprite = slot.prayerSprite,
+                    manaCost = slot.prayerManaCost,
                     isItemEquipped = slot.isPrayerEquipped
                 });
             }
@@ -266,7 +267,6 @@ public class InventoryManager : MonoBehaviour
             }
         }
         meaCulpaHeartsEquipment = meaCulpaHeart;
-        playerEquipment.UpdateEquippedMeaCulpaHeart();
         SaveInventories();
     }
 
@@ -280,7 +280,6 @@ public class InventoryManager : MonoBehaviour
             }
         }
         prayersEquipment = prayer;
-        playerEquipment.UpdateEquippedPrayer();
         SaveInventories();
 
     }
@@ -288,7 +287,6 @@ public class InventoryManager : MonoBehaviour
     public void UnequipMeaCulpaHeart()
     {
         meaCulpaHeartsEquipment = null;
-        playerEquipment.UpdateEquippedMeaCulpaHeart();
         SaveInventories();
 
     }
@@ -296,7 +294,6 @@ public class InventoryManager : MonoBehaviour
     public void UnequipPrayer()
     {
         prayersEquipment = null;
-        playerEquipment.UpdateEquippedPrayer();
         SaveInventories();
 
     }
@@ -314,6 +311,7 @@ public class InventoryManager : MonoBehaviour
     {
         return meaCulpaHeartsInventory;
     }
+
     public List<Prayer> GetPrayersInventory()
     {
         return prayersInventory;

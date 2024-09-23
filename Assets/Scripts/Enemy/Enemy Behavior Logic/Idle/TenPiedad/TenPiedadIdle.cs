@@ -24,7 +24,7 @@ public class TenPiedadIdle : EnemyIdleSOBase
     {
         base.DoExitLogic();
 
-        UIManager.Instance.tenPiedadHealthBar.SetActive(true);
+        UIManager.Instance.bossHealthBar.SetActive(true);
     }
 
     public override void DoFrameUpdateLogic()

@@ -5,13 +5,13 @@ using UnityEngine.InputSystem;
 
 public abstract class NPC : MonoBehaviour, IInteractable
 {
-    [SerializeField] private GameObject interactLabel;
+    [SerializeField] private GameObject NPCLabel;
 
     [SerializeField] private bool canInteract;
 
     private void Update()
     {
-        if (Keyboard.current.eKey.wasPressedThisFrame && canInteract)
+        if (Keyboard.current.eKey.wasPressedThisFrame && canInteract && !UIManager.Instance.menuActivated)
         {
             Interact();
         }
@@ -24,7 +24,7 @@ public abstract class NPC : MonoBehaviour, IInteractable
         if(collision.CompareTag("Player")) 
         {
             canInteract = true;
-            interactLabel.gameObject.SetActive(true);
+            NPCLabel.gameObject.SetActive(true);
         }
     }
 
@@ -33,7 +33,7 @@ public abstract class NPC : MonoBehaviour, IInteractable
         if (collision.CompareTag("Player"))
         {
             canInteract = false;
-            interactLabel.gameObject.SetActive(false);
+            NPCLabel.gameObject.SetActive(false);
         }
     }
 }

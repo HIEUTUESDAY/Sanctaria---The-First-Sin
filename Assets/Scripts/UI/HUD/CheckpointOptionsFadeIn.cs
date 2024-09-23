@@ -31,7 +31,7 @@ public class CheckpointOptionsFadeIn : MonoBehaviour
 
     public IEnumerator FadeInAndOutSequence()
     {
-        UIManager.Instance.tenPiedadHealthBar.SetActive(false);
+        UIManager.Instance.bossHealthBar.SetActive(false);
 
         GameObject bossGround = GameObject.FindGameObjectWithTag("BossGround");
 

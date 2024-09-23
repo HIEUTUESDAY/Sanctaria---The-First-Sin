@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -18,7 +19,9 @@ public class UIManager : MonoBehaviour
     public bool menuActivated = false;
     [SerializeField] private Transform VFXcanvas;
 
-    public GameObject tenPiedadHealthBar; 
+    public GameObject bossHealthBar;
+    public Slider bossHealthSlider;
+    public Slider bossHealthDecreasedSlider;
 
     private void Awake()
     {

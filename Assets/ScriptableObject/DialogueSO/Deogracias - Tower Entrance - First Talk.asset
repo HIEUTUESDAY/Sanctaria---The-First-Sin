@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 15c35fff303aa7c469a1fb0305947956, type: 3}
-  m_Name: Deogracias - First Met
+  m_Name: Deogracias - Tower Entrance - First Talk
   m_EditorClassIdentifier: 
   speakerName: DEOGRACIAS
   messages:

@@ -17,6 +17,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     [Space(5)]
 
     [Header("Jumping")]
+    [SerializeField] private bool canJump = true;
     [SerializeField] public float jumpPower = 20f;
     [SerializeField] private float coyoteTime = 0.1f;
     private float coyoteTimeCounter;
@@ -36,7 +37,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     [Header("Ladder Climbing")]
     [SerializeField] private float climbSpeed = 5f;
     [SerializeField] private bool isOnLadder;
-    private Transform LadderCenterPosition;
     private Collider2D LadderCollider;
     [SerializeField] private Collider2D LadderPlatformCollider;
     [Space(5)]
@@ -599,8 +599,8 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     public void UpdateHealthBar()
     {
-        HealthBar.healthSlider.maxValue = MaxHealth;
-        HealthBar.manaSlider.maxValue = MaxMana;
+        HealthBar.SetMaxHealth(MaxHealth);
+        HealthBar.SetMaxMana(MaxMana);
         HealthBar.SetHealth(CurrentHealth);
         HealthBar.SetMana(CurrentMana);
         HealthBar.SetHealthPotions(CurrentHealthPotion);
@@ -718,7 +718,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     {
         if (Checkpoint != null)
         {
-            Checkpoint.ActiveCheckpointThenSaveGame();
+            Checkpoint.ActiveCheckpoint();
         }
     }
 
@@ -756,12 +756,12 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             Transform ladderTransform = LadderPlatformCollider.transform.parent;
             if (ladderTransform != null)
             {
-                isOnLadder = true;
-                IsClimbing = true;
                 Animator.SetBool(AnimationString.enterLadderTrigger, false);
                 LadderCollider = ladderTransform.GetComponentInChildren<Collider2D>();
                 Vector3 targetPosition = new Vector3(LadderCollider.bounds.center.x, LadderPlatformCollider.bounds.min.y - (PlayerCollider.size.y / 4), transform.position.z);
                 transform.position = targetPosition;
+                isOnLadder = true;
+                IsClimbing = true;
             }
         }
     }
@@ -994,14 +994,14 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     {
         if (!UIManager.Instance.menuActivated)
         {
-           if (context.started && IsClimbing && !IsJumping)
+            if (context.started && IsClimbing && !IsJumping)
             {
                 IsClimbing = false;
                 IsJumping = true;
                 RB.gravityScale = originalGravityScale;
                 RB.velocity = new Vector2(RB.velocity.x, jumpPower + jumpPowerBuff);
             }
-            else if (context.started && !IsClimbing && !IsJumping)
+            else if (context.started && !IsClimbing && !IsJumping && canJump)
             {
                 jumpBufferTimeCounter = jumpBufferTime;
             }
@@ -1045,7 +1045,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     {
         if (!UIManager.Instance.menuActivated)
         {
-            if (context.started && canDash && CanMove && TouchingDirections.IsGrounded && !IsDashing && !IsClimbing && !IsJumping)
+            if (context.started && canDash && CanMove && TouchingDirections.IsGrounded && !IsDashing && !IsClimbing)
             {
                 StartCoroutine(Dashing());
             }
@@ -1226,7 +1226,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     {
         if (!UIManager.Instance.menuActivated)
         {
-            if (context.started && IsAlive && CanMove && TouchingDirections.IsGrounded && PlayerEquipment.equippedPrayer.itemName != "" && CurrentMana >= prayerManaCost)
+            if (context.started && IsAlive && CanMove && TouchingDirections.IsGrounded && prayerManaCost > 0f && CurrentMana >= prayerManaCost)
             {
                 if(prayerCooldown <= 0)
                 {
@@ -1307,6 +1307,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         IsInvincible = true;
         IsDashing = true;
         canDash = false;
+        canJump = false;
         float originalGravity = RB.gravityScale;
         RB.gravityScale = 0;
         GhostTrail.StartGhostTrail();
@@ -1318,11 +1319,12 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
         yield return new WaitForSeconds(dashDelay);
         RB.velocity = new Vector2(dashDirection * (dashPower + dashPowerBuff), 0f);
+        canJump = true;
 
         // Check for ground while dashing
         while (Time.time < dashEndTime)
         {
-            if (!TouchingDirections.IsGrounded || IsJumping)
+            if (!TouchingDirections.IsGrounded)
             {
                 GhostTrail.StopGhostTrail();
                 IsDashing = false;
@@ -1498,6 +1500,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             Item = null;
         }
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("LadderPlatform"))

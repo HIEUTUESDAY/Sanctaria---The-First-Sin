@@ -39,7 +39,7 @@ public class DefeatBossFadeInTitle : MonoBehaviour
 
     private IEnumerator FadeInAndOutSequence()
     {
-        UIManager.Instance.tenPiedadHealthBar.SetActive(false);
+        UIManager.Instance.bossHealthBar.SetActive(false);
 
         GameObject bossGround = GameObject.FindGameObjectWithTag("BossGround");
 

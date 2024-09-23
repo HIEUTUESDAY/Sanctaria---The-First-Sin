@@ -47621,73 +47621,6 @@ MonoBehaviour:
   m_BoundingShape2D: {fileID: 491437937}
   m_Damping: 1
   m_MaxWindowSize: -1
---- !u!1001 &1364152993
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1910845530}
-    m_Modifications:
-    - target: {fileID: 4620980904052072777, guid: ceedbfbf1228131469e232782f796a4a, type: 3}
-      propertyPath: m_Name
-      value: Heart of Cerulean Incense
-      objectReference: {fileID: 0}
-    - target: {fileID: 4917667677078692333, guid: ceedbfbf1228131469e232782f796a4a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 94.72
-      objectReference: {fileID: 0}
-    - target: {fileID: 4917667677078692333, guid: ceedbfbf1228131469e232782f796a4a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 4.89
-      objectReference: {fileID: 0}
-    - target: {fileID: 4917667677078692333, guid: ceedbfbf1228131469e232782f796a4a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4917667677078692333, guid: ceedbfbf1228131469e232782f796a4a, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4917667677078692333, guid: ceedbfbf1228131469e232782f796a4a, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4917667677078692333, guid: ceedbfbf1228131469e232782f796a4a, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4917667677078692333, guid: ceedbfbf1228131469e232782f796a4a, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4917667677078692333, guid: ceedbfbf1228131469e232782f796a4a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4917667677078692333, guid: ceedbfbf1228131469e232782f796a4a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4917667677078692333, guid: ceedbfbf1228131469e232782f796a4a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ceedbfbf1228131469e232782f796a4a, type: 3}
---- !u!1 &1364152994 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4620980904052072777, guid: ceedbfbf1228131469e232782f796a4a, type: 3}
-  m_PrefabInstance: {fileID: 1364152993}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1364152995 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4917667677078692333, guid: ceedbfbf1228131469e232782f796a4a, type: 3}
-  m_PrefabInstance: {fileID: 1364152993}
-  m_PrefabAsset: {fileID: 0}
 --- !u!213 &1398191210
 Sprite:
   m_ObjectHideFlags: 0
@@ -83190,6 +83123,73 @@ Transform:
   - {fileID: 2142723958}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1890741506
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1910845530}
+    m_Modifications:
+    - target: {fileID: 402876511156770573, guid: bdbdec28e42f36442bc159b28cb4f2a7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 95.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 402876511156770573, guid: bdbdec28e42f36442bc159b28cb4f2a7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 402876511156770573, guid: bdbdec28e42f36442bc159b28cb4f2a7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 402876511156770573, guid: bdbdec28e42f36442bc159b28cb4f2a7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 402876511156770573, guid: bdbdec28e42f36442bc159b28cb4f2a7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 402876511156770573, guid: bdbdec28e42f36442bc159b28cb4f2a7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 402876511156770573, guid: bdbdec28e42f36442bc159b28cb4f2a7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 402876511156770573, guid: bdbdec28e42f36442bc159b28cb4f2a7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 402876511156770573, guid: bdbdec28e42f36442bc159b28cb4f2a7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 402876511156770573, guid: bdbdec28e42f36442bc159b28cb4f2a7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 616999251492132105, guid: bdbdec28e42f36442bc159b28cb4f2a7, type: 3}
+      propertyPath: m_Name
+      value: Prayer_Verdiales of The Forsaken Hamlet
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bdbdec28e42f36442bc159b28cb4f2a7, type: 3}
+--- !u!1 &1890741507 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 616999251492132105, guid: bdbdec28e42f36442bc159b28cb4f2a7, type: 3}
+  m_PrefabInstance: {fileID: 1890741506}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1890741508 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 402876511156770573, guid: bdbdec28e42f36442bc159b28cb4f2a7, type: 3}
+  m_PrefabInstance: {fileID: 1890741506}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1901936450
 GameObject:
   m_ObjectHideFlags: 0
@@ -83329,7 +83329,7 @@ MonoBehaviour:
       isActived: 0
       position: []
   itemsObjects:
-  - {fileID: 1364152994}
+  - {fileID: 1890741507}
 --- !u!4 &1910845530
 Transform:
   m_ObjectHideFlags: 0
@@ -83343,7 +83343,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1364152995}
+  - {fileID: 1890741508}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!213 &2023408533

@@ -19,12 +19,13 @@ public static class SaveSystem
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(path, json);
 
-        Debug.Log("Game file saved at " + path);
+        Debug.Log("Game file saved");
     }
 
     public static GameData LoadGame(int slotIndex)
     {
         string path = Application.persistentDataPath + "/savefile" + slotIndex + ".json";
+
         if (File.Exists(path))
         {
             string json = File.ReadAllText(path);

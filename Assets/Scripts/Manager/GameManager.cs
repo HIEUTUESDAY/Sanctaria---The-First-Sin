@@ -1,20 +1,19 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    public GameData gameData;
+    private string savePath;
+    [SerializeField] private int currentSlotIndex;
 
     public SceneField newGameScene;
-
-    private string savePath;
-    private int currentSlotIndex;
-
+    public GameData gameData;
     public bool isNewGame = false;
     public bool isLoadGame = false;
     public bool isRespawn = false;
+
+    private Coroutine autoSaveCoroutine;
 
     private void Awake()
     {
@@ -25,6 +24,28 @@ public class GameManager : MonoBehaviour
         }
 
         savePath = Application.persistentDataPath + "/";
+    }
+
+    private void Update()
+    {
+        if (gameData != null)
+        {
+            if (gameData.playerCheckpointData != null)
+            {
+                if (gameData.playerCheckpointData.position != null)
+                {
+                    StartAutoSave();
+                }
+                else
+                {
+                    StopAutoSave();
+                }
+            }
+            else
+            {
+                StopAutoSave();
+            }
+        }
     }
 
     #region Load menus data
@@ -82,6 +103,73 @@ public class GameManager : MonoBehaviour
             {
                 SceneChangerManager.Instance.ChangeSceneFromeSaveFile(gameData);
             }
+        }
+    }
+
+    #endregion
+
+    #region Exit game
+
+    public void ExitGame()
+    {
+        Application.Quit();
+        Debug.Log("Exit Game");
+    }
+
+    #endregion
+
+    #region Auto Save Game
+
+    public void StartAutoSave()
+    {
+        if (autoSaveCoroutine == null)
+        {
+            autoSaveCoroutine = StartCoroutine(AutoSaveRoutine());
+        }
+    }
+
+    public void StopAutoSave()
+    {
+        if (autoSaveCoroutine != null)
+        {
+            StopCoroutine(autoSaveCoroutine);
+            autoSaveCoroutine = null;
+        }
+    }
+
+    private void AutoSave()
+    {
+        Player player = Player.Instance;
+        InventoryManager inventoryManager = InventoryManager.Instance;
+        MapRoomManager mapRoomManager = MapRoomManager.Instance;
+        SceneDataManager sceneDataManager = SceneDataManager.Instance;
+
+        if (player != null && inventoryManager != null && mapRoomManager != null && sceneDataManager != null)
+        {
+            PlayerData playerData = new PlayerData(player);
+            PlayerCheckpointData playerCheckpointData = gameData.playerCheckpointData;
+            PlayerInventoryData playerInventoryData = new PlayerInventoryData
+            (
+                inventoryManager.GetTearsAmount(),
+                inventoryManager.GetQuestItemsInventory(),
+                inventoryManager.GetMeaCulpaHeartsInventory(),
+                inventoryManager.GetPrayersInventory(),
+                inventoryManager.GetMeaCulpaHeartEquipment(),
+                inventoryManager.GetPrayerEquipment()
+            );
+            PlayerMapData playerMapData = new PlayerMapData(mapRoomManager.GetMaps());
+            PlayerSceneData playerSceneData = new PlayerSceneData(sceneDataManager.GetSceneDataList());
+
+            SaveGame(playerData, playerCheckpointData, playerInventoryData, playerMapData, playerSceneData);
+        }
+    }
+
+    private IEnumerator AutoSaveRoutine()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(5f);
+            AutoSave();
         }
     }
 

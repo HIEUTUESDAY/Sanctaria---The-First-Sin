@@ -35,10 +35,10 @@ public class CheckpointManager : MonoBehaviour
         animator.SetBool(AnimationString.isActivated, isActivated);
     }
 
-    public void ActiveCheckpointThenSaveGame()
+    public void ActiveCheckpoint()
     {
         isActivated = true;
-        StartCoroutine(SaveGameInCheckpoint());
+        StartCoroutine(SaveCheckpointAndRespawnEnemies());
     }
 
     public CheckPointData SaveCheckpoint()
@@ -78,7 +78,7 @@ public class CheckpointManager : MonoBehaviour
         }
     }
 
-    private IEnumerator SaveGameInCheckpoint()
+    public IEnumerator SaveCheckpointAndRespawnEnemies()
     {
         while (!thisSceneData.checkPoint.isActived)
         {
@@ -86,36 +86,14 @@ public class CheckpointManager : MonoBehaviour
         }
 
         GameManager gameManager = GameManager.Instance;
-        Player player = Player.Instance;
-        InventoryManager inventoryManager = InventoryManager.Instance;
-        MapRoomManager mapRoomManager = MapRoomManager.Instance;
         SceneDataManager sceneDataManager = SceneDataManager.Instance;
         sceneDataManager.SaveSceneData(SceneManager.GetActiveScene().name);
 
-        if (gameManager != null && player != null && inventoryManager != null && mapRoomManager != null && sceneDataManager != null)
+        if (gameManager != null && sceneDataManager != null)
         {
-            // Gather all player data
-            PlayerData playerData = new PlayerData(player);
             PlayerCheckpointData playerCheckpointData = new PlayerCheckpointData( checkpointArea.ToString(), SceneManager.GetActiveScene().name, transform.position);
-            PlayerInventoryData playerInventoryData = new PlayerInventoryData
-            (
-                inventoryManager.GetTearsAmount(),
-                inventoryManager.GetQuestItemsInventory(),
-                inventoryManager.GetMeaCulpaHeartsInventory(),
-                inventoryManager.GetPrayersInventory(),
-                inventoryManager.GetMeaCulpaHeartEquipment(),
-                inventoryManager.GetPrayerEquipment()
-            );
-            PlayerMapData playerMapData = new PlayerMapData(mapRoomManager.GetMaps());
-
-            // Gather scene data
-            PlayerSceneData playerSceneData = new PlayerSceneData(sceneDataManager.GetSceneDataList());
-
-            // Respawn enemies in all scenes
+            gameManager.gameData.playerCheckpointData = playerCheckpointData;
             sceneDataManager.RespawnEnemiesInAllScenes();
-
-            // Save the game including scene data
-            gameManager.SaveGame(playerData, playerCheckpointData, playerInventoryData, playerMapData, playerSceneData);
         }
     }
 }
