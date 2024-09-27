@@ -311,6 +311,90 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: items_bouquet_of_rosemary
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 109
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9339091e4a7a7c9439368f855cdb78cf
+      internalID: -805563005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: items_key_of_the_eldestbrother
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 79
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 494ade68e43cc6f4d87b8d5551b42352
+      internalID: 1048421910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: items_sooty_garlic
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 79
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1eb1d16eaf8ae2a45baa2d6cca141301
+      internalID: -687579350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: items_Torn_Bridal_Ribbon
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 109
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b538ad84cf6ccf948872403e9a164237
+      internalID: -1685035158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -349,6 +433,10 @@ TextureImporter:
       itemSlot_fill_used: 303646139
       itemSlot_selected: -247391969
       items-icons-spritesheet_0: -184253757
+      items_Torn_Bridal_Ribbon: -1685035158
+      items_bouquet_of_rosemary: -805563005
+      items_key_of_the_eldestbrother: 1048421910
+      items_sooty_garlic: -687579350
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

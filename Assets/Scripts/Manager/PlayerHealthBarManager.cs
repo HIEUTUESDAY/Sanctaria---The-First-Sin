@@ -13,7 +13,7 @@ public class PlayerHealthBarManager : MonoBehaviour
     public GameObject activatedPrayerBorder;
     public Image manaSliderImg;
     public Image PrayerCooldownImg;
-    [SerializeField] private float decreasedSpeed = 0.02f;
+    [SerializeField] private float decreasedSpeed = 0.05f;
 
     public Image manaTickPrefab;
     public Transform manaTickContainer;
@@ -42,6 +42,7 @@ public class PlayerHealthBarManager : MonoBehaviour
     {
         manaSlider.maxValue = stamina;
         manaDecreasedSlider.maxValue = stamina;
+        UpdateManaTicks();
     }
 
     public void SetMana(float stamina)
@@ -131,16 +132,13 @@ public class PlayerHealthBarManager : MonoBehaviour
 
         if (lastManaCost > 0 && manaSlider.maxValue > 0)
         {
-            float maxMana = manaSlider.maxValue;
-            int numberOfTicks = Mathf.FloorToInt(maxMana / lastManaCost);
+            float tickPosition = lastManaCost / manaSlider.maxValue;
 
-            for (int i = 1; i < numberOfTicks; i++)
+            for (float currentPosition = tickPosition; currentPosition < 1f; currentPosition += tickPosition)
             {
-                float tickPosition = (i * lastManaCost) / maxMana;
-
                 Image tickMark = Instantiate(manaTickPrefab, manaTickContainer);
-                tickMark.rectTransform.anchorMin = new Vector2(tickPosition, 0.5f);
-                tickMark.rectTransform.anchorMax = new Vector2(tickPosition, 0.5f);
+                tickMark.rectTransform.anchorMin = new Vector2(currentPosition, 0.5f);
+                tickMark.rectTransform.anchorMax = new Vector2(currentPosition, 0.5f);
                 tickMark.rectTransform.pivot = new Vector2(0.5f, 0.5f);
                 tickMark.rectTransform.anchoredPosition = Vector2.zero;
 

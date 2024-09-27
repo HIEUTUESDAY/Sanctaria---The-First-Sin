@@ -74,15 +74,26 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     private ItemCollectable Item;
     [Space(5)]
 
-    [Header("CheckPoint Point")]
+    [Header("CheckPoint")]
     [SerializeField] private bool isInCheckpoint;
     [SerializeField] public bool isKneelInCheckpoint;
-    [SerializeField] private GameObject MeaCulpaHeartsInventory;
-    private CheckpointManager Checkpoint;
+    [SerializeField] private CheckpointManager Checkpoint;
     [Space(5)]
 
-    [Header("One Way Platform Movement")]
-    private CapsuleCollider2D PlayerCollider;
+    [Header("NPCs")]
+    [SerializeField] private bool isAtNPC;
+    [SerializeField] private NPC NPC;
+    [SerializeField] public bool isInteractWithNPC = false;
+    [Space(5)]
+
+    [Header("Shop")]
+    [SerializeField] private bool isInShop;
+    [SerializeField] private ShopDoorSceneChanger ShopDoorSceneChanger;
+    [Space(5)]
+
+    [Header("Buy Item")]
+    [SerializeField] private bool canBuyItem;
+    [SerializeField] public ItemBuyable ItemBuyable;
     [Space(5)]
 
     [Header("Camera Shake")]
@@ -126,6 +137,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     public Animator Animator;
     public PlayerInput PlayerInput;
     public TouchingDirections TouchingDirections;
+    public CapsuleCollider2D PlayerCollider;
     public CameraFollowObject CameraFollowObject;
     public GhostTrail GhostTrail;
     public PlayerHealthBarManager HealthBar;
@@ -134,9 +146,9 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     #endregion
 
-    #region Player Equipment buffs
+    #region Player Equipment
 
-    [Header("Mea Culpa Heart Buffs")]
+    [Header("Heart Buffs")]
     public float damageBuff = 0f;
     public float defenseBuff = 0f;
     public float healthBuff = 0f;
@@ -478,6 +490,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         UpdateHealthBar();
         UpdatePrayerCooldown();
         BeInvisible();
+        InteractCheck();
     }
 
     private void FixedUpdate()
@@ -776,6 +789,14 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         }
     }
 
+    public void EnterShop()
+    {
+        if (ShopDoorSceneChanger != null)
+        {
+            ShopDoorSceneChanger.ChangeScene();
+        }
+    }
+
     #endregion
 
     #region Player envent system functions
@@ -973,16 +994,31 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         }
     }
 
+    private void InteractCheck()
+    {
+        if (isInteractWithNPC)
+        {
+            PlayerInput.enabled = false;
+        }
+        else
+        {
+            PlayerInput.enabled = true;
+        }
+    }
+
     #endregion
 
     #region Player Input functions
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        HorizontalInput = context.ReadValue<Vector2>();
-        if (IsAlive && !UIManager.Instance.menuActivated)
+        if (!UIManager.Instance.menuActivated)
         {
-            IsMoving = HorizontalInput != Vector2.zero;
+            if (IsAlive)
+            {
+                HorizontalInput = context.ReadValue<Vector2>();
+                IsMoving = HorizontalInput != Vector2.zero;
+            }
         }
         else
         {
@@ -1045,7 +1081,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     {
         if (!UIManager.Instance.menuActivated)
         {
-            if (context.started && canDash && CanMove && TouchingDirections.IsGrounded && !IsDashing && !IsClimbing)
+            if (context.started && IsAlive && canDash && CanMove && TouchingDirections.IsGrounded && !IsDashing && !IsClimbing)
             {
                 StartCoroutine(Dashing());
             }
@@ -1056,8 +1092,11 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     {
         if (!UIManager.Instance.menuActivated)
         {
-            VerticalInput = context.ReadValue<Vector2>();
-            Animator.SetBool(AnimationString.upInput, VerticalInput.y > 0);
+            if (IsAlive)
+            {
+                VerticalInput = context.ReadValue<Vector2>();
+                Animator.SetBool(AnimationString.upInput, VerticalInput.y > 0);
+            }
         }
         else
         {
@@ -1069,7 +1108,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     {
         if (!UIManager.Instance.menuActivated)
         {
-            if (context.started && CanMove && TouchingDirections.IsGrabWallDetected && !TouchingDirections.IsGrounded && !IsWallHanging)
+            if (context.started && IsAlive && CanMove && TouchingDirections.IsGrabWallDetected && !TouchingDirections.IsGrounded && !IsWallHanging)
             {
                 if (canWallHang)
                 {
@@ -1095,12 +1134,12 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     {
         if (!UIManager.Instance.menuActivated)
         {
-            if (context.started && hasItemInRange && Item.IsOnFloor && TouchingDirections.IsGrounded)
+            if (context.started && hasItemInRange && Item.isOnFloor && TouchingDirections.IsGrounded)
             {
                 transform.position = new Vector3(Item.transform.position.x, transform.position.y, transform.position.z);
                 Animator.SetTrigger(AnimationString.collectFloorTrigger);
             }
-            else if (context.started && hasItemInRange && !Item.IsOnFloor && TouchingDirections.IsGrounded)
+            else if (context.started && hasItemInRange && !Item.isOnFloor && TouchingDirections.IsGrounded)
             {
                 Animator.SetTrigger(AnimationString.collectHalfTrigger);
             }
@@ -1108,6 +1147,10 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             {
                 IsWaitForEnter = false;
                 Animator.SetTrigger(AnimationString.risingTrigger);
+            }
+            else if (context.started && isAtNPC && TouchingDirections.IsGrounded)
+            {
+                isInteractWithNPC = true;
             }
             else if (context.started && isInCheckpoint && TouchingDirections.IsGrounded)
             {
@@ -1122,18 +1165,29 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
                 Animator.SetTrigger(AnimationString.saveTrigger);
             }
+            else if (context.started && isInShop && TouchingDirections.IsGrounded)
+            {
+                transform.position = new Vector3(ShopDoorSceneChanger.transform.position.x, transform.position.y, transform.position.z);
+                Animator.SetTrigger(AnimationString.enterDoorTrigger);
+            }
+            else if (context.started && canBuyItem && TouchingDirections.IsGrounded)
+            {
+                transform.position = new Vector3(ItemBuyable.transform.position.x, transform.position.y, transform.position.z);
+                RB.velocity = Vector3.zero;
+                ItemBuyable.InspectItem();
+            }
         }
     }
 
     public void OnOpenInventoryMenu(InputAction.CallbackContext context)
     {
-        if (context.started && !UIManager.Instance.menuActivated && !UIManager.Instance.inventoryMenu.activeSelf && !IsWaitForEnter)
+        if (context.started && IsAlive && !UIManager.Instance.menuActivated && !UIManager.Instance.inventoryMenu.activeSelf && !IsWaitForEnter)
         {
             Time.timeScale = 0;
             UIManager.Instance.inventoryMenu.SetActive(true);
             UIManager.Instance.menuActivated = true;
         }
-        else if (context.started && UIManager.Instance.menuActivated && !UIManager.Instance.inventoryMenu.activeSelf && UIManager.Instance.checkpointMenu.activeSelf)
+        else if (context.started && IsAlive && UIManager.Instance.menuActivated && !UIManager.Instance.inventoryMenu.activeSelf && UIManager.Instance.checkpointMenu.activeSelf)
         {
             isKneelInCheckpoint = true;
             UIManager.Instance.checkpointMenu.SetActive(false);
@@ -1141,7 +1195,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
             for (int i = 0; i < InventoryManager.Instance.Inventories.Length; i++)
             {
-                if (InventoryManager.Instance.Inventories[i].name == "MeaCulpaHearts")
+                if (InventoryManager.Instance.Inventories[i].name == "Hearts")
                 {
                     InventoryManager.Instance.Inventories[i].SetActive(true);
                     InventoryManager.Instance.currentInventoryIndex = i;
@@ -1156,7 +1210,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     public void OnOpenMapMenu(InputAction.CallbackContext context)
     {
-        if (context.started && !UIManager.Instance.menuActivated && !UIManager.Instance.mapMenu.activeSelf && !IsWaitForEnter)
+        if (context.started && IsAlive && !UIManager.Instance.menuActivated && !UIManager.Instance.mapMenu.activeSelf && !IsWaitForEnter)
         {
             Time.timeScale = 0;
             UIManager.Instance.mapMenu.SetActive(true);
@@ -1167,7 +1221,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             MapRoomManager.Instance.mapHUD.SetActive(true);
             MapCenterPoint.Instance.SetCenterPoint();
         }
-        else if (context.started && UIManager.Instance.menuActivated && !UIManager.Instance.mapMenu.activeSelf && UIManager.Instance.checkpointMenu.activeSelf)
+        else if (context.started && IsAlive && UIManager.Instance.menuActivated && !UIManager.Instance.mapMenu.activeSelf && UIManager.Instance.checkpointMenu.activeSelf)
         {
             isKneelInCheckpoint = true;
             UIManager.Instance.checkpointMenu.SetActive(false);
@@ -1182,7 +1236,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     public void OnOpenOptionsMenu(InputAction.CallbackContext context)
     {
-        if (context.started && UIManager.Instance.menuActivated && UIManager.Instance.mapMenu.activeSelf && !IsWaitForEnter)
+        if (context.started && IsAlive && UIManager.Instance.menuActivated && UIManager.Instance.mapMenu.activeSelf && !IsWaitForEnter)
         {
             Time.timeScale = 0;
             UIManager.Instance.mapMenu.SetActive(false);
@@ -1476,6 +1530,25 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             hasItemInRange = true;
             Item = collision.GetComponent<ItemCollectable>();
         }
+
+        if (collision.CompareTag("NPC"))
+        {
+            isAtNPC = true;
+            NPC = collision.GetComponentInParent<NPC>();
+        }
+
+        if (collision.CompareTag("Shop"))
+        {
+            isInShop = true;
+            ShopDoorSceneChanger = collision.GetComponent<ShopDoorSceneChanger>();
+        }
+
+        if (collision.CompareTag("ItemBuyable"))
+        {
+            canBuyItem = true;
+            ItemBuyable = collision.GetComponentInParent<ItemBuyable>();
+        }
+        
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -1498,6 +1571,24 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         {
             hasItemInRange = false;
             Item = null;
+        }
+
+        if (collision.CompareTag("NPC"))
+        {
+            isAtNPC = false;
+            NPC = null;
+        }
+
+        if (collision.CompareTag("Shop"))
+        {
+            isInShop = false;
+            ShopDoorSceneChanger = null;
+        }
+
+        if (collision.CompareTag("ItemBuyable"))
+        {
+            canBuyItem = false;
+            ItemBuyable = null;
         }
     }
 

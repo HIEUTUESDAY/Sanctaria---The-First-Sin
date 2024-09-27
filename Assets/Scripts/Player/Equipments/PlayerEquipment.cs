@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerEquipment : MonoBehaviour
 {
     private Player player;
-    public MeaCulpaHeart equippedMeaCulpaHeart;
+    public Heart equippedHeart;
     public Prayer equippedPrayer;
 
     private void Awake()
@@ -20,14 +20,14 @@ public class PlayerEquipment : MonoBehaviour
 
     private void SetCurrentEquipment()
     {
-        equippedMeaCulpaHeart = InventoryManager.Instance.GetMeaCulpaHeartEquipment();
-        if(equippedMeaCulpaHeart != null)
+        equippedHeart = InventoryManager.Instance.GetHeartEquipment();
+        if(equippedHeart != null)
         {
-            AddMeaCulpaHeartBuffs(equippedMeaCulpaHeart);
+            AddHeartBuffs(equippedHeart);
         }
         else
         {
-            RemoveMeaCulpaHeartBuffs();
+            RemoveHeartBuffs();
         }
 
         equippedPrayer = InventoryManager.Instance.GetPrayerEquipment();
@@ -62,24 +62,24 @@ public class PlayerEquipment : MonoBehaviour
         player.prayerCooldown = player.prayerCooldownTime;
     }
 
-    public void AddMeaCulpaHeartBuffs(MeaCulpaHeart newEquippedMeaCulpaHeart)
+    public void AddHeartBuffs(Heart newHeart)
     {
-        if (newEquippedMeaCulpaHeart != null)
+        if (newHeart != null)
         {
-            player.damageBuff = newEquippedMeaCulpaHeart.damageModifier;
-            player.defenseBuff = newEquippedMeaCulpaHeart.defenseModifier;
-            player.healthBuff = newEquippedMeaCulpaHeart.healthModifier;
-            player.healthRegenBuff = newEquippedMeaCulpaHeart.healthRegenModifier;
-            player.manaBuff = newEquippedMeaCulpaHeart.manaModifier;
-            player.manaRegenBuff = newEquippedMeaCulpaHeart.manaRegenModifier;
-            player.moveSpeedBuff = newEquippedMeaCulpaHeart.moveSpeedModifier;
-            player.jumpPowerBuff = newEquippedMeaCulpaHeart.jumpPowerModifier;
-            player.wallJumpPowerBuff = newEquippedMeaCulpaHeart.wallJumpPowerModifier;
-            player.dashPowerBuff = newEquippedMeaCulpaHeart.dashPowerModifier;
+            player.damageBuff = newHeart.damageModifier;
+            player.defenseBuff = newHeart.defenseModifier;
+            player.healthBuff = newHeart.healthModifier;
+            player.healthRegenBuff = newHeart.healthRegenModifier;
+            player.manaBuff = newHeart.manaModifier;
+            player.manaRegenBuff = newHeart.manaRegenModifier;
+            player.moveSpeedBuff = newHeart.moveSpeedModifier;
+            player.jumpPowerBuff = newHeart.jumpPowerModifier;
+            player.wallJumpPowerBuff = newHeart.wallJumpPowerModifier;
+            player.dashPowerBuff = newHeart.dashPowerModifier;
         }
     }
 
-    private void RemoveMeaCulpaHeartBuffs()
+    private void RemoveHeartBuffs()
     {
         if (player != null)
         {

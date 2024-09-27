@@ -9,17 +9,19 @@ public class InventoryManager : MonoBehaviour
     public int currentInventoryIndex = 0;
 
     public QuestItemSlot[] questItemSlots;
-    public MeaCulpaHeartSlot[] meaCulpaHeartSlots;
+    public HeartSlot[] heartSlots;
     public PrayerSlot[] prayerSlots;
 
     public List<QuestItem> questItemsInventory;
-    public List<MeaCulpaHeart> meaCulpaHeartsInventory;
+    public List<Heart> heartsInventory;
     public List<Prayer> prayersInventory;
 
-    public MeaCulpaHeart meaCulpaHeartsEquipment;
+    public Heart heartsEquipment;
     public Prayer prayersEquipment;
 
-    public float tearsOfAtonement;
+    public float relicPoint;
+
+    public GameObject heartUnlockHint;
 
     private void Awake()
     {
@@ -46,6 +48,15 @@ public class InventoryManager : MonoBehaviour
             {
                 NextInventory();
             }
+        }
+
+        if (!Player.Instance.isKneelInCheckpoint)
+        {
+            heartUnlockHint.SetActive(true);
+        }
+        else
+        {
+            heartUnlockHint.SetActive(false);
         }
     }
 
@@ -79,13 +90,13 @@ public class InventoryManager : MonoBehaviour
 
     public void LoadSaveFileInventoriesData(GameData gameData)
     {
-        tearsOfAtonement = gameData.playerInventoryData.tearsOfAtonement;
+        relicPoint = gameData.playerInventoryData.tearsOfAtonement;
 
         questItemsInventory = gameData.playerInventoryData.questItemsInventory;
-        meaCulpaHeartsInventory = gameData.playerInventoryData.meaCulpaHeartsInventory;
+        heartsInventory = gameData.playerInventoryData.meaCulpaHeartsInventory;
         prayersInventory = gameData.playerInventoryData.prayersInventory;
 
-        meaCulpaHeartsEquipment = gameData.playerInventoryData.meaCulpaHeartEquipment;
+        heartsEquipment = gameData.playerInventoryData.meaCulpaHeartEquipment;
         prayersEquipment = gameData.playerInventoryData.prayerEquipment;
 
         gameData.playerInventoryData.LoadSprites();
@@ -96,7 +107,7 @@ public class InventoryManager : MonoBehaviour
     private void LoadInventories()
     {
         LoadQuestItemInventory(questItemSlots, questItemsInventory);
-        LoadMeaCulpaHeartInventory(meaCulpaHeartSlots, meaCulpaHeartsInventory);
+        LoadHeartInventory(heartSlots, heartsInventory);
         LoadPrayerInventory(prayerSlots, prayersInventory);
     }
 
@@ -116,18 +127,18 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    private void LoadMeaCulpaHeartInventory(MeaCulpaHeartSlot[] slots, List<MeaCulpaHeart> meaCulpaHeartsInventory)
+    private void LoadHeartInventory(HeartSlot[] slots, List<Heart> meaCulpaHeartsInventory)
     {
         for (int i = 0; i < slots.Length; i++)
         {
             if (i < meaCulpaHeartsInventory.Count)
             {
                 var item = meaCulpaHeartsInventory[i];
-                slots[i].AddMeaCulpaHeartSlot(item);
+                slots[i].AddHeartSlot(item);
             }
             else
             {
-                slots[i].ClearMeaCulpaHeartSlot();
+                slots[i].ClearHeartSlot();
             }
         }
     }
@@ -168,12 +179,12 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
-        meaCulpaHeartsInventory.Clear();
-        foreach (var slot in meaCulpaHeartSlots)
+        heartsInventory.Clear();
+        foreach (var slot in heartSlots)
         {
             if (slot.hasHeart)
             {
-                meaCulpaHeartsInventory.Add(new MeaCulpaHeart
+                heartsInventory.Add(new Heart
                 {
                     itemName = slot.heartName,
                     itemDescription = slot.heartDescription,
@@ -227,14 +238,14 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public void AddMeaCulpaHeartToInventory(MeaCulpaHeart meaCulpaHeart)
+    public void AddHeartToInventory(Heart heart)
     {
-        for (int i = 0; i < meaCulpaHeartSlots.Length; i++)
+        for (int i = 0; i < heartSlots.Length; i++)
         {
-            if (!meaCulpaHeartSlots[i].hasHeart)
+            if (!heartSlots[i].hasHeart)
             {
-                meaCulpaHeartSlots[i].AddMeaCulpaHeartSlot(meaCulpaHeart);
-                meaCulpaHeartsInventory.Add(meaCulpaHeart);
+                heartSlots[i].AddHeartSlot(heart);
+                heartsInventory.Add(heart);
                 return;
             }
         }
@@ -257,16 +268,16 @@ public class InventoryManager : MonoBehaviour
 
     #region Equip items
 
-    public void EquipNewMeaCulpaHeart(MeaCulpaHeart meaCulpaHeart)
+    public void EquipNewHeart(Heart heart)
     {
-        foreach (var slot in meaCulpaHeartSlots)
+        foreach (var slot in heartSlots)
         {
             if (!slot.isSelected && slot.isHeartEquipped)
             {
                 slot.isHeartEquipped = false;
             }
         }
-        meaCulpaHeartsEquipment = meaCulpaHeart;
+        heartsEquipment = heart;
         SaveInventories();
     }
 
@@ -284,9 +295,9 @@ public class InventoryManager : MonoBehaviour
 
     }
 
-    public void UnequipMeaCulpaHeart()
+    public void UnequipHeart()
     {
-        meaCulpaHeartsEquipment = null;
+        heartsEquipment = null;
         SaveInventories();
 
     }
@@ -307,9 +318,9 @@ public class InventoryManager : MonoBehaviour
         return questItemsInventory;
     }
 
-    public List<MeaCulpaHeart> GetMeaCulpaHeartsInventory()
+    public List<Heart> GetHeartsInventory()
     {
-        return meaCulpaHeartsInventory;
+        return heartsInventory;
     }
 
     public List<Prayer> GetPrayersInventory()
@@ -317,9 +328,9 @@ public class InventoryManager : MonoBehaviour
         return prayersInventory;
     }
 
-    public MeaCulpaHeart GetMeaCulpaHeartEquipment()
+    public Heart GetHeartEquipment()
     {
-        return meaCulpaHeartsEquipment;
+        return heartsEquipment;
     }
 
     public Prayer GetPrayerEquipment()
@@ -329,33 +340,30 @@ public class InventoryManager : MonoBehaviour
 
     public float GetTearsAmount()
     {
-        return tearsOfAtonement;
+        return relicPoint;
     }
 
     public string GetInventoryItemByName(string itemName)
     {
-        // Check in QuestItem inventory
         var questItem = questItemsInventory.Find(item => item.itemName == itemName);
         if (questItem != null)
         {
             return questItem.itemName;
         }
 
-        // Check in MeaCulpaHeart inventory
-        var meaCulpaHeart = meaCulpaHeartsInventory.Find(item => item.itemName == itemName);
-        if (meaCulpaHeart != null)
+        var heart = heartsInventory.Find(item => item.itemName == itemName);
+        if (heart != null)
         {
-            return meaCulpaHeart.itemName;
+            return heart.itemName;
         }
 
-        // Check in Prayer inventory
         var prayer = prayersInventory.Find(item => item.itemName == itemName);
         if (prayer != null)
         {
             return prayer.itemName;
         }
 
-        // Return a message if item not found in any inventory
+        // if not found item
         return "Item not found";
     }
 

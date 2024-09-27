@@ -13,10 +13,11 @@ public class SceneChangerManager : MonoBehaviour
 
     public bool loadToGamePlay = false;
     public bool loadFromDoor = false;
+    public bool loadFromShop = false;
     public bool loadToMainMenu = false;
     public bool loadFromCheckpoint = false;
 
-    private SceneChanger.DoorToSpawnAt doorToSpawnTo;
+    private DoorSceneChanger.DoorToSpawnAt doorToSpawnTo;
 
     private Transform doorSpawnPosition;
 
@@ -42,10 +43,16 @@ public class SceneChangerManager : MonoBehaviour
 
     #region Change scenes functions
 
-    public void ChangeSceneFromDoor(SceneField myScene, SceneChanger.DoorToSpawnAt doorToSpawnAt)
+    public void ChangeSceneFromDoor(SceneField myScene, DoorSceneChanger.DoorToSpawnAt doorToSpawnAt)
     {
         loadFromDoor = true;
         StartCoroutine(ChangeSceneFromDoorCoroutine(myScene, doorToSpawnAt));
+    }  
+    
+    public void ChangeSceneFromShop(SceneField myScene)
+    {
+        loadFromShop = true;
+        StartCoroutine(ChangeSceneFromShopCoroutine(myScene));
     }
 
     public void ChangeSceneToMainMenu(SceneField mainMenuScene)
@@ -72,9 +79,9 @@ public class SceneChangerManager : MonoBehaviour
         StartCoroutine(ChangeSceneFromCheckpointCoroutine(checkpointScene));
     }
 
-    private void FindDoor(SceneChanger.DoorToSpawnAt doorSpawnNumber)
+    private void FindDoor(DoorSceneChanger.DoorToSpawnAt doorSpawnNumber)
     {
-        SceneChanger[] doors = FindObjectsOfType<SceneChanger>();
+        DoorSceneChanger[] doors = FindObjectsOfType<DoorSceneChanger>();
 
         for (int i = 0; i < doors.Length; i++)
         {
@@ -90,7 +97,7 @@ public class SceneChangerManager : MonoBehaviour
 
     #region Coroutine to change scenes
 
-    private IEnumerator ChangeSceneFromDoorCoroutine(SceneField myScene, SceneChanger.DoorToSpawnAt doorToSpawnAt = SceneChanger.DoorToSpawnAt.None)
+    private IEnumerator ChangeSceneFromDoorCoroutine(SceneField myScene, DoorSceneChanger.DoorToSpawnAt doorToSpawnAt = DoorSceneChanger.DoorToSpawnAt.None)
     {
         SceneLoadManager.Instance.StartFadeOut();
 
@@ -101,6 +108,19 @@ public class SceneChangerManager : MonoBehaviour
         }
 
         doorToSpawnTo = doorToSpawnAt;
+        SceneManager.LoadScene(myScene);
+    }
+
+    private IEnumerator ChangeSceneFromShopCoroutine(SceneField myScene)
+    {
+        SceneLoadManager.Instance.StartFadeOut();
+
+        // keep loading
+        while (SceneLoadManager.Instance.IsFadingOut)
+        {
+            yield return null;
+        }
+
         SceneManager.LoadScene(myScene);
     }
 
@@ -218,7 +238,45 @@ public class SceneChangerManager : MonoBehaviour
         SceneLoadManager.Instance.StartFadeIn();
         StartCoroutine(ActivatePlayerControl());
     }
-    
+
+    private IEnumerator LoadShopScene(UnityEngine.SceneManagement.Scene scene)
+    {
+        SceneLoadManager.Instance.StartLoading(2f);
+
+        ShopDoorSceneChanger shopDoor = FindObjectOfType<ShopDoorSceneChanger>();
+
+        if (shopDoor != null)
+        {
+            Player player = Player.Instance;
+
+            if (player != null)
+            {
+                // load player data
+                player.transform.position = shopDoor.spawnPosition.position;
+
+                player.ResetPlayerAnimation();
+            }
+        }
+
+        SceneDataManager sceneDataManager = SceneDataManager.Instance;
+
+        if (sceneDataManager != null)
+        {
+            sceneDataManager.LoadSceneData(scene.name);
+        }
+
+        MapRoomManager.Instance.RevealRoom();
+        loadFromShop = false;
+
+        while (SceneLoadManager.Instance.IsLoading)
+        {
+            yield return null;
+        }
+
+        SceneLoadManager.Instance.StartFadeIn();
+        StartCoroutine(ActivatePlayerControl());
+    }
+
     private IEnumerator LoadNewGameCoroutine()
     {
         SceneLoadManager.Instance.StartLoading(2f);
@@ -460,6 +518,10 @@ public class SceneChangerManager : MonoBehaviour
             if (loadFromDoor)
             {
                 StartCoroutine(LoadNewScene(scene));
+            }
+            else if (loadFromShop)
+            {
+                StartCoroutine(LoadShopScene(scene));
             }
             else if (loadFromCheckpoint)
             {

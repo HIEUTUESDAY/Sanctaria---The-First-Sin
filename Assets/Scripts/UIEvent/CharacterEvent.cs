@@ -18,6 +18,7 @@ public class CharacterEvent
     // Character hit splash when got hit
     public static UnityAction<GameObject, Vector2, int> hitSplash;
 
-    // Show message when collect item
+    // Show message
     public static UnityAction<Sprite, string> collectMessage;
+    public static UnityAction notEnoughMessage;
 }

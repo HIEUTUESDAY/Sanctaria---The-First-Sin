@@ -7,7 +7,7 @@ public class BossHealthBarManager : MonoBehaviour
 {
     private Slider healthSlider;
     private Slider healthDecreasedSlider;
-    [SerializeField] private float decreasedSpeed = 0.02f;
+    [SerializeField] private float decreasedSpeed = 0.05f;
 
     private void Start()
     {

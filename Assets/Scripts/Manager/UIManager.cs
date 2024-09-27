@@ -11,11 +11,13 @@ public class UIManager : MonoBehaviour
     public GameObject healthTextPrefab;
     public GameObject[] playerHitSplashPrefab;
     public GameObject[] nonPlayerHitSplashPrefab;
-    public GameObject popUpMessagePrefab;
+    public GameObject notEnoughRelicPointsMessagePrefab;
+    public GameObject collectedMessagePrefab;
     public GameObject inventoryMenu;
     public GameObject mapMenu;
     public GameObject optionsMenu;
     public GameObject checkpointMenu;
+    public GameObject shopMenu;
     public bool menuActivated = false;
     [SerializeField] private Transform VFXcanvas;
 
@@ -37,6 +39,7 @@ public class UIManager : MonoBehaviour
         CharacterEvent.characterHealed += CharacterHealed;
         CharacterEvent.hitSplash += ShowHitSplash;
         CharacterEvent.collectMessage += ShowCollectMessage;
+        CharacterEvent.notEnoughMessage += ShowNotEnoughMessage;
     }
 
     private void OnDisable()
@@ -45,6 +48,7 @@ public class UIManager : MonoBehaviour
         CharacterEvent.characterHealed -= CharacterHealed;
         CharacterEvent.hitSplash -= ShowHitSplash;
         CharacterEvent.collectMessage -= ShowCollectMessage;
+        CharacterEvent.notEnoughMessage -= ShowNotEnoughMessage;
     }
 
     public void CharacterTookDamage(GameObject character, float damageReceived)
@@ -97,14 +101,24 @@ public class UIManager : MonoBehaviour
 
     public void ShowCollectMessage(Sprite itemImage, string itemName)
     {
-        RectTransform rectTransform = popUpMessagePrefab.GetComponent<RectTransform>();
+        RectTransform rectTransform = collectedMessagePrefab.GetComponent<RectTransform>();
         Vector3 spawnPosition = rectTransform.anchoredPosition;
 
-        PopUpMessage popUpMessage = popUpMessagePrefab.GetComponent<PopUpMessage>();
+        PopUpMessage popUpMessage = collectedMessagePrefab.GetComponent<PopUpMessage>();
         popUpMessage.image.sprite = itemImage;
         popUpMessage.message.text = itemName;
 
-        GameObject instantiatedMessage = Instantiate(popUpMessagePrefab, VFXcanvas);
+        GameObject instantiatedMessage = Instantiate(collectedMessagePrefab, VFXcanvas);
+        RectTransform instantiatedRectTransform = instantiatedMessage.GetComponent<RectTransform>();
+        instantiatedRectTransform.anchoredPosition = spawnPosition;
+    }
+
+    public void ShowNotEnoughMessage()
+    {
+        RectTransform rectTransform = notEnoughRelicPointsMessagePrefab.GetComponent<RectTransform>();
+        Vector3 spawnPosition = rectTransform.anchoredPosition;
+
+        GameObject instantiatedMessage = Instantiate(notEnoughRelicPointsMessagePrefab, VFXcanvas);
         RectTransform instantiatedRectTransform = instantiatedMessage.GetComponent<RectTransform>();
         instantiatedRectTransform.anchoredPosition = spawnPosition;
     }

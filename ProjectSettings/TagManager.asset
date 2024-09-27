@@ -21,6 +21,8 @@ TagManager:
   - Boss
   - BossGround
   - NPC
+  - Shop
+  - ItemBuyable
   layers:
   - Default
   - TransparentFX

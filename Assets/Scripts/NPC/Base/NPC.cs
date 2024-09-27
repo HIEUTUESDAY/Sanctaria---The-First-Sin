@@ -6,12 +6,11 @@ using UnityEngine.InputSystem;
 public abstract class NPC : MonoBehaviour, IInteractable
 {
     [SerializeField] private GameObject NPCLabel;
-
     [SerializeField] private bool canInteract;
 
     private void Update()
     {
-        if (Keyboard.current.eKey.wasPressedThisFrame && canInteract && !UIManager.Instance.menuActivated)
+        if (Keyboard.current.eKey.wasPressedThisFrame && canInteract)
         {
             Interact();
         }

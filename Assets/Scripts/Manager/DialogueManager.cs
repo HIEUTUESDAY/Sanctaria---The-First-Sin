@@ -28,14 +28,11 @@ public class DialogueManager : MonoBehaviour
         {
             if (!conversationEnded)
             {
-                Player.Instance.PlayerInput.enabled = false;
                 StartConversation(dialogueText);
             }
             else if (conversationEnded && !isTyping)
             {
                 EndConversation();
-                conversationEnded = false;
-                Player.Instance.PlayerInput.enabled = true;
                 return;
             }
         }
@@ -81,6 +78,10 @@ public class DialogueManager : MonoBehaviour
         {
             dialogueMessageObject.SetActive(false);
         }
+
+        conversationEnded = false;
+
+        Player.Instance.isInteractWithNPC = false;
     }
 
     private void FinishCoversationEarly()

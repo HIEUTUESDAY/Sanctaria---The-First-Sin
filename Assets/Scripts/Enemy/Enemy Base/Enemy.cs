@@ -202,7 +202,7 @@ public class Enemy : MonoBehaviour, IEnemyDamageable, IEnemyMoveable
     private void DropTearsOfAtonement()
     {
         float tearsDroped = Random.Range(minTearsDrop, maxTearsDrop);
-        InventoryManager.Instance.tearsOfAtonement += tearsDroped;
+        InventoryManager.Instance.relicPoint += tearsDroped;
     }
 
     #endregion

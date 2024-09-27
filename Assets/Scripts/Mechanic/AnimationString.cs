@@ -43,6 +43,7 @@ internal class AnimationString
     internal static string spawnTrigger = "spawnTrigger";
     internal static string risingTrigger = "risingTrigger";
     internal static string enterLadderTrigger = "enterLadderTrigger";
+    internal static string enterDoorTrigger = "enterDoorTrigger";
 
     #region TenPiedad Boss
 

@@ -1,0 +1,604 @@
+fileFormatVersion: 2
+guid: 8351e02d0e80c4c4c912985076f2bf0d
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: penitent_enter_door_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 0
+        width: 66
+        height: 96
+      alignment: 9
+      pivot: {x: 0.73, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b26a6d104a97ef45902273f5b4bc2c5
+      internalID: -1650104300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_enter_door_1
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 0
+        width: 62
+        height: 96
+      alignment: 9
+      pivot: {x: 0.745, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21b0249242461e74987f090dc7ff76c6
+      internalID: 357407247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_enter_door_2
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 0
+        width: 51
+        height: 96
+      alignment: 9
+      pivot: {x: 0.75, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57bf91aa601c4a342bd13e2c9a59093f
+      internalID: 1587096012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_enter_door_3
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 0
+        width: 43
+        height: 96
+      alignment: 9
+      pivot: {x: 0.75, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c9e44f0694e172489472b52710e6019
+      internalID: 698436982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_enter_door_4
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 0
+        width: 29
+        height: 96
+      alignment: 9
+      pivot: {x: 0.75, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6787af30d0a3d14095019c9266bb124
+      internalID: -1552655323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_enter_door_5
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 0
+        width: 32
+        height: 96
+      alignment: 9
+      pivot: {x: 0.75, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d68290eaa3e9e4469db07875492ff61
+      internalID: -343699511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_enter_door_6
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 0
+        width: 45
+        height: 96
+      alignment: 9
+      pivot: {x: 0.4, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6465666d8d6570645bca2857a69806a3
+      internalID: -474174459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_enter_door_7
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 0
+        width: 55
+        height: 96
+      alignment: 9
+      pivot: {x: 0.25, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56e8c136854640e4c892cf0cfd7d4cde
+      internalID: -1195537206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_enter_door_8
+      rect:
+        serializedVersion: 2
+        x: 586
+        y: 0
+        width: 57
+        height: 96
+      alignment: 9
+      pivot: {x: 0.26, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ab9ce64936d5184f848d4910d759160
+      internalID: 354600346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_enter_door_9
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 0
+        width: 50
+        height: 96
+      alignment: 9
+      pivot: {x: 0.315, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9251e9cd3fecd7c4581bb720a9c7c568
+      internalID: 1363502773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_enter_door_10
+      rect:
+        serializedVersion: 2
+        x: 728
+        y: 0
+        width: 45
+        height: 96
+      alignment: 9
+      pivot: {x: 0.35, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a883bc9cce04ad4594c1b3c73927d4e
+      internalID: 2057439345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_enter_door_11
+      rect:
+        serializedVersion: 2
+        x: 791
+        y: 0
+        width: 41
+        height: 96
+      alignment: 9
+      pivot: {x: 0.41, y: 0.46}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f56d2f827439a0b40bc48e06ca4366f8
+      internalID: -1176281976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_enter_door_12
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 0
+        width: 35
+        height: 96
+      alignment: 9
+      pivot: {x: 0.48, y: 0.41}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20cdaf8a721f988468c77bdc5e53d3a4
+      internalID: -1702289930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_enter_door_13
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 0
+        width: 34
+        height: 96
+      alignment: 9
+      pivot: {x: 0.495, y: 0.42}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7de02b89f5d04c459271289d8384d4f
+      internalID: -1611075297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_enter_door_14
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 0
+        width: 32
+        height: 96
+      alignment: 9
+      pivot: {x: 0.515, y: 0.42}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2f3db8e39e908146b1aa574f8832592
+      internalID: -1007331493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_enter_door_15
+      rect:
+        serializedVersion: 2
+        x: 984
+        y: 0
+        width: 27
+        height: 96
+      alignment: 9
+      pivot: {x: 0.6, y: 0.42}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52e2f5f42451ec0408a69fa9b8fad88b
+      internalID: 1079410960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_enter_door_16
+      rect:
+        serializedVersion: 2
+        x: 1018
+        y: 0
+        width: 26
+        height: 96
+      alignment: 9
+      pivot: {x: 0.55, y: 0.42}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea36446ce6a65664fb2b33aa229a9904
+      internalID: 1842432537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_enter_door_17
+      rect:
+        serializedVersion: 2
+        x: 1052
+        y: 0
+        width: 24
+        height: 96
+      alignment: 9
+      pivot: {x: 0.51, y: 0.42}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 795b53d47121c8547bbc383c30c76a94
+      internalID: -1137534212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_enter_door_18
+      rect:
+        serializedVersion: 2
+        x: 1088
+        y: 0
+        width: 19
+        height: 96
+      alignment: 9
+      pivot: {x: 0.44, y: 0.42}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7cd869fa9505e443a5fb3d51b43e6f8
+      internalID: -650162235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_enter_door_19
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 0
+        width: 19
+        height: 96
+      alignment: 9
+      pivot: {x: 0.44, y: 0.42}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35fdb0fce75f05446a8c3d3f6209f8d2
+      internalID: -180177327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: penitent_enter_door_20
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 0
+        width: 19
+        height: 96
+      alignment: 9
+      pivot: {x: 0.44, y: 0.42}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9f789f442a5b724fad7d9fa9f52003e
+      internalID: 579369769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      penitent_enter_door_0: -1650104300
+      penitent_enter_door_1: 357407247
+      penitent_enter_door_10: 2057439345
+      penitent_enter_door_11: -1176281976
+      penitent_enter_door_12: -1702289930
+      penitent_enter_door_13: -1611075297
+      penitent_enter_door_14: -1007331493
+      penitent_enter_door_15: 1079410960
+      penitent_enter_door_16: 1842432537
+      penitent_enter_door_17: -1137534212
+      penitent_enter_door_18: -650162235
+      penitent_enter_door_19: -180177327
+      penitent_enter_door_2: 1587096012
+      penitent_enter_door_20: 579369769
+      penitent_enter_door_21: -822010989
+      penitent_enter_door_22: -1139130760
+      penitent_enter_door_3: 698436982
+      penitent_enter_door_4: -1552655323
+      penitent_enter_door_5: -343699511
+      penitent_enter_door_6: -474174459
+      penitent_enter_door_7: -1195537206
+      penitent_enter_door_8: 354600346
+      penitent_enter_door_9: 1363502773
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

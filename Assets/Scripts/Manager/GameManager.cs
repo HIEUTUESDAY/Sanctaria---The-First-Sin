@@ -152,9 +152,9 @@ public class GameManager : MonoBehaviour
             (
                 inventoryManager.GetTearsAmount(),
                 inventoryManager.GetQuestItemsInventory(),
-                inventoryManager.GetMeaCulpaHeartsInventory(),
+                inventoryManager.GetHeartsInventory(),
                 inventoryManager.GetPrayersInventory(),
-                inventoryManager.GetMeaCulpaHeartEquipment(),
+                inventoryManager.GetHeartEquipment(),
                 inventoryManager.GetPrayerEquipment()
             );
             PlayerMapData playerMapData = new PlayerMapData(mapRoomManager.GetMaps());

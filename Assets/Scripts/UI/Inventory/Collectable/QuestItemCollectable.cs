@@ -8,8 +8,6 @@ public class QuestItemCollectable : ItemCollectable
     
     public override void CollectItem()
     {
-        base.CollectItem();
-
         if (canBeCollect)
         {
             InventoryManager.Instance.AddQuestItemToInventory(new QuestItem

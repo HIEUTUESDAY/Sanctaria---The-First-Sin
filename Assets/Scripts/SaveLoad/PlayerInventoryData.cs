@@ -8,13 +8,13 @@ public class PlayerInventoryData
     public float tearsOfAtonement;
 
     public List<QuestItem> questItemsInventory;
-    public List<MeaCulpaHeart> meaCulpaHeartsInventory;
+    public List<Heart> meaCulpaHeartsInventory;
     public List<Prayer> prayersInventory;
 
-    public MeaCulpaHeart meaCulpaHeartEquipment;
+    public Heart meaCulpaHeartEquipment;
     public Prayer prayerEquipment;
 
-    public PlayerInventoryData(float tearsOfAtonement, List<QuestItem> questItemsInventory, List<MeaCulpaHeart> meaCulpaHeartsInventory, List<Prayer> prayersInventory, MeaCulpaHeart meaCulpaHeartEquipment, Prayer prayerEquipment)
+    public PlayerInventoryData(float tearsOfAtonement, List<QuestItem> questItemsInventory, List<Heart> meaCulpaHeartsInventory, List<Prayer> prayersInventory, Heart meaCulpaHeartEquipment, Prayer prayerEquipment)
     {
         this.tearsOfAtonement = tearsOfAtonement;
         this.questItemsInventory = questItemsInventory;

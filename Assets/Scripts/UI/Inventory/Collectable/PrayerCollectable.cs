@@ -9,8 +9,6 @@ public class PrayerCollectable : ItemCollectable
 
     public override void CollectItem()
     {
-        base.CollectItem();
-
         if (canBeCollect)
         {
             InventoryManager.Instance.AddPrayerToInventory(new Prayer
