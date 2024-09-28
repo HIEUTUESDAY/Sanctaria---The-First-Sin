@@ -12,6 +12,8 @@ public class CheckpointManager : MonoBehaviour
     [Header("This checkpoint Area")]
     [SerializeField] private CheckpointArea checkpointArea;
 
+    [SerializeField] private GameObject interactIcon;
+
     public enum CheckpointArea
     {
         Forest,
@@ -94,6 +96,22 @@ public class CheckpointManager : MonoBehaviour
             PlayerCheckpointData playerCheckpointData = new PlayerCheckpointData( checkpointArea.ToString(), SceneManager.GetActiveScene().name, transform.position);
             gameManager.gameData.playerCheckpointData = playerCheckpointData;
             sceneDataManager.RespawnEnemiesInAllScenes();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            interactIcon.gameObject.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            interactIcon.gameObject.SetActive(false);
         }
     }
 }

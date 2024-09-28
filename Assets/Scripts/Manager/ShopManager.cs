@@ -51,7 +51,8 @@ public class ShopManager : MonoBehaviour
             UIManager.Instance.shopMenu.SetActive(false);
             UIManager.Instance.menuActivated = false;
             Player.Instance.PlayerInput.enabled = true;
-            Destroy(Player.Instance.ItemBuyable.gameObject);
+
+            Player.Instance.ItemBuyable.gameObject.SetActive(false);
             InventoryManager.Instance.relicPoint -= itemPrice;
 
             CharacterEvent.collectMessage.Invoke(itemSprite, itemName);

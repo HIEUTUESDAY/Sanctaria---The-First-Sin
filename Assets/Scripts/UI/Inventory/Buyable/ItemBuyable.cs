@@ -10,6 +10,8 @@ public class ItemBuyable : MonoBehaviour
     [TextArea] public string itemDescription;
     public float itemPrice;
 
+    [SerializeField] private GameObject interactIcon;
+
     public void InspectItem()
     {
         ShopManager.Instance.itemName = itemName;
@@ -21,6 +23,22 @@ public class ItemBuyable : MonoBehaviour
         Player.Instance.PlayerInput.enabled = false;
         UIManager.Instance.menuActivated = true;
         UIManager.Instance.shopMenu.SetActive(true);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            interactIcon.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            interactIcon.SetActive(false);
+        }
     }
 
 }

@@ -13,8 +13,26 @@ public class ShopDoorSceneChanger : MonoBehaviour
     [Header("This Scene")]
     public Transform spawnPosition;
 
+    [SerializeField] private GameObject interactIcon;
+
     public void ChangeScene()
     {
         SceneChangerManager.Instance.ChangeSceneFromShop(sceneToLoad);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            interactIcon.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            interactIcon.SetActive(false);
+        }
     }
 }

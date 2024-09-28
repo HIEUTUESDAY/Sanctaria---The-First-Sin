@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class CandelariaNPC : NPC, ITalkable
 {
-    [SerializeField] private DialogueTextSO normalDialogueText;
-    [SerializeField] private DialogueTextSO hintDialogueText;
+    [SerializeField] private DialogueTextSO firstTalkDialogue;
+    [SerializeField] private DialogueTextSO secondTalkDialogue;
     private DialogueManager dialogueManager;
-    [SerializeField] private bool talkSecondTime = false;
+    [field: SerializeField] public bool IsFirstTalk { get; set; } = true;
 
     public override void Interact()
     {
-        if (!talkSecondTime)
+        if (IsFirstTalk)
         {
-            Talk(normalDialogueText);
-            talkSecondTime = true;
+            Talk(firstTalkDialogue);
+            IsFirstTalk = false;
         }
         else
         {
-            Talk(hintDialogueText);
+            Talk(secondTalkDialogue);
         }
     }
 

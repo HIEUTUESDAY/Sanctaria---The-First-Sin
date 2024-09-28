@@ -21,20 +21,40 @@ public class ItemManager : MonoBehaviour
             {
                 bool isAcquired = false;
                 ItemCollectable itemCollectable = itemObject.GetComponent<ItemCollectable>();
+                ItemBuyable itemBuyable = itemObject.GetComponent<ItemBuyable>();
 
-                if (itemCollectable.itemName == InventoryManager.Instance.GetInventoryItemByName(itemCollectable.itemName))
+                if (itemCollectable != null)
                 {
-                    isAcquired = true;
+                    if(itemCollectable.itemName == InventoryManager.Instance.GetInventoryItemByName(itemCollectable.itemName))
+                    {
+                        isAcquired = true;
+                    }
+
+                    ItemData itemData = new ItemData
+                    {
+                        itemName = itemCollectable.itemName,
+                        isAcquired = isAcquired,
+                        position = new float[] { itemObject.transform.position.x, itemObject.transform.position.y, itemObject.transform.position.z }
+                    };
+
+                    itemDataList.Add(itemData);
                 }
-
-                ItemData itemData = new ItemData
+                else if (itemBuyable != null)
                 {
-                    itemName = itemObject.name,
-                    isAcquired = isAcquired,
-                    position = new float[] { itemObject.transform.position.x, itemObject.transform.position.y, itemObject.transform.position.z }
-                };
+                    if(itemBuyable.itemName == InventoryManager.Instance.GetInventoryItemByName(itemBuyable.itemName))
+                    {
+                        isAcquired = true;
+                    }
 
-                itemDataList.Add(itemData);
+                    ItemData itemData = new ItemData
+                    {
+                        itemName = itemBuyable.itemName,
+                        isAcquired = isAcquired,
+                        position = new float[] { itemObject.transform.position.x, itemObject.transform.position.y, itemObject.transform.position.z }
+                    };
+
+                    itemDataList.Add(itemData);
+                }
             }
         }
 
@@ -70,11 +90,11 @@ public class ItemManager : MonoBehaviour
                 {
                     if (itemData.isAcquired)
                     {
-                        item.gameObject.SetActive(false);
+                        item.SetActive(false);
                     }
                     else
                     {
-                        item.gameObject.SetActive(true);
+                        item.SetActive(true);
                     }
 
                 }

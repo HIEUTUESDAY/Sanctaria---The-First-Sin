@@ -87,7 +87,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     [Space(5)]
 
     [Header("Shop")]
-    [SerializeField] private bool isInShop;
+    [SerializeField] private bool isAtShop;
     [SerializeField] private ShopDoorSceneChanger ShopDoorSceneChanger;
     [Space(5)]
 
@@ -1165,7 +1165,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
                 Animator.SetTrigger(AnimationString.saveTrigger);
             }
-            else if (context.started && isInShop && TouchingDirections.IsGrounded)
+            else if (context.started && isAtShop && TouchingDirections.IsGrounded)
             {
                 transform.position = new Vector3(ShopDoorSceneChanger.transform.position.x, transform.position.y, transform.position.z);
                 Animator.SetTrigger(AnimationString.enterDoorTrigger);
@@ -1539,7 +1539,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
         if (collision.CompareTag("Shop"))
         {
-            isInShop = true;
+            isAtShop = true;
             ShopDoorSceneChanger = collision.GetComponent<ShopDoorSceneChanger>();
         }
 
@@ -1581,7 +1581,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
         if (collision.CompareTag("Shop"))
         {
-            isInShop = false;
+            isAtShop = false;
             ShopDoorSceneChanger = null;
         }
 

@@ -262,10 +262,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f3219035cab05a418552a2f0a2092f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NPCLabel: {fileID: 8405213118163499484}
-  normalDialogueText: {fileID: 11400000, guid: 8d7151b506409b04ba271de11fb670d3, type: 2}
-  hintDialogueText: {fileID: 11400000, guid: f079dbb1f000bec47bb0ca1ff9fa5333, type: 2}
-  talkSecondTime: 0
+  interactIcon: {fileID: 8405213118163499484}
+  canInteract: 0
+  firstTalkDialogue: {fileID: 11400000, guid: 8d7151b506409b04ba271de11fb670d3, type: 2}
+  secondTalkDialogue: {fileID: 11400000, guid: f079dbb1f000bec47bb0ca1ff9fa5333, type: 2}
+  <IsFirstTalk>k__BackingField: 1
 --- !u!1 &8405213118163499484
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,7 +278,7 @@ GameObject:
   - component: {fileID: 5204123071193855600}
   - component: {fileID: 1085842161588879318}
   m_Layer: 0
-  m_Name: NPCLabel
+  m_Name: InteractIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -292,7 +293,7 @@ Transform:
   m_GameObject: {fileID: 8405213118163499484}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.62, z: 0}
+  m_LocalPosition: {x: 0, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

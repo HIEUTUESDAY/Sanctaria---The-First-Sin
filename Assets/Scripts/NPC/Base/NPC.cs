@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public abstract class NPC : MonoBehaviour, IInteractable
 {
-    [SerializeField] private GameObject NPCLabel;
+    [SerializeField] private GameObject interactIcon;
     [SerializeField] private bool canInteract;
 
     private void Update()
@@ -23,7 +23,7 @@ public abstract class NPC : MonoBehaviour, IInteractable
         if(collision.CompareTag("Player")) 
         {
             canInteract = true;
-            NPCLabel.gameObject.SetActive(true);
+            interactIcon.gameObject.SetActive(true);
         }
     }
 
@@ -32,7 +32,7 @@ public abstract class NPC : MonoBehaviour, IInteractable
         if (collision.CompareTag("Player"))
         {
             canInteract = false;
-            NPCLabel.gameObject.SetActive(false);
+            interactIcon.gameObject.SetActive(false);
         }
     }
 }

@@ -4,5 +4,6 @@ using UnityEngine;
 
 public interface ITalkable
 {
+    bool IsFirstTalk { get; set; }
     public void Talk(DialogueTextSO dialogueText);
 }
