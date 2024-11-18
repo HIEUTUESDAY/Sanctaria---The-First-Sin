@@ -67,6 +67,7 @@ public class InventoryManager : MonoBehaviour
         Inventories[currentInventoryIndex].SetActive(false);
         currentInventoryIndex = (currentInventoryIndex - 1 + Inventories.Length) % Inventories.Length;
         UpdateActiveInventoryUI();
+        SoundFXManager.Instance.PlayChangeTabSound();
     }
 
     public void NextInventory()
@@ -74,6 +75,7 @@ public class InventoryManager : MonoBehaviour
         Inventories[currentInventoryIndex].SetActive(false);
         currentInventoryIndex = (currentInventoryIndex + 1) % Inventories.Length;
         UpdateActiveInventoryUI();
+        SoundFXManager.Instance.PlayChangeTabSound();
     }
 
     private void UpdateActiveInventoryUI()
@@ -292,21 +294,18 @@ public class InventoryManager : MonoBehaviour
         }
         prayersEquipment = prayer;
         SaveInventories();
-
     }
 
     public void UnequipHeart()
     {
         heartsEquipment = null;
         SaveInventories();
-
     }
 
     public void UnequipPrayer()
     {
         prayersEquipment = null;
         SaveInventories();
-
     }
 
     #endregion

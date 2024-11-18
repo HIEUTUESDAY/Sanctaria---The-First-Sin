@@ -193,6 +193,11 @@ MonoBehaviour:
   slowMotionFactor: 0.2
   minTearsDrop: 1001
   maxTearsDrop: 1001
+  hitAudioClips:
+  - {fileID: 8300000, guid: 611aec4b4571c7f4dbd9fafb22b1f022, type: 3}
+  - {fileID: 8300000, guid: 2cc4ca3c168d3db4b92c4fb6c43f065b, type: 3}
+  - {fileID: 8300000, guid: f26e9de8c49c4854c8c140a07248bb26, type: 3}
+  - {fileID: 8300000, guid: aec7625cfa9abcb4f83f4bd14d00caf8, type: 3}
   <DamageableHit>k__BackingField:
     m_PersistentCalls:
       m_Calls: []

@@ -46,6 +46,9 @@ public class SceneChangerManager : MonoBehaviour
     public void ChangeSceneFromDoor(SceneField myScene, DoorSceneChanger.DoorToSpawnAt doorToSpawnAt)
     {
         loadFromDoor = true;
+        Player.Instance.PlayerInput.enabled = false;
+        Player.Instance.CanMove = false;
+        Player.Instance.IsMoving = false;
         StartCoroutine(ChangeSceneFromDoorCoroutine(myScene, doorToSpawnAt));
     }  
     
@@ -189,6 +192,7 @@ public class SceneChangerManager : MonoBehaviour
 
     private IEnumerator ActivatePlayerControl()
     {
+        Player.Instance.PlayerInput.enabled = false;
         Player.Instance.CanMove = false;
         Player.Instance.IsMoving = false;
 
@@ -198,8 +202,7 @@ public class SceneChangerManager : MonoBehaviour
         }
 
         // enable player input
-        PlayerInput playerInput = Player.Instance.GetComponent<PlayerInput>();
-        playerInput.enabled = true;
+        Player.Instance.PlayerInput.enabled = true;
         Player.Instance.CanMove = true;
         Player.Instance.IsMoving = Player.Instance.HorizontalInput != Vector2.zero;
     }
@@ -415,13 +418,7 @@ public class SceneChangerManager : MonoBehaviour
             }
 
             // Load player data
-            player.IsAlive = true;
             player.transform.position = new Vector3(gameData.playerCheckpointData.position[0], gameData.playerCheckpointData.position[1], gameData.playerCheckpointData.position[2]);
-            player.CurrentHealth = player.MaxHealth;
-            player.CurrentMana = player.CurrentMana;
-            player.CurrentHealthPotion = player.MaxHealthPotion;
-
-            player.ResetPlayerAnimation();
         }
 
         // Load save file scene data
@@ -434,7 +431,6 @@ public class SceneChangerManager : MonoBehaviour
         }
 
         MapRoomManager.Instance.RevealRoom();
-        GameManager.Instance.isRespawn = false;
         loadToGamePlay = false;
 
         while (SceneLoadManager.Instance.IsLoading)
@@ -443,7 +439,8 @@ public class SceneChangerManager : MonoBehaviour
         }
 
         SceneLoadManager.Instance.StartFadeIn();
-        player.Animator.SetTrigger(AnimationString.spawnTrigger);
+        player.RespawnPlayer();
+        GameManager.Instance.isRespawn = false;
     }
 
     private IEnumerator LoadMainMenuCoroutine()

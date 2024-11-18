@@ -384,7 +384,6 @@ GameObject:
   m_Component:
   - component: {fileID: 66825336}
   - component: {fileID: 66825335}
-  - component: {fileID: 66825334}
   - component: {fileID: 66825333}
   - component: {fileID: 66825331}
   - component: {fileID: 66825332}
@@ -485,14 +484,6 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
---- !u!81 &66825334
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 66825330}
-  m_Enabled: 1
 --- !u!20 &66825335
 Camera:
   m_ObjectHideFlags: 0
@@ -28052,6 +28043,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4099837306126981057, guid: 1982e26c80284cf44a1e9a9c31f34dcc, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5941720816112997980, guid: 1982e26c80284cf44a1e9a9c31f34dcc, type: 3}
       propertyPath: m_Name
       value: CheckPoint
@@ -28064,7 +28059,8 @@ PrefabInstance:
       propertyPath: thisScene._sceneAsset
       value: 
       objectReference: {fileID: 102900000, guid: 9c457bd183014cc41aefab63e8fdabd2, type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4099837306126981057, guid: 1982e26c80284cf44a1e9a9c31f34dcc, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

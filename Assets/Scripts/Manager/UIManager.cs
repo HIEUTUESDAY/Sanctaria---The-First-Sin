@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     public GameObject inventoryMenu;
     public GameObject mapMenu;
     public GameObject optionsMenu;
+    public GameObject settingsMenu;
     public GameObject checkpointMenu;
     public GameObject shopMenu;
     public bool menuActivated = false;
@@ -101,6 +102,7 @@ public class UIManager : MonoBehaviour
 
     public void ShowCollectMessage(Sprite itemImage, string itemName)
     {
+        SoundFXManager.Instance.PlayAcquireTitleSound();
         RectTransform rectTransform = collectedMessagePrefab.GetComponent<RectTransform>();
         Vector3 spawnPosition = rectTransform.anchoredPosition;
 
@@ -115,6 +117,7 @@ public class UIManager : MonoBehaviour
 
     public void ShowNotEnoughMessage()
     {
+        SoundFXManager.Instance.PlayAcquireTitleSound();
         RectTransform rectTransform = notEnoughRelicPointsMessagePrefab.GetComponent<RectTransform>();
         Vector3 spawnPosition = rectTransform.anchoredPosition;
 

@@ -261,6 +261,10 @@ MonoBehaviour:
     checkPoint:
       isActived: 0
       position: []
+    npc:
+      npcName: 
+      isFirstTalk: 0
+      position: []
   checkpointArea: 0
   interactIcon: {fileID: 4079027471480771361}
   isActivated: 0

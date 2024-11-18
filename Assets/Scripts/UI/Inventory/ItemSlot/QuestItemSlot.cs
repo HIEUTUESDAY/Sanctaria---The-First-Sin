@@ -33,6 +33,7 @@ public class QuestItemSlot : MonoBehaviour
     public Button button;
     public bool isSelected;
     public GameObject shaderAnimation;
+    private GameObject lastSelectedItem;
 
     private void Update()
     {
@@ -79,10 +80,15 @@ public class QuestItemSlot : MonoBehaviour
     {
         if (EventSystem.current.currentSelectedGameObject == button.gameObject)
         {
+            if (!isSelected || EventSystem.current.currentSelectedGameObject != lastSelectedItem)
+            {
+                SoundFXManager.Instance.PlayChangeSelectionSound();
+                lastSelectedItem = EventSystem.current.currentSelectedGameObject;
+            }
+
             isSelected = true;
             shaderAnimation.SetActive(true);
 
-            // Fill item description 
             itemDesImage.sprite = itemSprite;
             if (itemDesImage.sprite == null)
             {

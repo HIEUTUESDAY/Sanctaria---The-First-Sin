@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,6 +8,7 @@ public class MapRoomManager : MonoBehaviour
 {
     public static MapRoomManager Instance;
 
+    [Header("Normal Rooms")]
     public List<MapContainerData> rooms;
 
     [Header("Map Menu HUD Update")]
@@ -14,6 +16,12 @@ public class MapRoomManager : MonoBehaviour
     public GameObject selectTeleportSlot;
     public GameObject mapHUD;
     public GameObject teleportHUD;
+
+    [Header("Hidden Rooms")]
+    public List<SceneField> hiddenRoom;
+    public bool isInHiddenRoom;
+    [SerializeField] private GameObject roomHUD;
+    [SerializeField] private GameObject hiddenRoomHUD;
 
     private void Awake()
     {
@@ -36,13 +44,34 @@ public class MapRoomManager : MonoBehaviour
     {
         string newLoadedScene = SceneManager.GetActiveScene().name;
 
-        foreach (MapContainerData room in rooms)
+        foreach (SceneField room  in hiddenRoom)
         {
-            if (room.RoomScene.SceneName == newLoadedScene && !room.HasRoomRevealed)
+            if (room.SceneName == newLoadedScene)
             {
-                room.HasRoomRevealed = true;
-                room.gameObject.SetActive(true);
-                return;
+                isInHiddenRoom = true;
+                roomHUD.SetActive(false);
+                hiddenRoomHUD.SetActive(true);
+                selectTeleportSlot.SetActive(false);
+                mapCenterPoint.SetActive(false);
+            }
+            else
+            {
+                isInHiddenRoom = false;
+                hiddenRoomHUD.SetActive(false);
+                roomHUD.SetActive(true);
+            }
+        }
+
+        if (!isInHiddenRoom)
+        {
+            foreach (MapContainerData room in rooms)
+            {
+                if (room.RoomScene.SceneName == newLoadedScene && !room.HasRoomRevealed)
+                {
+                    room.HasRoomRevealed = true;
+                    room.gameObject.SetActive(true);
+                    return;
+                }
             }
         }
     }

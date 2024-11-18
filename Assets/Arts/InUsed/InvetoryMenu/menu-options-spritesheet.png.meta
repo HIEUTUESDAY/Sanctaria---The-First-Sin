@@ -144,7 +144,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: menu-options-spritesheet_1
+      name: volume_background
       rect:
         serializedVersion: 2
         x: 2
@@ -186,7 +186,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: menu-options-spritesheet_3
+      name: volume_icon
       rect:
         serializedVersion: 2
         x: 30
@@ -417,7 +417,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: menu-options-spritesheet_14
+      name: volume_fill
       rect:
         serializedVersion: 2
         x: 3
@@ -450,19 +450,20 @@ TextureImporter:
     nameFileIdTable:
       man_on_spike: 301041398
       menu-options-spritesheet_0: 156629412
-      menu-options-spritesheet_1: -91281796
       menu-options-spritesheet_10: 1395797755
       menu-options-spritesheet_11: -874280946
       menu-options-spritesheet_12: -404771947
       menu-options-spritesheet_13: -726901673
-      menu-options-spritesheet_14: -1520573212
       menu-options-spritesheet_2: -1652339768
-      menu-options-spritesheet_3: -1300725617
       menu-options-spritesheet_4: -1098576385
+      menu-options-spritesheet_5: 1197753441
       menu-options-spritesheet_6: 627489348
       menu-options-spritesheet_7: -242122784
       menu-options-spritesheet_8: -854417624
       menu-options-spritesheet_9: 1112089710
+      volume_background: -91281796
+      volume_fill: -1520573212
+      volume_icon: -1300725617
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -38,6 +38,7 @@ public class PrayerSlot : MonoBehaviour
     public Button button;
     public bool isSelected;
     public GameObject shaderAnimation;
+    private GameObject lastSelectedItem;
 
     private void Update()
     {
@@ -113,10 +114,15 @@ public class PrayerSlot : MonoBehaviour
     {
         if (EventSystem.current.currentSelectedGameObject == button.gameObject)
         {
+            if (!isSelected || EventSystem.current.currentSelectedGameObject != lastSelectedItem)
+            {
+                SoundFXManager.Instance.PlayChangeSelectionSound();
+                lastSelectedItem = EventSystem.current.currentSelectedGameObject;
+            }
+
             isSelected = true;
             shaderAnimation.SetActive(true);
 
-            // Fill prayer description 
             prayerDesImage.sprite = prayerSprite;
             if (prayerDesImage.sprite == null)
             {
@@ -147,11 +153,15 @@ public class PrayerSlot : MonoBehaviour
                     itemSprite = prayerSprite,
                     isItemEquipped = isPrayerEquipped
                 });
+
+                SoundFXManager.Instance.PlayEquipItemSound();
+
             }
             else
             {
                 isPrayerEquipped = false;
                 InventoryManager.Instance.UnequipPrayer();
+                SoundFXManager.Instance.PlayUnequipItemSound();
             }
         }
     }

@@ -12,6 +12,7 @@ public class TeleportSlot : MonoBehaviour
     public bool isSelected;
     public GameObject shaderAnimation;
     public GameObject selection;
+    private GameObject lastSelectedItem;
 
     private void Update()
     {
@@ -30,12 +31,18 @@ public class TeleportSlot : MonoBehaviour
     {
         if (EventSystem.current.currentSelectedGameObject == button.gameObject)
         {
+            if (lastSelectedItem != EventSystem.current.currentSelectedGameObject)
+            {
+                SoundFXManager.Instance.PlayChangeSelectionSound();
+                lastSelectedItem = EventSystem.current.currentSelectedGameObject;
+            }
+
             SelectTeleportSlot.Instance.SelectButton(button);
             isSelected = true;
             shaderAnimation.SetActive(true);
             currentRoom = button.gameObject.GetComponent<MapContainerData>().CurrentRoom.activeSelf;
 
-            if(currentRoom)
+            if (currentRoom)
             {
                 selection.SetActive(false);
             }
@@ -49,6 +56,11 @@ public class TeleportSlot : MonoBehaviour
             isSelected = false;
             shaderAnimation.SetActive(false);
             currentRoom = false;
+
+            if (lastSelectedItem == button.gameObject)
+            {
+                lastSelectedItem = null;
+            }
         }
     }
 
@@ -58,6 +70,7 @@ public class TeleportSlot : MonoBehaviour
         {
             Time.timeScale = 1;
             SceneChangerManager.Instance.ChangeSceneFromCheckpoint(SceneField);
+            SoundFXManager.Instance.PlayEquipItemSound();
         }
     }
 }

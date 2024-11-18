@@ -21,6 +21,9 @@ public class Enemy : MonoBehaviour, IEnemyDamageable, IEnemyMoveable
     [SerializeField] private float minTearsDrop = 5f;
     [SerializeField] private float maxTearsDrop = 10f;
 
+    [Header("Sound effects")]
+    [SerializeField] private AudioClip[] hitAudioClips;
+
     #endregion
 
     #region IEnemyDamageable variables
@@ -148,6 +151,9 @@ public class Enemy : MonoBehaviour, IEnemyDamageable, IEnemyMoveable
             DamageableHit?.Invoke(damage, knockback);
             CharacterEvent.characterDamaged.Invoke(gameObject, damage);
             CharacterEvent.hitSplash.Invoke(gameObject, hitDirection, attackType);
+
+            // Play hit sound effect
+            SoundFXManager.Instance.PlayRandomSoundFXClip(hitAudioClips, transform, 1f);
 
             DropStamina();
         }

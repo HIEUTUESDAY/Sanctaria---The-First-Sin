@@ -47,6 +47,7 @@ public class HeartSlot : MonoBehaviour
     public Button button;
     public bool isSelected;
     public GameObject shaderAnimation;
+    private GameObject lastSelectedItem;
 
     private void Update()
     {
@@ -147,10 +148,15 @@ public class HeartSlot : MonoBehaviour
     {
         if (EventSystem.current.currentSelectedGameObject == button.gameObject)
         {
+            if (!isSelected || EventSystem.current.currentSelectedGameObject != lastSelectedItem)
+            {
+                SoundFXManager.Instance.PlayChangeSelectionSound();
+                lastSelectedItem = EventSystem.current.currentSelectedGameObject;
+            }
+
             isSelected = true;
             shaderAnimation.SetActive(true);
 
-            // Fill item description 
             heartDesImage.sprite = heartSprite;
             if (heartDesImage.sprite == null)
             {
@@ -190,11 +196,14 @@ public class HeartSlot : MonoBehaviour
                     wallJumpPowerModifier = heartWallJumpPowerModifier,
                     dashPowerModifier = heartDashPowerModifier,
                 });
+
+                SoundFXManager.Instance.PlayEquipItemSound();
             }
             else
             {
                 isHeartEquipped = false;
                 InventoryManager.Instance.UnequipHeart();
+                SoundFXManager.Instance.PlayUnequipItemSound();
             }
         }
     }

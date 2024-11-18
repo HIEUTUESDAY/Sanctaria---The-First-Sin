@@ -7,7 +7,7 @@ public class ItemManager : MonoBehaviour
     [SerializeField] private SceneData thisSceneData;
     [Space(5)]
 
-    [Header("Drop Enemy in scene into this ITEM OBJECTS LIST")]
+    [Header("Drop Items in scene into this ITEM OBJECTS LIST")]
     [SerializeField] private List<GameObject> itemsObjects;
 
     // Save the current state of items in the scene

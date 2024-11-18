@@ -521,6 +521,8 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             CameraShakeManager.Instance.CameraShake(ImpulseSource);
             Animator.SetTrigger(AnimationString.hitTrigger);
 
+            PlayHitSound();
+
             DamageableHit?.Invoke(damageTaken, knockback);
             CharacterEvent.characterDamaged.Invoke(gameObject, damageTaken);
             CharacterEvent.hitSplash.Invoke(gameObject, hitDirection, attackType);
@@ -633,11 +635,11 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     #endregion
 
-    #region Player Movement functions
+    #region Player movement functions
 
     private void Move()
     {
-        if (!UIManager.Instance.menuActivated && !SceneLoadManager.Instance.IsLoading)
+        if (!UIManager.Instance.menuActivated && !SceneLoadManager.Instance.IsLoading && !GameManager.Instance.isRespawn)
         {
             if (!LockVelocity && !IsWallJumping && !IsWallHanging && !IsClimbing)
             {
@@ -669,7 +671,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     {
         if (!UIManager.Instance.menuActivated)
         {
-            if (IsClimbing)
+            if (IsClimbing && CanMove)
             {
                 RB.gravityScale = 0f;
                 RB.velocity = new Vector2(0f, VerticalInput.y * climbSpeed);
@@ -703,6 +705,80 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     #endregion
 
+    #region Player animation sound effects
+
+    public void PlayFootstepSound()
+    {
+        SoundFXManager.Instance.PlayRandomSoundFXClip(SoundFXManager.Instance.footstepSoundClips, transform, 1f);
+    }
+
+    public void PlayAttackSound()
+    {
+        SoundFXManager.Instance.PlayRandomSoundFXClip(SoundFXManager.Instance.attackSoundClip, transform, 1f);
+    }
+
+    public void PlayLadderClimbSound()
+    {
+        SoundFXManager.Instance.PlayRandomSoundFXClip(SoundFXManager.Instance.ladderClimbSoundClips, transform, 1f);
+    }
+
+    public void PlaySpawnSound()
+    {
+        SoundFXManager.Instance.PlaySoundFXClip(SoundFXManager.Instance.spawnSoundClip, transform, 1f);
+    }
+
+    public void PlaySpikeDeathSound()
+    {
+        SoundFXManager.Instance.PlaySoundFXClip(SoundFXManager.Instance.spikeDeathSoundClip, transform, 1f);
+    }
+
+    public void PlayDeathSound()
+    {
+        SoundFXManager.Instance.PlaySoundFXClip(SoundFXManager.Instance.deathSoundClip, transform, 1f);
+    }
+
+    public void PlayJumpSound()
+    {
+        SoundFXManager.Instance.PlaySoundFXClip(SoundFXManager.Instance.jumpAndLandingSoundClip, transform, 1f);
+    }
+
+    public void PlayHitSound()
+    {
+        SoundFXManager.Instance.PlaySoundFXClip(SoundFXManager.Instance.hitSoundClips, transform, 1f);
+    }
+
+    public void PlayUsePrayerSound()
+    {
+        SoundFXManager.Instance.PlaySoundFXClip(SoundFXManager.Instance.useSpellClip, transform, 1f);
+    }
+
+    public void PlayDashSound()
+    {
+        SoundFXManager.Instance.PlaySoundFXClip(SoundFXManager.Instance.dashSoundClip, transform, 1f);
+    }
+
+    public void PlayHealingSound()
+    {
+        SoundFXManager.Instance.PlaySoundFXClip(SoundFXManager.Instance.healingClip, transform, 1f);
+    }
+
+    public void PlayActiveCheckpointSound()
+    {
+        SoundFXManager.Instance.PlaySoundFXClip(SoundFXManager.Instance.activeCheckpointClip, transform, 1f);
+    }
+
+    public void PlayHealthRestoreSound()
+    {
+        SoundFXManager.Instance.PlaySoundFXClip(SoundFXManager.Instance.healthRestoreSoundClip, transform, 1f);
+    }
+
+    public void PlayWallGrabSound()
+    {
+        SoundFXManager.Instance.PlaySoundFXClip(SoundFXManager.Instance.wallGrabSoundClip, transform, 1f);
+    }
+
+    #endregion
+
     #region Player animation event functions
 
     public void UseHealthPotion()
@@ -723,6 +799,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     public void RestoreHealthAndPotion()
     {
+        PlayHealthRestoreSound();
         CurrentHealth = MaxHealth;
         CurrentHealthPotion = MaxHealthPotion;
     }
@@ -1032,6 +1109,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         {
             if (context.started && IsClimbing && !IsJumping)
             {
+                PlayJumpSound();
                 IsClimbing = false;
                 IsJumping = true;
                 RB.gravityScale = originalGravityScale;
@@ -1053,6 +1131,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
             if (jumpBufferTimeCounter > 0f && coyoteTimeCounter > 0f && CanMove && slopeDownAngle <= maxSlopeAngle)
             {
+                PlayJumpSound();
                 IsDashing = false;
                 IsJumping = true;
                 RB.velocity = new Vector2(RB.velocity.x, jumpPower + jumpPowerBuff);
@@ -1186,12 +1265,14 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             Time.timeScale = 0;
             UIManager.Instance.inventoryMenu.SetActive(true);
             UIManager.Instance.menuActivated = true;
+            SoundFXManager.Instance.PlayChangeTabSound();
         }
         else if (context.started && IsAlive && UIManager.Instance.menuActivated && !UIManager.Instance.inventoryMenu.activeSelf && UIManager.Instance.checkpointMenu.activeSelf)
         {
             isKneelInCheckpoint = true;
             UIManager.Instance.checkpointMenu.SetActive(false);
             UIManager.Instance.inventoryMenu.SetActive(true);
+            SoundFXManager.Instance.PlayChangeTabSound();
 
             for (int i = 0; i < InventoryManager.Instance.Inventories.Length; i++)
             {
@@ -1217,9 +1298,17 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             UIManager.Instance.menuActivated = true;
             MapRoomManager.Instance.selectTeleportSlot.SetActive(false);
             MapRoomManager.Instance.teleportHUD.SetActive(false);
-            MapRoomManager.Instance.mapCenterPoint.SetActive(true);
+            if (!MapRoomManager.Instance.isInHiddenRoom)
+            {
+                MapRoomManager.Instance.mapCenterPoint.SetActive(true);
+            }
+            else
+            {
+                MapRoomManager.Instance.mapCenterPoint.SetActive(false);
+            }
             MapRoomManager.Instance.mapHUD.SetActive(true);
             MapCenterPoint.Instance.SetCenterPoint();
+            SoundFXManager.Instance.PlayChangeTabSound();
         }
         else if (context.started && IsAlive && UIManager.Instance.menuActivated && !UIManager.Instance.mapMenu.activeSelf && UIManager.Instance.checkpointMenu.activeSelf)
         {
@@ -1231,17 +1320,19 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             MapRoomManager.Instance.selectTeleportSlot.SetActive(true);
             MapRoomManager.Instance.teleportHUD.SetActive(true);
             SelectTeleportSlot.Instance.SetCurrentRoomSelected();
+            SoundFXManager.Instance.PlayChangeTabSound();
         }
     }
 
     public void OnOpenOptionsMenu(InputAction.CallbackContext context)
     {
-        if (context.started && IsAlive && UIManager.Instance.menuActivated && UIManager.Instance.mapMenu.activeSelf && !IsWaitForEnter)
+        if (context.started && IsAlive && UIManager.Instance.menuActivated && UIManager.Instance.mapMenu.activeSelf && !IsWaitForEnter && !isKneelInCheckpoint)
         {
             Time.timeScale = 0;
             UIManager.Instance.mapMenu.SetActive(false);
             UIManager.Instance.optionsMenu.SetActive(true);
             UIManager.Instance.menuActivated = true;
+            SoundFXManager.Instance.PlayChangeTabSound();
         }
     }
 
@@ -1253,6 +1344,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             Time.timeScale = 1;
             UIManager.Instance.inventoryMenu.SetActive(false);
             UIManager.Instance.menuActivated = false;
+            SoundFXManager.Instance.PlayChangeTabSound();
         }
         else if (context.started && UIManager.Instance.menuActivated && UIManager.Instance.mapMenu.activeSelf)
         {
@@ -1260,6 +1352,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             Time.timeScale = 1;
             UIManager.Instance.mapMenu.SetActive(false);
             UIManager.Instance.menuActivated = false;
+            SoundFXManager.Instance.PlayChangeTabSound();
         }
         else if (context.started && UIManager.Instance.menuActivated && UIManager.Instance.optionsMenu.activeSelf)
         {
@@ -1267,12 +1360,22 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             UIManager.Instance.optionsMenu.SetActive(false);
             UIManager.Instance.mapMenu.SetActive(true);
             UIManager.Instance.menuActivated = true;
+            SoundFXManager.Instance.PlayChangeTabSound();
+        }
+        else if (context.started && UIManager.Instance.menuActivated && UIManager.Instance.settingsMenu.activeSelf)
+        {
+            Time.timeScale = 0;
+            UIManager.Instance.settingsMenu.SetActive(false);
+            UIManager.Instance.optionsMenu.SetActive(true);
+            UIManager.Instance.menuActivated = true;
+            SoundFXManager.Instance.PlayChangeTabSound();
         }
         else if (context.started && UIManager.Instance.menuActivated && UIManager.Instance.checkpointMenu.activeSelf)
         {
             Time.timeScale = 1;
             UIManager.Instance.checkpointMenu.SetActive(false);
             UIManager.Instance.menuActivated = false;
+            SoundFXManager.Instance.PlayChangeTabSound();
         }
     }
 
@@ -1610,10 +1713,26 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     #endregion
 
+    #region Respawn Player functions
+
+    public void RespawnPlayer()
+    {
+        ResetPlayerAnimation();
+        IsAlive = true;
+        CurrentHealth = MaxHealth;
+        CurrentMana = CurrentMana;
+        CurrentHealthPotion = MaxHealthPotion;
+        HorizontalInput = Vector2.zero;
+        Animator.SetTrigger(AnimationString.spawnTrigger);
+    }
+
+    #endregion
+
     #region Reset player animation
 
     public void ResetPlayerAnimation()
     {
+        IsMoving = false;
         IsJumping = false;
         IsDashing = false;
         IsDashed = false;

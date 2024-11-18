@@ -68,6 +68,8 @@ public class DialogueManager : MonoBehaviour
         {
             messages.Enqueue(dialogueText.messages[i]);
         }
+
+        SoundFXManager.Instance.PlayEquipItemSound();
     }
 
     private void EndConversation()
@@ -80,17 +82,16 @@ public class DialogueManager : MonoBehaviour
         }
 
         conversationEnded = false;
-
         Player.Instance.isInteractWithNPC = false;
+        SoundFXManager.Instance.PlayEquipItemSound();
     }
 
     private void FinishCoversationEarly()
     {
         StopCoroutine(TypingMessageCoroutine);
-
         NPCMessageText.text = message;
-
         isTyping = false;
+        SoundFXManager.Instance.PlayChangeTabSound();
     }
 
     private IEnumerator TypingMessage(string message)

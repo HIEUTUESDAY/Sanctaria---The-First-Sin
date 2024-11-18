@@ -22,6 +22,7 @@ public class DefeatBossFadeInTitle : MonoBehaviour
         {
             StartCoroutine(FadeInAndOutSequence());
             Player.Instance.isDefeatedBoss = false;
+            SoundFXManager.Instance.PlayDefeatBossTitleSound();
         }
     }
 

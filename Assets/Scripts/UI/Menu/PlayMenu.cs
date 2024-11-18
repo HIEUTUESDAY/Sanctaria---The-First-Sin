@@ -15,6 +15,7 @@ public class PlayMenu : MonoBehaviour
 
     public GameObject newGameSelection;
     public GameObject loadGameSelection;
+    private GameObject lastSelectedItem;
 
     public UnityEvent backToMainMenu;
 
@@ -76,10 +77,16 @@ public class PlayMenu : MonoBehaviour
         for (int i = 0; i < saveSlots.Count; i++)
         {
             int slotIndex = i + 1;
-            string filePath = savePath + "savefile" + (slotIndex) + ".json";
-           
+            string filePath = savePath + "savefile" + slotIndex + ".json";
+
             if (EventSystem.current.currentSelectedGameObject == saveSlots[i].actionButton.gameObject)
             {
+                if (lastSelectedItem != EventSystem.current.currentSelectedGameObject)
+                {
+                    SoundFXManager.Instance.PlayChangeSelectionSound();
+                    lastSelectedItem = EventSystem.current.currentSelectedGameObject;
+                }
+
                 if (File.Exists(filePath))
                 {
                     loadGameSelection.SetActive(true);
@@ -109,6 +116,7 @@ public class PlayMenu : MonoBehaviour
         if (gameObject.activeSelf && Input.GetKeyDown(KeyCode.Escape))
         {
             backToMainMenu.Invoke();
+            SoundFXManager.Instance.PlayChangeTabSound();
         }
     }
 }

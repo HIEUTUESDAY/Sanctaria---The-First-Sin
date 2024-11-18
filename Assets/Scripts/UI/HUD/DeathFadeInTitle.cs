@@ -36,6 +36,7 @@ public class DeathFadeInTitle : MonoBehaviour
         {
             GameManager.Instance.RespawnPlayer();
             waitingForInput = false;
+            SoundFXManager.Instance.PlayEquipItemSound();
         }
     }
 
@@ -61,6 +62,7 @@ public class DeathFadeInTitle : MonoBehaviour
     public void StartFadeIn()
     {
         isFadingInImages = true;
+        SoundFXManager.Instance.PlayDeathTitleSound();
     }
 
     private void UpdateFadeInImages()

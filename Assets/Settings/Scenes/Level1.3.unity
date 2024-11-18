@@ -415,6 +415,10 @@ MonoBehaviour:
     checkPoint:
       isActived: 0
       position: []
+    npc:
+      npcName: 
+      isFirstTalk: 0
+      position: []
   itemsObjects:
   - {fileID: 1251237931}
 --- !u!4 &155677708
@@ -18014,6 +18018,10 @@ MonoBehaviour:
       position: []
     checkPoint:
       isActived: 0
+      position: []
+    npc:
+      npcName: 
+      isFirstTalk: 0
       position: []
   enemyObjects:
   - {fileID: 1980441478}
@@ -56257,7 +56265,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2049685072}
   - component: {fileID: 2049685071}
-  - component: {fileID: 2049685070}
   - component: {fileID: 2049685069}
   - component: {fileID: 2049685067}
   - component: {fileID: 2049685068}
@@ -56358,14 +56365,6 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
---- !u!81 &2049685070
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2049685066}
-  m_Enabled: 1
 --- !u!20 &2049685071
 Camera:
   m_ObjectHideFlags: 0
