@@ -405,8 +405,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 485025ed9c3660c4a8fd5e7e8a4237ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundFXObject: {fileID: 7988271259618012299, guid: 22160589870be67449a1101e2e8e085e, type: 3}
-  footstepSoundClips:
+  soundFXObject2D: {fileID: 7988271259618012299, guid: 22160589870be67449a1101e2e8e085e, type: 3}
+  soundFXObject3D: {fileID: 7410956400714130616, guid: 016f1182a9a48f14989887e84c1250c3, type: 3}
+  playerWalkSoundClips:
   - {fileID: 8300000, guid: ec8af9ebf97894a45b1d6f58ce82afeb, type: 3}
   - {fileID: 8300000, guid: 7426b824eeb201c4bbeb577b6b0674f9, type: 3}
   - {fileID: 8300000, guid: 3a71d922d3a7dd04a8b8698c8292e976, type: 3}
@@ -415,26 +416,26 @@ MonoBehaviour:
   - {fileID: 8300000, guid: dc960e02af696c34d8e6d17dbf6badf0, type: 3}
   - {fileID: 8300000, guid: 96d60aad587f8bf4ab303f4b63771b6a, type: 3}
   - {fileID: 8300000, guid: 0a5234f12b27aa94c9827ff02b29ebad, type: 3}
-  attackSoundClip:
+  playerAttackSoundClip:
   - {fileID: 8300000, guid: 0f06f8285690c9d4d8519f919de1240e, type: 3}
   - {fileID: 8300000, guid: 3e7eed893b69ec84cb23306dd0ae3aba, type: 3}
   - {fileID: 8300000, guid: 43af2fd85bc3d2d43ac1b72a6eacc387, type: 3}
   - {fileID: 8300000, guid: e85609e73ff160a49862edb4c0bc70c1, type: 3}
-  ladderClimbSoundClips:
+  playerLadderClimbSoundClips:
   - {fileID: 8300000, guid: 512ba51f0b6e6024fafa3773c9e972df, type: 3}
   - {fileID: 8300000, guid: bdebe4f4a0f38874b8271ec88343bf71, type: 3}
   - {fileID: 8300000, guid: 84710d0d68dc0114ca9bf5ed92e9c58f, type: 3}
-  hitSoundClips: {fileID: 8300000, guid: 779b263fc57d4ea4180b161711f726e0, type: 3}
-  jumpAndLandingSoundClip: {fileID: 8300000, guid: 261ab87e1b3600348906651960085b94, type: 3}
-  dashSoundClip: {fileID: 8300000, guid: 302a63830004ddb41ad9d170824fd79b, type: 3}
-  spikeDeathSoundClip: {fileID: 8300000, guid: 169ecbb3e1a84874396eb138f41ba205, type: 3}
-  deathSoundClip: {fileID: 8300000, guid: a5d619236a580fd44b32a9258d18f28e, type: 3}
-  spawnSoundClip: {fileID: 8300000, guid: a1e98d5a2a0b5d145bee76fcd01dd70d, type: 3}
-  useSpellClip: {fileID: 8300000, guid: 72b3a6fa0d1dec241baa64e9af9f038d, type: 3}
-  activeCheckpointClip: {fileID: 8300000, guid: 4661cab4494f81346a0ffadc0d26fe18, type: 3}
-  healingClip: {fileID: 8300000, guid: eeffce8e379066e4a9a8c53767048fd1, type: 3}
-  healthRestoreSoundClip: {fileID: 8300000, guid: 951caa76627331548b38bc447c67e685, type: 3}
-  wallGrabSoundClip: {fileID: 8300000, guid: 8d3431e9abb8dc84cbfccfc9f70b1c0d, type: 3}
+  playerHitSoundClips: {fileID: 8300000, guid: 779b263fc57d4ea4180b161711f726e0, type: 3}
+  playerJumpAndLandingSoundClip: {fileID: 8300000, guid: 261ab87e1b3600348906651960085b94, type: 3}
+  playerDashSoundClip: {fileID: 8300000, guid: 302a63830004ddb41ad9d170824fd79b, type: 3}
+  playerSpikeDeathSoundClip: {fileID: 8300000, guid: 169ecbb3e1a84874396eb138f41ba205, type: 3}
+  playerDeathSoundClip: {fileID: 8300000, guid: a5d619236a580fd44b32a9258d18f28e, type: 3}
+  playerSpawnSoundClip: {fileID: 8300000, guid: a1e98d5a2a0b5d145bee76fcd01dd70d, type: 3}
+  playerUseSpellClip: {fileID: 8300000, guid: 72b3a6fa0d1dec241baa64e9af9f038d, type: 3}
+  playerActiveCheckpointClip: {fileID: 8300000, guid: 4661cab4494f81346a0ffadc0d26fe18, type: 3}
+  playerHealingClip: {fileID: 8300000, guid: eeffce8e379066e4a9a8c53767048fd1, type: 3}
+  playerHealthRestoreSoundClip: {fileID: 8300000, guid: 951caa76627331548b38bc447c67e685, type: 3}
+  playerWallGrabSoundClip: {fileID: 8300000, guid: 8d3431e9abb8dc84cbfccfc9f70b1c0d, type: 3}
   changeSelectionSoundClip: {fileID: 8300000, guid: 957bfef8a9489cc42aaae30f6075b892, type: 3}
   equipSoundClip: {fileID: 8300000, guid: 975f61cb803b95b48ba8c0fa20d45bfc, type: 3}
   unequipSoundClip: {fileID: 8300000, guid: 4e74a27da6fabb74fb1188730d19d0c2, type: 3}
@@ -442,6 +443,29 @@ MonoBehaviour:
   acquireTitleSoundClip: {fileID: 8300000, guid: 3cd7cff427009904b8e2ebdf7abd1d03, type: 3}
   deathTitleSoundClip: {fileID: 8300000, guid: 371433d71c63a544284561327661a4fc, type: 3}
   defeatBossTitleSoundClip: {fileID: 8300000, guid: fbfb14eca1afd7945a4b6bf56601dfa4, type: 3}
+  WBWalkSound:
+  - {fileID: 8300000, guid: dd38fec77146fc847977b5f24a25fcc3, type: 3}
+  - {fileID: 8300000, guid: b9570373a590351458c5b066763b9419, type: 3}
+  - {fileID: 8300000, guid: 73555acb6ba6264438c3532b62c2a5b8, type: 3}
+  WBAttackSound: {fileID: 8300000, guid: 6c9fc2b08f2a1ff4ab74ffc25d123f37, type: 3}
+  WBDeathSound: {fileID: 8300000, guid: c49186f293dabb84f88bd6722af695f3, type: 3}
+  EPWalkSound:
+  - {fileID: 8300000, guid: 2307f7e4bf759b74293431a3a8a5381f, type: 3}
+  - {fileID: 8300000, guid: 2134958dd01243e40a701c32606e7e21, type: 3}
+  - {fileID: 8300000, guid: 2b9991a303ecb0e4e8fbac3bc6529efa, type: 3}
+  - {fileID: 8300000, guid: 54d4f7a403acd48428a49389038891a4, type: 3}
+  EPDeathSound: {fileID: 8300000, guid: f196fb0ac45785b42ace0592c48681a8, type: 3}
+  WFFlySound:
+  - {fileID: 8300000, guid: 8229c23622d929343aa458a36b606da3, type: 3}
+  - {fileID: 8300000, guid: 8d96a2265f5cd2c44b3154f0c44af5df, type: 3}
+  - {fileID: 8300000, guid: 7f0c2429c76af164d85fa4becef2ac97, type: 3}
+  - {fileID: 8300000, guid: a3568948e862833409e19d9a970b6026, type: 3}
+  WFDeathSound: {fileID: 8300000, guid: 93d7aa76aaaf8b148b48eb794a3a486b, type: 3}
+  TPAwakeSound: {fileID: 0}
+  TPWalkSound: {fileID: 0}
+  TPAttackFootSound: {fileID: 0}
+  TPAttackHandSound: {fileID: 0}
+  TPDeathSound: {fileID: 0}
 --- !u!1 &4565680334303989280
 GameObject:
   m_ObjectHideFlags: 0
@@ -731,6 +755,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8168859237872447309}
   - component: {fileID: 8802802329835054733}
+  - component: {fileID: 617710415529359344}
   m_Layer: 0
   m_Name: MusicManager
   m_TagString: Untagged
@@ -763,9 +788,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -6393124788242352893, guid: 50597a7f49151c340a9e19679f5c524d, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 6a039050dc309b6449e08c73b4f833a9, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -774,7 +799,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 1.01
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -849,3 +874,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &617710415529359344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8252048173073198231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4fc6d29353c77f45b8df4a9ef01d13c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainMenuMusicClip: {fileID: 8300000, guid: 6a039050dc309b6449e08c73b4f833a9, type: 3}
+  towerMusicClip: {fileID: 8300000, guid: 0c7dfb72ad88216448dc427360557ee0, type: 3}
+  forestMusicClip: {fileID: 8300000, guid: b62832034c2f3014490fbfdc3cf38108, type: 3}
+  villageMusicClip: {fileID: 8300000, guid: 2e52adb8a15dc4e47a2ed3febdf8c82e, type: 3}
+  tenPiedadBossMusicClip: {fileID: 8300000, guid: 4d588ae1065d52748a4b59a57079a66d, type: 3}

@@ -1,6 +1,7 @@
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Purchasing;
 using UnityEngine;
 
 public class EnragedPilgrim : Enemy
@@ -75,6 +76,13 @@ public class EnragedPilgrim : Enemy
         SR.color = color;
     }
 
-   
+    public void PlayWalkSound()
+    {
+        SoundFXManager.Instance.Play3DRandomSoundFXClip(SoundFXManager.Instance.EPWalkSound, transform, 1f);
+    }
 
+    public void PlayDeathSound()
+    {
+        SoundFXManager.Instance.Play3DSoundFXClip(SoundFXManager.Instance.EPDeathSound, transform, 1f);
+    }
 }

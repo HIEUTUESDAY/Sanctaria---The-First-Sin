@@ -70,4 +70,14 @@ public class WingedFace : Enemy
         color.a = 1f;
         SR.color = color;
     }
+
+    public void PlayFlySound()
+    {
+        SoundFXManager.Instance.Play3DRandomSoundFXClip(SoundFXManager.Instance.WFFlySound, transform, 1f);
+    }
+
+    public void PlayDeathSound()
+    {
+        SoundFXManager.Instance.Play3DSoundFXClip(SoundFXManager.Instance.WFDeathSound, transform, 1f);
+    }
 }

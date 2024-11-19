@@ -74,4 +74,19 @@ public class WheelBroken : Enemy
         color.a = 1f;
         SR.color = color;
     }
+
+    public void PlayWalkSound()
+    {
+        SoundFXManager.Instance.Play3DRandomSoundFXClip(SoundFXManager.Instance.WBWalkSound, transform, 1f);
+    }
+
+    public void PlayDeathSound()
+    {
+        SoundFXManager.Instance.Play3DSoundFXClip(SoundFXManager.Instance.WBDeathSound, transform, 1f);
+    }
+
+    public void PlayAttackSound()
+    {
+        SoundFXManager.Instance.Play3DSoundFXClip(SoundFXManager.Instance.WBAttackSound, transform, 1f);
+    }
 }

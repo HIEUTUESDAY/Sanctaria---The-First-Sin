@@ -438,7 +438,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     #region Player Singleton implementation
 
-    public static Player Instance { get; private set; }
+    public static Player Instance;
 
     #endregion
 
@@ -709,72 +709,72 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     public void PlayFootstepSound()
     {
-        SoundFXManager.Instance.PlayRandomSoundFXClip(SoundFXManager.Instance.footstepSoundClips, transform, 1f);
+        SoundFXManager.Instance.Play2DRandomSoundFXClip(SoundFXManager.Instance.playerWalkSoundClips, transform, 1f);
     }
 
     public void PlayAttackSound()
     {
-        SoundFXManager.Instance.PlayRandomSoundFXClip(SoundFXManager.Instance.attackSoundClip, transform, 1f);
+        SoundFXManager.Instance.Play2DRandomSoundFXClip(SoundFXManager.Instance.playerAttackSoundClip, transform, 1f);
     }
 
     public void PlayLadderClimbSound()
     {
-        SoundFXManager.Instance.PlayRandomSoundFXClip(SoundFXManager.Instance.ladderClimbSoundClips, transform, 1f);
+        SoundFXManager.Instance.Play2DRandomSoundFXClip(SoundFXManager.Instance.playerLadderClimbSoundClips, transform, 1f);
     }
 
     public void PlaySpawnSound()
     {
-        SoundFXManager.Instance.PlaySoundFXClip(SoundFXManager.Instance.spawnSoundClip, transform, 1f);
+        SoundFXManager.Instance.Play2DSoundFXClip(SoundFXManager.Instance.playerSpawnSoundClip, transform, 1f);
     }
 
     public void PlaySpikeDeathSound()
     {
-        SoundFXManager.Instance.PlaySoundFXClip(SoundFXManager.Instance.spikeDeathSoundClip, transform, 1f);
+        SoundFXManager.Instance.Play2DSoundFXClip(SoundFXManager.Instance.playerSpikeDeathSoundClip, transform, 1f);
     }
 
     public void PlayDeathSound()
     {
-        SoundFXManager.Instance.PlaySoundFXClip(SoundFXManager.Instance.deathSoundClip, transform, 1f);
+        SoundFXManager.Instance.Play2DSoundFXClip(SoundFXManager.Instance.playerDeathSoundClip, transform, 1f);
     }
 
     public void PlayJumpSound()
     {
-        SoundFXManager.Instance.PlaySoundFXClip(SoundFXManager.Instance.jumpAndLandingSoundClip, transform, 1f);
+        SoundFXManager.Instance.Play2DSoundFXClip(SoundFXManager.Instance.playerJumpAndLandingSoundClip, transform, 1f);
     }
 
     public void PlayHitSound()
     {
-        SoundFXManager.Instance.PlaySoundFXClip(SoundFXManager.Instance.hitSoundClips, transform, 1f);
+        SoundFXManager.Instance.Play2DSoundFXClip(SoundFXManager.Instance.playerHitSoundClips, transform, 1f);
     }
 
     public void PlayUsePrayerSound()
     {
-        SoundFXManager.Instance.PlaySoundFXClip(SoundFXManager.Instance.useSpellClip, transform, 1f);
+        SoundFXManager.Instance.Play2DSoundFXClip(SoundFXManager.Instance.playerUseSpellClip, transform, 1f);
     }
 
     public void PlayDashSound()
     {
-        SoundFXManager.Instance.PlaySoundFXClip(SoundFXManager.Instance.dashSoundClip, transform, 1f);
+        SoundFXManager.Instance.Play2DSoundFXClip(SoundFXManager.Instance.playerDashSoundClip, transform, 1f);
     }
 
     public void PlayHealingSound()
     {
-        SoundFXManager.Instance.PlaySoundFXClip(SoundFXManager.Instance.healingClip, transform, 1f);
+        SoundFXManager.Instance.Play2DSoundFXClip(SoundFXManager.Instance.playerHealingClip, transform, 1f);
     }
 
     public void PlayActiveCheckpointSound()
     {
-        SoundFXManager.Instance.PlaySoundFXClip(SoundFXManager.Instance.activeCheckpointClip, transform, 1f);
+        SoundFXManager.Instance.Play2DSoundFXClip(SoundFXManager.Instance.playerActiveCheckpointClip, transform, 1f);
     }
 
     public void PlayHealthRestoreSound()
     {
-        SoundFXManager.Instance.PlaySoundFXClip(SoundFXManager.Instance.healthRestoreSoundClip, transform, 1f);
+        SoundFXManager.Instance.Play2DSoundFXClip(SoundFXManager.Instance.playerHealthRestoreSoundClip, transform, 1f);
     }
 
     public void PlayWallGrabSound()
     {
-        SoundFXManager.Instance.PlaySoundFXClip(SoundFXManager.Instance.wallGrabSoundClip, transform, 1f);
+        SoundFXManager.Instance.Play2DSoundFXClip(SoundFXManager.Instance.playerWallGrabSoundClip, transform, 1f);
     }
 
     #endregion

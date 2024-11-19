@@ -515,14 +515,17 @@ public class SceneChangerManager : MonoBehaviour
             if (loadFromDoor)
             {
                 StartCoroutine(LoadNewScene(scene));
+                MusicManager.Instance.ChangeMusicOnSceene(scene.name);
             }
             else if (loadFromShop)
             {
                 StartCoroutine(LoadShopScene(scene));
+                MusicManager.Instance.ChangeMusicOnSceene(scene.name);
             }
             else if (loadFromCheckpoint)
             {
                 StartCoroutine(LoadCheckpointScene(scene));
+                MusicManager.Instance.ChangeMusicOnSceene(scene.name);
             }
 
             if (loadToGamePlay)
@@ -530,15 +533,25 @@ public class SceneChangerManager : MonoBehaviour
                 if (GameManager.Instance.isNewGame)
                 {
                     StartCoroutine(LoadNewGameCoroutine());
+                    MusicManager.Instance.ChangeMusicOnSceene(scene.name);
                 }
                 else if (GameManager.Instance.isLoadGame)
                 {
                     StartCoroutine(LoadSaveGameCoroutine());
+                    MusicManager.Instance.ChangeMusicOnSceene(scene.name);
                 }
                 else if (GameManager.Instance.isRespawn)
                 {
                     StartCoroutine(RespawnPlayerCoroutine());
+                    MusicManager.Instance.ChangeMusicOnSceene(scene.name);
                 }
+            }
+        }
+        else
+        {
+            if (MusicManager.Instance != null)
+            {
+                MusicManager.Instance.ChangeMusicOnSceene(scene.name);
             }
         }
     }

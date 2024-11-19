@@ -153,7 +153,7 @@ public class Enemy : MonoBehaviour, IEnemyDamageable, IEnemyMoveable
             CharacterEvent.hitSplash.Invoke(gameObject, hitDirection, attackType);
 
             // Play hit sound effect
-            SoundFXManager.Instance.PlayRandomSoundFXClip(hitAudioClips, transform, 1f);
+            SoundFXManager.Instance.Play3DRandomSoundFXClip(hitAudioClips, transform, 1f);
 
             DropStamina();
         }
