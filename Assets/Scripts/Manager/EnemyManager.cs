@@ -12,7 +12,6 @@ public class EnemyManager : MonoBehaviour
     [Header("Drop Enemy in scene into this ENEMY OBJECTS LIST")]
     [SerializeField] private List<GameObject> enemyObjects;
 
-    // Save the current state of enemies in the scene
     public List<EnemyData> SaveEnemies()
     {
         List<EnemyData> enemyDataList = new List<EnemyData>();
@@ -35,7 +34,6 @@ public class EnemyManager : MonoBehaviour
         return enemyDataList;
     }
 
-    // Load the enemies in the scene based on the saved data
     public void LoadEnemies(string currentScene)
     {
         List<SceneData> sceneDataList = SceneDataManager.Instance.sceneDataList;
@@ -57,7 +55,6 @@ public class EnemyManager : MonoBehaviour
         {
             foreach (EnemyData enemyData in thisSceneData.enemies)
             {
-                // Find the corresponding enemy prefab by name
                 GameObject enemy = GameObject.Find(enemyData.enemyName);
 
                 if (enemy != null)
@@ -70,7 +67,6 @@ public class EnemyManager : MonoBehaviour
                     {
                         enemy.gameObject.SetActive(false);
                     }
-
                 }
             }
         }

@@ -68,6 +68,10 @@ public class BossTenPiedad : Enemy
         bodyHitCollider.enabled = false;
 
         Player.Instance.PlayerInput.enabled = false;
+
+        MusicManager.Instance.StopMusic();
+        MusicManager.Instance.musicAudioSource.clip = MusicManager.Instance.tenPiedadBrethingClip;
+        MusicManager.Instance.PlayMusic();
     }
 
     private void SetBossMaxHealthBar()
@@ -83,5 +87,54 @@ public class BossTenPiedad : Enemy
     private void ShakeCamera()
     {
         CameraShakeManager.Instance.CameraShake(ImpulseSource);
+    }
+
+    public void PlayWalkSound()
+    {
+        if (Player.Instance.IsAlive)
+        {
+            SoundFXManager.Instance.Play2DRandomSoundFXClip(SoundFXManager.Instance.TPWalkSound, transform, 5f);
+            SoundFXManager.Instance.Play3DRandomSoundFXClip(SoundFXManager.Instance.TPWalkVoiceSound, transform, 0.2f);
+        }
+    }
+
+    public void PlayStormSound()
+    {
+        if (Player.Instance.IsAlive)
+        {
+            SoundFXManager.Instance.Play2DSoundFXClip(SoundFXManager.Instance.TPStormSound, transform, 1f);
+        }
+    }
+
+    public void PlayMovingSound()
+    {
+        if (Player.Instance.IsAlive)
+        {
+            SoundFXManager.Instance.Play3DSoundFXClip(SoundFXManager.Instance.TPMovingSound, transform, 0.2f);
+        }
+    }
+
+    public void PlaySceamSound()
+    {
+        if (Player.Instance.IsAlive)
+        {
+            SoundFXManager.Instance.Play3DSoundFXClip(SoundFXManager.Instance.TPAttackVoiceSound, transform, 0.1f);
+        }
+    }
+
+    public void PlayHandAttackSound()
+    {
+        if (Player.Instance.IsAlive)
+        {
+            SoundFXManager.Instance.Play2DSoundFXClip(SoundFXManager.Instance.TPStormVoiceSound, transform, 1f);
+        }
+    }
+
+    public void PlayDeathSound()
+    {
+        if (Player.Instance.IsAlive)
+        {
+            SoundFXManager.Instance.Play2DSoundFXClip(SoundFXManager.Instance.TPDeathSound, transform, 1f);
+        }
     }
 }

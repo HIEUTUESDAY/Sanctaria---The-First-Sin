@@ -23,7 +23,6 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextMessage(DialogueTextSO dialogueText)
     {
-        // if there nothing in the Queue
         if(messages.Count == 0) 
         {
             if (!conversationEnded)
@@ -37,7 +36,6 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
-        // if there is something in the Queue
         if (!isTyping)
         {
             message = messages.Dequeue();

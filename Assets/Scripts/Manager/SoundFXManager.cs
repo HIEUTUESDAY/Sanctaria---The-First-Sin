@@ -73,10 +73,13 @@ public class SoundFXManager : MonoBehaviour
 
     [Header("Ten Piedad")]
     public AudioClip TPAwakeSound;
-    public AudioClip TPWalkSound;
-    public AudioClip TPAttackFootSound;
-    public AudioClip TPAttackHandSound;
+    public AudioClip[] TPWalkSound;
+    public AudioClip[] TPWalkVoiceSound;
+    public AudioClip TPAttackVoiceSound;
     public AudioClip TPDeathSound;
+    public AudioClip TPStormSound;
+    public AudioClip TPStormVoiceSound;
+    public AudioClip TPMovingSound;
 
     #endregion
 

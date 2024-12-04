@@ -48,17 +48,10 @@ public class SelectTeleportSlot : MonoBehaviour
     {
         if (selectedButton != null)
         {
-            // Get the RectTransform of the selected button
             RectTransform buttonRectTransform = selectedButton.GetComponent<RectTransform>();
-
-            // Calculate the target position to center the roomCanvas on the selected button
             Vector2 targetPosition = -buttonRectTransform.anchoredPosition;
-
-            // Clamp the target position within the movement zone
             targetPosition.x = Mathf.Clamp(targetPosition.x, movementZone.rect.xMin, movementZone.rect.xMax);
             targetPosition.y = Mathf.Clamp(targetPosition.y, movementZone.rect.yMin, movementZone.rect.yMax);
-
-            // Move the roomCanvas towards the target position smoothly
             roomCanvas.anchoredPosition = Vector2.Lerp(roomCanvas.anchoredPosition, targetPosition, moveSpeed * Time.unscaledDeltaTime);
         }
     }

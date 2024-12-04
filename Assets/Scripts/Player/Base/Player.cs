@@ -562,7 +562,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             transform.rotation = Quaternion.Euler(rotator);
             IsFacingRight = !IsFacingRight;
 
-            //turn the camera follow object
             CameraFollowObject.CallTurn();
         }
         else
@@ -571,7 +570,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             transform.rotation = Quaternion.Euler(rotator);
             IsFacingRight = !IsFacingRight;
 
-            //turn the camera follow object
             CameraFollowObject.CallTurn();
         }
     }
@@ -671,7 +669,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     {
         if (!UIManager.Instance.menuActivated)
         {
-            if (IsClimbing && CanMove)
+            if (IsClimbing && !LockVelocity)
             {
                 RB.gravityScale = 0f;
                 RB.velocity = new Vector2(0f, VerticalInput.y * climbSpeed);
@@ -1126,6 +1124,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
             if (context.started && wallJumpingCounter > 0f && IsWallHanging)
             {
+                PlayJumpSound();
                 StartCoroutine(WallJumping());
             }
 
@@ -1147,11 +1146,14 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (!UIManager.Instance.menuActivated)
+        if (!SceneLoadManager.Instance.IsFadingIn && !SceneLoadManager.Instance.IsFadingOut && !SceneLoadManager.Instance.IsLoading)
         {
-            if (context.started && IsAlive && !IsWallHanging && !IsDashing && !IsClimbing)
+            if (!UIManager.Instance.menuActivated)
             {
-                Animator.SetTrigger(AnimationString.attackTrigger);
+                if (context.started && IsAlive && !IsWallHanging && !IsDashing && !IsClimbing)
+                {
+                    Animator.SetTrigger(AnimationString.attackTrigger);
+                }
             }
         }
     }
@@ -1200,90 +1202,99 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     public void OnHeal(InputAction.CallbackContext context)
     {
-        if (!UIManager.Instance.menuActivated)
+        if (!SceneLoadManager.Instance.IsFadingIn && !SceneLoadManager.Instance.IsFadingOut && !SceneLoadManager.Instance.IsLoading)
         {
-            if (context.started && IsAlive && CanMove && !IsDashing && TouchingDirections.IsGrounded && CurrentHealthPotion > 0)
+            if (!UIManager.Instance.menuActivated)
             {
-                Animator.SetTrigger(AnimationString.healTrigger);
+                if (context.started && IsAlive && CanMove && !IsDashing && TouchingDirections.IsGrounded && CurrentHealthPotion > 0)
+                {
+                    Animator.SetTrigger(AnimationString.healTrigger);
+                }
             }
         }
     }
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        if (!UIManager.Instance.menuActivated)
+        if (!SceneLoadManager.Instance.IsFadingIn && !SceneLoadManager.Instance.IsFadingOut && !SceneLoadManager.Instance.IsLoading)
         {
-            if (context.started && hasItemInRange && Item.isOnFloor && TouchingDirections.IsGrounded)
+            if (!UIManager.Instance.menuActivated)
             {
-                transform.position = new Vector3(Item.transform.position.x, transform.position.y, transform.position.z);
-                Animator.SetTrigger(AnimationString.collectFloorTrigger);
-            }
-            else if (context.started && hasItemInRange && !Item.isOnFloor && TouchingDirections.IsGrounded)
-            {
-                Animator.SetTrigger(AnimationString.collectHalfTrigger);
-            }
-            else if (context.started && IsWaitForEnter)
-            {
-                IsWaitForEnter = false;
-                Animator.SetTrigger(AnimationString.risingTrigger);
-            }
-            else if (context.started && isAtNPC && TouchingDirections.IsGrounded)
-            {
-                isInteractWithNPC = true;
-            }
-            else if (context.started && isInCheckpoint && TouchingDirections.IsGrounded)
-            {
-                if (IsFacingRight)
+                if (context.started && hasItemInRange && Item.isOnFloor && TouchingDirections.IsGrounded)
                 {
-                    transform.position = new Vector3(Checkpoint.transform.position.x - 1f, transform.position.y, transform.position.z);
+                    transform.position = new Vector3(Item.transform.position.x, transform.position.y, transform.position.z);
+                    Animator.SetTrigger(AnimationString.collectFloorTrigger);
                 }
-                else
+                else if (context.started && hasItemInRange && !Item.isOnFloor && TouchingDirections.IsGrounded)
                 {
-                    transform.position = new Vector3(Checkpoint.transform.position.x + 1f, transform.position.y, transform.position.z);
+                    Animator.SetTrigger(AnimationString.collectHalfTrigger);
                 }
+                else if (context.started && IsWaitForEnter)
+                {
+                    IsWaitForEnter = false;
+                    Animator.SetTrigger(AnimationString.risingTrigger);
+                }
+                else if (context.started && isAtNPC && TouchingDirections.IsGrounded)
+                {
+                    isInteractWithNPC = true;
+                }
+                else if (context.started && isInCheckpoint && TouchingDirections.IsGrounded)
+                {
+                    if (IsFacingRight)
+                    {
+                        transform.position = new Vector3(Checkpoint.transform.position.x - 1f, transform.position.y, transform.position.z);
+                    }
+                    else
+                    {
+                        transform.position = new Vector3(Checkpoint.transform.position.x + 1f, transform.position.y, transform.position.z);
+                    }
 
-                Animator.SetTrigger(AnimationString.saveTrigger);
-            }
-            else if (context.started && isAtShop && TouchingDirections.IsGrounded)
-            {
-                transform.position = new Vector3(ShopDoorSceneChanger.transform.position.x, transform.position.y, transform.position.z);
-                Animator.SetTrigger(AnimationString.enterDoorTrigger);
-            }
-            else if (context.started && canBuyItem && TouchingDirections.IsGrounded)
-            {
-                transform.position = new Vector3(ItemBuyable.transform.position.x, transform.position.y, transform.position.z);
-                RB.velocity = Vector3.zero;
-                ItemBuyable.InspectItem();
+                    Animator.SetTrigger(AnimationString.saveTrigger);
+                }
+                else if (context.started && isAtShop && TouchingDirections.IsGrounded)
+                {
+                    transform.position = new Vector3(ShopDoorSceneChanger.transform.position.x, transform.position.y, transform.position.z);
+                    Animator.SetTrigger(AnimationString.enterDoorTrigger);
+                }
+                else if (context.started && canBuyItem && TouchingDirections.IsGrounded)
+                {
+                    transform.position = new Vector3(ItemBuyable.transform.position.x, transform.position.y, transform.position.z);
+                    RB.velocity = Vector3.zero;
+                    ItemBuyable.InspectItem();
+                }
             }
         }
     }
 
     public void OnOpenInventoryMenu(InputAction.CallbackContext context)
     {
-        if (context.started && IsAlive && !UIManager.Instance.menuActivated && !UIManager.Instance.inventoryMenu.activeSelf && !IsWaitForEnter)
+        if (!SceneLoadManager.Instance.IsFadingIn && !SceneLoadManager.Instance.IsFadingOut && !SceneLoadManager.Instance.IsLoading)
         {
-            Time.timeScale = 0;
-            UIManager.Instance.inventoryMenu.SetActive(true);
-            UIManager.Instance.menuActivated = true;
-            SoundFXManager.Instance.PlayChangeTabSound();
-        }
-        else if (context.started && IsAlive && UIManager.Instance.menuActivated && !UIManager.Instance.inventoryMenu.activeSelf && UIManager.Instance.checkpointMenu.activeSelf)
-        {
-            isKneelInCheckpoint = true;
-            UIManager.Instance.checkpointMenu.SetActive(false);
-            UIManager.Instance.inventoryMenu.SetActive(true);
-            SoundFXManager.Instance.PlayChangeTabSound();
-
-            for (int i = 0; i < InventoryManager.Instance.Inventories.Length; i++)
+            if (context.started && IsAlive && !UIManager.Instance.menuActivated && !UIManager.Instance.inventoryMenu.activeSelf && !IsWaitForEnter && !SceneLoadManager.Instance.IsFadingIn && !SceneLoadManager.Instance.IsFadingOut && !SceneLoadManager.Instance.IsLoading)
             {
-                if (InventoryManager.Instance.Inventories[i].name == "Hearts")
+                Time.timeScale = 0;
+                UIManager.Instance.inventoryMenu.SetActive(true);
+                UIManager.Instance.menuActivated = true;
+                SoundFXManager.Instance.PlayChangeTabSound();
+            }
+            else if (context.started && IsAlive && UIManager.Instance.menuActivated && !UIManager.Instance.inventoryMenu.activeSelf && UIManager.Instance.checkpointMenu.activeSelf)
+            {
+                isKneelInCheckpoint = true;
+                UIManager.Instance.checkpointMenu.SetActive(false);
+                UIManager.Instance.inventoryMenu.SetActive(true);
+                SoundFXManager.Instance.PlayChangeTabSound();
+
+                for (int i = 0; i < InventoryManager.Instance.Inventories.Length; i++)
                 {
-                    InventoryManager.Instance.Inventories[i].SetActive(true);
-                    InventoryManager.Instance.currentInventoryIndex = i;
-                }
-                else
-                {
-                    InventoryManager.Instance.Inventories[i].SetActive(false);
+                    if (InventoryManager.Instance.Inventories[i].name == "Hearts")
+                    {
+                        InventoryManager.Instance.Inventories[i].SetActive(true);
+                        InventoryManager.Instance.currentInventoryIndex = i;
+                    }
+                    else
+                    {
+                        InventoryManager.Instance.Inventories[i].SetActive(false);
+                    }
                 }
             }
         }
@@ -1291,48 +1302,55 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     public void OnOpenMapMenu(InputAction.CallbackContext context)
     {
-        if (context.started && IsAlive && !UIManager.Instance.menuActivated && !UIManager.Instance.mapMenu.activeSelf && !IsWaitForEnter)
+        if (!SceneLoadManager.Instance.IsFadingIn && !SceneLoadManager.Instance.IsFadingOut && !SceneLoadManager.Instance.IsLoading)
         {
-            Time.timeScale = 0;
-            UIManager.Instance.mapMenu.SetActive(true);
-            UIManager.Instance.menuActivated = true;
-            MapRoomManager.Instance.selectTeleportSlot.SetActive(false);
-            MapRoomManager.Instance.teleportHUD.SetActive(false);
-            if (!MapRoomManager.Instance.isInHiddenRoom)
+
+            if (context.started && IsAlive && !UIManager.Instance.menuActivated && !UIManager.Instance.mapMenu.activeSelf && !IsWaitForEnter)
             {
-                MapRoomManager.Instance.mapCenterPoint.SetActive(true);
+                Time.timeScale = 0;
+                UIManager.Instance.mapMenu.SetActive(true);
+                UIManager.Instance.menuActivated = true;
+                MapRoomManager.Instance.selectTeleportSlot.SetActive(false);
+                MapRoomManager.Instance.teleportHUD.SetActive(false);
+                if (!MapRoomManager.Instance.isInHiddenRoom)
+                {
+                    MapRoomManager.Instance.mapCenterPoint.SetActive(true);
+                }
+                else
+                {
+                    MapRoomManager.Instance.mapCenterPoint.SetActive(false);
+                }
+                MapRoomManager.Instance.mapHUD.SetActive(true);
+                MapCenterPoint.Instance.SetCenterPoint();
+                SoundFXManager.Instance.PlayChangeTabSound();
             }
-            else
+            else if (context.started && IsAlive && UIManager.Instance.menuActivated && !UIManager.Instance.mapMenu.activeSelf && UIManager.Instance.checkpointMenu.activeSelf)
             {
+                isKneelInCheckpoint = true;
+                UIManager.Instance.checkpointMenu.SetActive(false);
+                UIManager.Instance.mapMenu.SetActive(true);
                 MapRoomManager.Instance.mapCenterPoint.SetActive(false);
+                MapRoomManager.Instance.mapHUD.SetActive(false);
+                MapRoomManager.Instance.selectTeleportSlot.SetActive(true);
+                MapRoomManager.Instance.teleportHUD.SetActive(true);
+                SelectTeleportSlot.Instance.SetCurrentRoomSelected();
+                SoundFXManager.Instance.PlayChangeTabSound();
             }
-            MapRoomManager.Instance.mapHUD.SetActive(true);
-            MapCenterPoint.Instance.SetCenterPoint();
-            SoundFXManager.Instance.PlayChangeTabSound();
-        }
-        else if (context.started && IsAlive && UIManager.Instance.menuActivated && !UIManager.Instance.mapMenu.activeSelf && UIManager.Instance.checkpointMenu.activeSelf)
-        {
-            isKneelInCheckpoint = true;
-            UIManager.Instance.checkpointMenu.SetActive(false);
-            UIManager.Instance.mapMenu.SetActive(true);
-            MapRoomManager.Instance.mapCenterPoint.SetActive(false);
-            MapRoomManager.Instance.mapHUD.SetActive(false);
-            MapRoomManager.Instance.selectTeleportSlot.SetActive(true);
-            MapRoomManager.Instance.teleportHUD.SetActive(true);
-            SelectTeleportSlot.Instance.SetCurrentRoomSelected();
-            SoundFXManager.Instance.PlayChangeTabSound();
         }
     }
 
     public void OnOpenOptionsMenu(InputAction.CallbackContext context)
     {
-        if (context.started && IsAlive && UIManager.Instance.menuActivated && UIManager.Instance.mapMenu.activeSelf && !IsWaitForEnter && !isKneelInCheckpoint)
+        if (!SceneLoadManager.Instance.IsFadingIn && !SceneLoadManager.Instance.IsFadingOut && !SceneLoadManager.Instance.IsLoading)
         {
-            Time.timeScale = 0;
-            UIManager.Instance.mapMenu.SetActive(false);
-            UIManager.Instance.optionsMenu.SetActive(true);
-            UIManager.Instance.menuActivated = true;
-            SoundFXManager.Instance.PlayChangeTabSound();
+            if (context.started && IsAlive && UIManager.Instance.menuActivated && UIManager.Instance.mapMenu.activeSelf && !IsWaitForEnter && !isKneelInCheckpoint)
+            {
+                Time.timeScale = 0;
+                UIManager.Instance.mapMenu.SetActive(false);
+                UIManager.Instance.optionsMenu.SetActive(true);
+                UIManager.Instance.menuActivated = true;
+                SoundFXManager.Instance.PlayChangeTabSound();
+            }
         }
     }
 
@@ -1381,13 +1399,16 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     public void OnPerformPrayer(InputAction.CallbackContext context)
     {
-        if (!UIManager.Instance.menuActivated)
+        if (!SceneLoadManager.Instance.IsFadingIn && !SceneLoadManager.Instance.IsFadingOut && !SceneLoadManager.Instance.IsLoading)
         {
-            if (context.started && IsAlive && CanMove && TouchingDirections.IsGrounded && prayerManaCost > 0f && CurrentMana >= prayerManaCost)
+            if (!UIManager.Instance.menuActivated)
             {
-                if(prayerCooldown <= 0)
+                if (context.started && IsAlive && CanMove && TouchingDirections.IsGrounded && prayerManaCost > 0f && CurrentMana >= prayerManaCost)
                 {
-                    Animator.SetTrigger(AnimationString.prayerTrigger);
+                    if (prayerCooldown <= 0)
+                    {
+                        Animator.SetTrigger(AnimationString.prayerTrigger);
+                    }
                 }
             }
         }
@@ -1531,7 +1552,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             TurnPlayer();
         }
 
-        // Start or restart the speed boost coroutine
         if (wallJumpSpeedBoostCoroutine != null)
         {
             StopCoroutine(wallJumpSpeedBoostCoroutine);
@@ -1546,11 +1566,8 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
     {
         IsWallHanging = true;
         RB.gravityScale = 0;
-
-        // Determine the direction to the wall
         Vector2 directionToWall = IsFacingRight ? Vector2.right : Vector2.left;
 
-        // Move the player towards the wall
         float moveToWallSpeed = 100f;
         while (!TouchingDirections.IsOnWall && IsWallHanging)
         {
@@ -1561,7 +1578,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             yield return null;
         }
 
-        // Slide down the wall a little
         float startTime = Time.time;
         while (Time.time < startTime + wallSlideDuration && IsWallHanging)
         {
@@ -1571,7 +1587,6 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             yield return null;
         }
 
-        // Stop slide down
         while (IsWallHanging)
         {
             RB.velocity = Vector2.zero;
@@ -1732,6 +1747,8 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     public void ResetPlayerAnimation()
     {
+        HorizontalInput = Vector2.zero;
+        VerticalInput = Vector2.zero;
         IsMoving = false;
         IsJumping = false;
         IsDashing = false;

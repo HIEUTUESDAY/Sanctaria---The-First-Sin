@@ -11,7 +11,6 @@ public class BossManager : MonoBehaviour
     [Header("Drop Boss in scene into this BOSS OBJECT")]
     [SerializeField] private GameObject bossObject;
 
-    // Save the current state of enemies in the scene
     public BossData SaveBoss()
     {
         BossData bossData = new BossData();
@@ -31,7 +30,6 @@ public class BossManager : MonoBehaviour
         return bossData;
     }
 
-    // Load the enemies in the scene based on the saved data
     public void LoadBoss(string currentScene)
     {
         List<SceneData> sceneDataList = SceneDataManager.Instance.sceneDataList;
@@ -51,7 +49,6 @@ public class BossManager : MonoBehaviour
     {
         if (thisSceneData != null)
         {
-            // Find the corresponding enemy prefab by name
             GameObject boss = GameObject.Find(thisSceneData.boss.bossName);
 
             if (boss != null)

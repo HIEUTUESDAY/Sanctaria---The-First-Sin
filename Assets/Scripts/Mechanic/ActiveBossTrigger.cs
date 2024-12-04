@@ -25,6 +25,9 @@ public class ActiveBossTrigger : MonoBehaviour
 
                     CinemachineVirtualCamera activeCamera = FindObjectOfType<CinemachineVirtualCamera>();
 
+                    MusicManager.Instance.musicAudioSource.clip = MusicManager.Instance.tenPiedadBossMusicClip;
+                    MusicManager.Instance.PlayMusic();
+
                     if (activeCamera != null)
                     {
                         CinemachineConfiner2D confiner = activeCamera.GetComponent<CinemachineConfiner2D>();

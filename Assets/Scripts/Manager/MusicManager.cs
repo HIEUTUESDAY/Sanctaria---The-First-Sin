@@ -7,13 +7,14 @@ public class MusicManager : MonoBehaviour
 {
     public static MusicManager Instance;
 
-    private AudioSource musicAudioSource;
+    public AudioSource musicAudioSource;
 
     public AudioClip mainMenuMusicClip;
     public AudioClip towerMusicClip;
     public AudioClip forestMusicClip;
     public AudioClip villageMusicClip;
     public AudioClip tenPiedadBossMusicClip;
+    public AudioClip tenPiedadBrethingClip;
 
     private void Awake()
     {
@@ -93,6 +94,18 @@ public class MusicManager : MonoBehaviour
             if (musicAudioSource.clip != null && musicAudioSource.clip != villageMusicClip)
             {
                 musicAudioSource.clip = villageMusicClip;
+                PlayMusic();
+            }
+            else
+            {
+                return;
+            }
+        }
+        else if (sceeneName.Equals("BossTenPiedad"))
+        {
+            if (musicAudioSource.clip != null && musicAudioSource.clip != tenPiedadBrethingClip)
+            {
+                musicAudioSource.clip = tenPiedadBrethingClip;
                 PlayMusic();
             }
             else

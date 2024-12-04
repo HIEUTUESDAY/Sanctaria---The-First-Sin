@@ -96,6 +96,7 @@ public class CheckpointManager : MonoBehaviour
             PlayerCheckpointData playerCheckpointData = new PlayerCheckpointData( checkpointArea.ToString(), SceneManager.GetActiveScene().name, transform.position);
             gameManager.gameData.playerCheckpointData = playerCheckpointData;
             sceneDataManager.RespawnEnemiesInAllScenes();
+            Player.Instance.RestoreHealthAndPotion();
         }
     }
 

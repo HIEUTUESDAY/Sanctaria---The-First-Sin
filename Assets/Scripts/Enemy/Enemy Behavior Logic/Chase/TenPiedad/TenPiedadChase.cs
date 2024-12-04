@@ -34,14 +34,12 @@ public class TenPiedadChase : EnemyChaseSOBase
         base.Initialize(gameObject, enemy);
 
         AttackZone = transform.Find("AttackDetectionZone").GetComponent<DetectionZone>();
-
     }
 
 
     public override void DoEnterLogic()
     {
         base.DoEnterLogic();
-
     }
 
     public override void DoExitLogic()

@@ -43,18 +43,27 @@ public class SceneChangerManager : MonoBehaviour
 
     #region Change scenes functions
 
+    private void DisableInput()
+    {
+        if (Player.Instance != null)
+        {
+            Player.Instance.PlayerInput.enabled = false;
+            Player.Instance.CanMove = false;
+            Player.Instance.IsMoving = false;
+        }
+    }
+
     public void ChangeSceneFromDoor(SceneField myScene, DoorSceneChanger.DoorToSpawnAt doorToSpawnAt)
     {
         loadFromDoor = true;
-        Player.Instance.PlayerInput.enabled = false;
-        Player.Instance.CanMove = false;
-        Player.Instance.IsMoving = false;
+        DisableInput();
         StartCoroutine(ChangeSceneFromDoorCoroutine(myScene, doorToSpawnAt));
     }  
     
     public void ChangeSceneFromShop(SceneField myScene)
     {
         loadFromShop = true;
+        DisableInput();
         StartCoroutine(ChangeSceneFromShopCoroutine(myScene));
     }
 
@@ -67,6 +76,7 @@ public class SceneChangerManager : MonoBehaviour
     public void ChangeSceneFromeSaveFile(GameData gameData)
     {
         loadToGamePlay = true;
+        DisableInput();
         StartCoroutine(ChangeSceneFromSaveFileCoroutine(gameData.playerCheckpointData.sceneName));
     }
 
@@ -79,6 +89,7 @@ public class SceneChangerManager : MonoBehaviour
     public void ChangeSceneFromCheckpoint(SceneField checkpointScene)
     {
         loadFromCheckpoint = true;
+        DisableInput();
         StartCoroutine(ChangeSceneFromCheckpointCoroutine(checkpointScene));
     }
 

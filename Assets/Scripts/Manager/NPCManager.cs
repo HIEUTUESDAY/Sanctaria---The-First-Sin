@@ -10,7 +10,6 @@ public class NPCManager : MonoBehaviour
     [Header("Drop NPC in scene into this BOSS OBJECT")]
     [SerializeField] private GameObject npcObject;
 
-    // Save the current state of enemies in the scene
     public NPCData SaveNPC()
     {
         NPCData npcData = new NPCData();
@@ -30,7 +29,6 @@ public class NPCManager : MonoBehaviour
         return npcData;
     }
 
-    // Load the enemies in the scene based on the saved data
     public void LoadNPC(string currentScene)
     {
         List<SceneData> sceneDataList = SceneDataManager.Instance.sceneDataList;
@@ -50,7 +48,6 @@ public class NPCManager : MonoBehaviour
     {
         if (thisSceneData != null)
         {
-            // Find the corresponding enemy prefab by name
             GameObject npc = GameObject.Find(thisSceneData.npc.npcName);
 
             if (npc != null)

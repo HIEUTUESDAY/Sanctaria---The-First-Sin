@@ -7,12 +7,11 @@ public class MapCenterPoint : MonoBehaviour
 {
     public static MapCenterPoint Instance;
 
-    public RectTransform roomCanvas; // The canvas or parent containing the rooms
+    public RectTransform roomCanvas;
     public float moveSpeed = 500f;
 
     private MapContainerData currentRoom;
 
-    // Define the boundaries for the movement zone
     public RectTransform movementZone;
 
     private void Awake()
@@ -58,17 +57,10 @@ public class MapCenterPoint : MonoBehaviour
             SetCenterPoint();
         }
 
-        // Move the roomCanvas in the opposite direction to keep the centerPoint stationary
         Vector2 newPosition = roomCanvas.anchoredPosition - moveDirection * moveSpeed * Time.unscaledDeltaTime;
-
-        // Clamp the position within the movement zone
         newPosition.x = Mathf.Clamp(newPosition.x, movementZone.rect.xMin, movementZone.rect.xMax);
         newPosition.y = Mathf.Clamp(newPosition.y, movementZone.rect.yMin, movementZone.rect.yMax);
-
-        // Apply the clamped position
         roomCanvas.anchoredPosition = newPosition;
-
-        // Check if the C key is pressed to center on the PlayerPoint
     }
 
     public void SetCenterPoint()
@@ -84,14 +76,9 @@ public class MapCenterPoint : MonoBehaviour
 
         if (currentRoom != null)
         {
-            // Calculate the target position to center the roomCanvas on the targetRoom
             Vector2 targetPosition = -currentRoom.GetComponent<RectTransform>().anchoredPosition;
-
-            // Clamp the target position within the movement zone
             targetPosition.x = Mathf.Clamp(targetPosition.x, movementZone.rect.xMin, movementZone.rect.xMax);
             targetPosition.y = Mathf.Clamp(targetPosition.y, movementZone.rect.yMin, movementZone.rect.yMax);
-
-            // Move the roomCanvas to center on the targetRoom
             roomCanvas.anchoredPosition = targetPosition;
         }
     }

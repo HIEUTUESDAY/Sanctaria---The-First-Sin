@@ -462,10 +462,17 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a3568948e862833409e19d9a970b6026, type: 3}
   WFDeathSound: {fileID: 8300000, guid: 93d7aa76aaaf8b148b48eb794a3a486b, type: 3}
   TPAwakeSound: {fileID: 0}
-  TPWalkSound: {fileID: 0}
-  TPAttackFootSound: {fileID: 0}
-  TPAttackHandSound: {fileID: 0}
-  TPDeathSound: {fileID: 0}
+  TPWalkSound:
+  - {fileID: 8300000, guid: 5570888f6181ce34db33b9684192fd92, type: 3}
+  - {fileID: 8300000, guid: b4cbdebb36b729f46be7bfdf035b1742, type: 3}
+  TPWalkVoiceSound:
+  - {fileID: 8300000, guid: 494646d55ac75b84187d1076700472fe, type: 3}
+  - {fileID: 8300000, guid: dc8d02a1cc1c2d04197e288de9c42ee9, type: 3}
+  TPAttackVoiceSound: {fileID: 8300000, guid: da1aee976646f6d4e897475f116ff05b, type: 3}
+  TPDeathSound: {fileID: 8300000, guid: a76b7f0a95e8e2043b4acf2db31c13eb, type: 3}
+  TPStormSound: {fileID: 8300000, guid: 941ec85ea3becce4cb28721dc7dcff75, type: 3}
+  TPStormVoiceSound: {fileID: 8300000, guid: 5321f0d052f6220478e53d23a0b55ad7, type: 3}
+  TPMovingSound: {fileID: 8300000, guid: f54653a872fc11a48b3a2112e76b1190, type: 3}
 --- !u!1 &4565680334303989280
 GameObject:
   m_ObjectHideFlags: 0
@@ -886,8 +893,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4fc6d29353c77f45b8df4a9ef01d13c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicAudioSource: {fileID: 0}
   mainMenuMusicClip: {fileID: 8300000, guid: 6a039050dc309b6449e08c73b4f833a9, type: 3}
   towerMusicClip: {fileID: 8300000, guid: 0c7dfb72ad88216448dc427360557ee0, type: 3}
   forestMusicClip: {fileID: 8300000, guid: b62832034c2f3014490fbfdc3cf38108, type: 3}
   villageMusicClip: {fileID: 8300000, guid: 2e52adb8a15dc4e47a2ed3febdf8c82e, type: 3}
   tenPiedadBossMusicClip: {fileID: 8300000, guid: 4d588ae1065d52748a4b59a57079a66d, type: 3}
+  tenPiedadBrethingClip: {fileID: 8300000, guid: 071d6d65512e3104d87bb3bd3717fdc2, type: 3}

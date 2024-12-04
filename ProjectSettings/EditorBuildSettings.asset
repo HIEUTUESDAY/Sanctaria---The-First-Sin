@@ -41,4 +41,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Settings/Scenes/BossTenPiedad.unity
     guid: b6951bfc2b7cc27498fa5fe8ca48097e
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 94f8f4fa6c57e3a489b2c54140e29c73, type: 2}

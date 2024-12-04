@@ -140,19 +140,16 @@ public class Enemy : MonoBehaviour, IEnemyDamageable, IEnemyMoveable
     {
         if (IsAlive)
         {
-            // Beable to hit
             CurrentHealth -= damage;
 
             StartCoroutine(ApplySlowMotion());
             CameraShakeManager.Instance.CameraShake(ImpulseSource);
             Animator.SetTrigger(AnimationString.hitTrigger);
 
-            // Notify other subcribed components that damageable was hit to handle the knockback
             DamageableHit?.Invoke(damage, knockback);
             CharacterEvent.characterDamaged.Invoke(gameObject, damage);
             CharacterEvent.hitSplash.Invoke(gameObject, hitDirection, attackType);
 
-            // Play hit sound effect
             SoundFXManager.Instance.Play3DRandomSoundFXClip(hitAudioClips, transform, 1f);
 
             DropStamina();

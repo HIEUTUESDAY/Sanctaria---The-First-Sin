@@ -26,6 +26,12 @@ public class GameManager : MonoBehaviour
         savePath = Application.persistentDataPath + "/";
     }
 
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
     private void Update()
     {
         if (gameData != null)

@@ -10,7 +10,6 @@ public class ItemManager : MonoBehaviour
     [Header("Drop Items in scene into this ITEM OBJECTS LIST")]
     [SerializeField] private List<GameObject> itemsObjects;
 
-    // Save the current state of items in the scene
     public List<ItemData> SaveItems()
     {
         List<ItemData> itemDataList = new List<ItemData>();
@@ -61,7 +60,6 @@ public class ItemManager : MonoBehaviour
         return itemDataList;
     }
 
-    // Load the items in the scene based on the saved data
     public void LoadItems(string currentScene)
     {
         List<SceneData> sceneDataList = SceneDataManager.Instance.sceneDataList;
@@ -83,7 +81,6 @@ public class ItemManager : MonoBehaviour
         {
             foreach (ItemData itemData in thisSceneData.items)
             {
-                // Find the corresponding item prefab by name
                 GameObject item = GameObject.Find(itemData.itemName);
 
                 if (item != null)
