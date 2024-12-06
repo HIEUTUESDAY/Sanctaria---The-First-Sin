@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MusicManager : MonoBehaviour
 {
-    public static MusicManager Instance;
+    public static MusicManager Instance { get; private set; }
 
     public AudioSource musicAudioSource;
 

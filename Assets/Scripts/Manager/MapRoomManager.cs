@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class MapRoomManager : MonoBehaviour
 {
-    public static MapRoomManager Instance;
+    public static MapRoomManager Instance { get; private set; }
 
     [Header("Normal Rooms")]
     public List<MapContainerData> rooms;

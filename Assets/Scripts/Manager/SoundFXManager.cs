@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SoundFXManager : MonoBehaviour
 {
-    public static SoundFXManager Instance;
+    public static SoundFXManager Instance { get; private set; }
     public AudioSource soundFXObject2D;
     public AudioSource soundFXObject3D;
 

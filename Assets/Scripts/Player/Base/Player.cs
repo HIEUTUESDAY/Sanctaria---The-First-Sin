@@ -1388,6 +1388,14 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             UIManager.Instance.menuActivated = true;
             SoundFXManager.Instance.PlayChangeTabSound();
         }
+        else if (context.started && UIManager.Instance.menuActivated && UIManager.Instance.tipsMenu.activeSelf)
+        {
+            Time.timeScale = 0;
+            UIManager.Instance.tipsMenu.SetActive(false);
+            UIManager.Instance.optionsMenu.SetActive(true);
+            UIManager.Instance.menuActivated = true;
+            SoundFXManager.Instance.PlayChangeTabSound();
+        }
         else if (context.started && UIManager.Instance.menuActivated && UIManager.Instance.checkpointMenu.activeSelf)
         {
             Time.timeScale = 1;

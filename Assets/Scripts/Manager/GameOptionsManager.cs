@@ -31,6 +31,14 @@ public class GameOptionsManager : MonoBehaviour
         UIManager.Instance.menuActivated = true;
     }
 
+    public void OpenGameplayTipsMenu()
+    {
+        Time.timeScale = 0;
+        UIManager.Instance.optionsMenu.SetActive(false);
+        UIManager.Instance.tipsMenu.SetActive(true);
+        UIManager.Instance.menuActivated = true;
+    }
+
     public void SaveAndLoadMainMenu()
     {
         Time.timeScale = 1;

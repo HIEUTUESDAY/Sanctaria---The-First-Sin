@@ -111,6 +111,7 @@ Transform:
   - {fileID: 668654688361300737}
   - {fileID: 6441812861010540748}
   - {fileID: 3279292498348041061}
+  - {fileID: 5039813353184114820}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3629465925076655153
@@ -361,6 +362,57 @@ MonoBehaviour:
   - {fileID: 1662351009, guid: da348bd4a6ca0624c8720f02975c4d95, type: 3}
   - {fileID: -1122302144, guid: da348bd4a6ca0624c8720f02975c4d95, type: 3}
   speed: 0.05
+--- !u!1 &2692900361154198989
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5039813353184114820}
+  - component: {fileID: 2292548815544862026}
+  m_Layer: 0
+  m_Name: GameTutorialManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5039813353184114820
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2692900361154198989}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6654231435917960204}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2292548815544862026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2692900361154198989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71745c89c66bfe345ad2a5f46d7fe542, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthPotionTutor: 0
+  attackTutor: 0
+  jumpTutor: 0
+  dashTutor: 0
+  wallClimbTutor: 0
+  checkpointTutor: 0
+  npcTutor: 0
 --- !u!1 &3349210114997635968
 GameObject:
   m_ObjectHideFlags: 0
@@ -666,6 +718,14 @@ MonoBehaviour:
       health: 0
       stamina: 0
       healthPotions: 0
+    playerTutorialData:
+      healthPotionTutor: 0
+      attackTutor: 0
+      jumpTutor: 0
+      dashTutor: 0
+      wallClimbTutor: 0
+      checkpointTutor: 0
+      NpcTutor: 0
     playerCheckpointData:
       areaName: 
       sceneName: 

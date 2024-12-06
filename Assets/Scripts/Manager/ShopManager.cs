@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class ShopManager : MonoBehaviour
 {
-    public static ShopManager Instance;
+    public static ShopManager Instance { get; private set; }
 
     [Header("Buyable Item data")]
     public string itemName;

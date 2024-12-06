@@ -3,13 +3,14 @@ using UnityEngine;
 
 public static class SaveSystem
 {
-    public static void SaveGame(PlayerData playerData, PlayerCheckpointData playerCheckpointData, PlayerInventoryData playerInventoryData, PlayerMapData playerMapData, PlayerSceneData playerSceneData, int slotIndex)
+    public static void SaveGame(PlayerData playerData, PlayerTutorialData playerTutorialData, PlayerCheckpointData playerCheckpointData, PlayerInventoryData playerInventoryData, PlayerMapData playerMapData, PlayerSceneData playerSceneData, int slotIndex)
     {
         string path = Application.persistentDataPath + "/savefile" + slotIndex + ".json";
 
         GameData data = new GameData
         {
             playerData = playerData,
+            playerTutorialData = playerTutorialData,
             playerCheckpointData = playerCheckpointData,
             playerInventoryData = playerInventoryData,
             playerMapData = playerMapData,

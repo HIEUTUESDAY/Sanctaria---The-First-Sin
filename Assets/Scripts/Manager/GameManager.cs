@@ -66,9 +66,9 @@ public class GameManager : MonoBehaviour
 
     #region New, Load and Save game functions
 
-    public void SaveGame(PlayerData playerData, PlayerCheckpointData playerCheckpointData, PlayerInventoryData playerInventoryData, PlayerMapData playerMapData, PlayerSceneData playerSceneData)
+    public void SaveGame(PlayerData playerData, PlayerTutorialData playerTutorialData, PlayerCheckpointData playerCheckpointData, PlayerInventoryData playerInventoryData, PlayerMapData playerMapData, PlayerSceneData playerSceneData)
     {
-        SaveSystem.SaveGame(playerData, playerCheckpointData, playerInventoryData, playerMapData, playerSceneData, currentSlotIndex);
+        SaveSystem.SaveGame(playerData, playerTutorialData, playerCheckpointData, playerInventoryData, playerMapData, playerSceneData, currentSlotIndex);
     }
 
     public void NewGame(int slotIndex)
@@ -149,10 +149,12 @@ public class GameManager : MonoBehaviour
         InventoryManager inventoryManager = InventoryManager.Instance;
         MapRoomManager mapRoomManager = MapRoomManager.Instance;
         SceneDataManager sceneDataManager = SceneDataManager.Instance;
+        TutorialManager tutorialManager = TutorialManager.Instance;
 
-        if (player != null && inventoryManager != null && mapRoomManager != null && sceneDataManager != null)
+        if (player != null && inventoryManager != null && mapRoomManager != null && sceneDataManager != null && tutorialManager != null)
         {
             PlayerData playerData = new PlayerData(player);
+            PlayerTutorialData playerTutorialData = tutorialManager.GetTutorialData();
             PlayerCheckpointData playerCheckpointData = gameData.playerCheckpointData;
             PlayerInventoryData playerInventoryData = new PlayerInventoryData
             (
@@ -166,7 +168,7 @@ public class GameManager : MonoBehaviour
             PlayerMapData playerMapData = new PlayerMapData(mapRoomManager.GetMaps());
             PlayerSceneData playerSceneData = new PlayerSceneData(sceneDataManager.GetSceneDataList());
 
-            SaveGame(playerData, playerCheckpointData, playerInventoryData, playerMapData, playerSceneData);
+            SaveGame(playerData, playerTutorialData, playerCheckpointData, playerInventoryData, playerMapData, playerSceneData);
         }
     }
 

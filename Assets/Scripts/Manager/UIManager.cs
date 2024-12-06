@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    public static UIManager Instance;
+    public static UIManager Instance { get; private set; }
     public GameObject damageTextPrefab;
     public GameObject healthTextPrefab;
     public GameObject[] playerHitSplashPrefab;
@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
     public GameObject settingsMenu;
     public GameObject checkpointMenu;
     public GameObject shopMenu;
+    public GameObject tipsMenu;
     public bool menuActivated = false;
     [SerializeField] private Transform VFXcanvas;
 

@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneChangerManager : MonoBehaviour
 {
-    public static SceneChangerManager Instance;
+    public static SceneChangerManager Instance {  get; private set; }
 
     public bool loadToGamePlay = false;
     public bool loadFromDoor = false;

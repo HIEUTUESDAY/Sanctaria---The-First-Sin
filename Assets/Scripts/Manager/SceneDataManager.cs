@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneDataManager : MonoBehaviour
 {
-    public static SceneDataManager Instance;
+    public static SceneDataManager Instance { get; private set; }
     private EnemyManager enemyManager;
     private ItemManager itemManager;
     private BossManager bossManager;
