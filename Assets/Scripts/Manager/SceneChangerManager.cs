@@ -295,12 +295,18 @@ public class SceneChangerManager : MonoBehaviour
     {
         SceneLoadManager.Instance.StartLoading(2f);
 
+        TutorialManager tutorialManager = TutorialManager.Instance;
+
+        if( tutorialManager != null )
+        {
+            tutorialManager.ResetTutorialData();
+        }
+
         Player player = FindObjectOfType<Player>();
+        Transform newGamePosition = GameObject.Find("NewGamePosition").GetComponent<Transform>();
 
         if (player != null)
         {
-            Transform newGamePosition = GameObject.Find("NewGamePosition").GetComponent<Transform>();
-
             if (newGamePosition != null)
             {
                 player.transform.position = newGamePosition.position;
@@ -328,6 +334,31 @@ public class SceneChangerManager : MonoBehaviour
 
         SceneLoadManager.Instance.StartFadeIn();
         StartCoroutine(WaitForEnterCoroutine(player));
+
+        // save game for the first time
+        InventoryManager inventoryManager = InventoryManager.Instance;
+        MapRoomManager mapRoomManager = MapRoomManager.Instance;
+
+        if (player != null && inventoryManager != null && mapRoomManager != null && sceneDataManager != null && tutorialManager != null)
+        {
+            PlayerData playerData = new PlayerData(player);
+            PlayerTutorialData playerTutorialData = tutorialManager.GetTutorialData();
+            PlayerCheckpointData playerCheckpointData = new PlayerCheckpointData("Brother Tower", SceneManager.GetActiveScene().name, newGamePosition.position);
+            PlayerInventoryData playerInventoryData = new PlayerInventoryData
+            (
+                inventoryManager.GetTearsAmount(),
+                inventoryManager.GetQuestItemsInventory(),
+                inventoryManager.GetHeartsInventory(),
+                inventoryManager.GetPrayersInventory(),
+                inventoryManager.GetHeartEquipment(),
+                inventoryManager.GetPrayerEquipment()
+            );
+            PlayerMapData playerMapData = new PlayerMapData(mapRoomManager.GetMaps());
+            PlayerSceneData playerSceneData = new PlayerSceneData(sceneDataManager.GetSceneDataList());
+
+            GameManager.Instance.SaveGame(playerData, playerTutorialData, playerCheckpointData, playerInventoryData, playerMapData, playerSceneData);
+            GameManager.Instance.StartAutoSave();
+        }
     }
 
     private IEnumerator WaitForEnterCoroutine(Player player)
@@ -351,6 +382,14 @@ public class SceneChangerManager : MonoBehaviour
 
         // Load game data
         GameData gameData = GameManager.Instance.gameData;
+
+        // Load tutorial data
+        TutorialManager tutorialManager = TutorialManager.Instance;
+
+        if (tutorialManager != null)
+        {
+            tutorialManager.LoadTutorialData(gameData.playerTutorialData);
+        }
 
         // Load player data
         Player player = FindObjectOfType<Player>();

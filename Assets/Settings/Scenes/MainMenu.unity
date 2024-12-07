@@ -305,6 +305,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PersitenceManagers
       objectReference: {fileID: 0}
+    - target: {fileID: 2692900361154198989, guid: 75a58a235d5bd904caad3e53f607dcbe, type: 3}
+      propertyPath: m_Name
+      value: TutorialManager
+      objectReference: {fileID: 0}
     - target: {fileID: 6654231435917960204, guid: 75a58a235d5bd904caad3e53f607dcbe, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

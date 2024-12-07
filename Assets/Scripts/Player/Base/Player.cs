@@ -874,6 +874,109 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 
     #endregion
 
+    #region Tutorials functions
+
+    public void UseHealthPotionsTutorial()
+    {
+        if (!TutorialManager.Instance.healthPotionTutor)
+        {
+            Time.timeScale = 0;
+            UIManager.Instance.healthPotionsTutorHUD.SetActive(true);
+            UIManager.Instance.menuActivated = true;
+            SoundFXManager.Instance.PlayChangeTabSound();
+        }
+    }
+
+    public void InventoryTutorial()
+    {
+        if (!TutorialManager.Instance.inventoryTutor)
+        {
+            Time.timeScale = 0;
+            UIManager.Instance.inventoryTutorHUD.SetActive(true);
+            UIManager.Instance.menuActivated = true;
+            SoundFXManager.Instance.PlayChangeTabSound();
+        }
+    }
+
+    public void AttackTutorial()
+    {
+        if (!TutorialManager.Instance.attackTutor)
+        {
+            Time.timeScale = 0;
+            UIManager.Instance.attackTutorHUD.SetActive(true);
+            UIManager.Instance.menuActivated = true;
+            SoundFXManager.Instance.PlayChangeTabSound();
+        }
+    }
+
+    public void MapTutorial()
+    {
+        if (!TutorialManager.Instance.mapTutor)
+        {
+            Time.timeScale = 0;
+            UIManager.Instance.mapTutorHUD.SetActive(true);
+            UIManager.Instance.menuActivated = true;
+            SoundFXManager.Instance.PlayChangeTabSound();
+        }
+    }
+
+    public void PrayerTutorial()
+    {
+        if (!TutorialManager.Instance.prayerTutor)
+        {
+            Time.timeScale = 0;
+            UIManager.Instance.prayerTutorHUD.SetActive(true);
+            UIManager.Instance.menuActivated = true;
+            SoundFXManager.Instance.PlayChangeTabSound();
+        }
+    }
+
+    public void HeartTutorial()
+    {
+        if (!TutorialManager.Instance.heartTutor)
+        {
+            Time.timeScale = 0;
+            UIManager.Instance.heartTutorHUD.SetActive(true);
+            UIManager.Instance.menuActivated = true;
+            SoundFXManager.Instance.PlayChangeTabSound();
+        }
+    }
+
+    public void DashTutorial()
+    {
+        if (!TutorialManager.Instance.dashTutor)
+        {
+            Time.timeScale = 0;
+            UIManager.Instance.dashTutorHUD.SetActive(true);
+            UIManager.Instance.menuActivated = true;
+            SoundFXManager.Instance.PlayChangeTabSound();
+        }
+    }
+
+    public void WallClimbTutorial()
+    {
+        if (!TutorialManager.Instance.wallClimbTutor)
+        {
+            Time.timeScale = 0;
+            UIManager.Instance.wallClimbTutorHUD.SetActive(true);
+            UIManager.Instance.menuActivated = true;
+            SoundFXManager.Instance.PlayChangeTabSound();
+        }
+    }
+
+    public void CheckpointTutorial()
+    {
+        if (!TutorialManager.Instance.checkpointTutor)
+        {
+            Time.timeScale = 0;
+            UIManager.Instance.checkpointTutorHUD.SetActive(true);
+            UIManager.Instance.menuActivated = true;
+            SoundFXManager.Instance.PlayChangeTabSound();
+        }
+    }
+
+    #endregion
+
     #region Player envent system functions
 
     public void OnHit(float damage, Vector2 knockback)
@@ -1233,6 +1336,10 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
                 {
                     IsWaitForEnter = false;
                     Animator.SetTrigger(AnimationString.risingTrigger);
+                    if (!TutorialManager.Instance.enterPlayerTutor)
+                    {
+                        TutorialManager.Instance.enterPlayerTutor = true;
+                    }
                 }
                 else if (context.started && isAtNPC && TouchingDirections.IsGrounded)
                 {
@@ -1400,6 +1507,69 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
         {
             Time.timeScale = 1;
             UIManager.Instance.checkpointMenu.SetActive(false);
+            UIManager.Instance.menuActivated = false;
+            SoundFXManager.Instance.PlayChangeTabSound();
+        }
+        else if (context.started && UIManager.Instance.menuActivated && UIManager.Instance.attackTutorHUD.activeSelf)
+        {
+            Time.timeScale = 1;
+            UIManager.Instance.attackTutorHUD.SetActive(false);
+            UIManager.Instance.menuActivated = false;
+            SoundFXManager.Instance.PlayChangeTabSound();
+        }
+        else if (context.started && UIManager.Instance.menuActivated && UIManager.Instance.dashTutorHUD.activeSelf)
+        {
+            Time.timeScale = 1;
+            UIManager.Instance.dashTutorHUD.SetActive(false);
+            UIManager.Instance.menuActivated = false;
+            SoundFXManager.Instance.PlayChangeTabSound();
+        }
+        else if (context.started && UIManager.Instance.menuActivated && UIManager.Instance.wallClimbTutorHUD.activeSelf)
+        {
+            Time.timeScale = 1;
+            UIManager.Instance.wallClimbTutorHUD.SetActive(false);
+            UIManager.Instance.menuActivated = false;
+            SoundFXManager.Instance.PlayChangeTabSound();
+        }
+        else if (context.started && UIManager.Instance.menuActivated && UIManager.Instance.checkpointTutorHUD.activeSelf)
+        {
+            Time.timeScale = 1;
+            UIManager.Instance.checkpointTutorHUD.SetActive(false);
+            UIManager.Instance.menuActivated = false;
+            SoundFXManager.Instance.PlayChangeTabSound();
+        }
+        else if (context.started && UIManager.Instance.menuActivated && UIManager.Instance.healthPotionsTutorHUD.activeSelf)
+        {
+            Time.timeScale = 1;
+            UIManager.Instance.healthPotionsTutorHUD.SetActive(false);
+            UIManager.Instance.menuActivated = false;
+            SoundFXManager.Instance.PlayChangeTabSound();
+        }
+        else if (context.started && UIManager.Instance.menuActivated && UIManager.Instance.prayerTutorHUD.activeSelf)
+        {
+            Time.timeScale = 1;
+            UIManager.Instance.prayerTutorHUD.SetActive(false);
+            UIManager.Instance.menuActivated = false;
+            SoundFXManager.Instance.PlayChangeTabSound();
+        }
+        else if (context.started && UIManager.Instance.menuActivated && UIManager.Instance.heartTutorHUD.activeSelf)
+        {
+            Time.timeScale = 1;
+            UIManager.Instance.heartTutorHUD.SetActive(false);
+            UIManager.Instance.menuActivated = false;
+            SoundFXManager.Instance.PlayChangeTabSound();
+        }
+        else if (context.started && UIManager.Instance.menuActivated && UIManager.Instance.inventoryTutorHUD.activeSelf)
+        {
+            Time.timeScale = 1;
+            UIManager.Instance.inventoryTutorHUD.SetActive(false);
+            UIManager.Instance.menuActivated = false;
+            SoundFXManager.Instance.PlayChangeTabSound();
+        }
+        else if (context.started && UIManager.Instance.menuActivated && UIManager.Instance.mapTutorHUD.activeSelf)
+        {
+            Time.timeScale = 1;
+            UIManager.Instance.mapTutorHUD.SetActive(false);
             UIManager.Instance.menuActivated = false;
             SoundFXManager.Instance.PlayChangeTabSound();
         }

@@ -16,6 +16,7 @@ public class CheckpointManager : MonoBehaviour
 
     public enum CheckpointArea
     {
+        BrotherTower,
         Forest,
         Castle,
         Dungeon,

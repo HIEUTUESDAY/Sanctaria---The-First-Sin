@@ -27,6 +27,17 @@ public class UIManager : MonoBehaviour
     public Slider bossHealthSlider;
     public Slider bossHealthDecreasedSlider;
 
+    [Header("Tutorials")]
+    public GameObject attackTutorHUD;
+    public GameObject dashTutorHUD;
+    public GameObject wallClimbTutorHUD;
+    public GameObject checkpointTutorHUD;
+    public GameObject healthPotionsTutorHUD;
+    public GameObject inventoryTutorHUD;
+    public GameObject prayerTutorHUD;
+    public GameObject heartTutorHUD;
+    public GameObject mapTutorHUD;
+
     private void Awake()
     {
         if (Instance == null)
