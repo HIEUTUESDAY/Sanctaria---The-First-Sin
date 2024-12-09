@@ -242,6 +242,14 @@ public class InventoryManager : MonoBehaviour
 
     public void AddHeartToInventory(Heart heart)
     {
+        if (heartsInventory.Count == 0 && !TutorialManager.Instance.heartTutor)
+        {
+            Time.timeScale = 0;
+            UIManager.Instance.menuActivated = true;
+            UIManager.Instance.heartTutorHUD.SetActive(true);
+            TutorialManager.Instance.heartTutor = true;
+        }
+
         for (int i = 0; i < heartSlots.Length; i++)
         {
             if (!heartSlots[i].hasHeart)
@@ -255,6 +263,14 @@ public class InventoryManager : MonoBehaviour
 
     public void AddPrayerToInventory(Prayer prayer)
     {
+        if (prayersInventory.Count == 0 && !TutorialManager.Instance.prayerTutor)
+        {
+            Time.timeScale = 0;
+            UIManager.Instance.menuActivated = true;
+            UIManager.Instance.prayerTutorHUD.SetActive(true);
+            TutorialManager.Instance.prayerTutor = true;
+        }
+
         for (int i = 0; i < prayerSlots.Length; i++)
         {
             if (!prayerSlots[i].hasPrayer)

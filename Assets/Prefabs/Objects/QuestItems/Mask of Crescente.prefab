@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1090221477668562153}
   - component: {fileID: 6273027217872053496}
   m_Layer: 15
-  m_Name: First Sin
+  m_Name: Mask of Crescente
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -165,8 +165,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 044ea575faf9af740ab0f07d7ee44295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: First Sin
-  itemSprite: {fileID: 616663545, guid: e5b00212c0d16954a83a090f654ef611, type: 3}
-  itemDescription: Collect this to open the true ending
+  itemName: Mask of Crescente
+  itemSprite: {fileID: 303646139, guid: e5b00212c0d16954a83a090f654ef611, type: 3}
+  itemDescription: A masterfully crafted mask adorned with intricate engravings of
+    crescent moons and celestial patterns. Its solemn visage reflects both reverence
+    and sorrow, symbolizing the eternal cycle of penance and redemption.
   isOnFloor: 1
   canBeCollect: 0

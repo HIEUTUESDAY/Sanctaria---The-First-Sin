@@ -16,8 +16,9 @@ public class PlayerTutorialData
     public bool mapTutor;
     public bool heartTutor;
     public bool prayerTutor;
+    public bool ladderTutor;
 
-    public PlayerTutorialData(bool enterPlayerTutor, bool healthPotionTutor, bool attackTutor, bool jumpTutor, bool dashTutor, bool wallClimbTutor, bool checkpointTutor, bool inventoryTutor, bool mapTutor, bool heartTutor, bool prayerTutor)
+    public PlayerTutorialData(bool enterPlayerTutor, bool healthPotionTutor, bool attackTutor, bool jumpTutor, bool dashTutor, bool wallClimbTutor, bool checkpointTutor, bool inventoryTutor, bool mapTutor, bool heartTutor, bool prayerTutor, bool ladderTutor)
     {
         this.enterPlayerTutor = enterPlayerTutor;
         this.healthPotionTutor = healthPotionTutor;
@@ -30,5 +31,6 @@ public class PlayerTutorialData
         this.mapTutor = mapTutor;
         this.heartTutor = heartTutor;
         this.prayerTutor = prayerTutor;
+        this.ladderTutor = ladderTutor;
     }
 }

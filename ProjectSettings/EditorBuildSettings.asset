@@ -39,6 +39,9 @@ EditorBuildSettings:
     path: Assets/Settings/Scenes/VillageShop.unity
     guid: dccff9c827b43e14bb4eeb5fc1659771
   - enabled: 1
+    path: Assets/Settings/Scenes/VillageChurch.unity
+    guid: 1f77f192b196c6141beadeaca784f093
+  - enabled: 1
     path: Assets/Settings/Scenes/BossTenPiedad.unity
     guid: b6951bfc2b7cc27498fa5fe8ca48097e
   m_configObjects:

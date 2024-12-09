@@ -33725,7 +33725,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2746075881280436404, guid: f2ffcc94c5bd84642b45f25fd2759081, type: 3}
       propertyPath: m_Name
-      value: First Sin
+      value: Mask of Crescente
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

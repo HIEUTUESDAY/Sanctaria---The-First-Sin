@@ -16147,7 +16147,12 @@ PrefabInstance:
       objectReference: {fileID: -899764519, guid: e5b00212c0d16954a83a090f654ef611, type: 3}
     - target: {fileID: 2050977282012286356, guid: 060d14645b59efe40abf8dbaff946951, type: 3}
       propertyPath: itemDescription
-      value: 123456789
+      value: A charred clove of garlic, blackened by sacred flames during an ancient
+        ritual meant to ward off malevolent forces. Its pungent aroma still lingers,
+        though its protective power seems diminished by time and forgotten prayers.
+        The Sooty Garlic is a symbol of desperate faith, offering fragile protection
+        against unseen evils. Its presence reminds the bearer of the thin line between
+        superstition and salvation in a world forsaken by mercy.
       objectReference: {fileID: 0}
     - target: {fileID: 5164167339339339290, guid: 060d14645b59efe40abf8dbaff946951, type: 3}
       propertyPath: m_LocalPosition.y
@@ -26527,7 +26532,10 @@ PrefabInstance:
       objectReference: {fileID: -189204550, guid: e5b00212c0d16954a83a090f654ef611, type: 3}
     - target: {fileID: 2050977282012286356, guid: 060d14645b59efe40abf8dbaff946951, type: 3}
       propertyPath: itemDescription
-      value: 123456789
+      value: A faded and tattered ribbon from a forgotten bridal ceremony, once symbolizing
+        eternal devotion. Its frayed edges whisper stories of a tragic union left
+        unfulfilled. Bearing the weight of broken promises and sorrow, it radiates
+        a lingering sadness that seems to seep into the soul of its bearer.
       objectReference: {fileID: 0}
     - target: {fileID: 2115858010676216728, guid: 060d14645b59efe40abf8dbaff946951, type: 3}
       propertyPath: m_Sprite
@@ -40260,7 +40268,10 @@ PrefabInstance:
       objectReference: {fileID: 1566242134, guid: e5b00212c0d16954a83a090f654ef611, type: 3}
     - target: {fileID: 2050977282012286356, guid: 060d14645b59efe40abf8dbaff946951, type: 3}
       propertyPath: itemDescription
-      value: Collect the key to opent the eldest brother chamber.
+      value: An ancient, rust-covered key forged in the age of forgotten penance.
+        Its cold metal is etched with sacred symbols worn down by the passage of
+        countless years. Legends say it was entrusted to the Eldest Brother, guardian
+        of forbidden paths and keeper of sealed truths.
       objectReference: {fileID: 0}
     - target: {fileID: 7244361166164883169, guid: 060d14645b59efe40abf8dbaff946951, type: 3}
       propertyPath: itemName

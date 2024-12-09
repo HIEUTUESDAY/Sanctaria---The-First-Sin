@@ -17,6 +17,7 @@ public class TutorialManager : MonoBehaviour
     public bool mapTutor = false;
     public bool prayerTutor = false;
     public bool heartTutor = false;
+    public bool ladderTutor = false;
 
     private void Awake()
     {
@@ -39,6 +40,7 @@ public class TutorialManager : MonoBehaviour
         mapTutor = playerTutorialData.mapTutor;
         prayerTutor = playerTutorialData.prayerTutor;
         heartTutor = playerTutorialData.heartTutor;
+        ladderTutor = playerTutorialData.ladderTutor;
     }
 
     public void ResetTutorialData()
@@ -54,11 +56,12 @@ public class TutorialManager : MonoBehaviour
         mapTutor = false;
         prayerTutor = false;
         heartTutor = false;
+        ladderTutor = false;
     }
 
     public PlayerTutorialData GetTutorialData()
     {
-        PlayerTutorialData playerTutorialData = new PlayerTutorialData(enterPlayerTutor, healthPotionTutor, attackTutor, jumpTutor, dashTutor, wallClimbTutor, checkpointTutor, inventoryTutor, mapTutor, prayerTutor, heartTutor);
+        PlayerTutorialData playerTutorialData = new PlayerTutorialData(enterPlayerTutor, healthPotionTutor, attackTutor, jumpTutor, dashTutor, wallClimbTutor, checkpointTutor, inventoryTutor, mapTutor, prayerTutor, heartTutor, ladderTutor);
         return playerTutorialData;
     }
 }

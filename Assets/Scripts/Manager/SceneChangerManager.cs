@@ -334,31 +334,6 @@ public class SceneChangerManager : MonoBehaviour
 
         SceneLoadManager.Instance.StartFadeIn();
         StartCoroutine(WaitForEnterCoroutine(player));
-
-        // save game for the first time
-        InventoryManager inventoryManager = InventoryManager.Instance;
-        MapRoomManager mapRoomManager = MapRoomManager.Instance;
-
-        if (player != null && inventoryManager != null && mapRoomManager != null && sceneDataManager != null && tutorialManager != null)
-        {
-            PlayerData playerData = new PlayerData(player);
-            PlayerTutorialData playerTutorialData = tutorialManager.GetTutorialData();
-            PlayerCheckpointData playerCheckpointData = new PlayerCheckpointData("Brother Tower", SceneManager.GetActiveScene().name, newGamePosition.position);
-            PlayerInventoryData playerInventoryData = new PlayerInventoryData
-            (
-                inventoryManager.GetTearsAmount(),
-                inventoryManager.GetQuestItemsInventory(),
-                inventoryManager.GetHeartsInventory(),
-                inventoryManager.GetPrayersInventory(),
-                inventoryManager.GetHeartEquipment(),
-                inventoryManager.GetPrayerEquipment()
-            );
-            PlayerMapData playerMapData = new PlayerMapData(mapRoomManager.GetMaps());
-            PlayerSceneData playerSceneData = new PlayerSceneData(sceneDataManager.GetSceneDataList());
-
-            GameManager.Instance.SaveGame(playerData, playerTutorialData, playerCheckpointData, playerInventoryData, playerMapData, playerSceneData);
-            GameManager.Instance.StartAutoSave();
-        }
     }
 
     private IEnumerator WaitForEnterCoroutine(Player player)
@@ -498,6 +473,8 @@ public class SceneChangerManager : MonoBehaviour
         SceneLoadManager.Instance.StartLoading(2f);
 
         SceneDataManager.Instance.sceneDataList.Clear();
+
+        TutorialManager.Instance.ResetTutorialData();
 
         GameObject player = Player.Instance.gameObject;
 

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
 {
@@ -883,6 +884,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             Time.timeScale = 0;
             UIManager.Instance.healthPotionsTutorHUD.SetActive(true);
             UIManager.Instance.menuActivated = true;
+            TutorialManager.Instance.healthPotionTutor = true;
             SoundFXManager.Instance.PlayChangeTabSound();
         }
     }
@@ -894,6 +896,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             Time.timeScale = 0;
             UIManager.Instance.inventoryTutorHUD.SetActive(true);
             UIManager.Instance.menuActivated = true;
+            TutorialManager.Instance.inventoryTutor = true;
             SoundFXManager.Instance.PlayChangeTabSound();
         }
     }
@@ -905,6 +908,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             Time.timeScale = 0;
             UIManager.Instance.attackTutorHUD.SetActive(true);
             UIManager.Instance.menuActivated = true;
+            TutorialManager.Instance.attackTutor = true;
             SoundFXManager.Instance.PlayChangeTabSound();
         }
     }
@@ -916,6 +920,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             Time.timeScale = 0;
             UIManager.Instance.mapTutorHUD.SetActive(true);
             UIManager.Instance.menuActivated = true;
+            TutorialManager.Instance.mapTutor = true;
             SoundFXManager.Instance.PlayChangeTabSound();
         }
     }
@@ -927,6 +932,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             Time.timeScale = 0;
             UIManager.Instance.prayerTutorHUD.SetActive(true);
             UIManager.Instance.menuActivated = true;
+            TutorialManager.Instance.prayerTutor = true;
             SoundFXManager.Instance.PlayChangeTabSound();
         }
     }
@@ -938,6 +944,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             Time.timeScale = 0;
             UIManager.Instance.heartTutorHUD.SetActive(true);
             UIManager.Instance.menuActivated = true;
+            TutorialManager.Instance.heartTutor = true;
             SoundFXManager.Instance.PlayChangeTabSound();
         }
     }
@@ -949,6 +956,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             Time.timeScale = 0;
             UIManager.Instance.dashTutorHUD.SetActive(true);
             UIManager.Instance.menuActivated = true;
+            TutorialManager.Instance.dashTutor = true;
             SoundFXManager.Instance.PlayChangeTabSound();
         }
     }
@@ -960,6 +968,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             Time.timeScale = 0;
             UIManager.Instance.wallClimbTutorHUD.SetActive(true);
             UIManager.Instance.menuActivated = true;
+            TutorialManager.Instance.wallClimbTutor = true;
             SoundFXManager.Instance.PlayChangeTabSound();
         }
     }
@@ -971,6 +980,7 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
             Time.timeScale = 0;
             UIManager.Instance.checkpointTutorHUD.SetActive(true);
             UIManager.Instance.menuActivated = true;
+            TutorialManager.Instance.checkpointTutor = true;
             SoundFXManager.Instance.PlayChangeTabSound();
         }
     }
@@ -1339,6 +1349,35 @@ public class Player : MonoBehaviour, IPlayerDamageable, IPlayerMoveable
                     if (!TutorialManager.Instance.enterPlayerTutor)
                     {
                         TutorialManager.Instance.enterPlayerTutor = true;
+                    }
+
+                    // save game and start auto save after enter player
+                    Player player = this;
+                    InventoryManager inventoryManager = InventoryManager.Instance;
+                    MapRoomManager mapRoomManager = MapRoomManager.Instance;
+                    TutorialManager tutorialManager = TutorialManager.Instance;
+                    SceneDataManager sceneDataManager = SceneDataManager.Instance;
+                    Transform newGamePosition = GameObject.Find("NewGamePosition").GetComponent<Transform>();
+
+                    if (player != null && inventoryManager != null && mapRoomManager != null && sceneDataManager != null && tutorialManager != null)
+                    {
+                        PlayerData playerData = new PlayerData(player);
+                        PlayerTutorialData playerTutorialData = tutorialManager.GetTutorialData();
+                        PlayerCheckpointData playerCheckpointData = new PlayerCheckpointData("Brother Tower", SceneManager.GetActiveScene().name, newGamePosition.position);
+                        PlayerInventoryData playerInventoryData = new PlayerInventoryData
+                        (
+                            inventoryManager.GetTearsAmount(),
+                            inventoryManager.GetQuestItemsInventory(),
+                            inventoryManager.GetHeartsInventory(),
+                            inventoryManager.GetPrayersInventory(),
+                            inventoryManager.GetHeartEquipment(),
+                            inventoryManager.GetPrayerEquipment()
+                        );
+                        PlayerMapData playerMapData = new PlayerMapData(mapRoomManager.GetMaps());
+                        PlayerSceneData playerSceneData = new PlayerSceneData(sceneDataManager.GetSceneDataList());
+
+                        GameManager.Instance.SaveGame(playerData, playerTutorialData, playerCheckpointData, playerInventoryData, playerMapData, playerSceneData);
+                        GameManager.Instance.StartAutoSave();
                     }
                 }
                 else if (context.started && isAtNPC && TouchingDirections.IsGrounded)
