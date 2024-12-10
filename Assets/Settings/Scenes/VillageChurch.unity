@@ -28703,12 +28703,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3960472166634824300, guid: bc82b182d98439046a3bffe5bca83a60, type: 3}
       propertyPath: sceneToLoad._sceneName
-      value: VillageHouseFloor
+      value: GravesYardEntrance
       objectReference: {fileID: 0}
     - target: {fileID: 3960472166634824300, guid: bc82b182d98439046a3bffe5bca83a60, type: 3}
       propertyPath: sceneToLoad._sceneAsset
       value: 
-      objectReference: {fileID: 102900000, guid: 9c4c7d2531726db41b3aa751dbed4ade, type: 3}
+      objectReference: {fileID: 102900000, guid: 312d6afcd53202345a51dd6e96bbaa0e, type: 3}
     - target: {fileID: 5130058103717883490, guid: bc82b182d98439046a3bffe5bca83a60, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.56
@@ -40848,5 +40848,5 @@ SceneRoots:
   - {fileID: 930714091}
   - {fileID: 1561726974}
   - {fileID: 1274432698}
-  - {fileID: 1477037727}
   - {fileID: 41997601}
+  - {fileID: 1477037727}

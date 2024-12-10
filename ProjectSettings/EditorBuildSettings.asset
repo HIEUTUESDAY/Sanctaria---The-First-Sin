@@ -44,5 +44,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Settings/Scenes/BossTenPiedad.unity
     guid: b6951bfc2b7cc27498fa5fe8ca48097e
+  - enabled: 1
+    path: Assets/Settings/Scenes/GravesYardEntrance.unity
+    guid: 312d6afcd53202345a51dd6e96bbaa0e
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 94f8f4fa6c57e3a489b2c54140e29c73, type: 2}
