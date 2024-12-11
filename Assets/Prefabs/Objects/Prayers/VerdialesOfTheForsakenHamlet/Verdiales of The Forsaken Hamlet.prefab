@@ -167,7 +167,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Verdiales of The Forsaken Hamlet
   itemSprite: {fileID: 1343711755, guid: be0afb0d99f9e9a4c903db736203e3e0, type: 3}
-  itemDescription: Can perform a special ability when equip
+  itemDescription: A sorrowful melody from a forgotten village, summoning twin projectiles
+    that spiral outward, clinging to surfaces with relentless precision. These spectral
+    orbs deliver continuous torment, turning grief into a weapon of unending despair.
   isOnFloor: 1
   canBeCollect: 0
   manaCost: 25

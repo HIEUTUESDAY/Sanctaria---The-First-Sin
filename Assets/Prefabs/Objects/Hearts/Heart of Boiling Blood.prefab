@@ -167,8 +167,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Heart of Boiling Blood
   itemSprite: {fileID: 895344877, guid: daf75a9be316b074da31fa6ad34f97bc, type: 3}
-  itemDescription: Slighly increase player maximum heatlh and health potion effect
-    on the wearer!
+  itemDescription: A fiery relic brimming with raw power, enhancing strength, resilience,
+    and stamina for an aggressive combat style. Ideal for warriors driven by unrelenting
+    vigor, though it offers no boost to agility.
   isOnFloor: 1
   canBeCollect: 0
   damageModifier: 1.5

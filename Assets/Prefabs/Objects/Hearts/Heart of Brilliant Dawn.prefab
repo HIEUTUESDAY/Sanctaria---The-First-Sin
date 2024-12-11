@@ -167,15 +167,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Heart of Brilliant Dawn
   itemSprite: {fileID: -1072117130, guid: daf75a9be316b074da31fa6ad34f97bc, type: 3}
-  itemDescription: Increase wearer wall jump power!
+  itemDescription: A radiant relic of endurance, granting vitality and stamina regeneration
+    at the cost of reduced offense and defense. Perfect for those who prioritize
+    survival and balance over raw power.
   isOnFloor: 1
   canBeCollect: 0
-  damageModifier: -10
-  defenseModifier: -10
-  healthModifier: 150
-  healthRegenModifier: 25
+  damageModifier: -5
+  defenseModifier: -5
+  healthModifier: 50
+  healthRegenModifier: 20
   staminaModifier: 50
-  staminaRegenModifier: 2.5
+  staminaRegenModifier: 2
   moveSpeedModifier: 0
   jumpPowerModifier: 0
   wallJumpPowerModifier: 0
