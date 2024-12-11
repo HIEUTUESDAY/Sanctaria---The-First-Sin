@@ -12,6 +12,7 @@ public class MusicManager : MonoBehaviour
     public AudioClip mainMenuMusicClip;
     public AudioClip towerMusicClip;
     public AudioClip forestMusicClip;
+    public AudioClip gravesYardMusicClip;
     public AudioClip villageMusicClip;
     public AudioClip tenPiedadBossMusicClip;
     public AudioClip tenPiedadBrethingClip;
@@ -77,7 +78,7 @@ public class MusicManager : MonoBehaviour
                 return;
             }
         }
-        else if (sceeneName.Equals("Level1.1") || sceeneName.Equals("Level1.2") || sceeneName.Equals("Level1.3"))
+        else if (sceeneName.Equals("ForestLevel1.1") || sceeneName.Equals("ForestLevel1.2") || sceeneName.Equals("ForestLevel1.3"))
         {
             if (musicAudioSource.clip != null && musicAudioSource.clip != forestMusicClip)
             {
@@ -89,11 +90,23 @@ public class MusicManager : MonoBehaviour
                 return;
             }
         }
-        else if (sceeneName.Equals("VillageEntrance") || sceeneName.Equals("VillageHouseBasement") || sceeneName.Equals("VillageHouseFloor") || sceeneName.Equals("VillageShop"))
+        else if (sceeneName.Equals("VillageEntrance") || sceeneName.Equals("VillageHouseBasement") || sceeneName.Equals("VillageHouseFloor") || sceeneName.Equals("VillageShop") || sceeneName.Equals("VillageChurch"))
         {
             if (musicAudioSource.clip != null && musicAudioSource.clip != villageMusicClip)
             {
                 musicAudioSource.clip = villageMusicClip;
+                PlayMusic();
+            }
+            else
+            {
+                return;
+            }
+        }
+        else if (sceeneName.Equals("GravesYardLevel2.1") || sceeneName.Equals("GravesYardLevel2.2") || sceeneName.Equals("GravesYardLevel2.3"))
+        {
+            if (musicAudioSource.clip != null && musicAudioSource.clip != gravesYardMusicClip)
+            {
+                musicAudioSource.clip = gravesYardMusicClip;
                 PlayMusic();
             }
             else

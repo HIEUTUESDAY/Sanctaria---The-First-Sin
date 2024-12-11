@@ -18,13 +18,13 @@ EditorBuildSettings:
     path: Assets/Settings/Scenes/BrotherTowerEntrance.unity
     guid: 9c457bd183014cc41aefab63e8fdabd2
   - enabled: 1
-    path: Assets/Settings/Scenes/Level1.1.unity
+    path: Assets/Settings/Scenes/ForestLevel1.1.unity
     guid: 48328808e271bd841ad0ba2e7ead391b
   - enabled: 1
-    path: Assets/Settings/Scenes/Level1.2.unity
+    path: Assets/Settings/Scenes/ForestLevel1.2.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/Settings/Scenes/Level1.3.unity
+    path: Assets/Settings/Scenes/ForestLevel1.3.unity
     guid: 6dedb2677402d0547ab5f06d73eb1f32
   - enabled: 1
     path: Assets/Settings/Scenes/VillageEntrance.unity
@@ -45,16 +45,13 @@ EditorBuildSettings:
     path: Assets/Settings/Scenes/BossTenPiedad.unity
     guid: b6951bfc2b7cc27498fa5fe8ca48097e
   - enabled: 1
-    path: Assets/Settings/Scenes/GravesYardEntrance.unity
+    path: Assets/Settings/Scenes/GravesYardLevel2.1.unity
     guid: 312d6afcd53202345a51dd6e96bbaa0e
   - enabled: 1
-    path: Assets/Settings/Scenes/Level2.1.unity
+    path: Assets/Settings/Scenes/GravesYardLevel2.2.unity
     guid: 5e718634bd769de41a684d1ba1164a23
   - enabled: 1
-    path: Assets/Settings/Scenes/Level2.2.unity
+    path: Assets/Settings/Scenes/GravesYardLevel2.3.unity
     guid: 1dfa7aec1f8589542a794d4b974af6b3
-  - enabled: 1
-    path: Assets/Settings/Scenes/Level2.3.unity
-    guid: 4e20088bd1653e14cac7b4178ed71f0d
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 94f8f4fa6c57e3a489b2c54140e29c73, type: 2}

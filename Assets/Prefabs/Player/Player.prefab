@@ -1701,7 +1701,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RoomScene:
     _sceneAsset: {fileID: 102900000, guid: 5e718634bd769de41a684d1ba1164a23, type: 3}
-    _sceneName: Level2.1
+    _sceneName: GravesYardLevel2.2
   CurrentRoom: {fileID: 1763109520208408858}
   <HasRoomRevealed>k__BackingField: 0
 --- !u!1 &255741200510510956
@@ -9762,7 +9762,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RoomScene:
     _sceneAsset: {fileID: 102900000, guid: 1dfa7aec1f8589542a794d4b974af6b3, type: 3}
-    _sceneName: Level2.2
+    _sceneName: GravesYardLevel2.3
   CurrentRoom: {fileID: 3305569502785329266}
   <HasRoomRevealed>k__BackingField: 0
 --- !u!1 &1522385840607471779
@@ -14459,7 +14459,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RoomScene:
     _sceneAsset: {fileID: 102900000, guid: 6dedb2677402d0547ab5f06d73eb1f32, type: 3}
-    _sceneName: Level1.3
+    _sceneName: ForestLevel1.3
   CurrentRoom: {fileID: 2313323893355998050}
   <HasRoomRevealed>k__BackingField: 0
 --- !u!1 &2145849374130207501
@@ -33375,7 +33375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RoomScene:
     _sceneAsset: {fileID: 102900000, guid: 8c9cfa26abfee488c85f1582747f6a02, type: 3}
-    _sceneName: Level1.2
+    _sceneName: ForestLevel1.2
   CurrentRoom: {fileID: 855208677604638298}
   <HasRoomRevealed>k__BackingField: 0
 --- !u!1 &5012434056562609273
@@ -56794,7 +56794,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RoomScene:
     _sceneAsset: {fileID: 102900000, guid: 312d6afcd53202345a51dd6e96bbaa0e, type: 3}
-    _sceneName: GravesYardEntrance
+    _sceneName: GravesYardLevel2.1
   CurrentRoom: {fileID: 3898128724127008916}
   <HasRoomRevealed>k__BackingField: 0
 --- !u!1 &8524453177169513255
@@ -59907,7 +59907,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RoomScene:
     _sceneAsset: {fileID: 102900000, guid: 48328808e271bd841ad0ba2e7ead391b, type: 3}
-    _sceneName: Level1.1
+    _sceneName: ForestLevel1.1
   CurrentRoom: {fileID: 9117836203643531928}
   <HasRoomRevealed>k__BackingField: 0
 --- !u!1 &9117836203643531928

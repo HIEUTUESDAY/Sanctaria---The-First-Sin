@@ -406,13 +406,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71745c89c66bfe345ad2a5f46d7fe542, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enterPlayerTutor: 0
   healthPotionTutor: 0
   attackTutor: 0
   jumpTutor: 0
   dashTutor: 0
   wallClimbTutor: 0
   checkpointTutor: 0
-  npcTutor: 0
+  inventoryTutor: 0
+  mapTutor: 0
+  prayerTutor: 0
+  heartTutor: 0
+  ladderTutor: 0
 --- !u!1 &3349210114997635968
 GameObject:
   m_ObjectHideFlags: 0
@@ -719,13 +724,18 @@ MonoBehaviour:
       stamina: 0
       healthPotions: 0
     playerTutorialData:
+      enterPlayerTutor: 0
       healthPotionTutor: 0
       attackTutor: 0
       jumpTutor: 0
       dashTutor: 0
       wallClimbTutor: 0
       checkpointTutor: 0
-      NpcTutor: 0
+      inventoryTutor: 0
+      mapTutor: 0
+      heartTutor: 0
+      prayerTutor: 0
+      ladderTutor: 0
     playerCheckpointData:
       areaName: 
       sceneName: 
@@ -957,6 +967,7 @@ MonoBehaviour:
   mainMenuMusicClip: {fileID: 8300000, guid: 6a039050dc309b6449e08c73b4f833a9, type: 3}
   towerMusicClip: {fileID: 8300000, guid: 0c7dfb72ad88216448dc427360557ee0, type: 3}
   forestMusicClip: {fileID: 8300000, guid: b62832034c2f3014490fbfdc3cf38108, type: 3}
+  gravesYardMusicClip: {fileID: 8300000, guid: 37ae2d92ae9a0d54f863d0a9ad2c2835, type: 3}
   villageMusicClip: {fileID: 8300000, guid: 2e52adb8a15dc4e47a2ed3febdf8c82e, type: 3}
   tenPiedadBossMusicClip: {fileID: 8300000, guid: 4d588ae1065d52748a4b59a57079a66d, type: 3}
   tenPiedadBrethingClip: {fileID: 8300000, guid: 071d6d65512e3104d87bb3bd3717fdc2, type: 3}
