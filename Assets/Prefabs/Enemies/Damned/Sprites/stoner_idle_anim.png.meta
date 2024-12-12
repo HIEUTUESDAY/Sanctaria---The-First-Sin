@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -121,7 +121,259 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: stoner_idle_anim_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 265
+        width: 94
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 140b6d4dbe456ff43a2a4b040127da74
+      internalID: 1384406393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stoner_idle_anim_1
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 265
+        width: 94
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 158d11aad5793ca449a7ffa0b87c91c6
+      internalID: -1590443825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stoner_idle_anim_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 212
+        width: 94
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b227f1145ca87a4c98d42afa16ba5d7
+      internalID: -1201132494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stoner_idle_anim_3
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 212
+        width: 94
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f1ef36121387834caded62ce274eee0
+      internalID: -57419586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stoner_idle_anim_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 159
+        width: 94
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d8d48b4a82b0e64caf38855b6ebee5b
+      internalID: -223256585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stoner_idle_anim_5
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 159
+        width: 94
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 548cdde46a77a6e4a9656f38ccd91c28
+      internalID: -147141727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stoner_idle_anim_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 106
+        width: 94
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a545a53f089532541b48ced647e1a86d
+      internalID: 968374379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stoner_idle_anim_7
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 106
+        width: 94
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82a3c3fe70c9d9f4f8318fa98a538aa1
+      internalID: 269470196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stoner_idle_anim_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 53
+        width: 94
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 968f8b51b2c99cf4ca63dee14c63e466
+      internalID: 2073069830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stoner_idle_anim_9
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 53
+        width: 94
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4dd1d30a4a10f340b9a5b41075c34d0
+      internalID: -195941555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stoner_idle_anim_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 94
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e537cb4dc6a20ac4e889579e2281e5a4
+      internalID: 2115498270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stoner_idle_anim_11
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 0
+        width: 94
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ab69cdc2c1caf04aaa90bf0bec408ba
+      internalID: -875402117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -132,7 +384,19 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      stoner_idle_anim_0: 1384406393
+      stoner_idle_anim_1: -1590443825
+      stoner_idle_anim_10: 2115498270
+      stoner_idle_anim_11: -875402117
+      stoner_idle_anim_2: -1201132494
+      stoner_idle_anim_3: -57419586
+      stoner_idle_anim_4: -223256585
+      stoner_idle_anim_5: -147141727
+      stoner_idle_anim_6: 968374379
+      stoner_idle_anim_7: 269470196
+      stoner_idle_anim_8: 2073069830
+      stoner_idle_anim_9: -195941555
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

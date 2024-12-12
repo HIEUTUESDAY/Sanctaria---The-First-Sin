@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 636833511137702646}
   - component: {fileID: 8918339541599022657}
   - component: {fileID: 8132542442114231916}
-  - component: {fileID: 1074146123878654927}
+  - component: {fileID: 7885120901307130050}
   - component: {fileID: 8227216532133139263}
   m_Layer: 6
   m_Name: Damned
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1304792863, guid: 3ebe0c34938383e4fa8a87cd17f7ab11, type: 3}
+  m_Sprite: {fileID: 626508941, guid: 8e2f7714aff85404fb5b93ad3288e54a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -150,7 +150,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -1}
+  m_Offset: {x: 0, y: -0.5}
   m_Size: {x: 3.5, y: 2.2}
   m_Direction: 1
 --- !u!95 &8132542442114231916
@@ -163,7 +163,7 @@ Animator:
   m_GameObject: {fileID: 2334153045592953986}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: bb079161aaaa9394dbedc86a048db710, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7809d8e4f006dd545829db0e4146ddbd, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -174,7 +174,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1074146123878654927
+--- !u!114 &7885120901307130050
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -183,7 +183,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2334153045592953986}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8b10dc4d16701847b2c4829a3a35611, type: 3}
+  m_Script: {fileID: 11500000, guid: abb2f326ced977b4eaf243b497c18482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   slowMotionDuration: 0.15
@@ -201,8 +201,8 @@ MonoBehaviour:
   <DamageableDead>k__BackingField:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1074146123878654927}
-        m_TargetAssemblyTypeName: WheelBroken, Assembly-CSharp
+      - m_Target: {fileID: 7885120901307130050}
+        m_TargetAssemblyTypeName: Damned, Assembly-CSharp
         m_MethodName: OnDead
         m_Mode: 1
         m_Arguments:
@@ -213,13 +213,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  <MaxHealth>k__BackingField: 100
-  _currentHealth: 0
+  <MaxHealth>k__BackingField: 70
+  _currentHealth: 70
   _isAlive: 1
   <IsFacingRight>k__BackingField: 1
-  <EnemyIdleBase>k__BackingField: {fileID: 11400000, guid: 7a9b5bc61a19a9249aa78bb624d2afcc, type: 2}
-  <EnemyChaseBase>k__BackingField: {fileID: 11400000, guid: 49a61bd6ee956c64ca7cde0d20b05a62, type: 2}
-  <EnemyAttackBase>k__BackingField: {fileID: 11400000, guid: e247ce4310eee5f4a8d3b7d4766c7bd8, type: 2}
+  <EnemyIdleBase>k__BackingField: {fileID: 11400000, guid: 20da2403c52f9424195a1d03b0deda0a, type: 2}
+  <EnemyChaseBase>k__BackingField: {fileID: 0}
+  <EnemyAttackBase>k__BackingField: {fileID: 11400000, guid: 57c2dd26253cd244bbd006699b95296c, type: 2}
   bodyHitCollider: {fileID: 83183424565148813}
 --- !u!114 &8227216532133139263
 MonoBehaviour:
@@ -339,7 +339,7 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -1}
+  m_Offset: {x: 0, y: -0.5}
   m_Size: {x: 3.3, y: 2}
   m_Direction: 1
 --- !u!114 &2630065406501481246
