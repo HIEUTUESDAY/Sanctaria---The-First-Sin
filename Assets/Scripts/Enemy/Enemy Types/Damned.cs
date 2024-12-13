@@ -6,6 +6,8 @@ using UnityEngine;
 public class Damned : Enemy
 {
     [SerializeField] private Collider2D bodyHitCollider;
+    [SerializeField] private GameObject rockProjectilePrefab;
+    [SerializeField] private Transform spawnPosition;
 
     protected override void AwakeSetup()
     {
@@ -79,5 +81,10 @@ public class Damned : Enemy
     public void PlayDeathSound()
     {
         
+    }
+
+    public void SpawnRockProjectile()
+    {
+        Instantiate(rockProjectilePrefab, spawnPosition.position, spawnPosition.rotation);
     }
 }

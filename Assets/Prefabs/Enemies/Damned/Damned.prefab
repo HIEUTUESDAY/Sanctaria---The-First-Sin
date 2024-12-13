@@ -37,6 +37,7 @@ Transform:
   m_Children:
   - {fileID: 2839536060642311545}
   - {fileID: 1895671655082600468}
+  - {fileID: 2309728399468822481}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1514427043769337785
@@ -221,6 +222,8 @@ MonoBehaviour:
   <EnemyChaseBase>k__BackingField: {fileID: 0}
   <EnemyAttackBase>k__BackingField: {fileID: 11400000, guid: 57c2dd26253cd244bbd006699b95296c, type: 2}
   bodyHitCollider: {fileID: 83183424565148813}
+  rockProjectilePrefab: {fileID: 546089733641807957, guid: 51a1e574a5540c44896da0edefcbb6e6, type: 3}
+  spawnPosition: {fileID: 2309728399468822481}
 --- !u!114 &8227216532133139263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,3 +453,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectedCols: []
   attackableCols: []
+--- !u!1 &7978851197210660006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2309728399468822481}
+  m_Layer: 0
+  m_Name: SpawnRock
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2309728399468822481
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7978851197210660006}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.15, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5130222177043001512}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
