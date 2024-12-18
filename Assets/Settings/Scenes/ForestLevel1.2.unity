@@ -48164,6 +48164,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3960472166634824300, guid: bc82b182d98439046a3bffe5bca83a60, type: 3}
+      propertyPath: sceneToLoad._sceneName
+      value: ForestLevel1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3960472166634824300, guid: bc82b182d98439046a3bffe5bca83a60, type: 3}
       propertyPath: sceneToLoad._sceneAsset
       value: 
       objectReference: {fileID: 102900000, guid: 48328808e271bd841ad0ba2e7ead391b, type: 3}
