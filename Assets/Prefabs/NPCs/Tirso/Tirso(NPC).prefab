@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 667121666088676379}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4, z: 0}
+  m_LocalPosition: {x: -0.19, y: 2.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -96,10 +96,9 @@ GameObject:
   - component: {fileID: 7199604984909849789}
   - component: {fileID: 7338135386311586626}
   - component: {fileID: 333013056392236734}
-  - component: {fileID: 1443484798443872614}
-  - component: {fileID: 5027103768370093126}
+  - component: {fileID: 401653861211015833}
   m_Layer: 18
-  m_Name: TheDoctor(NPC)
+  m_Name: Tirso(NPC)
   m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -163,7 +162,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1609918567, guid: e7954e10bc183624f8db3d5f886aad96, type: 3}
+  m_Sprite: {fileID: 1359491008, guid: b7245977b17c37a4aa3449cc281f31aa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -184,7 +183,7 @@ Animator:
   m_GameObject: {fileID: 3608770750103360923}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8c69720c49e75a2478b96775254ca831, type: 2}
+  m_Controller: {fileID: 9100000, guid: 075f30c494a3f4c4cb2b197fca66e115, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -222,42 +221,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!70 &1443484798443872614
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3608770750103360923}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 3, y: 7}
-  m_Direction: 0
---- !u!114 &5027103768370093126
+--- !u!114 &401653861211015833
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -266,13 +230,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3608770750103360923}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f3219035cab05a418552a2f0a2092f2, type: 3}
+  m_Script: {fileID: 11500000, guid: 34fcf263cce8f8f4490a17f91cf658a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   interactIcon: {fileID: 667121666088676379}
   canInteract: 0
-  firstTalkDialogue: {fileID: 11400000, guid: 8d7151b506409b04ba271de11fb670d3, type: 2}
-  secondTalkDialogue: {fileID: 11400000, guid: f079dbb1f000bec47bb0ca1ff9fa5333, type: 2}
+  firstTalkDialogue: {fileID: 11400000, guid: eed04d5cae4f3e84a8d74980445a773c, type: 2}
+  secondTalkDialogue: {fileID: 11400000, guid: 2b12d468f304dbf48bf53b9693b74053, type: 2}
   <IsFirstTalk>k__BackingField: 1
 --- !u!1 &5524263827146252044
 GameObject:
@@ -349,5 +313,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4, y: 7}
+  m_Size: {x: 4, y: 6}
   m_EdgeRadius: 0

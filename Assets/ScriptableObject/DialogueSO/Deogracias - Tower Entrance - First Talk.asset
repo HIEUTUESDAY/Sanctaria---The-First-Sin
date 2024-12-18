@@ -14,7 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speakerName: DEOGRACIAS
   messages:
-  - Oh hello there!!!!
-  - Welcome to sanctaria, you are the chosen one.
-  - I have an  order to lead you to the Tower of the Father, but first you must finish
-    this...
+  - Ah... a soul stirs once more in this forsaken place. You awaken, nameless and
+    burdened, yet unbroken.
+  - These lands... scarred by sins long past, cursed by oaths sworn and betrayed.
+    Forgotten by gods, remembered by misery.
+  - You stand where countless fell... condemned to wander or perish. A fate neither
+    merciful nor just, only inevitable.
+  - Rise... and carve your path through guilt and atonement. Seek the truth buried
+    in ashes, for redemption is earned... never given.
+  - The cursed winds howl still... yet you press on. Does resolve guide you... or
+    desperation?
+  - Shadows stretch long where old sins linger. Seek what was lost... if you dare
+    gaze into the past.
+  - Beware the twisted faces of forgotten vows. Faith, when blind, consumes both
+    the faithful... and the forsaken.
+  - The price of redemption is steep... and the weight of truth heavier still. Do
+    you possess the strength... to bear both?

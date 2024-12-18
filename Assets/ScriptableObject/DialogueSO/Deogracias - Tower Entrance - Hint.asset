@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speakerName: DEOGRACIAS
   messages:
-  - To enter the father hall of fame you need to acquire 3 items.
-  - The first item is The Mask of The First Child
-  - The second item is The Mask of The Second Child
-  - The last item is The Mask of The Third Child
-  - Find them and give them to me to prove that you are the one who can meet the
-    Father!!!
+  - The cursed winds howl still... yet you press on. Does resolve guide you... or
+    desperation?
+  - Shadows stretch long where old sins linger. Seek what was lost... if you dare
+    gaze into the past.
+  - Beware the twisted faces of forgotten vows. Faith, when blind, consumes both
+    the faithful... and the forsaken.
+  - The price of redemption is steep... and the weight of truth heavier still. Do
+    you possess the strength... to bear both?

@@ -14,4 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speakerName: CANDELARIA
   messages:
-  - Chose one that you need
+  - The winds carry whispers of battles fought... and debts unpaid. Care to settle
+    yours?
+  - Many pass through these cursed lands... few return. Their loss... your gain.
+    What will you barter today?
+  - Even redemption demands a price... and mercy is seldom free. Choose wisely...
+    before fate chooses for you.
+  - Coin, relics, memories... all can be traded, but none without cost. Make your
+    offering... before the darkness claims its due.

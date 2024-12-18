@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c35fff303aa7c469a1fb0305947956, type: 3}
+  m_Name: Tirso - Hint
+  m_EditorClassIdentifier: 
+  speakerName: Tirso
+  messages:
+  - The wounded whisper of a reckoning... a tide of vengeance yet to come. Prepare,
+    if your spirit endures.
+  - Their battles may be over... but yours is far from done. Steel your resolve...
+    before it is tested anew.
+  - I stitch the flesh, but the soul... it bears scars I cannot mend. Guard yours...
+    for it weakens with every loss.
+  - The war never ends... not for the living, nor for the fallen. Fight... if only
+    to delay the inevitable.
